@@ -1,0 +1,20 @@
+x = 0
+y = 0
+xy = 0
+x2 = 0
+y2 = 0
+c = 0
+while(c<3):
+    ix = float(input("digite um valor para x... "))
+    iy = float(input("digite um valor para y... "))
+    x += ix
+    y += iy
+    xy += ix * iy
+    x2 += ix**2
+    y2 += iy**2
+    c+=1
+print(f"sx = {x}")
+print(f"sy = {y}")
+print(f"sxy = {xy}")
+print(f"sx2 = {x2}")
+print(f"sy2 = {y2}")

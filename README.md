@@ -16,6 +16,8 @@ Este repositório foi criado com a intenção de armazenar meus projetos e ativi
 - [X] Pensar em soluções eficazes para os problemas
 ## Tecnologias
 * Python
+* C
+* Visual Basic
 #### Como contribuir 
 ```
 Faça o fork do projeto e o clone local.

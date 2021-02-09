@@ -10,5 +10,5 @@ while(c<10):
     if(l[c]<l[menor]):
         menor=c
     c+=1
-print(f"maior número e {l[maior]} que esta na posição {maior}")
-print(f"O menor número e {l[menor]} que esta na posição {menor}")
+print(f"maior número é {l[maior]} que está na posição {maior}")
+print(f"O menor número é {l[menor]} que está na posição {menor}")

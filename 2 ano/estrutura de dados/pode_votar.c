@@ -4,11 +4,8 @@ int main(){
     printf("Digite sua idade: ");
     scanf("%d", &idade);
     if(idade<16){
-        printf("Não pode votar.");
-    }
-    else if(idade>=16 && idade<18 || idade>70){
-        printf("Voto opcional.");
+        printf("Nao pode fazer titulo de eleitor");
     } else {
-        printf("Voto obrigatório.");
+        printf("Pode fazer titulo de eleitor");
     }
 }

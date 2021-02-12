@@ -9,7 +9,7 @@ Este repositório foi criado com a intenção de armazenar meus projetos e ativi
 ```
   git clone https://github.com/Biguelini/Atividades-Tecnico-em-Informatica.git
   
-  execute o arquivo .py desejado
+  execute o arquivo/projeto desejado (alguns precisam ser compilados antes)
 ```
 ## Objetivos
 - [X] Desnvolver melhor a lógica de programação

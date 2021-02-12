@@ -18,6 +18,7 @@ Este repositório foi criado com a intenção de armazenar meus projetos e ativi
 * Python
 * C
 * Visual Basic
+* PHP
 #### Como contribuir 
 ```
 Faça o fork do projeto e o clone local.

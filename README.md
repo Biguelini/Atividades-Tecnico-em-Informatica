@@ -20,7 +20,7 @@ Este repositório foi criado com a intenção de armazenar meus projetos e ativi
 * Visual Basic
 * PHP
 * HTML
-* CSS
+* Bootstrap
 #### Como contribuir 
 ```
 Faça o fork do projeto e o clone local.

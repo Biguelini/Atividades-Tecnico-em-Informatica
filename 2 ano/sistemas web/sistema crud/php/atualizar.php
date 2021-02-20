@@ -1,8 +1,9 @@
 <?php
     include_once('conexao.php');
     $oper = $_POST['oper'];
+    $matricula = $_POST['matricula'];
     switch($oper){
-        case "Cadastrar":
+        case "Confirmar":
             if(isset($_POST['nome'])){
                 $nome = mysqli_real_escape_string($connect,$_POST['nome']);
             }
@@ -10,14 +11,16 @@
                 $media = mysqli_real_escape_string($connect,$_POST['media']);
             }
             if($nome && $media && $media<=10 && $media>=0){
-                mysqli_query($connect,"INSERT INTO `aluno` (nome,media) VALUES('$nome','$media')");
+                mysqli_query($connect,"UPDATE aluno SET nome='$nome',media='$media' WHERE matricula=$matricula");
             }
-            header('Location: ../index.html');
             break;
-        case "Listar":
-            header('Location: ./listagem.php');
+        case "Cancelar":
             break;
         default:
             break;
     }
+    header('Location: ./listagem.php');
+
+
+
 ?>

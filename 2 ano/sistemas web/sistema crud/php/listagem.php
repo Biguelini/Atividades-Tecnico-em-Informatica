@@ -1,8 +1,8 @@
 <?php
-    include_once('conexao.php'); // inclui conexão
-    $query = mysqli_query($connect, "SELECT * FROM `aluno`"); // armazena o comando sql
-    $linha = mysqli_fetch_assoc($query); // transforma o resultado em uma array
-    $total = mysqli_num_rows($query); // conta as linhas de dados
+    include_once('conexao.php');
+    $query = mysqli_query($connect, "SELECT * FROM `aluno`");
+    $linha = mysqli_fetch_assoc($query);
+    $total = mysqli_num_rows($query);
 
 ?>
 <html>
@@ -26,9 +26,7 @@
                     </thead>
                     <tbody>
                         <?php
-                        // se o número de resultados for maior que zero, mostra os dados
                             if($total > 0) {
-                                // inicia o loop que vai mostrar todos os dados
                                 do {
                         ?>          
                                     <tr>
@@ -38,9 +36,7 @@
                                         <td><input type="radio" name="matricula" id="<?=$linha['matricula']?>_delete" value="<?=$linha['matricula']?>" checked></td>
                                     </tr>
                         <?php
-                                // finaliza o loop que vai mostrar os dados
                                 }while($linha = mysqli_fetch_assoc($query));
-                            // fim do if
                             }
                         ?>
                     </tbody>

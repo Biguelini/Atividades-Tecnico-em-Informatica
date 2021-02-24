@@ -356,9 +356,7 @@ MigrationBackup/
 # compilação
 *.exe
 
-##############################
-## Java
-##############################
+# Java
 .mtj.tmp/
 *.class
 *.jar
@@ -367,9 +365,7 @@ MigrationBackup/
 *.nar
 hs_err_pid*
 
-##############################
-## Maven
-##############################
+# Maven
 target/
 pom.xml.tag
 pom.xml.releaseBackup
@@ -382,12 +378,9 @@ buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 
-
-##############################
-## NetBeans
-##############################
-nbproject/
+# NetBeans
 build/
+private/
 nbbuild/
 dist/
 nbdist/

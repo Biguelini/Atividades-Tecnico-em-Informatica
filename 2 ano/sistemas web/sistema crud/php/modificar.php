@@ -35,7 +35,10 @@
                             </div>
                             <div class="mb-3">
                                 <label for="media">Nota média do aluno</label>
-                                <input type="number" name="media" class="form-control" id="media" value="<?=$media;?>" step="0.1">
+                                <input type="number" name="media" class="form-control" id="media" value="<?=$media;?>" step="0.1" min="0" max="10">
+                                <div id="passwordHelpBlock" class="form-text">
+                                    A nota deve ser de 0 a 10
+                                </div>
                             </div>
                             <div class="d-flex justify-content-center">
                                 <input type="submit" name="oper" value="Confirmar" class="btn btn-success me-3">

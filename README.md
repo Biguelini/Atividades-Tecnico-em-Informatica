@@ -19,8 +19,6 @@ Este repositório foi criado com a intenção de armazenar meus projetos e ativi
 * C
 * Visual Basic
 * PHP
-* HTML
-* Bootstrap
 * Java
 #### Como contribuir 
 ```

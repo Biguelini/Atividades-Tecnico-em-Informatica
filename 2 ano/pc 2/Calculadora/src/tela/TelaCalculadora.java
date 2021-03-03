@@ -66,8 +66,18 @@ public class TelaCalculadora extends javax.swing.JFrame {
         });
 
         bMultiplica.setText("Muliplicar");
+        bMultiplica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bMultiplicaActionPerformed(evt);
+            }
+        });
 
         bDivide.setText("Dividir");
+        bDivide.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bDivideActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -133,7 +143,10 @@ public class TelaCalculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_tValor2ActionPerformed
 
     private void bSubtraiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSubtraiActionPerformed
-        // TODO add your handling code here:
+        calc.setValor1(Double.parseDouble(tValor1.getText()));
+        calc.setValor2(Double.parseDouble(tValor2.getText()));
+        calc.subtrai();
+        lResultado.setText(Double.toString(calc.getResultado()));
     }//GEN-LAST:event_bSubtraiActionPerformed
 
     private void bSomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSomaActionPerformed
@@ -142,6 +155,20 @@ public class TelaCalculadora extends javax.swing.JFrame {
         calc.soma();
         lResultado.setText(Double.toString(calc.getResultado()));
     }//GEN-LAST:event_bSomaActionPerformed
+
+    private void bMultiplicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMultiplicaActionPerformed
+        calc.setValor1(Double.parseDouble(tValor1.getText()));
+        calc.setValor2(Double.parseDouble(tValor2.getText()));
+        calc.multiplica();
+        lResultado.setText(Double.toString(calc.getResultado()));
+    }//GEN-LAST:event_bMultiplicaActionPerformed
+
+    private void bDivideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDivideActionPerformed
+        calc.setValor1(Double.parseDouble(tValor1.getText()));
+        calc.setValor2(Double.parseDouble(tValor2.getText()));
+        calc.divide();
+        lResultado.setText(Double.toString(calc.getResultado()));
+    }//GEN-LAST:event_bDivideActionPerformed
 
     /**
      * @param args the command line arguments

@@ -130,11 +130,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Muliplicar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bMultiplicaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bDivide">
       <Properties>
         <Property name="text" type="java.lang.String" value="Dividir"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bDivideActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lResultado">
     </Component>

@@ -30,6 +30,7 @@ Partial Class Form1
         Me.btnSubtrai = New System.Windows.Forms.Button()
         Me.btnMultiplica = New System.Windows.Forms.Button()
         Me.btnDivide = New System.Windows.Forms.Button()
+        Me.lblResultado = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Label1
@@ -100,11 +101,21 @@ Partial Class Form1
         Me.btnDivide.Text = "Divisão"
         Me.btnDivide.UseVisualStyleBackColor = True
         '
+        'lblResultado
+        '
+        Me.lblResultado.AutoSize = True
+        Me.lblResultado.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblResultado.Location = New System.Drawing.Point(313, 299)
+        Me.lblResultado.Name = "lblResultado"
+        Me.lblResultado.Size = New System.Drawing.Size(0, 30)
+        Me.lblResultado.TabIndex = 8
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(678, 450)
+        Me.Controls.Add(Me.lblResultado)
         Me.Controls.Add(Me.btnDivide)
         Me.Controls.Add(Me.btnMultiplica)
         Me.Controls.Add(Me.btnSubtrai)
@@ -128,4 +139,5 @@ Partial Class Form1
     Friend WithEvents btnSubtrai As Button
     Friend WithEvents btnMultiplica As Button
     Friend WithEvents btnDivide As Button
+    Friend WithEvents lblResultado As Label
 End Class

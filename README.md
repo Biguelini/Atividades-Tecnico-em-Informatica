@@ -14,6 +14,7 @@ Este repositório foi criado com a intenção de armazenar meus projetos e ativi
 ## Objetivos
 - [X] Desnvolver melhor a lógica de programação
 - [X] Pensar em soluções eficazes para os problemas
+- [ ] Criar programas comerciais
 ## Tecnologias
 * Python
 * C

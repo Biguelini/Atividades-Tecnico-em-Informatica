@@ -13,7 +13,11 @@
             <h:outputLabel value="Digite o segundo valor " for="itValor2"/>
             <h:inputText id="itValor2" value="#{calculadoraBean.calc.valor2}"/>
             <br/>
-            <h:commandButton value="soma"/>
+            <h:commandButton value="soma" action="#{calculadoraBean.soma()}"/>
+            <h:commandButton value="subtrai" action="#{calculadoraBean.subtrai()}"/>
+            <h:commandButton value="multiplica" action="#{calculadoraBean.multiplica()}"/>
+            <h:commandButton value="divide" action="#{calculadoraBean.divide()}"/>
+            <br/>
             <h:outputText id="otresultado" value="#{calculadoraBean.calc.resultado}"/>
         </h:form>
     </h:body>

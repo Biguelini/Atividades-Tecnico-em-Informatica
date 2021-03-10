@@ -19,6 +19,18 @@ public class CalculadoraBean {
         getCalc().soma();
         return null;
     }
+    public String subtrai(){
+        getCalc().subtrai();
+        return null;
+    }
+    public String multiplica(){
+        getCalc().multiplica();
+        return null;
+    }
+    public String divide(){
+        getCalc().divide();
+        return null;
+    }
     /**
      * @return the calc
      */

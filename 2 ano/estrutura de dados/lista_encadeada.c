@@ -1,10 +1,14 @@
 #include <malloc.h>
 #include <stdio.h>
 struct lista {
+    // tipo de dado que vai guardar
     int info;
+    // ponteiro que aponta para um struct de nome lista
     struct lista* prox;
 };
+// tipo lista que referencia o struct list
 typedef struct lista Lista;
+
 Lista* inicializa(void){
     return NULL;
 }

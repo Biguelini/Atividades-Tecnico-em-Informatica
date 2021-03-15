@@ -17,7 +17,7 @@ public class TelaCliente extends javax.swing.JFrame {
         tNome.setText("");
         tEndereco.setText("");
         tCidade.setText("");
-        tUf.setText("");
+        cUf.setSelectedItem("PR");
         tTelefone.setText("");
         tRenda.setText("");
     
@@ -28,7 +28,7 @@ public class TelaCliente extends javax.swing.JFrame {
         tNome.setText(cliente.getNome());
         tEndereco.setText(cliente.getEndereco());
         tCidade.setText(cliente.getCidade());
-        tUf.setText(cliente.getUf());
+        cUf.setSelectedItem(cliente.getUf());
         tTelefone.setText(cliente.getTelefone());
         tRenda.setText(Double.toString(cliente.getRenda()));
     }
@@ -38,7 +38,7 @@ public class TelaCliente extends javax.swing.JFrame {
         cliente.setNome(tNome.getText());
         cliente.setEndereco(tEndereco.getText());
         cliente.setCidade(tCidade.getText());
-        cliente.setUf(tUf.getText());
+        cliente.setUf(cUf.getSelectedItem().toString());
         cliente.setTelefone(tTelefone.getText());
         cliente.setRenda(Double.parseDouble(tRenda.getText()));
     }
@@ -70,12 +70,12 @@ public class TelaCliente extends javax.swing.JFrame {
         tNome = new javax.swing.JTextField();
         tEndereco = new javax.swing.JTextField();
         tCidade = new javax.swing.JTextField();
-        tUf = new javax.swing.JTextField();
-        tTelefone = new javax.swing.JTextField();
         tRenda = new javax.swing.JTextField();
         bNovo = new javax.swing.JButton();
         bSalva = new javax.swing.JButton();
         bLe = new javax.swing.JButton();
+        cUf = new javax.swing.JComboBox<>();
+        tTelefone = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,6 +120,14 @@ public class TelaCliente extends javax.swing.JFrame {
             }
         });
 
+        cUf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+
+        try {
+            tTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,9 +142,9 @@ public class TelaCliente extends javax.swing.JFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE))
                         .addGap(4, 4, 4)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tNome, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(tCodigo)
+                            .addComponent(tNome)
+                            .addComponent(tEndereco)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -144,18 +152,18 @@ public class TelaCliente extends javax.swing.JFrame {
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tRenda)
+                            .addComponent(cUf, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(tCidade)
-                            .addComponent(tUf)
-                            .addComponent(tTelefone)
-                            .addComponent(tRenda, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(tTelefone)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(bNovo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(bSalva)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(bLe)))
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,12 +187,12 @@ public class TelaCliente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(tUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(tTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(tRenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -193,7 +201,7 @@ public class TelaCliente extends javax.swing.JFrame {
                     .addComponent(bNovo)
                     .addComponent(bSalva)
                     .addComponent(bLe))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
@@ -254,6 +262,7 @@ public class TelaCliente extends javax.swing.JFrame {
     private javax.swing.JButton bLe;
     private javax.swing.JButton bNovo;
     private javax.swing.JButton bSalva;
+    private javax.swing.JComboBox<String> cUf;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -266,7 +275,6 @@ public class TelaCliente extends javax.swing.JFrame {
     private javax.swing.JTextField tEndereco;
     private javax.swing.JTextField tNome;
     private javax.swing.JTextField tRenda;
-    private javax.swing.JTextField tTelefone;
-    private javax.swing.JTextField tUf;
+    private javax.swing.JFormattedTextField tTelefone;
     // End of variables declaration//GEN-END:variables
 }

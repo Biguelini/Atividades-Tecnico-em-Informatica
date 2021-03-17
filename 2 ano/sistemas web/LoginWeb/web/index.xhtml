@@ -9,10 +9,14 @@
         <h:form>
             <h:outputLabel value="usuario" for="itUsuario"/>
             <h:inputText id="itUsuario" value="#{loginBean.login.usuario}"/>
+            <br/>
             <h:outputLabel value="senha" for="itSenha"/>
             <h:inputSecret id="itSenha" value="#{loginBean.login.senha}"/>
+            <br/>
             <h:commandButton value="Ok" action="#{loginBean.loga}"/>
+            <br/>
             <h:outputText value="Acesso permitido!" rendered="#{loginBean.loginok}"/>
+            <h:outputText value="Acesso negado!" rendered="#{!loginBean.loginok}"/>
         </h:form>
     </h:body>
 </html>

@@ -6,6 +6,7 @@
 package bean;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import vo.Login;
 
 /**
@@ -13,18 +14,26 @@ import vo.Login;
  * @author JP
  */
 @ManagedBean
+@SessionScoped
 public class LoginBean {
-    private Login login; 
+    private Login login = new Login(); 
     private boolean loginok=false;
     public String loga(){
         if(login.getUsuario().equals("joao")&& login.getSenha().equals("senhaforte")){
             loginok = true;
+            return "inicio";
         
         } else{
             loginok = false;
+            return "erro";
         }
-        return null;
     }
+    
+    public String desloga(){
+        login = new Login();
+        return "index";
+    }
+    
     /**
      * @return the login
      */

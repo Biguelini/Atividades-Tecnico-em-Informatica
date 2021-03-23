@@ -1,36 +1,33 @@
 ﻿Public Class Form1
-    Dim cliente As New Cliente
+    Dim animal As New Animal
     Private Sub limpaTela()
         txtCodigo.Text = ""
         txtNome.Text = ""
-        txtEndereco.Text = ""
-        txtCidade.Text = ""
-        txtUf.Text = ""
-        txtTelefone.Text = ""
-        txtRenda.Text = ""
+        txtProprietario.Text = ""
+        txtIdade.Text = ""
+        txtEspecie.Text = ""
+        txtRaca.Text = ""
 
     End Sub
     Private Sub telaToCliente()
-        cliente.codigo = txtCodigo.Text
-        cliente.nome = txtNome.Text
-        cliente.endereco = txtEndereco.Text
-        cliente.cidade = txtCidade.Text
-        cliente.uf = txtUf.Text
-        cliente.telefone = txtTelefone.Text
-        cliente.renda = txtRenda.Text
+        animal.codigo = txtCodigo.Text
+        animal.nome = txtNome.Text
+        animal.proprietario = txtProprietario.Text
+        animal.idade = txtIdade.Text
+        animal.especie = txtEspecie.Text
+        animal.raca = txtRaca.Text
 
     End Sub
     Private Sub clienteToTela()
-        txtCodigo.Text = cliente.codigo
-        txtNome.Text = cliente.nome
-        txtEndereco.Text = cliente.endereco
-        txtCidade.Text = cliente.cidade
-        txtUf.Text = cliente.uf
-        txtTelefone.Text = cliente.telefone
-        txtRenda.Text = cliente.renda
+        txtCodigo.Text = animal.codigo
+        txtNome.Text = animal.nome
+        txtProprietario.Text = animal.proprietario
+        txtIdade.Text = animal.idade
+        txtEspecie.Text = animal.especie
+        txtRaca.Text = animal.raca
     End Sub
 
-    Private Sub Label7_Click(sender As Object, e As EventArgs) Handles Label7.Click
+    Private Sub Label7_Click(sender As Object, e As EventArgs)
 
     End Sub
 
@@ -38,15 +35,15 @@
 
     End Sub
 
-    Private Sub TextBox6_TextChanged(sender As Object, e As EventArgs) Handles txtTelefone.TextChanged
+    Private Sub TextBox6_TextChanged(sender As Object, e As EventArgs) Handles txtRaca.TextChanged
 
     End Sub
 
-    Private Sub TextBox4_TextChanged(sender As Object, e As EventArgs) Handles txtCidade.TextChanged
+    Private Sub TextBox4_TextChanged(sender As Object, e As EventArgs) Handles txtIdade.TextChanged
 
     End Sub
 
-    Private Sub TextBox3_TextChanged(sender As Object, e As EventArgs) Handles txtEndereco.TextChanged
+    Private Sub TextBox3_TextChanged(sender As Object, e As EventArgs) Handles txtProprietario.TextChanged
 
     End Sub
 
@@ -58,7 +55,7 @@
 
     End Sub
 
-    Private Sub TextBox5_TextChanged(sender As Object, e As EventArgs) Handles txtUf.TextChanged
+    Private Sub TextBox5_TextChanged(sender As Object, e As EventArgs) Handles txtEspecie.TextChanged
 
     End Sub
 

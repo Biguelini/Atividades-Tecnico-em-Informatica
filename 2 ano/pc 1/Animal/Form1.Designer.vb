@@ -28,14 +28,12 @@ Partial Class Form1
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
         Me.txtCodigo = New System.Windows.Forms.TextBox()
         Me.txtNome = New System.Windows.Forms.TextBox()
-        Me.txtEndereco = New System.Windows.Forms.TextBox()
-        Me.txtCidade = New System.Windows.Forms.TextBox()
-        Me.txtUf = New System.Windows.Forms.TextBox()
-        Me.txtTelefone = New System.Windows.Forms.TextBox()
-        Me.txtRenda = New System.Windows.Forms.TextBox()
+        Me.txtProprietario = New System.Windows.Forms.TextBox()
+        Me.txtIdade = New System.Windows.Forms.TextBox()
+        Me.txtEspecie = New System.Windows.Forms.TextBox()
+        Me.txtRaca = New System.Windows.Forms.TextBox()
         Me.btnNovo = New System.Windows.Forms.Button()
         Me.btnSalva = New System.Windows.Forms.Button()
         Me.btnLe = New System.Windows.Forms.Button()
@@ -64,98 +62,82 @@ Partial Class Form1
         Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(12, 71)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(56, 15)
+        Me.Label3.Size = New System.Drawing.Size(69, 15)
         Me.Label3.TabIndex = 2
-        Me.Label3.Text = "Endereço"
+        Me.Label3.Text = "Proprietário"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(12, 100)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(44, 15)
+        Me.Label4.Size = New System.Drawing.Size(36, 15)
         Me.Label4.TabIndex = 3
-        Me.Label4.Text = "Cidade"
+        Me.Label4.Text = "Idade"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
         Me.Label5.Location = New System.Drawing.Point(12, 129)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(21, 15)
+        Me.Label5.Size = New System.Drawing.Size(46, 15)
         Me.Label5.TabIndex = 4
-        Me.Label5.Text = "UF"
+        Me.Label5.Text = "Espécie"
         '
         'Label6
         '
         Me.Label6.AutoSize = True
         Me.Label6.Location = New System.Drawing.Point(12, 158)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(51, 15)
+        Me.Label6.Size = New System.Drawing.Size(32, 15)
         Me.Label6.TabIndex = 5
-        Me.Label6.Text = "Telefone"
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(12, 188)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(40, 15)
-        Me.Label7.TabIndex = 6
-        Me.Label7.Text = "Renda"
+        Me.Label6.Text = "Raça"
         '
         'txtCodigo
         '
-        Me.txtCodigo.Location = New System.Drawing.Point(81, 9)
+        Me.txtCodigo.Location = New System.Drawing.Point(96, 9)
         Me.txtCodigo.Name = "txtCodigo"
-        Me.txtCodigo.Size = New System.Drawing.Size(172, 23)
+        Me.txtCodigo.Size = New System.Drawing.Size(157, 23)
         Me.txtCodigo.TabIndex = 7
         '
         'txtNome
         '
-        Me.txtNome.Location = New System.Drawing.Point(81, 37)
+        Me.txtNome.Location = New System.Drawing.Point(96, 37)
         Me.txtNome.Name = "txtNome"
-        Me.txtNome.Size = New System.Drawing.Size(172, 23)
+        Me.txtNome.Size = New System.Drawing.Size(157, 23)
         Me.txtNome.TabIndex = 8
         '
-        'txtEndereco
+        'txtProprietario
         '
-        Me.txtEndereco.Location = New System.Drawing.Point(81, 67)
-        Me.txtEndereco.Name = "txtEndereco"
-        Me.txtEndereco.Size = New System.Drawing.Size(172, 23)
-        Me.txtEndereco.TabIndex = 9
+        Me.txtProprietario.Location = New System.Drawing.Point(96, 67)
+        Me.txtProprietario.Name = "txtProprietario"
+        Me.txtProprietario.Size = New System.Drawing.Size(157, 23)
+        Me.txtProprietario.TabIndex = 9
         '
-        'txtCidade
+        'txtIdade
         '
-        Me.txtCidade.Location = New System.Drawing.Point(81, 96)
-        Me.txtCidade.Name = "txtCidade"
-        Me.txtCidade.Size = New System.Drawing.Size(172, 23)
-        Me.txtCidade.TabIndex = 10
+        Me.txtIdade.Location = New System.Drawing.Point(96, 96)
+        Me.txtIdade.Name = "txtIdade"
+        Me.txtIdade.Size = New System.Drawing.Size(157, 23)
+        Me.txtIdade.TabIndex = 10
         '
-        'txtUf
+        'txtEspecie
         '
-        Me.txtUf.Location = New System.Drawing.Point(81, 125)
-        Me.txtUf.Name = "txtUf"
-        Me.txtUf.Size = New System.Drawing.Size(172, 23)
-        Me.txtUf.TabIndex = 11
+        Me.txtEspecie.Location = New System.Drawing.Point(96, 125)
+        Me.txtEspecie.Name = "txtEspecie"
+        Me.txtEspecie.Size = New System.Drawing.Size(157, 23)
+        Me.txtEspecie.TabIndex = 11
         '
-        'txtTelefone
+        'txtRaca
         '
-        Me.txtTelefone.Location = New System.Drawing.Point(81, 154)
-        Me.txtTelefone.Name = "txtTelefone"
-        Me.txtTelefone.Size = New System.Drawing.Size(172, 23)
-        Me.txtTelefone.TabIndex = 12
-        '
-        'txtRenda
-        '
-        Me.txtRenda.Location = New System.Drawing.Point(81, 184)
-        Me.txtRenda.Name = "txtRenda"
-        Me.txtRenda.Size = New System.Drawing.Size(172, 23)
-        Me.txtRenda.TabIndex = 13
+        Me.txtRaca.Location = New System.Drawing.Point(96, 154)
+        Me.txtRaca.Name = "txtRaca"
+        Me.txtRaca.Size = New System.Drawing.Size(157, 23)
+        Me.txtRaca.TabIndex = 12
         '
         'btnNovo
         '
-        Me.btnNovo.Location = New System.Drawing.Point(14, 220)
+        Me.btnNovo.Location = New System.Drawing.Point(12, 206)
         Me.btnNovo.Name = "btnNovo"
         Me.btnNovo.Size = New System.Drawing.Size(75, 46)
         Me.btnNovo.TabIndex = 14
@@ -164,7 +146,7 @@ Partial Class Form1
         '
         'btnSalva
         '
-        Me.btnSalva.Location = New System.Drawing.Point(96, 220)
+        Me.btnSalva.Location = New System.Drawing.Point(94, 206)
         Me.btnSalva.Name = "btnSalva"
         Me.btnSalva.Size = New System.Drawing.Size(75, 46)
         Me.btnSalva.TabIndex = 15
@@ -173,7 +155,7 @@ Partial Class Form1
         '
         'btnLe
         '
-        Me.btnLe.Location = New System.Drawing.Point(178, 220)
+        Me.btnLe.Location = New System.Drawing.Point(176, 206)
         Me.btnLe.Name = "btnLe"
         Me.btnLe.Size = New System.Drawing.Size(75, 46)
         Me.btnLe.TabIndex = 16
@@ -188,14 +170,12 @@ Partial Class Form1
         Me.Controls.Add(Me.btnLe)
         Me.Controls.Add(Me.btnSalva)
         Me.Controls.Add(Me.btnNovo)
-        Me.Controls.Add(Me.txtRenda)
-        Me.Controls.Add(Me.txtTelefone)
-        Me.Controls.Add(Me.txtUf)
-        Me.Controls.Add(Me.txtCidade)
-        Me.Controls.Add(Me.txtEndereco)
+        Me.Controls.Add(Me.txtRaca)
+        Me.Controls.Add(Me.txtEspecie)
+        Me.Controls.Add(Me.txtIdade)
+        Me.Controls.Add(Me.txtProprietario)
         Me.Controls.Add(Me.txtNome)
         Me.Controls.Add(Me.txtCodigo)
-        Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label4)
@@ -215,14 +195,12 @@ Partial Class Form1
     Friend WithEvents Label4 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
-    Friend WithEvents Label7 As Label
     Friend WithEvents txtCodigo As TextBox
     Friend WithEvents txtNome As TextBox
-    Friend WithEvents txtEndereco As TextBox
-    Friend WithEvents txtCidade As TextBox
-    Friend WithEvents txtUf As TextBox
-    Friend WithEvents txtTelefone As TextBox
-    Friend WithEvents txtRenda As TextBox
+    Friend WithEvents txtProprietario As TextBox
+    Friend WithEvents txtIdade As TextBox
+    Friend WithEvents txtEspecie As TextBox
+    Friend WithEvents txtRaca As TextBox
     Friend WithEvents btnNovo As Button
     Friend WithEvents btnSalva As Button
     Friend WithEvents btnLe As Button

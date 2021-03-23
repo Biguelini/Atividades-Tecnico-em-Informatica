@@ -22,8 +22,22 @@ public class TelaAnimal extends javax.swing.JFrame {
         tEspecie.setText("");
         tRaca.setText("");
     }
-    private void clienteToTela(){}
-    private void telaToCliente(){}
+    private void clienteToTela(){
+        tCodigo.setText(Integer.toString(animal.getCodigo()));
+        tNome.setText(animal.getNome());
+        tProprietario.setText(animal.getProprietario());
+        tIdade.setText(Integer.toString(animal.getIdade()));
+        tEspecie.setText(animal.getEspecie());
+        tRaca.setText(animal.getRaca());
+    }
+    private void telaToCliente(){
+        animal.setCodigo(Integer.parseInt(tCodigo.getText()));
+        animal.setNome(tNome.getText());
+        animal.setProprietario(tProprietario.getText());
+        animal.setIdade(Integer.parseInt(tIdade.getText()));
+        animal.setEspecie(tEspecie.getText());
+        animal.setRaca(tRaca.getText());
+    }
     
     /**
      * Creates new form TelaAnimal

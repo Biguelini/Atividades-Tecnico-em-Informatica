@@ -3,16 +3,16 @@ using namespace std;
 
 class MinhaClasse
 {
-public:
-    int x;
-    void receberValor(int d)
-    {
-        x = d;
-    }
-    void mostraValor(void)
-    {
-        cout << "Valor = " << x << endl;
-    }
+    public:
+        int x;
+        void receberValor(int d)
+        {
+            x = d;
+        }
+        void mostraValor(void)
+        {
+            cout << "Valor = " << x << endl;
+        }
 };
 int main(void)
 {

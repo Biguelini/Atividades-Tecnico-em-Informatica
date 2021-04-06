@@ -22,8 +22,8 @@ public class Bd {
     public static Connection getCon() {
         try {
             if (con == null || con.isClosed() || !con.isValid(1000)) {
-                Class.forName(getDriver());
-                con = DriverManager.getConnection(getUrl(), getUsuario(), getSenha());
+                Class.forName(driver);
+                con = DriverManager.getConnection(url, usuario, senha);
             }
         } catch (Exception e) {
             System.out.println(" erro na conexao\n" + e.getMessage());

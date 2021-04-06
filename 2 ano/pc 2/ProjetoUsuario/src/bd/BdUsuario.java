@@ -14,15 +14,16 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import vo.Usuario;
-
+import java.util.ArrayList;
+import java.util.List;
 public class BdUsuario {
 
     public void insere(Usuario usuario) {
-        String sql = "insert into usuario (nome,user,senha) values(?,?,?)";
+        String sql = "insert into usuario (user,nome,senha) values(?,?,?)";
         try {
             PreparedStatement ps = Bd.getCon().prepareStatement(sql);
-            ps.setString(1, usuario.getNome());
-            ps.setString(2, usuario.getUser());
+            ps.setString(1, usuario.getUser());
+            ps.setString(2, usuario.getNome());
             ps.setString(3, usuario.getSenha());
             ps.execute();
         } catch (SQLException e) {
@@ -75,7 +76,7 @@ public class BdUsuario {
 
     public List<Usuario> pesquisa(String user) {
         String sql = "select * from usuario where user like ?";
-        List<Usuario> lista = new ArrayList<>();
+        List<Usuario> lista = new ArrayList();
         try {
             PreparedStatement ps = Bd.getCon().prepareStatement(sql);
             ps.setString(1, "%" + user + "%");

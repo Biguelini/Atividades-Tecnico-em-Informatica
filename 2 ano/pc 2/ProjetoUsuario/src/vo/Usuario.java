@@ -12,7 +12,7 @@ package vo;
 public class Usuario {
     private String nome;
     private String user;
-    private String Senha;
+    private String senha;
 
     /**
      * @return the nome
@@ -46,13 +46,14 @@ public class Usuario {
      * @return the Senha
      */
     public String getSenha() {
-        return Senha;
+        return senha;
     }
 
     /**
+     * @param senha
      * @param Senha the Senha to set
      */
-    public void setSenha(String Senha) {
-        this.Senha = Senha;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }

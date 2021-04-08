@@ -26,7 +26,7 @@ public class Bd {
                 con = DriverManager.getConnection(url, usuario, senha);
             }
         } catch (Exception e) {
-            System.out.println(" erro na conexao\n" + e.getMessage());
+            System.out.println("erro na conexao\n" + e.getMessage());
         }
         return con;
     }

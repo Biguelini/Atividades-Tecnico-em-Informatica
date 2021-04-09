@@ -7,7 +7,7 @@ struct pilha
     int n;
     // ! quantos elementos tem na pilha
     float vet[MAX];
-    //! MAX define quantos elementos cabem na lista
+    // ! MAX define quantos elementos cabem na lista
 };
 typedef struct pilha Pilha;
 // ! cria um tipo de dado chamado pilha

@@ -45,56 +45,56 @@ Partial Class Form1
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(25, 29)
+        Me.Label1.Location = New System.Drawing.Point(26, 29)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(39, 13)
+        Me.Label1.Size = New System.Drawing.Size(40, 13)
         Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Label1"
+        Me.Label1.Text = "Código"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(25, 62)
+        Me.Label2.Location = New System.Drawing.Point(26, 62)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(39, 13)
+        Me.Label2.Size = New System.Drawing.Size(35, 13)
         Me.Label2.TabIndex = 1
-        Me.Label2.Text = "Label2"
+        Me.Label2.Text = "Nome"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(25, 95)
+        Me.Label3.Location = New System.Drawing.Point(26, 95)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(39, 13)
+        Me.Label3.Size = New System.Drawing.Size(53, 13)
         Me.Label3.TabIndex = 2
-        Me.Label3.Text = "Label3"
+        Me.Label3.Text = "Endereço"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(25, 128)
+        Me.Label4.Location = New System.Drawing.Point(26, 128)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(39, 13)
+        Me.Label4.Size = New System.Drawing.Size(40, 13)
         Me.Label4.TabIndex = 3
-        Me.Label4.Text = "Label4"
+        Me.Label4.Text = "Cidade"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(25, 161)
+        Me.Label5.Location = New System.Drawing.Point(26, 161)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(39, 13)
+        Me.Label5.Size = New System.Drawing.Size(21, 13)
         Me.Label5.TabIndex = 4
-        Me.Label5.Text = "Label5"
+        Me.Label5.Text = "UF"
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(25, 194)
+        Me.Label6.Location = New System.Drawing.Point(26, 194)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(39, 13)
+        Me.Label6.Size = New System.Drawing.Size(49, 13)
         Me.Label6.TabIndex = 5
-        Me.Label6.Text = "Label6"
+        Me.Label6.Text = "Telefone"
         '
         'Label7
         '
@@ -103,53 +103,53 @@ Partial Class Form1
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(39, 13)
         Me.Label7.TabIndex = 6
-        Me.Label7.Text = "Label7"
+        Me.Label7.Text = "Renda"
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(71, 25)
+        Me.TextBox1.Location = New System.Drawing.Point(89, 25)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(100, 20)
         Me.TextBox1.TabIndex = 7
         '
         'TextBox2
         '
-        Me.TextBox2.Location = New System.Drawing.Point(71, 58)
+        Me.TextBox2.Location = New System.Drawing.Point(89, 58)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(100, 20)
         Me.TextBox2.TabIndex = 8
         '
         'TextBox3
         '
-        Me.TextBox3.Location = New System.Drawing.Point(71, 91)
+        Me.TextBox3.Location = New System.Drawing.Point(89, 91)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(100, 20)
         Me.TextBox3.TabIndex = 9
         '
         'TextBox4
         '
-        Me.TextBox4.Location = New System.Drawing.Point(71, 124)
+        Me.TextBox4.Location = New System.Drawing.Point(89, 124)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(100, 20)
         Me.TextBox4.TabIndex = 10
         '
         'TextBox5
         '
-        Me.TextBox5.Location = New System.Drawing.Point(71, 157)
+        Me.TextBox5.Location = New System.Drawing.Point(89, 157)
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.Size = New System.Drawing.Size(100, 20)
         Me.TextBox5.TabIndex = 11
         '
         'TextBox6
         '
-        Me.TextBox6.Location = New System.Drawing.Point(71, 190)
+        Me.TextBox6.Location = New System.Drawing.Point(89, 190)
         Me.TextBox6.Name = "TextBox6"
         Me.TextBox6.Size = New System.Drawing.Size(100, 20)
         Me.TextBox6.TabIndex = 12
         '
         'TextBox7
         '
-        Me.TextBox7.Location = New System.Drawing.Point(71, 223)
+        Me.TextBox7.Location = New System.Drawing.Point(89, 223)
         Me.TextBox7.Name = "TextBox7"
         Me.TextBox7.Size = New System.Drawing.Size(100, 20)
         Me.TextBox7.TabIndex = 13
@@ -160,7 +160,7 @@ Partial Class Form1
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 53)
         Me.Button1.TabIndex = 14
-        Me.Button1.Text = "Button1"
+        Me.Button1.Text = "Novo"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'Button2
@@ -169,7 +169,7 @@ Partial Class Form1
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 53)
         Me.Button2.TabIndex = 15
-        Me.Button2.Text = "Button2"
+        Me.Button2.Text = "Salvar"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'Button3
@@ -178,7 +178,7 @@ Partial Class Form1
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(75, 53)
         Me.Button3.TabIndex = 16
-        Me.Button3.Text = "Button3"
+        Me.Button3.Text = "Excluir"
         Me.Button3.UseVisualStyleBackColor = True
         '
         'Button4
@@ -187,7 +187,7 @@ Partial Class Form1
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(75, 53)
         Me.Button4.TabIndex = 17
-        Me.Button4.Text = "Button4"
+        Me.Button4.Text = "Localizar"
         Me.Button4.UseVisualStyleBackColor = True
         '
         'Form1

@@ -10,12 +10,8 @@ package bd;
  * @author JP
  */
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JOptionPane;
 import vo.Usuario;
-import java.util.ArrayList;
-import java.util.List;
 public class BdUsuario {
 
     public void insere(Usuario usuario) {
@@ -72,24 +68,5 @@ public class BdUsuario {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro SQL: " + e.getMessage());
         }
-    }
-
-    public List<Usuario> pesquisa(String user) {
-        String sql = "select * from usuario where user like ?";
-        List<Usuario> lista = new ArrayList();
-        try {
-            PreparedStatement ps = Bd.getCon().prepareStatement(sql);
-            ps.setString(1, "%" + user + "%");
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Usuario registro = new Usuario();
-                registro.setUser(rs.getString("user"));
-                registro.setNome(rs.getString("nome"));
-                registro.setSenha(rs.getString("senha"));
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro SQL: " + e.getMessage());
-        }
-        return lista;
     }
 }

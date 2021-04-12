@@ -10,7 +10,7 @@ package vo;
  * @author JP
  */
 public class Usuario {
-    private String nome;
+    private String nome = "";
     private String user;
     private String senha;
 

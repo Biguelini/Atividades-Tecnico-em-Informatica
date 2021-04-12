@@ -4,32 +4,33 @@ class Calculadora
 {
 public:
     int x = 0, y = 0;
-    void getValores(void)
+    void getValores()
     {
         cin >> x;
         cin >> y;
     }
-    int somaValores(void)
+    int somaValores()
     {
         return x + y;
     }
-    int subtraiValores(void)
+    int subtraiValores()
     {
         return x - y;
     }
-    int multiplicaValores(void)
+    int multiplicaValores()
     {
         return x * y;
     }
-    int divideValores(void)
+    int divideValores()
     {
         if (y != 0)
         {
             return x / y;
         }
+        return 0;
     }
 };
-int main(void)
+int main()
 {
     Calculadora obj1;
     obj1.getValores();

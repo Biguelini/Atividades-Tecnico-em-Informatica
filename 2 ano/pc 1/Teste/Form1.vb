@@ -37,6 +37,7 @@
         telaToUsuario()
         bd.excluir(usuario.User)
         limpaTela()
+        novo = True
     End Sub
 
     Private Sub btnlocalizar_Click(sender As Object, e As EventArgs) Handles btnlocalizar.Click

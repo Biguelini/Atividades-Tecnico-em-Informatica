@@ -10,17 +10,19 @@ public:
     int coordenadaY = 0;
     int movimentar(int coordenadaX, int coordenadaY)
     {
-        cout << coordenadaX << "," << coordenadaY << endl;
+        cout << "O boneco se moveu para:" << endl;
+        cout << "[" << coordenadaX << "," << coordenadaY << "]" << endl;
     }
 };
 int main()
 {
     Boneco boneco;
-    do
-    {
-        cin >> boneco.coordenadaX;
-        cin >> boneco.coordenadaY;
-        boneco.movimentar(boneco.coordenadaX, boneco.coordenadaY);
-    } while (1);
+    cout << "Posicao inicial: " << endl;
+    cout << "[" << boneco.coordenadaX << "," << boneco.coordenadaY << "]" << endl;
+    cout << "Digite o valor da coordenada X: ";
+    cin >> boneco.coordenadaX;
+    cout << "Digite o valor da coordenada Y: ";
+    cin >> boneco.coordenadaY;
+    boneco.movimentar(boneco.coordenadaX, boneco.coordenadaY);
     return 0;
 }

@@ -14,53 +14,11 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <h:form>
-            <h1 align="center">Cadastro de sócio</h1>
-            <p:commandButton id="bNovo" icon="ui-icon-document" ajax="false" action="#"/>
-            <p:tooltip id="ttNovo" for="bNovo" value="Novo Sócio" trackMouse="true" />
-            <p:commandButton id="bAtualiza" icon="ui-icon-refresh" action="#}" update="tabela" />
-            <p:tooltip id="ttAtualiza" for="bAtualiza" value="Atualiza lista" trackMouse="true" />
-            <p:dataTable id="tabela" value="#" var="disciplina">
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="Código"/>
-                    </f:facet>
-                    <h:outputText value="#"/>
-                </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="Nome"/>
-                    </f:facet>
-                    <h:outputText value="#"/>
-                </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="Carga Horária"/>
-                    </f:facet>
-                    <h:outputText value="#"/>
-                </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="Professor"/>
-                    </f:facet>
-                    <h:outputText value="#"/>
-                </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="Ações"/>
-                    </f:facet>
-                    <p:commandButton id="bEdita" icon="ui-icon-pencil" ajax="false" action="#" />
-                    <p:tooltip for="bEdita" value="Alterar disciplina" trackMouse="true" />
-                    <p:commandButton id="bExclui" icon="ui-icon-trash" action="#" update="tabela" >
-                        <p:confirm header="Confirmação" message="Confirma exclusão de #?" icon="ui-icon-alert" />
-                    </p:commandButton>
-                    <p:confirmDialog global="true" closable="false" showEffect="fade" hideEffect="fade">
-                        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                    </p:confirmDialog>
-                    <p:commandButton id="bEdita" value="Dependentes" ajax="false" action="#" />
-                    <p:tooltip for="bEdita" value="Alterar disciplina" trackMouse="true" />
-                </p:column>
-            </p:dataTable>
+            <h1 align="center">Cadastro do clube</h1>
+            <div align="center">
+                <p:commandButton id="bSocio" value="Sócios" ajax="false" action="socios.xhtml" />
+                <p:commandButton id="bDependente" value="Dependentes" ajax="false" action="dependentes.xhtml" />
+            </div>
         </h:form>
     </h:body>
 </html>

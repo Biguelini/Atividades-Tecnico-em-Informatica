@@ -59,10 +59,13 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="bSalva" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="bLe" min="-2" max="-2" attributes="0"/>
+                      <Component id="bExclui" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="bLocalizar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -108,7 +111,8 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="bNovo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="bSalva" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="bLe" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="bExclui" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="bLocalizar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="31" max="32767" attributes="0"/>
           </Group>
@@ -180,12 +184,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bSalvaActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="bLe">
+    <Component class="javax.swing.JButton" name="bExclui">
       <Properties>
-        <Property name="text" type="java.lang.String" value="L&#xea;"/>
+        <Property name="text" type="java.lang.String" value="Exclui"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bLeActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bExcluiActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="cUf">
@@ -232,6 +236,14 @@
           <Format format="(##)#####-####" subtype="-1" type="5"/>
         </Property>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="bLocalizar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Localizar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bLocalizarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -11,7 +11,7 @@ package vo;
  */
 public class Cliente {
     private int codigo;
-    private String nome;
+    private String nome = "";
     private String endereco;
     private String cidade;
     private String uf;

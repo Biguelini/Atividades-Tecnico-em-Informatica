@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package tela;
+import bd.BdCliente;
+import javax.swing.JOptionPane;
 import vo.Cliente;
 /**
  *
@@ -12,6 +14,8 @@ import vo.Cliente;
 public class TelaCliente extends javax.swing.JFrame {
     
     Cliente cliente = new Cliente();
+    BdCliente bd;
+    boolean novo = true;
     private void limpaTela(){
         tCodigo.setText("");
         tNome.setText("");
@@ -73,9 +77,10 @@ public class TelaCliente extends javax.swing.JFrame {
         tRenda = new javax.swing.JTextField();
         bNovo = new javax.swing.JButton();
         bSalva = new javax.swing.JButton();
-        bLe = new javax.swing.JButton();
+        bExclui = new javax.swing.JButton();
         cUf = new javax.swing.JComboBox<>();
         tTelefone = new javax.swing.JFormattedTextField();
+        bLocalizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -113,10 +118,10 @@ public class TelaCliente extends javax.swing.JFrame {
             }
         });
 
-        bLe.setText("Lê");
-        bLe.addActionListener(new java.awt.event.ActionListener() {
+        bExclui.setText("Exclui");
+        bExclui.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bLeActionPerformed(evt);
+                bExcluiActionPerformed(evt);
             }
         });
 
@@ -127,6 +132,13 @@ public class TelaCliente extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+
+        bLocalizar.setText("Localizar");
+        bLocalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bLocalizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -162,8 +174,11 @@ public class TelaCliente extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(bSalva)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bLe)))
-                .addGap(18, 18, 18))
+                        .addComponent(bExclui)
+                        .addGap(18, 18, 18)
+                        .addComponent(bLocalizar)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,7 +215,8 @@ public class TelaCliente extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bNovo)
                     .addComponent(bSalva)
-                    .addComponent(bLe))
+                    .addComponent(bExclui)
+                    .addComponent(bLocalizar))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -213,15 +229,39 @@ public class TelaCliente extends javax.swing.JFrame {
 
     private void bNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNovoActionPerformed
         limpaTela();
+        novo = true;
     }//GEN-LAST:event_bNovoActionPerformed
 
     private void bSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvaActionPerformed
+        bd = new BdCliente();
         telaToCliente();
+        if (novo) {
+            bd.insere(cliente);
+        } else {
+            bd.atualiza(cliente);
+        }
     }//GEN-LAST:event_bSalvaActionPerformed
 
-    private void bLeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLeActionPerformed
-        clienteToTela();
-    }//GEN-LAST:event_bLeActionPerformed
+    private void bExcluiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExcluiActionPerformed
+        bd = new BdCliente();
+        bd.exclui(Integer.parseInt(tCodigo.getText()));
+        limpaTela();
+        novo = true;
+    }//GEN-LAST:event_bExcluiActionPerformed
+
+    private void bLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLocalizarActionPerformed
+        bd = new BdCliente();
+        String busca = JOptionPane.showInputDialog("Digite o usuário a buscar");
+        cliente = bd.localiza(busca);
+        if (!cliente.getNome().equals("")) {
+            clienteToTela();
+            novo = false;
+        } else {
+            JOptionPane.showMessageDialog(this, "Usuário não existente!");
+            limpaTela();
+            novo = true;
+        }
+    }//GEN-LAST:event_bLocalizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,7 +299,8 @@ public class TelaCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bLe;
+    private javax.swing.JButton bExclui;
+    private javax.swing.JButton bLocalizar;
     private javax.swing.JButton bNovo;
     private javax.swing.JButton bSalva;
     private javax.swing.JComboBox<String> cUf;

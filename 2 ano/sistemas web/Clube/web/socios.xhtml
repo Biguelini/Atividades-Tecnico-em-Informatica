@@ -12,7 +12,7 @@
             <h1 align="center">Cadastro de sócio</h1>
             <p:commandButton id="bNovo" icon="ui-icon-document" ajax="false" action="#"/>
             <p:tooltip id="ttNovo" for="bNovo" value="Novo Sócio" trackMouse="true" />
-            <p:commandButton id="bAtualiza" icon="ui-icon-refresh" action="#}" update="tabela" />
+            <p:commandButton id="bAtualiza" icon="ui-icon-refresh" action="#" update="tabela" />
             <p:tooltip id="ttAtualiza" for="bAtualiza" value="Atualiza lista" trackMouse="true" />
             <p:dataTable id="tabela" value="#" var="socio">
                 <p:column>
@@ -55,6 +55,9 @@
                     </p:confirmDialog>
                 </p:column>
             </p:dataTable>
+        </h:form>
+        <h:form>
+            <p:commandButton icon="ui-icon-arrowreturnthick-1-w" action="index"/>
         </h:form>
     </h:body>
 </html>

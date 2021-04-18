@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-
+    transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Cadastro de Sócios</title>
+    </h:head>
+    <h:body>
+        <h1 align="center">Cadastrar um novo sócio</h1>
+        <h:form>
+            <p:outputLabel for="itId" value="Id"/>
+            <p:inputText style="margin: 0 0 0 15px;" id="itId" value="#{socioBean.socio.id}" readonly="true"/><br/>
+            <p:outputLabel for="itNome" value="Nome"/>
+            <p:inputText style="margin: 15px 0 0 15px;" id="itNome" value="#{socioBean.socio.nome}" /><br/>
+            <p:outputLabel for="itEndereco" value="Endereço"/>
+            <p:inputText style="margin: 15px 0 0 15px;" id="itEndereco" value="#{socioBean.socio.endereco}"/><br/>
+            <p:outputLabel for="itNumero" value="Número"/>
+            <p:inputText style="margin: 15px 0 0 15px;" id="itNumero" value="#{socioBean.socio.numero}" /><br/>
+            <p:outputLabel for="itCidade" value="Cidade"/>
+            <p:inputText style="margin: 15px 0 0 15px;" id="itCidade" value="#{socioBean.socio.cidade}" /><br/>
+            <p:outputLabel for="itUf" value="Uf"/>
+            <p:inputText style="margin: 15px 0 0 15px;" id="itUf" value="#{socioBean.socio.uf}" /><br/>
+            <p:outputLabel for="itTelefone" value="Telefone"/>
+            <p:inputText style="margin: 15px 0 0 15px;" id="itTelefone" value="#{socioBean.socio.telefone}" /><br/>
+            <p:commandButton icon="ui-icon-disk" ajax="false" action="#{socioBean.salva()}"/>
+        </h:form>
+        <h:form>
+            <p:commandButton icon="ui-icon-arrowreturnthick-1-w" action="socios"/>
+        </h:form>
+    </h:body>
+</html>

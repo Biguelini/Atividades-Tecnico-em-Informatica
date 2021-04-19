@@ -14,13 +14,13 @@ and open the template in the editor.
         <title>Dependentes</title>
     </h:head>
     <h:body>
-        <h1 align="center">Dependentes</h1>
+        <h1 align="center">Dependentes de #{clubeBean.socio.nome}</h1>
         <h:form>
-            <p:commandButton id="bNovo" icon="ui-icon-document" ajax="false" action="#{dependenteBean.novo}"/>
+            <p:commandButton id="bNovo" icon="ui-icon-document" ajax="false" action="#{clubeBean.novoDependente}"/>
             <p:tooltip id="ttNovo" for="bNovo" value="Novo dependente" trackMouse="true" />
-            <p:commandButton id="bAtualiza" icon="ui-icon-refresh" action="#{dependenteBean.atualizaLista}" update="tabela" />
+            <p:commandButton id="bAtualiza" icon="ui-icon-refresh" action="#{clubeBean.atualizaListaDependente}" update="tabela" />
             <p:tooltip id="ttAtualiza" for="bAtualiza" value="Atualiza lista" trackMouse="true" />
-            <p:dataTable id="tabela" value="#{dependenteBean.lista}" var="dependente">
+            <p:dataTable id="tabela" value="#{clubeBean.listaDependente}" var="dependente">
                 <p:column>
                     <f:facet name="header">
                         <h:outputText value="Id"/>
@@ -49,9 +49,9 @@ and open the template in the editor.
                     <f:facet name="header">
                         <h:outputText value="Ações"/>
                     </f:facet>
-                    <p:commandButton id="bEdita" icon="ui-icon-pencil" ajax="false" action="#{dependenteBean.edita}" />
+                    <p:commandButton id="bEdita" icon="ui-icon-pencil" ajax="false" action="#{clubeBean.editaDependente}" />
                     <p:tooltip for="bEdita" value="Alterar dependente" trackMouse="true" />
-                    <p:commandButton id="bExclui" icon="ui-icon-trash" action="#{dependenteBean.exclui}" update="tabela" >
+                    <p:commandButton id="bExclui" icon="ui-icon-trash" action="#{clubeBean.excluiDependente}" update="tabela" >
                         <p:confirm header="Confirmação" message="Confirma exclusão de #{dependente.nome}?" icon="ui-icon-alert" />
                     </p:commandButton>
                     <p:confirmDialog global="true" closable="false" showEffect="fade" hideEffect="fade">

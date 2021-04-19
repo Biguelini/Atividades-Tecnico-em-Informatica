@@ -65,12 +65,12 @@ public class BdDependente {
         }
         return registro;
     }
-    public List pesquisa(String busca){
-        String sql = "select * from dependente where nome like ?";
+    public List pesquisa(Integer busca){
+        String sql = "select * from dependente where idSocio = ?";
         List lista = new ArrayList();
         try {
             PreparedStatement ps = Bd.getCon().prepareStatement(sql);
-            ps.setString(1, "%"+busca+"%");
+            ps.setInt(1, busca);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Dependentes registro = new Dependentes();

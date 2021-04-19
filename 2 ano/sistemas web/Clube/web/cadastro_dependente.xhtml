@@ -17,17 +17,19 @@ and open the template in the editor.
         <h1 align="center">Cadastrar um novo dependente</h1>
         <h:form>
             <p:outputLabel for="itId" value="Id"/>
-            <p:inputText style="margin: 0 0 0 15px;" id="itId" value="#{dependenteBean.dependente.id}" readonly="true"/><br/>
+            <p:inputText style="margin: 0 0 0 15px;" id="itId" value="#{clubeBean.dependente.id}" readonly="true"/><br/>
             <p:outputLabel for="itNome" value="Nome"/>
-            <p:inputText style="margin: 15px 0 0 15px;" id="itNome" value="#{dependenteBean.dependente.nome}" /><br/>
+            <p:inputText style="margin: 15px 0 0 15px;" id="itNome" value="#{clubeBean.dependente.nome}" /><br/>
             <p:outputLabel for="itIdade" value="Idade"/>
-            <p:inputText style="margin: 15px 0 0 15px;" id="itIdade" value="#{dependenteBean.dependente.idade}"/><br/>
+            <p:inputText style="margin: 15px 0 0 15px;" id="itIdade" value="#{clubeBean.dependente.idade}"/><br/>
             <p:outputLabel for="itIdSocio" value="Id Sócio"/>
-            <p:inputText style="margin: 15px 0 0 15px;" id="itIdSocio" value="#{dependenteBean.dependente.idSocio}" /><br/>
-            <p:commandButton icon="ui-icon-disk" ajax="false" action="#{dependenteBean.salva()}"/>
+            <p:inputText style="margin: 15px 0 0 15px;" id="itIdSocio" value="#{clubeBean.dependente.idSocio}" readonly="true"/><br/>
+            <p:outputLabel for="itIdSocio" value="Nome do sócio"/>
+            <p:inputText style="margin: 15px 0 0 15px;" id="itNomeSocio" value="#{clubeBean.socio.nome}" readonly="true"/><br/>
+            <p:commandButton icon="ui-icon-disk" ajax="false" action="#{clubeBean.salvaDependente()}"/>
         </h:form>
         <h:form>
-            <p:commandButton icon="ui-icon-arrowreturnthick-1-w" action="socios"/>
+            <p:commandButton icon="ui-icon-arrowreturnthick-1-w" action="dependentes"/>
         </h:form>
     </h:body>
 </html>

@@ -17,23 +17,23 @@ and open the template in the editor.
         <h1 align="center">Cadastrar um novo sócio</h1>
         <h:form>
             <p:outputLabel for="itId" value="Id"/>
-            <p:inputText style="margin: 0 0 0 15px;" id="itId" value="#{socioBean.socio.id}" readonly="true"/><br/>
+            <p:inputText style="margin: 0 0 0 15px;" id="itId" value="#{clubeBean.socio.id}" readonly="true"/><br/>
             <p:outputLabel for="itNome" value="Nome"/>
-            <p:inputText style="margin: 15px 0 0 15px;" id="itNome" value="#{socioBean.socio.nome}" /><br/>
+            <p:inputText style="margin: 15px 0 0 15px;" id="itNome" value="#{clubeBean.socio.nome}" /><br/>
             <p:outputLabel for="itEndereco" value="Endereço"/>
-            <p:inputText style="margin: 15px 0 0 15px;" id="itEndereco" value="#{socioBean.socio.endereco}"/><br/>
+            <p:inputText style="margin: 15px 0 0 15px;" id="itEndereco" value="#{clubeBean.socio.endereco}"/><br/>
             <p:outputLabel for="itNumero" value="Número"/>
-            <p:inputText style="margin: 15px 0 0 15px;" id="itNumero" value="#{socioBean.socio.numero}" /><br/>
+            <p:inputText style="margin: 15px 0 0 15px;" id="itNumero" value="#{clubeBean.socio.numero}" /><br/>
             <p:outputLabel for="itCidade" value="Cidade"/>
-            <p:inputText style="margin: 15px 0 0 15px;" id="itCidade" value="#{socioBean.socio.cidade}" /><br/>
+            <p:inputText style="margin: 15px 0 0 15px;" id="itCidade" value="#{clubeBean.socio.cidade}" /><br/>
             <p:outputLabel for="itUf" value="Uf"/>
-            <p:inputText style="margin: 15px 0 0 15px;" id="itUf" value="#{socioBean.socio.uf}" /><br/>
+            <p:inputText style="margin: 15px 0 0 15px;" id="itUf" value="#{clubeBean.socio.uf}" /><br/>
             <p:outputLabel for="itTelefone" value="Telefone"/>
-            <p:inputText style="margin: 15px 0 0 15px;" id="itTelefone" value="#{socioBean.socio.telefone}" /><br/>
-            <p:commandButton icon="ui-icon-disk" ajax="false" action="#{socioBean.salva()}"/>
+            <p:inputText style="margin: 15px 0 0 15px;" id="itTelefone" value="#{clubeBean.socio.telefone}" /><br/>
+            <p:commandButton icon="ui-icon-disk" ajax="false" action="#{clubeBean.salvaSocio()}"/>
         </h:form>
         <h:form>
-            <p:commandButton icon="ui-icon-arrowreturnthick-1-w" action="socios"/>
+            <p:commandButton icon="ui-icon-arrowreturnthick-1-w" action="index"/>
         </h:form>
     </h:body>
 </html>

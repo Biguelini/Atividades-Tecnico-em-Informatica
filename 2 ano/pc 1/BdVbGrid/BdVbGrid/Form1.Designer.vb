@@ -40,7 +40,7 @@ Partial Class Form1
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArquivoToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(412, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(467, 24)
         Me.MenuStrip1.TabIndex = 0
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -54,19 +54,19 @@ Partial Class Form1
         'NovoToolStripMenuItem
         '
         Me.NovoToolStripMenuItem.Name = "NovoToolStripMenuItem"
-        Me.NovoToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.NovoToolStripMenuItem.Size = New System.Drawing.Size(109, 22)
         Me.NovoToolStripMenuItem.Text = "Novo"
         '
         'AlterarToolStripMenuItem
         '
         Me.AlterarToolStripMenuItem.Name = "AlterarToolStripMenuItem"
-        Me.AlterarToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AlterarToolStripMenuItem.Size = New System.Drawing.Size(109, 22)
         Me.AlterarToolStripMenuItem.Text = "Alterar"
         '
         'ExcluirToolStripMenuItem
         '
         Me.ExcluirToolStripMenuItem.Name = "ExcluirToolStripMenuItem"
-        Me.ExcluirToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ExcluirToolStripMenuItem.Size = New System.Drawing.Size(109, 22)
         Me.ExcluirToolStripMenuItem.Text = "Excluir"
         '
         'Label1
@@ -99,14 +99,14 @@ Partial Class Form1
         Me.dgfiltro.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgfiltro.Location = New System.Drawing.Point(12, 65)
         Me.dgfiltro.Name = "dgfiltro"
-        Me.dgfiltro.Size = New System.Drawing.Size(388, 293)
+        Me.dgfiltro.Size = New System.Drawing.Size(443, 293)
         Me.dgfiltro.TabIndex = 4
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(412, 370)
+        Me.ClientSize = New System.Drawing.Size(467, 370)
         Me.Controls.Add(Me.dgfiltro)
         Me.Controls.Add(Me.btnfiltro)
         Me.Controls.Add(Me.txtfiltro)

@@ -65,21 +65,21 @@ Partial Class Form2
         '
         Me.txtcodigo.Location = New System.Drawing.Point(72, 32)
         Me.txtcodigo.Name = "txtcodigo"
-        Me.txtcodigo.Size = New System.Drawing.Size(100, 20)
+        Me.txtcodigo.Size = New System.Drawing.Size(199, 20)
         Me.txtcodigo.TabIndex = 3
         '
         'txtnome
         '
         Me.txtnome.Location = New System.Drawing.Point(72, 61)
         Me.txtnome.Name = "txtnome"
-        Me.txtnome.Size = New System.Drawing.Size(100, 20)
+        Me.txtnome.Size = New System.Drawing.Size(199, 20)
         Me.txtnome.TabIndex = 4
         '
         'txtserie
         '
         Me.txtserie.Location = New System.Drawing.Point(72, 90)
         Me.txtserie.Name = "txtserie"
-        Me.txtserie.Size = New System.Drawing.Size(100, 20)
+        Me.txtserie.Size = New System.Drawing.Size(199, 20)
         Me.txtserie.TabIndex = 5
         '
         'Label4
@@ -95,12 +95,12 @@ Partial Class Form2
         '
         Me.txtturma.Location = New System.Drawing.Point(72, 119)
         Me.txtturma.Name = "txtturma"
-        Me.txtturma.Size = New System.Drawing.Size(100, 20)
+        Me.txtturma.Size = New System.Drawing.Size(199, 20)
         Me.txtturma.TabIndex = 7
         '
         'btnsalvar
         '
-        Me.btnsalvar.Location = New System.Drawing.Point(15, 156)
+        Me.btnsalvar.Location = New System.Drawing.Point(58, 169)
         Me.btnsalvar.Name = "btnsalvar"
         Me.btnsalvar.Size = New System.Drawing.Size(75, 23)
         Me.btnsalvar.TabIndex = 8
@@ -109,7 +109,7 @@ Partial Class Form2
         '
         'btncancelar
         '
-        Me.btncancelar.Location = New System.Drawing.Point(97, 156)
+        Me.btncancelar.Location = New System.Drawing.Point(139, 169)
         Me.btncancelar.Name = "btncancelar"
         Me.btncancelar.Size = New System.Drawing.Size(75, 23)
         Me.btncancelar.TabIndex = 9
@@ -120,7 +120,7 @@ Partial Class Form2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(186, 217)
+        Me.ClientSize = New System.Drawing.Size(287, 217)
         Me.Controls.Add(Me.btncancelar)
         Me.Controls.Add(Me.btnsalvar)
         Me.Controls.Add(Me.txtturma)

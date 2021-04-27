@@ -30,4 +30,20 @@
         Form2.novo = True
         Form2.Show()
     End Sub
+
+    Private Sub ExcluirToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExcluirToolStripMenuItem.Click
+        Dim codigo = -1, linha As Integer
+        linha = dgfiltro.Rows.GetFirstRow(DataGridViewElementStates.Selected)
+        If linha > -1 Then
+            codigo = dgfiltro.Rows(linha).Cells(0).Value
+            bd.excluir(codigo)
+            dgfiltro.DataSource = bd.pesquisa(txtfiltro.Text).Tables(0).DefaultView
+        Else
+            MsgBox("Nenhuma linha selecionada")
+        End If
+    End Sub
+
+    Private Sub btnfiltro_Click(sender As Object, e As EventArgs) Handles btnfiltro.Click
+        dgfiltro.DataSource = bd.pesquisa(txtfiltro.Text).Tables(0).DefaultView
+    End Sub
 End Class

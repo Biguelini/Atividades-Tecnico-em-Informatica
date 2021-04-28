@@ -70,6 +70,13 @@ public class TelaLocaliza extends javax.swing.JFrame {
                 formFocusGained(evt);
             }
         });
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         bFiltro.setText("Ok");
         bFiltro.addActionListener(new java.awt.event.ActionListener() {
@@ -207,6 +214,10 @@ public class TelaLocaliza extends javax.swing.JFrame {
     private void mSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mSairActionPerformed
         this.dispose();
     }//GEN-LAST:event_mSairActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        preencheTabela();
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
      * @param args the command line arguments

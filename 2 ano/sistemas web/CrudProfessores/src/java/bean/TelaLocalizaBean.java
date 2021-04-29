@@ -7,13 +7,12 @@ package bean;
 
 /**
  *
- * @author 2info2021
+ * @author JP
  */
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.model.DataModel;
-
 import javax.faces.model.ListDataModel;
 import persistencia.ProfessorDAO;
 import vo.Professor;

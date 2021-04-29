@@ -40,7 +40,7 @@
         <p:fieldset legend="Professor" style="margin-bottom:20px; font-size: small;">
             <h:form>
                 <p:outputLabel value="Código:" for="itCodigo" />
-                <p:inputText id="itCodigo" value="#{telaLocalizaBean.professor.codigo}" /><br/>
+                <p:inputText id="itCodigo" value="#{telaLocalizaBean.professor.codigo}" readonly="true"/><br/>
                 <p:outputLabel value="Nome:" for="itNome"/>
                 <p:inputText id="itNome" value="#{telaLocalizaBean.professor.nome}" required="true"
                              requiredMessage="É obrigatório um nome!" maxlength="50"/><br/>

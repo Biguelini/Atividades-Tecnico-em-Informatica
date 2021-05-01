@@ -11,14 +11,14 @@ package bean;
  */
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import persistencia.ProfessorDAO;
 import vo.Professor;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class TelaLocalizaBean implements Serializable {
 
     private DataModel<Professor> lista;

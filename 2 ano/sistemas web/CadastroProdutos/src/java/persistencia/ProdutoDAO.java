@@ -44,14 +44,14 @@ public class ProdutoDAO {
     }
 
     public List<Produto> pesquisa() {
-        Query q = em.createQuery("select p from Produto p order by p.nome");
+        Query q = em.createQuery("select p from Produto p order by p.descricao");
         List<Produto> lista = q.getResultList();
         return lista;
     }
 
-    public List<Produto> pesquisa(String nome) {
-        Query q = em.createNativeQuery("select * from Produto where nome like :nome order by nome", Produto.class);
-        q.setParameter("nome", '%' + nome + '%');
+    public List<Produto> pesquisa(String descricao) {
+        Query q = em.createNativeQuery("select * from Produto where descricao like :descricao order by descricao", Produto.class);
+        q.setParameter("descricao", '%' + descricao + '%');
         List<Produto> lista = q.getResultList();
         return lista;
     }

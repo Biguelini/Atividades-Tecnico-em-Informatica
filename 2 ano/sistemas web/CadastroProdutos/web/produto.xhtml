@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Cadastro de Produtos</title>
+    </h:head>
+    <h:body>
+        <p:growl id="growl" showDetail="true" sticky="true" />
+        <p:fieldset legend="Produto" style="margin-bottom:20px; font-size: small;">
+            <h:form>
+                <p:outputLabel value="Código:" for="itCodigo" />
+                <p:inputText id="itCodigo" value="#{telaLocalizaBean.produto.codigo}" /><br/>
+                <p:outputLabel value="Descrição:" for="itDescricao"/>
+                <p:inputText id="itDescricao" value="#{telaLocalizaBean.produto.descricao}" required="true"
+                             requiredMessage="É obrigatório uma descrição!" maxlength="50"/><br/>
+                <p:outputLabel value="Fabricante:" for="itFabricante"/>
+                <p:inputText id="itFabricante" value="#{telaLocalizaBean.produto.fabricante}" maxlength="100"/><br/>
+                <p:outputLabel value="Valor:" for="itValor"/>
+                <p:inputText id="itQuantidade" value="#{telaLocalizaBean.produto.valor}" maxlength="100"/><br/>
+                <p:outputLabel value="Quantidade:" for="itQuantidade"/>
+                <p:inputText id="itFormacao" value="#{telaLocalizaBean.produto.quantidade}" maxlength="100"/><br/>
+            </h:form>
+            <h:form>
+                <p:commandButton icon="ui-icon-arrowreturnthick-1-w" action="#{telaLocalizaBean.cancela}"/>
+            </h:form>
+        </p:fieldset>
+    </h:body>
+</html>

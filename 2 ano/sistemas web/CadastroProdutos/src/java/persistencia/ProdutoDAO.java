@@ -50,7 +50,7 @@ public class ProdutoDAO {
     }
 
     public List<Produto> pesquisa(String descricao) {
-        Query q = em.createNativeQuery("select * from Produto where descricao like :descricao order by descricao", Produto.class);
+        Query q = em.createNativeQuery("select * from produto where descricao like :descricao order by descricao", Produto.class);
         q.setParameter("descricao", '%' + descricao + '%');
         List<Produto> lista = q.getResultList();
         return lista;

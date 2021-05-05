@@ -52,13 +52,13 @@ public class TelaLocalizaBean implements Serializable {
 
     public String novo() {
         setProduto(new Produto());
-        return "Produto";
+        return "produto";
     }
 
     public String editar() {
         Produto p = ProdutoSelecionado();
         setProduto(p);
-        return "Produto";
+        return "produto";
     }
 
     public String salva() {

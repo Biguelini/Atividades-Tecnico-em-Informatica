@@ -23,34 +23,44 @@
                             </f:facet>
                             <h:outputText value="#{produto.codigo}"/>
                         </p:column>
-                        <p:column style="width:50%">
+                        <p:column style="width:10%; text-align: center;">
                             <f:facet name="header">
-                                <h:outputText value="Nome" />
+                                <h:outputText value="Descrição" />
                             </f:facet>
-                            <h:outputText value="#{produto.nome}"/>
+                            <h:outputText value="#{produto.descricao}"/>
                         </p:column>
-                        <p:column style="width:20%; text-align: center;" >
+                        <p:column style="width:18%; text-align: center;">
                             <f:facet name="header">
-                                <h:outputText value="Data de Nascimento" />
+                                <h:outputText value="Fabricante" />
                             </f:facet>
-                            <h:outputText value="#{produto.datanasc}">
-                                <f:convertDateTime pattern="dd/MM/yyyy"/>
-                            </h:outputText>
+                            <h:outputText value="#{produto.fabricante}"/>
                         </p:column>
-                        <p:column style="width:20%">
+                        <p:column style="width:18%; text-align: center;">
+                            <f:facet name="header">
+                                <h:outputText value="Valor" />
+                            </f:facet>
+                            <h:outputText value="#{produto.valor}"/>
+                        </p:column>
+                        <p:column style="width:18%; text-align: center;">
+                            <f:facet name="header">
+                                <h:outputText value="Quantidade" />
+                            </f:facet>
+                            <h:outputText value="#{produto.quantidade}"/>
+                        </p:column>
+                        <p:column style="width:18%">
                             <f:facet name="header">
                                 <h:outputText value="Ações" />
                             </f:facet>
                             <p:commandButton id="bEdita" icon="ui-icon-pencil" action="#{telaLocalizaBean.editar}" />
                             <p:tooltip for="bEdita" value="Alterar produto" trackMouse="true" />
                             <p:commandButton id="bExclui" icon="ui-icon-trash" action="#{telaLocalizaBean.excluir}" update="tabela" >
-                                <p:confirm header="Confirmação" message="Tem certeza que deseja excluir #{produto.nome}?" icon="ui-icon-alert" />
+                                <p:confirm header="Confirmação" message="Tem certeza que deseja excluir #{produto.descricao}?" icon="ui-icon-alert" />
                             </p:commandButton>
                             <p:confirmDialog global="true" closable="false" showEffect="fade" hideEffect="fade">
                                 <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
                                 <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                             </p:confirmDialog>
-                            <p:tooltip for="bExclui" value="Exclui produto #{produto.nome}" trackMouse="true" />
+                            <p:tooltip for="bExclui" value="Exclui produto #{produto.descricao}" trackMouse="true" />
                         </p:column>
                     </p:dataTable>
                 </h:form>

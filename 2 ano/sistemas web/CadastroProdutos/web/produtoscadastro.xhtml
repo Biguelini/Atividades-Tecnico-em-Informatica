@@ -19,9 +19,10 @@
                 <p:outputLabel value="Fabricante:" for="itFabricante"/>
                 <p:inputText id="itFabricante" value="#{telaLocalizaBean.produto.fabricante}" maxlength="100"/><br/>
                 <p:outputLabel value="Valor:" for="itValor"/>
-                <p:inputText id="itQuantidade" value="#{telaLocalizaBean.produto.valor}" maxlength="100"/><br/>
+                <p:inputText id="itValor" value="#{telaLocalizaBean.produto.valor}" maxlength="100"/><br/>
                 <p:outputLabel value="Quantidade:" for="itQuantidade"/>
-                <p:inputText id="itFormacao" value="#{telaLocalizaBean.produto.quantidade}" maxlength="100"/><br/>
+                <p:inputText id="itQuantidade" value="#{telaLocalizaBean.produto.quantidade}" maxlength="100"/><br/>
+                <p:commandButton icon="ui-icon-disk" ajax="false" action="#{telaLocalizaBean.salva()}"/>
             </h:form>
             <h:form>
                 <p:commandButton icon="ui-icon-arrowreturnthick-1-w" action="#{telaLocalizaBean.cancela}"/>

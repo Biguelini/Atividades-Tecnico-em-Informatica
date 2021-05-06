@@ -12,9 +12,9 @@
         <div class="geral">
             <p:fieldset legend="Produtos" style="margin-bottom:20px">
                 <h:form>
-                    <p:commandButton id="bNovo" icon="ui-icon-document" action="#{telaLocalizaBean.novo}" />
+                    <p:commandButton ajax="false" id="bNovo" icon="ui-icon-document" action="#{telaLocalizaBean.novo}" />
                     <p:tooltip id="ttNovo" for="bNovo" value="Novo produto" trackMouse="true" />
-                    <p:commandButton id="bAtualiza" icon="ui-icon-refresh" action="#{telaLocalizaBean.atualizaLista}" update="tabela" />
+                    <p:commandButton ajax="false" id="bAtualiza" icon="ui-icon-refresh" action="#{telaLocalizaBean.atualizaLista}" update="tabela" />
                     <p:tooltip id="ttAtualiza" for="bAtualiza" value="Atualiza lista" trackMouse="true" />
                     <p:dataTable id="tabela" value="#{telaLocalizaBean.lista}" var="produto" >
                         <p:column style="width:10%; text-align: center;">

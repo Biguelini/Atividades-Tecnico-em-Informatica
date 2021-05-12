@@ -24,9 +24,9 @@ public class BdEquipamentos {
             ps.setInt(1, equipamento.getId());
             ps.setString(2, equipamento.getDescricao());
             ps.setString(3, equipamento.getFabricante());
-            ps.setString(3, equipamento.getNumserie());
-            ps.setInt(3, equipamento.getNumpatrimonio());
-            ps.setString(3, equipamento.getLocalizacao());
+            ps.setString(4, equipamento.getNumserie());
+            ps.setInt(5, equipamento.getNumpatrimonio());
+            ps.setString(6, equipamento.getLocalizacao());
             ps.execute();
 
         } catch (SQLException e) {
@@ -38,7 +38,7 @@ public class BdEquipamentos {
         if (equipamento.getId() == 0) {
             insere(equipamento);
         } else {
-            String sql = "update aluno set descricao=?,fabricante=?, numserie=?, numpatrimonio=?, localizacao=? where id=?";
+            String sql = "update produtos set descricao=?,fabricante=?, numserie=?, numpatrimonio=?, localizacao=? where id=?";
             try {
                 PreparedStatement ps = Bd.getCon().prepareStatement(sql);
                 ps.setInt(6, equipamento.getId());
@@ -54,20 +54,20 @@ public class BdEquipamentos {
         }
     }
 
-    public Equipamento localiza(int codigo) {
-        String sql = "select * from produtos where codigo=?";
+    public Equipamento localiza(int id) {
+        String sql = "select * from produtos where id=?";
         Equipamento registro = new Equipamento();
         try {
             PreparedStatement ps = Bd.getCon().prepareStatement(sql);
-            ps.setInt(1, codigo);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 registro.setId(rs.getInt("id"));
                 registro.setDescricao(rs.getString("descricao"));
                 registro.setFabricante(rs.getString("fabricante"));
                 registro.setNumserie(rs.getString("numserie"));
-                registro.setNumserie(rs.getString("numpatrimonio"));
-                registro.setNumserie(rs.getString("localizacao"));
+                registro.setNumpatrimonio(rs.getInt("numpatrimonio"));
+                registro.setLocalizacao(rs.getString("localizacao"));
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro SQL: " + e.getMessage());
@@ -76,7 +76,7 @@ public class BdEquipamentos {
     }
 
     public List pesquisa(String busca) {
-        String sql = "select * from produtos where nome like ?";
+        String sql = "select * from produtos where descricao like ?";
         List lista = new ArrayList();
         try {
             PreparedStatement ps = Bd.getCon().prepareStatement(sql);
@@ -88,8 +88,8 @@ public class BdEquipamentos {
                 registro.setDescricao(rs.getString("descricao"));
                 registro.setFabricante(rs.getString("fabricante"));
                 registro.setNumserie(rs.getString("numserie"));
-                registro.setNumserie(rs.getString("numpatrimonio"));
-                registro.setNumserie(rs.getString("localizacao"));
+                registro.setNumpatrimonio(rs.getInt("numpatrimonio"));
+                registro.setLocalizacao(rs.getString("localizacao"));
                 lista.add(registro);
             }
         } catch (SQLException e) {
@@ -98,11 +98,11 @@ public class BdEquipamentos {
         return lista;
     }
 
-    public void exclui(int codigo) {
-        String sql = "delete from aluno where codigo=?";
+    public void exclui(int id) {
+        String sql = "delete from produtos where id=?";
         try {
             PreparedStatement ps = Bd.getCon().prepareStatement(sql);
-            ps.setInt(1, codigo);
+            ps.setInt(1, id);
             ps.execute();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro SQL: " + e.getMessage());

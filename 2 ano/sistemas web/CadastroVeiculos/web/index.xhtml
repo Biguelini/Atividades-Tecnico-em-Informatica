@@ -1,12 +1,60 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Professor</title>
     </h:head>
-    <h:body>
-        Hello from Facelets
+    <h:body style="background-color: #cccccc;">
+
+        <div class="geral">
+            <p:fieldset legend="Professor" style="margin-bottom:20px">
+                <h:form>
+                    <p:commandButton id="bNovo" icon="ui-icon-document" action="#{telaLocalizaBean.novo}" />
+                    <p:tooltip id="ttNovo" for="bNovo" value="Novo professor" trackMouse="true" />
+                    <p:commandButton id="bAtualiza" icon="ui-icon-refresh" action="#{telaLocalizaBean.atualizaLista}" update="tabela" />
+                    <p:tooltip id="ttAtualiza" for="bAtualiza" value="Atualiza lista" trackMouse="true" />
+                    <p:dataTable id="tabela" value="#{telaLocalizaBean.lista}" var="professor" >
+                        <p:column style="width:10%; text-align: center;">
+                            <f:facet name="header">
+                                <h:outputText value="Código" />
+                            </f:facet>
+                            <h:outputText value="#{professor.codigo}"/>
+                        </p:column>
+                        <p:column style="width:50%">
+                            <f:facet name="header">
+                                <h:outputText value="Nome" />
+                            </f:facet>
+                            <h:outputText value="#{professor.nome}"/>
+                        </p:column>
+                        <p:column style="width:20%; text-align: center;" >
+                            <f:facet name="header">
+                                <h:outputText value="Data de Nascimento" />
+                            </f:facet>
+                            <h:outputText value="#{professor.datanasc}">
+                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column style="width:20%">
+                            <f:facet name="header">
+                                <h:outputText value="Ações" />
+                            </f:facet>
+                            <p:commandButton id="bEdita" icon="ui-icon-pencil" action="#{telaLocalizaBean.editar}" />
+                            <p:tooltip for="bEdita" value="Alterar professor" trackMouse="true" />
+                            <p:commandButton id="bExclui" icon="ui-icon-trash" action="#{telaLocalizaBean.excluir}" update="tabela" >
+                                <p:confirm header="Confirmação" message="Tem certeza que deseja excluir #{professor.nome}?" icon="ui-icon-alert" />
+                            </p:commandButton>
+                            <p:confirmDialog global="true" closable="false" showEffect="fade" hideEffect="fade">
+                                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                            </p:confirmDialog>
+                            <p:tooltip for="bExclui" value="Exclui professor #{professor.nome}" trackMouse="true" />
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </p:fieldset>
+        </div>
     </h:body>
 </html>
-

@@ -51,22 +51,36 @@ public class TelaLocalizaBean {
     }
 
     public String novo() {
-        veiculo = new Veiculos();
-        return "Veiculos";
+        setVeiculo(new Veiculos());
+        return "veiculos";
     }
 
     public String editar() {
         Veiculos p = VeiculosSelecionado();
-        veiculo = p;
-        return "Veiculos";
+        setVeiculo(p);
+        return "veiculos";
     }
 
     public String salva() {
-        pd.salva(veiculo);
+        pd.salva(getVeiculo());
         return "index";
     }
 
     public String cancela() {
         return "index";
+    }
+
+    /**
+     * @return the veiculo
+     */
+    public Veiculos getVeiculo() {
+        return veiculo;
+    }
+
+    /**
+     * @param veiculo the veiculo to set
+     */
+    public void setVeiculo(Veiculos veiculo) {
+        this.veiculo = veiculo;
     }
 }

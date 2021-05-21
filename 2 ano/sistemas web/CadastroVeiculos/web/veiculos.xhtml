@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Cadastro de Professor</title>
+
+    </h:head>
+    <h:body>
+        <p:growl id="growl" showDetail="true" sticky="true" />
+        <p:fieldset legend="Professor" style="margin-bottom:20px; font-size: small;">
+            <h:form>
+                <p:outputLabel value="Renavam: " for="itRenavam" />
+                <p:inputText id="itRenavam" value="#{telaLocalizaBean.veiculo.renavan}" /><br/>
+                <p:outputLabel value="Placa: " for="itPlaca" />
+                <p:inputText id="itPlaca" value="#{telaLocalizaBean.veiculo.placa}" /><br/>
+                <p:outputLabel value="Chassi: " for="itChassi" />
+                <p:inputText id="itChassi" value="#{telaLocalizaBean.veiculo.chassi}" /><br/>
+                <p:outputLabel value="Marca: " for="itMarca" />
+                <p:inputText id="itMarca" value="#{telaLocalizaBean.veiculo.marca}" /><br/>
+                <p:outputLabel value="Modelo: " for="itModelo" />
+                <p:inputText id="itModelo" value="#{telaLocalizaBean.veiculo.modelo}" /><br/>
+                <p:outputLabel value="Ano de fabricação: " for="itAnofab" />
+                <p:inputText id="itAnofab" value="#{telaLocalizaBean.veiculo.anofab}" /><br/>
+                <p:outputLabel value="Ano de modificação " for="itAnomod" />
+                <p:inputText id="itAnomod" value="#{telaLocalizaBean.veiculo.anomod}" /><br/>
+                <p:commandButton icon="ui-icon-disk" ajax="false" action="#{telaLocalizaBean.salva()}"/>
+            </h:form>
+            <h:form>
+                <p:commandButton icon="ui-icon-arrowreturnthick-1-w" action="#{telaLocalizaBean.cancela}"/>
+            </h:form>
+        </p:fieldset>
+    </h:body>
+</html>

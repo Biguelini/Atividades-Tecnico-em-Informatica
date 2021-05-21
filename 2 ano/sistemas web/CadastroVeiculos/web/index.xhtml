@@ -5,37 +5,59 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Professor</title>
+        <title>Veiculos</title>
     </h:head>
     <h:body style="background-color: #cccccc;">
 
         <div class="geral">
-            <p:fieldset legend="Professor" style="margin-bottom:20px">
+            <p:fieldset legend="Veículos" style="margin-bottom:20px">
                 <h:form>
                     <p:commandButton id="bNovo" icon="ui-icon-document" action="#{telaLocalizaBean.novo}" />
                     <p:tooltip id="ttNovo" for="bNovo" value="Novo professor" trackMouse="true" />
                     <p:commandButton id="bAtualiza" icon="ui-icon-refresh" action="#{telaLocalizaBean.atualizaLista}" update="tabela" />
                     <p:tooltip id="ttAtualiza" for="bAtualiza" value="Atualiza lista" trackMouse="true" />
-                    <p:dataTable id="tabela" value="#{telaLocalizaBean.lista}" var="professor" >
+                    <p:dataTable id="tabela" value="#{telaLocalizaBean.lista}" var="veiculos" >
                         <p:column style="width:10%; text-align: center;">
                             <f:facet name="header">
-                                <h:outputText value="Código" />
+                                <h:outputText value="Renavam" />
                             </f:facet>
-                            <h:outputText value="#{professor.codigo}"/>
+                            <h:outputText value="#{veiculo.renavam}"/>
                         </p:column>
-                        <p:column style="width:50%">
+                        <p:column style="width:10%">
                             <f:facet name="header">
-                                <h:outputText value="Nome" />
+                                <h:outputText value="Placa" />
                             </f:facet>
-                            <h:outputText value="#{professor.nome}"/>
+                            <h:outputText value="#{veiculo.placa}"/>
                         </p:column>
-                        <p:column style="width:20%; text-align: center;" >
+                        <p:column style="width:10%">
                             <f:facet name="header">
-                                <h:outputText value="Data de Nascimento" />
+                                <h:outputText value="Chassi" />
                             </f:facet>
-                            <h:outputText value="#{professor.datanasc}">
-                                <f:convertDateTime pattern="dd/MM/yyyy"/>
-                            </h:outputText>
+                            <h:outputText value="#{veiculo.chassi}"/>
+                        </p:column>
+                        <p:column style="width:20%">
+                            <f:facet name="header">
+                                <h:outputText value="Marca" />
+                            </f:facet>
+                            <h:outputText value="#{veiculo.marca}"/>
+                        </p:column>
+                        <p:column style="width:10%">
+                            <f:facet name="header">
+                                <h:outputText value="Modelo" />
+                            </f:facet>
+                            <h:outputText value="#{veiculo.modelo}"/>
+                        </p:column>
+                        <p:column style="width:10%">
+                            <f:facet name="header">
+                                <h:outputText value="Ano de fabricação" />
+                            </f:facet>
+                            <h:outputText value="#{veiculo.anofab}"/>
+                        </p:column>
+                        <p:column style="width:10%">
+                            <f:facet name="header">
+                                <h:outputText value="Ano modificação" />
+                            </f:facet>
+                            <h:outputText value="#{veiculo.anomod}"/>
                         </p:column>
                         <p:column style="width:20%">
                             <f:facet name="header">
@@ -44,13 +66,13 @@
                             <p:commandButton id="bEdita" icon="ui-icon-pencil" action="#{telaLocalizaBean.editar}" />
                             <p:tooltip for="bEdita" value="Alterar professor" trackMouse="true" />
                             <p:commandButton id="bExclui" icon="ui-icon-trash" action="#{telaLocalizaBean.excluir}" update="tabela" >
-                                <p:confirm header="Confirmação" message="Tem certeza que deseja excluir #{professor.nome}?" icon="ui-icon-alert" />
+                                <p:confirm header="Confirmação" message="Tem certeza que deseja excluir o veículo #{veiculo.renavam}?" icon="ui-icon-alert" />
                             </p:commandButton>
                             <p:confirmDialog global="true" closable="false" showEffect="fade" hideEffect="fade">
                                 <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
                                 <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                             </p:confirmDialog>
-                            <p:tooltip for="bExclui" value="Exclui professor #{professor.nome}" trackMouse="true" />
+                            <p:tooltip for="bExclui" value="Exclui veículo #{veiculo.renavam}" trackMouse="true" />
                         </p:column>
                     </p:dataTable>
                 </h:form>

@@ -24,7 +24,7 @@ public class VeiculosDAO {
 
     public void salva(Veiculos v) {
         em.getTransaction().begin();
-        if (v.getRenavam() == "") {
+        if (v.getRenavam()=="") {
             em.persist(v);
         } else {
             em.merge(v);

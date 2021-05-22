@@ -20,8 +20,7 @@ public class Veiculos implements Serializable {
 
     private static long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String renavam="";
+    private String renavam;
     private String placa;
     private String chassi;
     private String marca;

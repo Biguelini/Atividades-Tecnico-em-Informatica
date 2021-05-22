@@ -52,13 +52,13 @@ public class TelaLocalizaBean {
 
     public String novo() {
         setVeiculo(new Veiculos());
-        return "veiculos";
+        return "cadastro_veiculos";
     }
 
     public String editar() {
         Veiculos p = VeiculosSelecionado();
         setVeiculo(p);
-        return "veiculos";
+        return "cadastro_veiculos";
     }
 
     public String salva() {

@@ -13,7 +13,7 @@ public:
         valoresPositivos = 0;
         media = 0;
     }
-    contarPositivos()
+    void contarPositivos()
     {
         for (int i = 0; i < 6; i++)
         {
@@ -25,11 +25,11 @@ public:
             }
         }
     }
-    calcularMedia()
+    void calcularMedia()
     {
         media = media / valoresPositivos;
     }
-    mostrarResultados()
+    void mostrarResultados()
     {
         cout << valoresPositivos << " valores positivos" << endl;
         cout << media << endl;

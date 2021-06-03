@@ -7,5 +7,4 @@ begin
    obj1.contarPositivos;
    obj1.calcularMedia;
    obj1.mostrarResultados;
-
 end Main;

@@ -1,12 +1,11 @@
+with Teste; use Teste;
 with Text_IO; use Text_IO;
 procedure Main is
-   package Persons is
-   type Person is tagged
-      record
-         Name   : String (1 .. 10);
-         Gender : Gender_Type;
-      end record;
-   end Persons;
+  obj1: T;
 begin
-   null;
+   obj1.Init;
+   obj1.contarPositivos;
+   obj1.calcularMedia;
+   obj1.mostrarResultados;
+
 end Main;

@@ -5,16 +5,15 @@ using namespace std;
 class Animal
 {
 protected:
-    bool estaFaminto;
+    // atributos da classe abstrata
     bool vivo;
     int idade;
 
 public:
     virtual void comer() = 0;
-    // construtor da classe Base
+    // construtor da classe Animal
     Animal()
     {
-        estaFaminto = true;
         vivo = true;
         idade = 0;
     }
@@ -22,19 +21,13 @@ public:
 // classe Derived a pastir da classe Base
 class Carnivoro : public Animal
 {
-private:
-    int numPatas;
-
 public:
-    // chama os dois métodos construtores
-    Carnivoro(int i) : Animal()
-    {
-        numPatas = i;
-    }
+    // método da classe abstrata
     void comer()
     {
         cout << "Eu sou carnivoro e me alimento de carne!" << endl;
     }
+    // método próprio
     void cacarCarne()
     {
         cout << "Eu vou pegar carne!" << endl;
@@ -42,19 +35,13 @@ public:
 };
 class Herbivoro : public Animal
 {
-private:
-    int numPatas;
-
 public:
-    // chama os dois métodos construtores
-    Herbivoro(int i) : Animal()
-    {
-        numPatas = i;
-    }
+    // método da classe abstrata
     void comer()
     {
         cout << "Eu sou herbivoro e me alimento de plantas!" << endl;
     }
+    // método próprio
     void pegarPlantas()
     {
         cout << "Eu vou pegar plantas para comer!" << endl;
@@ -62,14 +49,17 @@ public:
 };
 int main(void)
 {
-    Carnivoro humano(4);
+    // criação do objeto utilizando a subclasse
+    Carnivoro humano;
+    // chamo método da classe abstrata (superclasse)
     humano.comer();
+    // chamo método da classe Carnivoro
     humano.cacarCarne();
 
     //criação do objeto usando ponteiro da classe Base
-    Animal *girafa = new Herbivoro(4);
+    Animal *girafa = new Herbivoro;
     girafa->comer();
+    // girafa.pegarPlantas()    não consigo acessar o método da classe Herbivoro
 
-    // girafa.pegarPlantas()    não consigo acessar o método que é só dele
     return 0;
 }

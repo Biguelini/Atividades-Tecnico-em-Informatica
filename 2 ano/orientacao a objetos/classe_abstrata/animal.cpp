@@ -18,7 +18,7 @@ public:
         idade = 0;
     }
 };
-// classe Derived a pastir da classe Base
+// classe derivada a partir da classe animal
 class Carnivoro : public Animal
 {
 public:

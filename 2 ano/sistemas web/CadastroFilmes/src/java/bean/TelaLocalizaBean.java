@@ -31,7 +31,7 @@ public class TelaLocalizaBean implements Serializable {
 
     public String atualizaLista() {
         lista = new ListDataModel(fd.pesquisa());
-        return "index";
+        return "listafilme";
     }
 
     public DataModel<Filme> getLista() {
@@ -47,7 +47,7 @@ public class TelaLocalizaBean implements Serializable {
     public String excluir() {
         Filme f = FilmeSelecionado();
         fd.exclui(f);
-        return "index";
+        return "listafilme";
     }
 
     public String novo() {
@@ -63,11 +63,11 @@ public class TelaLocalizaBean implements Serializable {
 
     public String salva() {
         fd.salva(getFilme());
-        return "index";
+        return "listafilme";
     }
 
     public String cancela() {
-        return "index";
+        return "listafilme";
     }
 
     /**

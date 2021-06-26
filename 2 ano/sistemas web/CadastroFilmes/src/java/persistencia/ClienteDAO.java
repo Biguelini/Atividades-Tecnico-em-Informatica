@@ -44,15 +44,15 @@ public class ClienteDAO {
     }
 
     public List<Cliente> pesquisa() {
-        Query q = em.createQuery("select c from cliente c order by c.nome");
-        List<Cliente> lista = q.getResultList();
-        return lista;
+        Query q = em.createQuery("select c from Cliente c order by c.nome");
+        List<Cliente> listaCliente = q.getResultList();
+        return listaCliente;
     }
 
     public List<Cliente> pesquisa(String nome) {
-        Query q = em.createNativeQuery("select * from cliente where nome like :nome order by nome", Cliente.class);
+        Query q = em.createNativeQuery("select * from Cliente where nome like :nome order by nome", Cliente.class);
         q.setParameter("nome", '%' + nome + '%');
-        List<Cliente> lista = q.getResultList();
-        return lista;
+        List<Cliente> listaCliente = q.getResultList();
+        return listaCliente;
     }
 }

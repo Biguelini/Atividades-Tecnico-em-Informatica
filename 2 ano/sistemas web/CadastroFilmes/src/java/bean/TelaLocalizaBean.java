@@ -15,7 +15,9 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.model.DataModel;
 
 import javax.faces.model.ListDataModel;
+import persistencia.ClienteDAO;
 import persistencia.FilmeDAO;
+import vo.Cliente;
 import vo.Filme;
 
 @ManagedBean
@@ -25,34 +27,58 @@ public class TelaLocalizaBean implements Serializable {
     private DataModel<Filme> lista;
     FilmeDAO fd = new FilmeDAO();
     private Filme Filme = new Filme();
+    private DataModel<Cliente> listacliente;
+    ClienteDAO cd = new ClienteDAO();
+    private Cliente Cliente = new Cliente();
 
     public TelaLocalizaBean() {
     }
 
     public String atualizaLista() {
         lista = new ListDataModel(fd.pesquisa());
-        return "listafilme";
+        return "listafilmes";
+    }
+    public String atualizaListaCliente() {
+        listacliente = new ListDataModel(cd.pesquisa());
+        return "listaclientes";
     }
 
     public DataModel<Filme> getLista() {
         atualizaLista();
         return lista;
     }
+    public DataModel<Cliente> getListaCliente() {
+        atualizaListaCliente();
+        return listacliente;
+    }
 
     public Filme FilmeSelecionado() {
         Filme f = lista.getRowData();
         return f;
     }
+    public Cliente ClienteSelecionado() {
+        Cliente c = listacliente.getRowData();
+        return c;
+    }
 
     public String excluir() {
         Filme f = FilmeSelecionado();
         fd.exclui(f);
-        return "listafilme";
+        return "listafilmes";
+    }
+    public String excluirCliente() {
+        Cliente c = ClienteSelecionado();
+        cd.exclui(c);
+        return "listaclientes";
     }
 
     public String novo() {
         setFilme(new Filme());
         return "cadastro";
+    }
+    public String novoCliente() {
+        setCliente(new Cliente());
+        return "cadastrocliente";
     }
 
     public String editar() {
@@ -60,14 +86,26 @@ public class TelaLocalizaBean implements Serializable {
         setFilme(f);
         return "cadastro";
     }
+    public String editarCliente() {
+        Cliente c = ClienteSelecionado();
+        setCliente(c);
+        return "cadastrocliente";
+    }
 
     public String salva() {
         fd.salva(getFilme());
-        return "listafilme";
+        return "listafilmes";
+    }
+    public String salvaCliente() {
+        fd.salva(getFilme());
+        return "listaclientes";
     }
 
     public String cancela() {
-        return "listafilme";
+        return "listafilmes";
+    }
+    public String cancelaCliente() {
+        return "listaclientes";
     }
 
     /**
@@ -82,5 +120,19 @@ public class TelaLocalizaBean implements Serializable {
      */
     public void setFilme(Filme Filme) {
         this.Filme = Filme;
+    }
+
+    /**
+     * @return the Cliente
+     */
+    public Cliente getCliente() {
+        return Cliente;
+    }
+
+    /**
+     * @param Cliente the Cliente to set
+     */
+    public void setCliente(Cliente Cliente) {
+        this.Cliente = Cliente;
     }
 }

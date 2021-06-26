@@ -1,16 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Cadastro de Clientes</title>
+    </h:head>
+    <h:body>
+        <p:growl id="growl" showDetail="true" sticky="true" />
+        <p:fieldset legend="Filmes" style="margin-bottom:20px; font-size: small;">
+            <h:form>
+                <p:outputLabel value="Id: " for="itId" />
+                <p:inputText id="itId" value="#{telaLocalizaBean.cliente.id}" /><br/>
+                <p:outputLabel value="Nome:  " for="itNome"/>
+                <p:inputText id="itNome" value="#{telaLocalizaBean.cliente.nome}" required="true"
+                             requiredMessage="É obrigatório um nome!" maxlength="100"/><br/>
+                <p:outputLabel value="Cpf: " for="itCpf"/>
+                <p:inputText id="itCpf" value="#{telaLocalizaBean.cliente.cpf}" maxlength="15"/><br/>
+                <p:outputLabel value="Endereco:  " for="itEndereco"/>
+                <p:inputText id="itEndereco" value="#{telaLocalizaBean.cliente.endereco}" maxlength="100"/><br/>
+                <p:outputLabel value="Cidade:   " for="itCidade"/>
+                <p:inputText id="itCidade" value="#{telaLocalizaBean.cliente.cidade}"/><br/>
+                <p:outputLabel value="Uf:  " for="itUf"/>
+                <p:inputText id="itUf" value="#{telaLocalizaBean.cliente.uf}"/><br/>
+                <p:outputLabel value="Telefone:   " for="itTelefone"/>
+                <p:inputText id="itTelefone" value="#{telaLocalizaBean.cliente.telefone}"/><br/>
+                <p:commandButton icon="ui-icon-disk" ajax="false" action="#{telaLocalizaBean.salvaCliente()}"/>
+            </h:form>
+            <h:form>
+                <p:commandButton icon="ui-icon-arrowreturnthick-1-w" action="#{telaLocalizaBean.cancelaCliente}"/>
+            </h:form>
+        </p:fieldset>
+    </h:body>
 </html>

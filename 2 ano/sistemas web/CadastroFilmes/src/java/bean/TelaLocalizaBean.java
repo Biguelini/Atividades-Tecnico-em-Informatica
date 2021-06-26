@@ -97,7 +97,7 @@ public class TelaLocalizaBean implements Serializable {
         return "listafilmes";
     }
     public String salvaCliente() {
-        fd.salva(getFilme());
+        cd.salva(getCliente());
         return "listaclientes";
     }
 

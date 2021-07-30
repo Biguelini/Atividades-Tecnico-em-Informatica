@@ -8,6 +8,7 @@ struct arv
     struct arv* dir;
 };
 typedef struct arv Arv;
+// cria um espaço com 2 espaços vazios
 Arv* cria(char c)
 {
     Arv* a = (Arv*)malloc(sizeof(Arv));
@@ -17,6 +18,7 @@ Arv* cria(char c)
     return a;
 }
 Arv* libera(Arv* a)
+// vai checando as arvores da esquerda e depois da direita pra liberar tudo 
 {
     if (a != NULL)
     {
@@ -27,6 +29,7 @@ Arv* libera(Arv* a)
     return NULL;
 }
 Arv* insere(Arv* a, char elem)
+// insere elementos
 {
     Arv* s;
     if (a != NULL)
@@ -73,18 +76,45 @@ void in(Arv* a)
         in(a->dir);
     }
 }
+void dne(Arv* a)
+{
+    if (a != NULL)
+    {
+        dne(a->dir);
+        printf(" %c", a->info);
+        dne(a->esq);
+    }
+}
+void nde(Arv* a)
+{
+    if (a != NULL)
+    {
+        printf(" %c", a->info);
+        nde(a->dir);
+        nde(a->esq);
+    }
+}
+void den(Arv* a)
+{
+    if (a != NULL)
+    {
+        den(a->dir);
+        den(a->esq);
+        printf(" %c", a->info);
+    }
+}
 int busca(Arv* a, char elem)
 {
     if (a == NULL)
-        return 0;
+        return "nada";
     else 
         if (a->info > elem)
             return busca(a->esq, elem);
-    else 
-        if (a->info < elem)
-            return busca(a->dir, elem);
-        else
-            return 1;
+        else 
+            if (a->info < elem)
+                return busca(a->dir, elem);
+            else
+                return a->info;
 }
 int main()
 {
@@ -96,7 +126,8 @@ int main()
     {
         printf("\n1-Insere\n2-Mostra pre-ordem");
         printf("\n3-Mostra in-ordem\n4-Mostra pos-ordem");
-        printf("\n5-Busca\n0-Sair");
+        printf("\n5-Todos os caminhamentos\n6-Busca");
+        printf("\n0-Sair");
         printf("\nDigite sua opcao: ");
         scanf("%d", &opcao);
         switch (opcao)
@@ -116,14 +147,28 @@ int main()
             pos(a);
             break;
         case 5:
+            printf("pre");
+            pre(a);
+            printf("\nin");
+            in(a);
+            printf("\npos");
+            pos(a);
+            printf("\nden");
+            den(a);
+            printf("\ndne");
+            dne(a);
+            printf("\nnde");
+            nde(a);
+            printf("\n");
+            break;
+        case 6:
             printf("Digite elemento a buscar ");
             scanf(" %c", &elem);
             b = busca(a, elem);
-            if (b == 1)
-                printf("Elemento existente\n");
+            if (b != "nada")
+                printf(" %c", b);
             else
-                printf("Elemento inexistente\n");
-            break;
+                printf("Elemento inexistente");
         case 0:
             break;
         default:

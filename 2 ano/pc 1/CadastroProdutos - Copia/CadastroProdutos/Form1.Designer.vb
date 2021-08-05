@@ -30,9 +30,6 @@ Partial Class Form1
         Me.dgfiltro = New System.Windows.Forms.DataGridView()
         Me.txtfiltro = New System.Windows.Forms.TextBox()
         Me.btnfiltro = New System.Windows.Forms.Button()
-        Me.btnRem = New System.Windows.Forms.Button()
-        Me.btnAdd = New System.Windows.Forms.Button()
-        Me.txtQtd = New System.Windows.Forms.TextBox()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.dgfiltro, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -95,39 +92,11 @@ Partial Class Form1
         Me.btnfiltro.Text = "Filtro"
         Me.btnfiltro.UseVisualStyleBackColor = True
         '
-        'btnRem
-        '
-        Me.btnRem.Location = New System.Drawing.Point(36, 397)
-        Me.btnRem.Name = "btnRem"
-        Me.btnRem.Size = New System.Drawing.Size(75, 23)
-        Me.btnRem.TabIndex = 4
-        Me.btnRem.Text = "Remover"
-        Me.btnRem.UseVisualStyleBackColor = True
-        '
-        'btnAdd
-        '
-        Me.btnAdd.Location = New System.Drawing.Point(224, 397)
-        Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(75, 23)
-        Me.btnAdd.TabIndex = 5
-        Me.btnAdd.Text = "Adicionar"
-        Me.btnAdd.UseVisualStyleBackColor = True
-        '
-        'txtQtd
-        '
-        Me.txtQtd.Location = New System.Drawing.Point(118, 399)
-        Me.txtQtd.Name = "txtQtd"
-        Me.txtQtd.Size = New System.Drawing.Size(100, 20)
-        Me.txtQtd.TabIndex = 6
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(765, 474)
-        Me.Controls.Add(Me.txtQtd)
-        Me.Controls.Add(Me.btnAdd)
-        Me.Controls.Add(Me.btnRem)
+        Me.ClientSize = New System.Drawing.Size(765, 344)
         Me.Controls.Add(Me.btnfiltro)
         Me.Controls.Add(Me.txtfiltro)
         Me.Controls.Add(Me.dgfiltro)
@@ -150,7 +119,5 @@ Partial Class Form1
     Friend WithEvents dgfiltro As System.Windows.Forms.DataGridView
     Friend WithEvents txtfiltro As System.Windows.Forms.TextBox
     Friend WithEvents btnfiltro As System.Windows.Forms.Button
-    Friend WithEvents btnRem As Button
-    Friend WithEvents btnAdd As Button
-    Friend WithEvents txtQtd As TextBox
+
 End Class

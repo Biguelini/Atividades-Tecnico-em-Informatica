@@ -4,18 +4,18 @@
     Dim bd As New BdProduto
     Private Sub produtototela()
         txtid.Text = mProduto.id
-        txtcodbar.Text = mProduto.descricao
-        txtdescricao.Text = mProduto.fabricante
-        txtquantidade.Text = mProduto.numserie
-        txtminimo.Text = mProduto.numpatrimonio
+        txtdescricao.Text = mProduto.descricao
+        txtfabricante.Text = mProduto.fabricante
+        txtnumserie.Text = mProduto.numserie
+        txtnumpatrimonio.Text = mProduto.numpatrimonio
         txtlocalizacao.Text = mProduto.localizacao
     End Sub
     Private Sub telatoproduto()
         mProduto.id = txtid.Text
-        mProduto.descricao = txtcodbar.Text
-        mProduto.fabricante = txtdescricao.Text
-        mProduto.numserie = txtquantidade.Text
-        mProduto.numpatrimonio = txtminimo.Text
+        mProduto.descricao = txtdescricao.Text
+        mProduto.fabricante = txtfabricante.Text
+        mProduto.numserie = txtnumserie.Text
+        mProduto.numpatrimonio = txtnumpatrimonio.Text
         mProduto.localizacao = txtlocalizacao.Text
     End Sub
     Public Property produto()

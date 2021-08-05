@@ -5,7 +5,7 @@ Public Class BdProduto
         Me.User = "root"
         Me.Servidor = "localhost"
         Me.Senha = "vertrigo"
-        Me.bd = "produto"
+        Me.bd = "produtos"
     End Sub
     Public Sub inserir(ByVal produto As Produto)
         Dim da As MySqlDataAdapter = New MySqlDataAdapter
@@ -13,12 +13,13 @@ Public Class BdProduto
         Try
             Abrir()
             cmd.CommandType = CommandType.Text
-            cmd.CommandText = "insert into produtos (id,codbar,descricao,quantidade,minimo) values (@id,@codbar,@descricao,@quantidade,@minimo)"
+            cmd.CommandText = "insert into produtos (id,descricao,fabricante,numserie,numpatrimonio,localizacao) values (@id,@descricao,@fabricante,@numserie,@numpatrimonio,@localizacao)"
             cmd.Parameters.AddWithValue("@id", produto.id)
-            cmd.Parameters.AddWithValue("@codbar", produto.codbar)
             cmd.Parameters.AddWithValue("@descricao", produto.descricao)
-            cmd.Parameters.AddWithValue("@quantidade", produto.quantidade)
-            cmd.Parameters.AddWithValue("@minimo", produto.minimo)
+            cmd.Parameters.AddWithValue("@fabricante", produto.fabricante)
+            cmd.Parameters.AddWithValue("@numserie", produto.numserie)
+            cmd.Parameters.AddWithValue("@numpatrimonio", produto.numpatrimonio)
+            cmd.Parameters.AddWithValue("@localizacao", produto.localizacao)
             cmd.Connection = Conexao
             da.UpdateCommand = cmd
             da.UpdateCommand.ExecuteNonQuery()
@@ -33,12 +34,13 @@ Public Class BdProduto
         Try
             Abrir()
             cmd.CommandType = CommandType.Text
-            cmd.CommandText = "update produtos set codbar=@codbar, descricao=@descricao, quantidade=@quantidade, minimo=@minimo where id=@id"
+            cmd.CommandText = "update produtos set descricao=@descricao, fabricante=@fabricante, numserie=@numserie, numpatrimonio=@numpatrimonio, localizacao=@localizacao  where id=@id"
             cmd.Parameters.AddWithValue("@id", produto.id)
-            cmd.Parameters.AddWithValue("@codbar", produto.codbar)
             cmd.Parameters.AddWithValue("@descricao", produto.descricao)
-            cmd.Parameters.AddWithValue("@quantidade", produto.quantidade)
-            cmd.Parameters.AddWithValue("@minimo", produto.minimo)
+            cmd.Parameters.AddWithValue("@fabricante", produto.fabricante)
+            cmd.Parameters.AddWithValue("@numserie", produto.numserie)
+            cmd.Parameters.AddWithValue("@numpatrimonio", produto.numpatrimonio)
+            cmd.Parameters.AddWithValue("@localizacao", produto.localizacao)
             cmd.Connection = Conexao
             da.UpdateCommand = cmd
             da.UpdateCommand.ExecuteNonQuery()
@@ -76,10 +78,11 @@ Public Class BdProduto
             dr = cmd.ExecuteReader
             If dr.Read Then
                 produto.id = dr.GetInt32("id")
-                produto.codbar = dr.GetInt32("codbar")
                 produto.descricao = dr.GetString("descricao")
-                produto.quantidade = dr.GetInt32("quantidade")
-                produto.minimo = dr.GetInt32("minimo")
+                produto.fabricante = dr.GetString("fabricante")
+                produto.numserie = dr.GetString("numserie")
+                produto.numpatrimonio = dr.GetInt32("numpatrimonio")
+                produto.localizacao = dr.GetString("localizacao")
             End If
             cmd.Dispose()
             fechar()

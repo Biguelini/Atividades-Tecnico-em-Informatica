@@ -18,6 +18,7 @@ import javax.faces.model.ListDataModel;
 import persistencia.ClienteDAO;
 import persistencia.FilmeDAO;
 import vo.Cliente;
+import vo.Emprestimo;
 import vo.Filme;
 
 @ManagedBean
@@ -30,6 +31,8 @@ public class TelaLocalizaBean implements Serializable {
     private DataModel<Cliente> listacliente;
     ClienteDAO cd = new ClienteDAO();
     private Cliente Cliente = new Cliente();
+    private DataModel<Emprestimo> listaemprestimos;
+    EmprestimoDAO 
 
     public TelaLocalizaBean() {
     }

@@ -5,7 +5,9 @@
  */
 package vo;
 
+import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,7 +18,8 @@ import javax.persistence.TemporalType;
  *
  * @author 2info2021
  */
-public class Emprestimo {
+@Entity
+public class Emprestimo implements Serializable {
     private static long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

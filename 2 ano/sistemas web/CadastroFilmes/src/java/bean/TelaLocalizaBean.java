@@ -16,6 +16,7 @@ import javax.faces.model.DataModel;
 
 import javax.faces.model.ListDataModel;
 import persistencia.ClienteDAO;
+import persistencia.EmprestimoDAO;
 import persistencia.FilmeDAO;
 import vo.Cliente;
 import vo.Emprestimo;
@@ -31,8 +32,9 @@ public class TelaLocalizaBean implements Serializable {
     private DataModel<Cliente> listacliente;
     ClienteDAO cd = new ClienteDAO();
     private Cliente Cliente = new Cliente();
-    private DataModel<Emprestimo> listaemprestimos;
-    EmprestimoDAO 
+    private DataModel<Emprestimo> emprestimos;
+    EmprestimoDAO ed = new EmprestimoDAO();
+    private Emprestimo Emprestimo = new Emprestimo();
 
     public TelaLocalizaBean() {
     }
@@ -45,6 +47,10 @@ public class TelaLocalizaBean implements Serializable {
         listacliente = new ListDataModel(cd.pesquisa());
         return "listaclientes";
     }
+    public String atualizaListaEmprestimo(){
+        emprestimos = new ListDataModel(cd.pesquisa());
+        return "emprestimos";
+    }
 
     public DataModel<Filme> getLista() {
         atualizaLista();
@@ -54,6 +60,10 @@ public class TelaLocalizaBean implements Serializable {
         atualizaListaCliente();
         return listacliente;
     }
+    public DataModel<Emprestimo> getListaEmprestimo() {
+        atualizaListaEmprestimo();
+        return emprestimos;
+    }
 
     public Filme FilmeSelecionado() {
         Filme f = lista.getRowData();
@@ -62,6 +72,10 @@ public class TelaLocalizaBean implements Serializable {
     public Cliente ClienteSelecionado() {
         Cliente c = listacliente.getRowData();
         return c;
+    }
+    public Emprestimo EmprestimoSelecionado() {
+        Emprestimo e = emprestimos.getRowData();
+        return e;
     }
 
     public String excluir() {
@@ -74,6 +88,11 @@ public class TelaLocalizaBean implements Serializable {
         cd.exclui(c);
         return "listaclientes";
     }
+    public String excluirEmprestimo() {
+        Emprestimo e = EmprestimoSelecionado();
+        ed.exclui(e);
+        return "emprestimos";
+    }
 
     public String novo() {
         setFilme(new Filme());
@@ -82,6 +101,10 @@ public class TelaLocalizaBean implements Serializable {
     public String novoCliente() {
         setCliente(new Cliente());
         return "cadastrocliente";
+    }
+    public String novoEmprestimo() {
+        setEmprestimo(new Emprestimo());
+        return "cadastroemprestimo";
     }
 
     public String editar() {
@@ -103,12 +126,19 @@ public class TelaLocalizaBean implements Serializable {
         cd.salva(getCliente());
         return "listaclientes";
     }
+    public String salvaEmprestimo() {
+        ed.salva(getEmprestimo());
+        return "emprestimos";
+    }
 
     public String cancela() {
         return "listafilmes";
     }
     public String cancelaCliente() {
         return "listaclientes";
+    }
+    public String cancelaEmprestimo() {
+        return "emprestimos";
     }
 
     /**
@@ -137,5 +167,19 @@ public class TelaLocalizaBean implements Serializable {
      */
     public void setCliente(Cliente Cliente) {
         this.Cliente = Cliente;
+    }
+
+    /**
+     * @return the Emprestimo
+     */
+    public Emprestimo getEmprestimo() {
+        return Emprestimo;
+    }
+
+    /**
+     * @param Emprestimo the Emprestimo to set
+     */
+    public void setEmprestimo(Emprestimo Emprestimo) {
+        this.Emprestimo = Emprestimo;
     }
 }

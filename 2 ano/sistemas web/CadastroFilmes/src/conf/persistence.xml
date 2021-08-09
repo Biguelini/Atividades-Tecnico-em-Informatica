@@ -6,6 +6,7 @@
         <jta-data-source>jdbc/filme</jta-data-source>
         <class>vo.Filme</class>
         <class>vo.Cliente</class>
+        <class>vo.Emprestimo</class>
     </persistence-unit>
 </persistence>
 

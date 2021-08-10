@@ -32,9 +32,10 @@ Partial Class Form1
         Me.btnfiltro = New System.Windows.Forms.Button()
         Me.btnRem = New System.Windows.Forms.Button()
         Me.btnAdd = New System.Windows.Forms.Button()
-        Me.txtQtd = New System.Windows.Forms.TextBox()
+        Me.txtQtd = New System.Windows.Forms.NumericUpDown()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.dgfiltro, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtQtd, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -106,7 +107,7 @@ Partial Class Form1
         '
         'btnAdd
         '
-        Me.btnAdd.Location = New System.Drawing.Point(224, 397)
+        Me.btnAdd.Location = New System.Drawing.Point(257, 397)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(75, 23)
         Me.btnAdd.TabIndex = 5
@@ -115,10 +116,10 @@ Partial Class Form1
         '
         'txtQtd
         '
-        Me.txtQtd.Location = New System.Drawing.Point(118, 399)
+        Me.txtQtd.Location = New System.Drawing.Point(124, 398)
         Me.txtQtd.Name = "txtQtd"
-        Me.txtQtd.Size = New System.Drawing.Size(100, 20)
-        Me.txtQtd.TabIndex = 6
+        Me.txtQtd.Size = New System.Drawing.Size(120, 20)
+        Me.txtQtd.TabIndex = 7
         '
         'Form1
         '
@@ -138,6 +139,7 @@ Partial Class Form1
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         CType(Me.dgfiltro, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtQtd, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -152,5 +154,5 @@ Partial Class Form1
     Friend WithEvents btnfiltro As System.Windows.Forms.Button
     Friend WithEvents btnRem As Button
     Friend WithEvents btnAdd As Button
-    Friend WithEvents txtQtd As TextBox
+    Friend WithEvents txtQtd As NumericUpDown
 End Class

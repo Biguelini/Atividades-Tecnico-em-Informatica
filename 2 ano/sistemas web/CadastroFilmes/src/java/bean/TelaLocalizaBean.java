@@ -26,6 +26,22 @@ import vo.Filme;
 @RequestScoped
 public class TelaLocalizaBean implements Serializable {
 
+    /**
+     * @return the emprestimos
+     */
+    public DataModel<Emprestimo> getEmprestimos() {
+        atualizaListaEmprestimo();
+        return emprestimos;
+    }
+
+    /**
+     * @param emprestimos the emprestimos to set
+     */
+    public void setEmprestimos(DataModel<Emprestimo> emprestimos) {
+        
+        this.emprestimos = emprestimos;
+    }
+
     private DataModel<Filme> lista;
     FilmeDAO fd = new FilmeDAO();
     private Filme Filme = new Filme();
@@ -34,7 +50,7 @@ public class TelaLocalizaBean implements Serializable {
     private Cliente Cliente = new Cliente();
     private DataModel<Emprestimo> emprestimos;
     EmprestimoDAO ed = new EmprestimoDAO();
-    private Emprestimo Emprestimo = new Emprestimo();
+    private Emprestimo emprestimo = new Emprestimo();
 
     public TelaLocalizaBean() {
     }
@@ -48,7 +64,7 @@ public class TelaLocalizaBean implements Serializable {
         return "listaclientes";
     }
     public String atualizaListaEmprestimo(){
-        emprestimos = new ListDataModel(cd.pesquisa());
+        setEmprestimos((DataModel<Emprestimo>) new ListDataModel(ed.pesquisa()));
         return "emprestimos";
     }
 
@@ -62,7 +78,7 @@ public class TelaLocalizaBean implements Serializable {
     }
     public DataModel<Emprestimo> getListaEmprestimo() {
         atualizaListaEmprestimo();
-        return emprestimos;
+        return getEmprestimos();
     }
 
     public Filme FilmeSelecionado() {
@@ -74,7 +90,7 @@ public class TelaLocalizaBean implements Serializable {
         return c;
     }
     public Emprestimo EmprestimoSelecionado() {
-        Emprestimo e = emprestimos.getRowData();
+        Emprestimo e = getEmprestimos().getRowData();
         return e;
     }
 
@@ -127,8 +143,12 @@ public class TelaLocalizaBean implements Serializable {
         return "listaclientes";
     }
     public String salvaEmprestimo() {
-        ed.salva(getEmprestimo());
-        return "emprestimos";
+        if(cd.localiza(emprestimo.getIdCliente()) != null && fd.localiza(emprestimo.getIdCliente()) != null ){
+            
+            ed.salva(getEmprestimo());
+            return "emprestimos";
+        };
+        return "";
     }
 
     public String cancela() {
@@ -173,13 +193,13 @@ public class TelaLocalizaBean implements Serializable {
      * @return the Emprestimo
      */
     public Emprestimo getEmprestimo() {
-        return Emprestimo;
+        return emprestimo;
     }
 
     /**
      * @param Emprestimo the Emprestimo to set
      */
-    public void setEmprestimo(Emprestimo Emprestimo) {
-        this.Emprestimo = Emprestimo;
+    public void setEmprestimo(Emprestimo emprestimo) {
+        this.emprestimo = emprestimo;
     }
 }

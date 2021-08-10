@@ -16,7 +16,7 @@
                     <p:tooltip id="ttNovo" for="bNovo" value="Novo cliente" trackMouse="true" />
                     <p:commandButton id="bAtualiza" icon="ui-icon-refresh" action="#{telaLocalizaBean.atualizaListaEmprestimo}" update="tabela" />
                     <p:tooltip id="ttAtualiza" for="bAtualiza" value="Atualiza lista" trackMouse="true" />
-                    <p:dataTable id="tabela" value="#{telaLocalizaBean.listaEmprestimo}" var="emprestimo" >
+                    <p:dataTable id="tabela" value="#{telaLocalizaBean.emprestimos}" var="emprestimo" >
                         <p:column style="width:20%; text-align: center;">
                             <f:facet name="header">
                                 <h:outputText value="Id" />
@@ -39,7 +39,9 @@
                             <f:facet name="header">
                                 <h:outputText value="Data Empréstimo" />
                             </f:facet>
-                            <h:outputText value="#{emprestimo.dataEmprestimo}"/>
+                            <h:outputText value="#{emprestimo.dataEmprestimo}">
+                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                            </h:outputText>
                         </p:column>
                         <p:column style="width:20%"> 
                            <f:facet name="header">

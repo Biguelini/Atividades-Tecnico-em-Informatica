@@ -33,6 +33,7 @@ Partial Class Form1
         Me.btnRem = New System.Windows.Forms.Button()
         Me.btnAdd = New System.Windows.Forms.Button()
         Me.txtQtd = New System.Windows.Forms.NumericUpDown()
+        Me.btnMin = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.dgfiltro, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtQtd, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,19 +58,19 @@ Partial Class Form1
         'NovoToolStripMenuItem
         '
         Me.NovoToolStripMenuItem.Name = "NovoToolStripMenuItem"
-        Me.NovoToolStripMenuItem.Size = New System.Drawing.Size(109, 22)
+        Me.NovoToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.NovoToolStripMenuItem.Text = "Novo"
         '
         'AlterarToolStripMenuItem
         '
         Me.AlterarToolStripMenuItem.Name = "AlterarToolStripMenuItem"
-        Me.AlterarToolStripMenuItem.Size = New System.Drawing.Size(109, 22)
+        Me.AlterarToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AlterarToolStripMenuItem.Text = "Alterar"
         '
         'ExcluirToolStripMenuItem
         '
         Me.ExcluirToolStripMenuItem.Name = "ExcluirToolStripMenuItem"
-        Me.ExcluirToolStripMenuItem.Size = New System.Drawing.Size(109, 22)
+        Me.ExcluirToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ExcluirToolStripMenuItem.Text = "Excluir"
         '
         'dgfiltro
@@ -121,11 +122,21 @@ Partial Class Form1
         Me.txtQtd.Size = New System.Drawing.Size(120, 20)
         Me.txtQtd.TabIndex = 7
         '
+        'btnMin
+        '
+        Me.btnMin.Location = New System.Drawing.Point(236, 27)
+        Me.btnMin.Name = "btnMin"
+        Me.btnMin.Size = New System.Drawing.Size(140, 23)
+        Me.btnMin.TabIndex = 8
+        Me.btnMin.Text = "Abaixo do mínimo"
+        Me.btnMin.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(765, 474)
+        Me.Controls.Add(Me.btnMin)
         Me.Controls.Add(Me.txtQtd)
         Me.Controls.Add(Me.btnAdd)
         Me.Controls.Add(Me.btnRem)
@@ -155,4 +166,5 @@ Partial Class Form1
     Friend WithEvents btnRem As Button
     Friend WithEvents btnAdd As Button
     Friend WithEvents txtQtd As NumericUpDown
+    Friend WithEvents btnMin As Button
 End Class

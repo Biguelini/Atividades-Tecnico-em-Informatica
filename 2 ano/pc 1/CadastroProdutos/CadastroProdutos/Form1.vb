@@ -85,4 +85,8 @@
             MsgBox("Nenhuma linha selecionada")
         End If
     End Sub
+
+    Private Sub btnMin_Click(sender As Object, e As EventArgs) Handles btnMin.Click
+        dgfiltro.DataSource = bd.abaixoMin.Tables(0).DefaultView
+    End Sub
 End Class

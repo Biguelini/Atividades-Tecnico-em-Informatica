@@ -21,6 +21,10 @@ public class TelaLocalizaProduto extends javax.swing.JFrame {
     ProdutoDAO pp = new ProdutoDAO();
     Produto p = new Produto();
 
+    public void setProduto(Produto p) {
+        this.p = p;
+    }
+
     /**
      * Creates new form TelaLocalizaProduto
      */
@@ -60,8 +64,6 @@ public class TelaLocalizaProduto extends javax.swing.JFrame {
         }
     }
 
-
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -77,6 +79,9 @@ public class TelaLocalizaProduto extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tLocaliza = new javax.swing.JTable();
+        btnAdicionar = new javax.swing.JButton();
+        btnRemover = new javax.swing.JButton();
+        txtQtd = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         mArquivo = new javax.swing.JMenu();
         mNovo = new javax.swing.JMenuItem();
@@ -142,6 +147,20 @@ public class TelaLocalizaProduto extends javax.swing.JFrame {
             tLocaliza.getColumnModel().getColumn(4).setResizable(false);
         }
 
+        btnAdicionar.setText("Adicionar");
+        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarActionPerformed(evt);
+            }
+        });
+
+        btnRemover.setText("Remover");
+        btnRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoverActionPerformed(evt);
+            }
+        });
+
         mArquivo.setText("Arquivo");
 
         mNovo.setText("Novo");
@@ -189,6 +208,14 @@ public class TelaLocalizaProduto extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(168, 168, 168)
+                .addComponent(btnRemover)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAdicionar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,8 +227,13 @@ public class TelaLocalizaProduto extends javax.swing.JFrame {
                     .addComponent(btnFiltro)
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAdicionar)
+                    .addComponent(btnRemover)
+                    .addComponent(txtQtd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -253,6 +285,37 @@ public class TelaLocalizaProduto extends javax.swing.JFrame {
         abaixoMin();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tLocaliza.getModel();
+        if (tLocaliza.getSelectedRow() != -1) {
+            int codigo = (Integer) modelo.getValueAt(tLocaliza.getSelectedRow(), 0);
+            setProduto(pp.localiza(codigo));
+            p.setQuantidade(p.getQuantidade()+Integer.parseInt(txtQtd.getText()));
+            pp.salva(p);
+            preencheTabela();
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há nada selecionado!");
+        }
+    }//GEN-LAST:event_btnAdicionarActionPerformed
+
+    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tLocaliza.getModel();
+        if (tLocaliza.getSelectedRow() != -1) {
+            int codigo = (Integer) modelo.getValueAt(tLocaliza.getSelectedRow(), 0);
+            setProduto(pp.localiza(codigo));
+            if (p.getQuantidade() - Integer.parseInt(txtQtd.getText()) >= 0) {
+                p.setQuantidade(p.getQuantidade()-Integer.parseInt(txtQtd.getText()));
+                pp.salva(p);
+                preencheTabela();
+            } else {
+                JOptionPane.showMessageDialog(this, "Quantidade a ser removida é maior que a possível");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há nada selecionado!");
+        }
+    }//GEN-LAST:event_btnRemoverActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -289,7 +352,9 @@ public class TelaLocalizaProduto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdicionar;
     private javax.swing.JButton btnFiltro;
+    private javax.swing.JButton btnRemover;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
@@ -300,5 +365,6 @@ public class TelaLocalizaProduto extends javax.swing.JFrame {
     private javax.swing.JMenuItem mNovo;
     private javax.swing.JTextField tFiltro;
     private javax.swing.JTable tLocaliza;
+    private javax.swing.JTextField txtQtd;
     // End of variables declaration//GEN-END:variables
 }

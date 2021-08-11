@@ -65,6 +65,7 @@
         linha = dgfiltro.Rows.GetFirstRow(DataGridViewElementStates.Selected)
         If linha > -1 Then
             codigo = dgfiltro.Rows(linha).Cells(0).Value
+            mProduto = bd.localizar(codigo)
             addqtd()
             bd.mudarqtd(produto, codigo)
             dgfiltro.DataSource = bd.pesquisa(txtfiltro.Text).Tables(0).DefaultView
@@ -78,6 +79,7 @@
         linha = dgfiltro.Rows.GetFirstRow(DataGridViewElementStates.Selected)
         If linha > -1 Then
             codigo = dgfiltro.Rows(linha).Cells(0).Value
+            mProduto = bd.localizar(codigo)
             remqtd()
             bd.mudarqtd(produto, codigo)
             dgfiltro.DataSource = bd.pesquisa(txtfiltro.Text).Tables(0).DefaultView

@@ -143,7 +143,7 @@ public class TelaLocalizaBean implements Serializable {
         return "listaclientes";
     }
     public String salvaEmprestimo() {
-        if(cd.localiza(emprestimo.getIdCliente()) != null && fd.localiza(emprestimo.getIdFilme()) != null ){
+        if(cd.localiza(emprestimo.getIdCliente()) != null && fd.localiza(emprestimo.getIdFilme()) != null && ed.pesquisa(emprestimo.getIdFilme()).size() <= 0 ){
             ed.salva(getEmprestimo());
             return "emprestimos";
         };

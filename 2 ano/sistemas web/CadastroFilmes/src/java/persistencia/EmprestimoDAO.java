@@ -15,6 +15,7 @@ import vo.Emprestimo;
  * @author 2info2021
  */
 public class EmprestimoDAO {
+
     EntityManager em;
 
     public EmprestimoDAO() {
@@ -36,8 +37,16 @@ public class EmprestimoDAO {
         em.remove(e);
         em.getTransaction().commit();
     }
+
     public List<Emprestimo> pesquisa() {
         Query q = em.createQuery("select e from Emprestimo e order by e.dataEmprestimo");
+        List<Emprestimo> lista = q.getResultList();
+        return lista;
+    }
+
+    public List<Emprestimo> pesquisa(Integer idFilme) {
+        Query q = em.createNativeQuery("select * from emprestimo where idFilme=idFilme", Emprestimo.class);
+        q.setParameter("idFilme", '%' + idFilme + '%');
         List<Emprestimo> lista = q.getResultList();
         return lista;
     }

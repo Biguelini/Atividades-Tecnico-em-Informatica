@@ -25,8 +25,6 @@ public class Cliente implements Serializable {
     private String nome;
     private String cpf;
     private String endereco;
-    private String cidade;
-    private String uf;
     private String telefone;
 
     public Cliente(Integer id) {
@@ -104,34 +102,6 @@ public class Cliente implements Serializable {
      */
     public void setEndereco(String endereco) {
         this.endereco = endereco;
-    }
-
-    /**
-     * @return the cidade
-     */
-    public String getCidade() {
-        return cidade;
-    }
-
-    /**
-     * @param cidade the cidade to set
-     */
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
-
-    /**
-     * @return the uf
-     */
-    public String getUf() {
-        return uf;
-    }
-
-    /**
-     * @param uf the uf to set
-     */
-    public void setUf(String uf) {
-        this.uf = uf;
     }
 
     /**

@@ -5,6 +5,9 @@
  */
 package bean;
 
+import java.io.Serializable;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import percistencia.ClienteDAO;
@@ -18,7 +21,9 @@ import vo.Produto;
  *
  * @author 2info2021
  */
-public class TelaLocalizaBean {
+@ManagedBean
+@RequestScoped
+public class TelaLocalizaBean implements Serializable {
 
     private DataModel<Produto> listaproduto;
     ProdutoDAO prd = new ProdutoDAO();
@@ -124,15 +129,12 @@ public class TelaLocalizaBean {
 
     public String salvaCliente() {
         cd.salva(getCliente());
-        return "listaclientes";
+        return "listacliente";
     }
 
     public String salvaPedido() {
-        if (cd.localiza(Pedido.getIdCliente()) != null && prd.localiza(Pedido.getIdProduto()) != null) {
-            ped.salva(getPedido());
-            return "listapedido";
-        };
-        return "";
+        ped.salva(getPedido());
+        return "listapedido";
     }
 
     public String cancelaProduto() {

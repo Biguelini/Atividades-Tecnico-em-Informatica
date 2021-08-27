@@ -22,9 +22,9 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
-    private String endereço;
-    private int telefone;
-    private int cpf;
+    private String endereco;
+    private String telefone;
+    private String cpf;
     
     public Cliente(Integer id) {
         this.id = id;
@@ -78,42 +78,42 @@ public class Cliente implements Serializable {
     /**
      * @return the endereço
      */
-    public String getEndereço() {
-        return endereço;
+    public String getEndereco() {
+        return endereco;
     }
 
     /**
      * @param endereço the endereço to set
      */
-    public void setEndereço(String endereço) {
-        this.endereço = endereço;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
     /**
      * @return the telefone
      */
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
     /**
      * @param telefone the telefone to set
      */
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
     /**
      * @return the cpf
      */
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
     /**
      * @param cpf the cpf to set
      */
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 }

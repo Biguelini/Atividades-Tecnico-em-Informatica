@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package percistencia;
+package persistencia;
 
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -49,7 +49,7 @@ public class ClienteDAO {
     }
 
     public List<Cliente> pesquisa(String nome) {
-        Query q = em.createNativeQuery("select * from Cliente where nome like :nome order by nome", Cliente.class);
+        Query q = em.createNativeQuery("select * from cliente where nome like :nome order by nome", Cliente.class);
         q.setParameter("nome", '%' + nome + '%');
         List<Cliente> listaCliente = q.getResultList();
         return listaCliente;

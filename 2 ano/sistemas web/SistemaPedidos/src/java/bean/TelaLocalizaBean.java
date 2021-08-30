@@ -10,9 +10,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
-import percistencia.ClienteDAO;
-import percistencia.PedidoDAO;
-import percistencia.ProdutoDAO;
+import persistencia.ClienteDAO;
+import persistencia.PedidoDAO;
+import persistencia.ProdutoDAO;
 import vo.Cliente;
 import vo.Pedido;
 import vo.Produto;
@@ -133,8 +133,15 @@ public class TelaLocalizaBean implements Serializable {
     }
 
     public String salvaPedido() {
-        ped.salva(getPedido());
-        return "listapedido";
+        if (cd.localiza(Pedido.getIdCliente()) != null) {
+            if (prd.localiza(Pedido.getIdProduto()) != null) {
+                if (Pedido.getQuantidade() > 0) {
+                    ped.salva(getPedido());
+                    return "listapedido";
+                }
+            }
+        }
+        return "";
     }
 
     public String cancelaProduto() {

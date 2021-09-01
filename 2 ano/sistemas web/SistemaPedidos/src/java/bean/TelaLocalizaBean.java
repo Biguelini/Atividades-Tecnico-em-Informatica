@@ -121,7 +121,17 @@ public class TelaLocalizaBean implements Serializable {
         setCliente(c);
         return "cadastrocliente";
     }
-
+    
+    public String notaFiscal() {
+        Pedido pe = PedidoSelecionado();
+        setPedido(pe);
+        Produto p = prd.localiza(pe.getIdProduto());
+        setProduto(p);
+        Cliente c = cd.localiza(pe.getIdCliente());
+        setCliente(c);
+        return "notafiscal";
+    }
+    
     public String salvaProduto() {
         prd.salva(getProduto());
         return "listaproduto";

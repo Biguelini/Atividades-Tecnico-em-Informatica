@@ -35,7 +35,7 @@ Public Class BdCliente
         Try
             Abrir()
             cmd.CommandType = CommandType.Text
-            cmd.CommandText = "update aluno set nome=@nome,endereco=@endereco,cidade=@cidade,uf=@uf,cpf=@cpf,rg=@rg where id=@id"
+            cmd.CommandText = "update cliente set nome=@nome,endereco=@endereco,cidade=@cidade,uf=@uf,cpf=@cpf,rg=@rg where id=@id"
             cmd.Parameters.AddWithValue("@id", cliente.id)
             cmd.Parameters.AddWithValue("@nome", cliente.nome)
             cmd.Parameters.AddWithValue("@endereco", cliente.endereco)
@@ -114,4 +114,5 @@ Public Class BdCliente
         End Try
         Return ds
     End Function
+
 End Class

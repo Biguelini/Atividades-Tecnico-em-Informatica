@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class Form2
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class Form4
     Inherits System.Windows.Forms.Form
 
     'Descartar substituições de formulário para limpar a lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()>
+    <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Form2
     'OBSERVAÇÃO: o procedimento a seguir é exigido pelo Windows Form Designer
     'Pode ser modificado usando o Windows Form Designer.  
     'Não o modifique usando o editor de códigos.
-    <System.Diagnostics.DebuggerStepThrough()>
+    <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.ArquivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -31,6 +31,7 @@ Partial Class Form2
         Me.txtfiltro = New System.Windows.Forms.TextBox()
         Me.btnfiltro = New System.Windows.Forms.Button()
         Me.dgfiltro = New System.Windows.Forms.DataGridView()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.dgfiltro, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -97,24 +98,34 @@ Partial Class Form2
         'dgfiltro
         '
         Me.dgfiltro.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgfiltro.Location = New System.Drawing.Point(13, 55)
+        Me.dgfiltro.Location = New System.Drawing.Point(16, 58)
         Me.dgfiltro.Name = "dgfiltro"
-        Me.dgfiltro.Size = New System.Drawing.Size(775, 383)
+        Me.dgfiltro.Size = New System.Drawing.Size(772, 380)
         Me.dgfiltro.TabIndex = 4
         '
-        'Form2
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(238, 23)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(137, 23)
+        Me.Button1.TabIndex = 5
+        Me.Button1.Text = "Ver Emprestados"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Form4
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.dgfiltro)
         Me.Controls.Add(Me.btnfiltro)
         Me.Controls.Add(Me.txtfiltro)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.MainMenuStrip = Me.MenuStrip1
-        Me.Name = "Form2"
-        Me.Text = "Clientes"
+        Me.Name = "Form4"
+        Me.Text = "Veículos"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         CType(Me.dgfiltro, System.ComponentModel.ISupportInitialize).EndInit()
@@ -132,4 +143,5 @@ Partial Class Form2
     Friend WithEvents txtfiltro As TextBox
     Friend WithEvents btnfiltro As Button
     Friend WithEvents dgfiltro As DataGridView
+    Friend WithEvents Button1 As Button
 End Class

@@ -50,6 +50,23 @@ Public Class BdVeiculo
             MsgBox(ex.Message)
         End Try
     End Sub
+    Public Sub emprestar(ByVal idveiculo As Integer, ByVal idcliente As Integer)
+        Dim da As MySqlDataAdapter = New MySqlDataAdapter
+        Dim cmd As MySqlCommand = New MySqlCommand
+        Try
+            Abrir()
+            cmd.CommandType = CommandType.Text
+            cmd.CommandText = "update veiculo set idCliente=@idcliente where id=@id"
+            cmd.Parameters.AddWithValue("@id", idveiculo)
+            cmd.Parameters.AddWithValue("@idcliente", idcliente)
+            cmd.Connection = Conexao
+            da.UpdateCommand = cmd
+            da.UpdateCommand.ExecuteNonQuery()
+            fechar()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
     Public Sub excluir(ByVal id As Integer)
         Dim da As MySqlDataAdapter = New MySqlDataAdapter
         Dim cmd As MySqlCommand = New MySqlCommand
@@ -57,6 +74,22 @@ Public Class BdVeiculo
             Abrir()
             cmd.CommandType = CommandType.Text
             cmd.CommandText = "delete from veiculo where id=@id"
+            cmd.Parameters.AddWithValue("@id", id)
+            cmd.Connection = Conexao
+            da.UpdateCommand = cmd
+            da.UpdateCommand.ExecuteNonQuery()
+            fechar()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+    Public Sub devolver(ByVal id As Integer)
+        Dim da As MySqlDataAdapter = New MySqlDataAdapter
+        Dim cmd As MySqlCommand = New MySqlCommand
+        Try
+            Abrir()
+            cmd.CommandType = CommandType.Text
+            cmd.CommandText = "update veiculo set idCliente=0 where id=@id"
             cmd.Parameters.AddWithValue("@id", id)
             cmd.Connection = Conexao
             da.UpdateCommand = cmd

@@ -40,9 +40,8 @@ public class TelaLocalizaCliente extends javax.swing.JFrame {
         } else {
             lista = pc.pesquisa(tFiltro.getText());
         }
-        SimpleDateFormat s = new SimpleDateFormat("dd/MM/yyyy");
         for (Cliente c : lista) {
-            modelo.addRow(new Object[]{c.getId(), c.getNome(), c.getEndereco(), c.getUf(), c.getRg()});
+            modelo.addRow(new Object[]{c.getId(), c.getNome(), c.getEndereco(), c.getCidade(), c.getUf(), c.getCpf(), c.getRg()});
         }
     }
 
@@ -85,23 +84,8 @@ public class TelaLocalizaCliente extends javax.swing.JFrame {
             new String [] {
                 "Id", "Nome", "Endereço", "Cidade", "Uf", "Cpf", "Rg"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(tLocaliza);
-        if (tLocaliza.getColumnModel().getColumnCount() > 0) {
-            tLocaliza.getColumnModel().getColumn(0).setResizable(false);
-            tLocaliza.getColumnModel().getColumn(1).setResizable(false);
-            tLocaliza.getColumnModel().getColumn(2).setResizable(false);
-            tLocaliza.getColumnModel().getColumn(3).setResizable(false);
-            tLocaliza.getColumnModel().getColumn(4).setResizable(false);
-        }
 
         jLabel1.setText("Filtro");
 

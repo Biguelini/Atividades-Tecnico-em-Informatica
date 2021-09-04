@@ -43,7 +43,7 @@ public class ClienteDAO {
     }
 
     public List<Cliente> pesquisa() {
-        Query q = em.createQuery("select c from Cliente as c order by p.nome");
+        Query q = em.createQuery("select c from Cliente as c order by c.nome");
         List<Cliente> lista = q.getResultList();
         return lista;
     }

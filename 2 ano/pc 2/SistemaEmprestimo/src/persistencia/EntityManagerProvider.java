@@ -27,7 +27,7 @@ public class EntityManagerProvider {
     public static EntityManagerFactory getEMF() {
         if (emf == null) {
             Properties prop = new Properties();
-            prop.setProperty("javax.persistence.jdbc.url", "jdbc:mysql://localhost/professor");
+            prop.setProperty("javax.persistence.jdbc.url", "jdbc:mysql://localhost/veiculo");
             prop.setProperty("javax.persistence.jdbc.driver", "com.mysql.jdbc.Driver");
             prop.setProperty("javax.persistence.jdbc.password", "vertrigo");
             prop.setProperty("javax.persistence.jdbc.user", "root");

@@ -12,7 +12,7 @@
             id = dgfiltro.Rows(linha).Cells(0).Value
             Form5.veiculo = bd.localizar(id)
             Form5.novo = False
-            Form2.Show()
+            Form5.Show()
         Else
             MsgBox("Nenhuma linha selecionada")
         End If

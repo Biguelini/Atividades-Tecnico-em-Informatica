@@ -10,8 +10,13 @@
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If (bdCliente.localizar(Integer.Parse(txtidcliente.Text)).nome <> "") Then
             If (bd.localizar(Integer.Parse(txtidveiculo.Text)).placa <> "") Then
-                bd.emprestar(Integer.Parse(txtidveiculo.Text), Integer.Parse(txtidcliente.Text))
-                Me.Dispose()
+                If (bd.localizar(Integer.Parse(txtidveiculo.Text)).idCliente = 0) Then
+
+                    bd.emprestar(Integer.Parse(txtidveiculo.Text), Integer.Parse(txtidcliente.Text))
+                    Me.Dispose()
+                Else
+                    MsgBox("Veículo emprestado")
+                End If
             Else
                 MsgBox("Veículo não existe")
             End If

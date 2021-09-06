@@ -10,46 +10,48 @@ package tela;
  * @author JP
  */
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Vector;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import persistencia.EntityManagerProvider;
-import persistencia.ClienteDAO;
-import vo.Cliente;
+import persistencia.VeiculoDAO;
+import vo.Veiculo;
 
-public class TelaCliente extends javax.swing.JFrame {
-
-    Cliente c = new Cliente();
-    ClienteDAO pc = new ClienteDAO();
+public class TelaVeiculo extends javax.swing.JFrame {
 
     /**
-     * Creates new form TelaCliente
+     * Creates new form TelaVeiculo
      */
-    public TelaCliente() {
+    Veiculo v = new Veiculo();
+    VeiculoDAO pv = new VeiculoDAO();
+
+    public TelaVeiculo() {
         initComponents();
     }
 
-    private void clienteToTela() {
-        tId.setText(Integer.toString(c.getId()));
-        tNome.setText(c.getNome());
-        tEndereco.setText(c.getEndereco());
-        tCidade.setText(c.getCidade());
-        tUf.setText(c.getUf());
-        tCpf.setText(c.getCpf());
-        tRg.setText(c.getRg());
-    }
-   
+    private void veiculoToTela() {
+        tId.setText(Integer.toString(v.getId()));
+        tPlaca.setText(v.getPlaca());
+        tMarca.setText(v.getMarca());
+        tModelo.setText(v.getModelo());
+        tAno.setText(v.getAno());
+        tChassi.setText(v.getChassi());
+        tIdCliente.setText(Integer.toString(v.getIdCliente()));
 
-    private boolean telaToCliente() {
-        c.setId(Integer.parseInt(tId.getText()));
-        c.setNome(tNome.getText());
-        c.setEndereco(tEndereco.getText());
-        c.setCidade(tCidade.getText());
-        c.setUf(tUf.getText());
-        c.setCpf(tCpf.getText());
-        c.setRg(tRg.getText());
+    }
+
+    private boolean telaToVeiculo() {
+        v.setId(Integer.parseInt(tId.getText()));
+        v.setPlaca(tPlaca.getText());
+        v.setMarca(tMarca.getText());
+        v.setModelo(tModelo.getText());
+        v.setAno(tAno.getText());
+        v.setChassi(tChassi.getText());
+        v.setIdCliente(Integer.parseInt(tIdCliente.getText()));
         return true;
     }
 
@@ -70,12 +72,12 @@ public class TelaCliente extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         tId = new javax.swing.JTextField();
-        tEndereco = new javax.swing.JTextField();
-        tNome = new javax.swing.JTextField();
-        tRg = new javax.swing.JTextField();
-        tCidade = new javax.swing.JTextField();
-        tUf = new javax.swing.JTextField();
-        tCpf = new javax.swing.JTextField();
+        tMarca = new javax.swing.JTextField();
+        tPlaca = new javax.swing.JTextField();
+        tIdCliente = new javax.swing.JTextField();
+        tModelo = new javax.swing.JTextField();
+        tAno = new javax.swing.JTextField();
+        tChassi = new javax.swing.JTextField();
         bSalva = new javax.swing.JButton();
         bCancela = new javax.swing.JButton();
 
@@ -83,20 +85,23 @@ public class TelaCliente extends javax.swing.JFrame {
 
         jLabel1.setText("Id");
 
-        jLabel2.setText("Nome");
+        jLabel2.setText("Placa");
 
-        jLabel3.setText("Endereço");
+        jLabel3.setText("Marca");
 
-        jLabel4.setText("Cidade");
+        jLabel4.setText("Modelo");
 
-        jLabel5.setText("Uf");
+        jLabel5.setText("Ano");
 
-        jLabel6.setText("Cpf");
+        jLabel6.setText("Chassi");
 
-        jLabel7.setText("Rg");
+        jLabel7.setText("Id Cliente");
 
         tId.setEditable(false);
         tId.setText("0");
+
+        tIdCliente.setEditable(false);
+        tIdCliente.setText("0");
 
         bSalva.setText("Salvar");
         bSalva.addActionListener(new java.awt.event.ActionListener() {
@@ -122,9 +127,9 @@ public class TelaCliente extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tRg))
+                        .addComponent(tIdCliente))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 45, Short.MAX_VALUE)
+                        .addGap(0, 49, Short.MAX_VALUE)
                         .addComponent(bSalva)
                         .addGap(37, 37, 37)
                         .addComponent(bCancela)
@@ -132,15 +137,15 @@ public class TelaCliente extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tCpf))
+                        .addComponent(tChassi))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tUf))
+                        .addComponent(tAno))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tCidade))
+                        .addComponent(tModelo))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -148,14 +153,14 @@ public class TelaCliente extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tEndereco))
+                                .addComponent(tMarca))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(8, 8, 8)
                                 .addComponent(tId))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tNome)))
+                        .addComponent(tPlaca)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -168,40 +173,40 @@ public class TelaCliente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(tNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(tEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(tCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(tUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(tCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tChassi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(tRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bSalva)
                     .addComponent(bCancela))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void bSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvaActionPerformed
-        if (telaToCliente()) {
-            pc.salva(c);
+        if (telaToVeiculo()) {
+            pv.salva(v);
             this.dispose();
         }
     }//GEN-LAST:event_bSalvaActionPerformed
@@ -209,14 +214,15 @@ public class TelaCliente extends javax.swing.JFrame {
     private void bCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelaActionPerformed
         this.dispose();
     }//GEN-LAST:event_bCancelaActionPerformed
-    public void setCliente(Cliente c) {
-        this.c = c;
-        clienteToTela();
-    }
 
     /**
      * @param args the command line arguments
      */
+    public void setVeiculo(Veiculo v) {
+        this.v = v;
+        veiculoToTela();
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -231,20 +237,20 @@ public class TelaCliente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaVeiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaVeiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaVeiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaVeiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaCliente().setVisible(true);
+                new TelaVeiculo().setVisible(true);
             }
         });
     }
@@ -259,12 +265,12 @@ public class TelaCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField tCidade;
-    private javax.swing.JTextField tCpf;
-    private javax.swing.JTextField tEndereco;
+    private javax.swing.JTextField tAno;
+    private javax.swing.JTextField tChassi;
     private javax.swing.JTextField tId;
-    private javax.swing.JTextField tNome;
-    private javax.swing.JTextField tRg;
-    private javax.swing.JTextField tUf;
+    private javax.swing.JTextField tIdCliente;
+    private javax.swing.JTextField tMarca;
+    private javax.swing.JTextField tModelo;
+    private javax.swing.JTextField tPlaca;
     // End of variables declaration//GEN-END:variables
 }

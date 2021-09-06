@@ -12,7 +12,6 @@ package persistencia;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import vo.Cliente;
 import vo.Veiculo;
 
 public class VeiculoDAO {
@@ -53,6 +52,11 @@ public class VeiculoDAO {
     public List<Veiculo> pesquisa(String placa) {
         Query q = em.createNativeQuery("select * from veiculo where placa like ? order by placa ", Veiculo.class);
         q.setParameter(1, '%' + placa + '%');
+        List<Veiculo> lista = q.getResultList();
+        return lista;
+    }
+    public List<Veiculo> pesquisaEmprestados() {
+        Query q = em.createNativeQuery("select * from veiculo where idCliente <> 0 order by placa ", Veiculo.class);
         List<Veiculo> lista = q.getResultList();
         return lista;
     }

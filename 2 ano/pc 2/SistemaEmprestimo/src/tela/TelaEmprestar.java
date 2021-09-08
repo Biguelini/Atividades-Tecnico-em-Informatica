@@ -33,7 +33,6 @@ public class TelaEmprestar extends javax.swing.JFrame {
         initComponents();
     }
 
-
     private boolean telaToVeiculo() {
         v.setIdCliente(Integer.parseInt(tIdCliente.getText()));
         return true;
@@ -122,18 +121,20 @@ public class TelaEmprestar extends javax.swing.JFrame {
     }//GEN-LAST:event_bCancelarActionPerformed
 
     private void bSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalvarActionPerformed
-        if (telaToVeiculo()) {
-            if (pv.localiza(v.getId()).getIdCliente() == 0) {
-                if (pc.localiza(v.getIdCliente()) != null) {
-                    pv.salva(v);
-                    this.dispose();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Cliente inexistente");
-                }
+
+        if (v.getIdCliente() == 0) {
+            if (pc.localiza(Integer.parseInt(tIdCliente.getText())) != null) {
+                telaToVeiculo();
+                pv.salva(v);
+                this.dispose();
             } else {
-                JOptionPane.showMessageDialog(this, "Veículo emprestado");
+                JOptionPane.showMessageDialog(this, "Cliente não existente");
             }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Veículo emprestado");
         }
+
     }//GEN-LAST:event_bSalvarActionPerformed
 
     /**

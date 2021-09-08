@@ -19,7 +19,7 @@ public class Cliente {
     @Id
     @GeneratedValue
     private int id = 0;
-    private String nome;
+    private String nome = "";
     private String endereco;
     private String cidade;
     private String uf;

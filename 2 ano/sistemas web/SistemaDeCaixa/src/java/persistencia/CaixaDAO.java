@@ -37,22 +37,22 @@ public class CaixaDAO {
         return c;
     }
 
-    public void exclui(Caixa c) {
-        em.getTransaction().begin();
-        em.remove(c);
-        em.getTransaction().commit();
-    }
-
     public List<Caixa> pesquisa() {
         Query q = em.createQuery("select c from Caixa c order by c.data");
         List<Caixa> lista = q.getResultList();
         return lista;
     }
 
-    public List<Caixa> pesquisa(String descricao) {
-        Query q = em.createNativeQuery("select * from sistemacaixa where descricao like :descricao order by data", Caixa.class);
-        q.setParameter("descricao", '%' + descricao + '%');
+    public List<Caixa> pesquisa(String tipo) {
+        Query q = em.createNativeQuery("select * from caixa where tipo = :tipo order by data", Caixa.class);
+        q.setParameter("tipo", '%' + tipo + '%');
         List<Caixa> lista = q.getResultList();
         return lista;
+    }
+    public Double calcularSaldo(){
+        Query q = em.createNativeQuery("select SUM(valor) from caixa");
+        List<Double> lista = q.getResultList();
+        Double saldo = lista.get(0);
+        return saldo;
     }
 }

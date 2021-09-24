@@ -6,6 +6,7 @@
 package vo;
 
 import java.util.Date;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +17,7 @@ import javax.persistence.TemporalType;
  *
  * @author 2info2021
  */
+@Entity
 public class Caixa {
 
     private static long serialVersionUID = 1L;

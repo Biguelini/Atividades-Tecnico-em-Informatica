@@ -12,7 +12,7 @@
         <div class="geral">
             <p:fieldset legend="caixa" style="margin-bottom:20px">
                 <h:form>
-                    <p:commandButton id="bNovo" icon="ui-icon-document" action="#{telaLocalizaBean.novo}" />
+                    <p:commandButton id="bNovo" icon="ui-icon-document" action="#{telaLocalizaBean.novo}" ajax="false"/>
                     <p:tooltip id="ttNovo" for="bNovo" value="Novo caixa" trackMouse="true" />
                     <p:commandButton id="bAtualiza" icon="ui-icon-refresh" action="#{telaLocalizaBean.atualizaLista}" update="tabela" />
                     <p:tooltip id="ttAtualiza" for="bAtualiza" value="Atualiza lista" trackMouse="true" />
@@ -41,10 +41,7 @@
                             <f:facet name="header">
                                 <h:outputText value="Tipo" />
                             </f:facet>
-                            <p:selectOneMenu id="option">
-                                <f:selectItem itemLabel="Entrada" itemValue="Entrada"/>
-                                <f:selectItem itemLabel="Saída" itemValue="Saída"/>
-                            </p:selectOneMenu>
+                            <h:outputText value="#{caixa.tipo}"/>
                         </p:column>
                         <p:column style="width:50%">
                             <f:facet name="header">
@@ -54,6 +51,8 @@
                         </p:column>
                     </p:dataTable>
                 </h:form>
+                <br/>
+                <h:outputText value="Saldo: R$ #{telaLocalizaBean.saldo()}"/>
             </p:fieldset>
         </div>
     </h:body>

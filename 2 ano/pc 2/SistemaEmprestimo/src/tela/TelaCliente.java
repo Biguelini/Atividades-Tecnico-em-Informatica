@@ -22,7 +22,7 @@ import vo.Cliente;
 public class TelaCliente extends javax.swing.JFrame {
 
     Cliente c = new Cliente();
-    ClienteDAO pc = new ClienteDAO();
+    ClienteDAO pc= new ClienteDAO();
 
     /**
      * Creates new form TelaCliente

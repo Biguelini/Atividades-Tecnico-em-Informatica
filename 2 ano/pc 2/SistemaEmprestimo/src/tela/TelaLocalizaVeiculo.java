@@ -221,7 +221,7 @@ public class TelaLocalizaVeiculo extends javax.swing.JFrame {
             t.setVeiculo(pv.localiza(codigo));
             t.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(this, "Não há nada selecionado!");
+            JOptionPane.showMessageDialog(this, "Nada selecionado!");
         }
     }//GEN-LAST:event_mAlterarActionPerformed
 

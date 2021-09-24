@@ -128,7 +128,7 @@ public class TelaEmprestar extends javax.swing.JFrame {
                 pv.salva(v);
                 this.dispose();
             } else {
-                JOptionPane.showMessageDialog(this, "Cliente não existente");
+                JOptionPane.showMessageDialog(this, "Cliente não existe");
             }
 
         } else {

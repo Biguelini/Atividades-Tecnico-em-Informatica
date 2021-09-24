@@ -41,7 +41,6 @@ public class TelaVeiculo extends javax.swing.JFrame {
         tAno.setText(v.getAno());
         tChassi.setText(v.getChassi());
         tIdCliente.setText(Integer.toString(v.getIdCliente()));
-
     }
 
     private boolean telaToVeiculo() {

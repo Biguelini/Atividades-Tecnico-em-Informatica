@@ -176,7 +176,7 @@ public class TelaLocalizaCliente extends javax.swing.JFrame {
             t.setCliente(pc.localiza(codigo));
             t.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(this, "Não há nada selecionado!");
+            JOptionPane.showMessageDialog(this, "Nada selecionado!");
         }
     }//GEN-LAST:event_mAlterarActionPerformed
 

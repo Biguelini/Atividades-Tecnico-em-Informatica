@@ -34,7 +34,7 @@ public class TelaInicial extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Sistema Empréstimo de Veículos");
+        jLabel1.setText("Sistema de Empréstimo de Veículos");
 
         jButton1.setText("Clientes");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -55,7 +55,7 @@ public class TelaInicial extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(60, Short.MAX_VALUE)
+                .addContainerGap(26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -82,7 +82,7 @@ public class TelaInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        TelaLocalizaCliente tc = new TelaLocalizaCliente();
+        TelaLocalizaCliente tc= new TelaLocalizaCliente();
         tc.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 

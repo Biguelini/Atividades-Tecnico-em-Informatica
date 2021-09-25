@@ -23,8 +23,8 @@ import vo.Caixa;
 public class TelaLocalizaBean implements Serializable {
 
     private DataModel<Caixa> lista;
-    private DataModel<Caixa> listaSaida;
-    private DataModel<Caixa> listaEntrada;
+    private DataModel<Caixa> listaSaidas;
+    private DataModel<Caixa> listaEntradas;
     CaixaDAO cd = new CaixaDAO();
     private Caixa caixa = new Caixa();
     public Double saldo(){
@@ -41,15 +41,15 @@ public class TelaLocalizaBean implements Serializable {
     }
 
     public String atualizaLista() {
-        lista = new ListDataModel(cd.pesquisaSaidas());
+        lista = new ListDataModel(cd.pesquisa());
         return "index";
     }
     public String atualizaListaSaidas() {
-        lista = new ListDataModel(cd.pesquisaSaidas());
+        listaSaidas = new ListDataModel(cd.pesquisaSaidas());
         return "saidas";
     }
     public String atualizaListaEntradas() {
-        lista = new ListDataModel(cd.pesquisaEntradas());
+        listaEntradas = new ListDataModel(cd.pesquisaEntradas());
         return "entradas";
     }
 
@@ -95,18 +95,19 @@ public class TelaLocalizaBean implements Serializable {
     }
 
     /**
-     * @return the listaSaida
+     * @return the listaSaidas
      */
-    public DataModel<Caixa> getListaSaida() {
+    public DataModel<Caixa> getListaSaidas() {
         atualizaListaSaidas();
-        return listaSaida;
+        return listaSaidas;
     }
 
     /**
-     * @return the listaEntrada
+     * @return the listaEntradas
      */
-    public DataModel<Caixa> getListaEntrada() {
+    public DataModel<Caixa> getListaEntradas() {
         atualizaListaEntradas();
-        return listaEntrada;
+        return listaEntradas;
     }
+
 }

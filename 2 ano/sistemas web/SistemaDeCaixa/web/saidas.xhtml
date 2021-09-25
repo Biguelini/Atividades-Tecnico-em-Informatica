@@ -13,11 +13,11 @@
             <p:fieldset legend="Saidas" style="margin-bottom:20px">
                 <h:form>
                     <p:commandButton icon="ui-icon-arrowreturnthick-1-w" action="index"/>
-                    <p:commandButton id="bAtualiza" icon="ui-icon-refresh" action="#{telaLocalizaBean.atualizaListaSaidas()}" update="tabela" />
+                    <p:commandButton id="bAtualiza" icon="ui-icon-refresh" action="#{telaLocalizaBean.atualizaListaSaidas}" update="tabela" />
                     <p:tooltip id="ttAtualiza" for="bAtualiza" value="Atualiza lista" trackMouse="true" />
                 </h:form>
 
-                <p:dataTable id="tabela" value="#{telaLocalizaBean.listaSaida}" var="caixa" >
+                <p:dataTable id="tabela" value="#{telaLocalizaBean.listaSaidas}" var="caixa" >
                     <p:column style="width:20%; text-align: center;">
                         <f:facet name="header">
                             <h:outputText value="Id" />

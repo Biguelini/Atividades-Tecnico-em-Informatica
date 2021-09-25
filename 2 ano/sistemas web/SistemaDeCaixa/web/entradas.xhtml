@@ -13,16 +13,12 @@
             <p:fieldset legend="Entradas" style="margin-bottom:20px">
                 <h:form>
                     <p:commandButton icon="ui-icon-arrowreturnthick-1-w" action="index"/>
-                    <p:commandButton id="bAtualiza" icon="ui-icon-refresh" action="#{telaLocalizaBean.atualizaListaSaidas()}" update="tabela" />
+                    <p:commandButton id="bAtualiza" icon="ui-icon-refresh" action="#{telaLocalizaBean.atualizaListaEntradas}" update="tabela" />
                     <p:tooltip id="ttAtualiza" for="bAtualiza" value="Atualiza lista" trackMouse="true" />
                 </h:form>
 
-                <p:dataTable id="tabela" value="#{telaLocalizaBean.listaEntrada}" var="caixa" >
-                    <h:form>
+                <p:dataTable id="tabela" value="#{telaLocalizaBean.listaEntradas}" var="caixa" >
 
-                        <p:commandButton id="bAtualiza" icon="ui-icon-refresh" action="#{telaLocalizaBean.atualizaListaEntradas}" update="tabela" />
-                        <p:tooltip id="ttAtualiza" for="bAtualiza" value="Atualiza lista" trackMouse="true" />
-                    </h:form>
                     <p:column style="width:20%; text-align: center;">
                         <f:facet name="header">
                             <h:outputText value="Id" />

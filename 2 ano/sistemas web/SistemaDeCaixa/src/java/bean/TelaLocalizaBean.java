@@ -41,7 +41,7 @@ public class TelaLocalizaBean implements Serializable {
     }
 
     public String atualizaLista() {
-        lista = new ListDataModel(cd.pesquisa());
+        lista = new ListDataModel(cd.pesquisaSaidas());
         return "index";
     }
     public String atualizaListaSaidas() {

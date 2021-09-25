@@ -43,14 +43,14 @@ public class CaixaDAO {
         return lista;
     }
     public List<Caixa> pesquisaSaidas() {
-        Query q = em.createNativeQuery("select * from caixa where tipo = 'Saída' order by data");
-        List<Caixa> lista = q.getResultList();
-        return lista;
+        Query q = em.createQuery("select c from Caixa c where c.tipo = 'Saida' order by c.data");
+        List<Caixa> listaSaidas = q.getResultList();
+        return listaSaidas;
     }
     public List<Caixa> pesquisaEntradas() {
-        Query q = em.createNativeQuery("select * from caixa where tipo = 'Entrada' order by data");
-        List<Caixa> lista = q.getResultList();
-        return lista;
+        Query q = em.createQuery("select c from Caixa c where c.tipo = 'Entrada' order by c.data");
+        List<Caixa> listaEntradas = q.getResultList();
+        return listaEntradas;
     }
     public Double calcularSaldo(){
         Double entradas = calcularSaldoEntradas();

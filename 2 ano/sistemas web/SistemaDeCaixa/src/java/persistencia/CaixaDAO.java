@@ -38,17 +38,17 @@ public class CaixaDAO {
     }
 
     public List<Caixa> pesquisa() {
-        Query q = em.createQuery("select c from Caixa c order by c.data");
+        Query q = em.createQuery("select c from Caixa c order by c.data DESC");
         List<Caixa> lista = q.getResultList();
         return lista;
     }
     public List<Caixa> pesquisaSaidas() {
-        Query q = em.createQuery("select c from Caixa c where c.tipo = 'Saida' order by c.data");
+        Query q = em.createQuery("select c from Caixa c where c.tipo = 'Saida' order by c.data DESC");
         List<Caixa> listaSaidas = q.getResultList();
         return listaSaidas;
     }
     public List<Caixa> pesquisaEntradas() {
-        Query q = em.createQuery("select c from Caixa c where c.tipo = 'Entrada' order by c.data");
+        Query q = em.createQuery("select c from Caixa c where c.tipo = 'Entrada' order by c.data DESC");
         List<Caixa> listaEntradas = q.getResultList();
         return listaEntradas;
     }

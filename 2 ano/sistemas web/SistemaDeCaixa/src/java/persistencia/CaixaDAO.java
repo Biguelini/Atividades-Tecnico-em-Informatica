@@ -42,17 +42,32 @@ public class CaixaDAO {
         List<Caixa> lista = q.getResultList();
         return lista;
     }
-
-    public List<Caixa> pesquisa(String tipo) {
-        Query q = em.createNativeQuery("select * from caixa where tipo = :tipo order by data", Caixa.class);
-        q.setParameter("tipo", '%' + tipo + '%');
+    public List<Caixa> pesquisaSaidas() {
+        Query q = em.createNativeQuery("select * from caixa where tipo = 'Saída' order by data");
+        List<Caixa> lista = q.getResultList();
+        return lista;
+    }
+    public List<Caixa> pesquisaEntradas() {
+        Query q = em.createNativeQuery("select * from caixa where tipo = 'Entrada' order by data");
         List<Caixa> lista = q.getResultList();
         return lista;
     }
     public Double calcularSaldo(){
-        Query q = em.createNativeQuery("select SUM(valor) from caixa");
+        Double entradas = calcularSaldoEntradas();
+        Double saidas = calcularSaldoSaidas();
+        Double saldo = entradas - saidas;
+        return saldo;
+    }
+    public Double calcularSaldoEntradas(){
+        Query q = em.createNativeQuery("select SUM(valor) from caixa where tipo = 'Entrada'");
         List<Double> lista = q.getResultList();
-        Double saldo = lista.get(0);
+        Double saldo = lista.get(0)!=null?lista.get(0):0;
+        return saldo;
+    }
+    public Double calcularSaldoSaidas(){
+        Query q = em.createNativeQuery("select SUM(valor) from caixa where tipo = 'Saida'");
+        List<Double> lista = q.getResultList();
+        Double saldo = lista.get(0)!=null?lista.get(0):0;
         return saldo;
     }
 }

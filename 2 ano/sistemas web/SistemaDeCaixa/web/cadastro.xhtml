@@ -37,10 +37,10 @@
     </h:head>
     <h:body style="background-color: #cccccc;">
         <p:growl id="growl" showDetail="true" sticky="true" />
-        <p:fieldset legend="Professor" style="margin-bottom:20px; font-size: small;">
+        <p:fieldset legend="Novo movimento" style="margin-bottom:24px; font-size: small;">
             <h:form>
                 <p:outputLabel value="Id: " for="itId" />
-                <p:inputText id="itId" value="#{telaLocalizaBean.caixa.id}" /><br/>
+                <p:inputText id="itId" value="#{telaLocalizaBean.caixa.id}" disabled="true"/><br/>
                 <p:outputLabel value="Descricao: " for="itDescricao"/>
                 <p:inputText id="itDescricao" value="#{telaLocalizaBean.caixa.descricao}" required="true"
                              requiredMessage="É obrigatório uma descricao!" maxlength="50"/><br/>

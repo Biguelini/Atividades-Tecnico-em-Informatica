@@ -12,15 +12,19 @@
         <div class="geral">
             <p:fieldset legend="Extrato" style="margin-bottom:20px">
                 <h:form>
-                    <p:commandButton id="bNovo" icon="ui-icon-transferthick-e-w" action="#{telaLocalizaBean.novo}" ajax="false"/>
-                    <p:tooltip id="ttNovo" for="bNovo" value="Nova transação" trackMouse="true" />
-                    <p:commandButton id="bEntradas" icon="ui-icon-plusthick" action="entradas.xhtml" ajax="false"/>
+                    <p:commandButton id="bNovo" value="Novo movimento" action="#{telaLocalizaBean.novo}" ajax="false"/>
+                    <p:tooltip id="ttNovo" for="bNovo" value="Novo movimento" trackMouse="true" />
+                    <p:commandButton id="bEntradas" value="Entradas" action="entradas.xhtml" ajax="false"/>
                     <p:tooltip id="ttEntradas" for="bEntradas" value="Entradas" trackMouse="true" />
-                    <p:commandButton id="bSaidas" icon="ui-icon-minusthick" action="saidas.xhtml" ajax="false"/>
+                    <p:commandButton id="bSaidas" value="Saídas" action="saidas.xhtml" ajax="false"/>
                     <p:tooltip id="ttSaidas" for="bSaidas" value="Saídas" trackMouse="true" />
+                    <p:commandButton id="bImprimir" value="Imprimir" action="#" />
+                    <p:tooltip id="ttImprimir" for="bImprimir" value="Imprimir" trackMouse="true" />
                     <p:commandButton id="bAtualiza" icon="ui-icon-refresh" action="#{telaLocalizaBean.atualizaLista}" update="tabela" />
                     <p:tooltip id="ttAtualiza" for="bAtualiza" value="Atualiza lista" trackMouse="true" />
+
                 </h:form>
+                <br/>
                 <p:dataTable id="tabela" value="#{telaLocalizaBean.lista}" var="caixa" >
                     <p:column style="width:10%; text-align: center;">
                         <f:facet name="header">
@@ -56,7 +60,6 @@
                     </p:column>
                 </p:dataTable>
 
-                <br/>
                 <h:outputText value="Saldo: R$ #{telaLocalizaBean.saldo()}"/>
             </p:fieldset>
         </div>

@@ -15,8 +15,8 @@ public class Tenis extends JFrame {
 
     public Tenis() {
         setTitle("Tenis v1.0");
-        setSize(1000, 733);
-        add(new Campo(1000, 733));
+        setSize(1280, 720);
+        add(new Campo(1280, 720));
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);

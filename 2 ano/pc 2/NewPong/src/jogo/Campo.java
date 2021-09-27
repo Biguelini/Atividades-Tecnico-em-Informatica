@@ -146,7 +146,7 @@ public class Campo extends JPanel implements ActionListener {
 
     private void mexerPc() {
         if (bola.getX() < this.getWidth() / 2 && bola.getDx() < 0) {
-            raquetePc.setDy((12 * Math.signum((int) (bola.getY() - raquetePc.getY()))));
+            raquetePc.setDy((11.5 * Math.signum((int) (bola.getY() - raquetePc.getY()))));
         } else {
             raquetePc.setDy(0);
         }

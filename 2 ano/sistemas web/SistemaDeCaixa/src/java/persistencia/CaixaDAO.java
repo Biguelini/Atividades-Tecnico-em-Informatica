@@ -38,21 +38,36 @@ public class CaixaDAO {
     }
 
     public List<Caixa> pesquisa() {
-        Query q = em.createQuery("select c from Caixa c order by c.data");
+        Query q = em.createQuery("select c from Caixa c order by c.data DESC");
         List<Caixa> lista = q.getResultList();
         return lista;
     }
-
-    public List<Caixa> pesquisa(String tipo) {
-        Query q = em.createNativeQuery("select * from caixa where tipo = :tipo order by data", Caixa.class);
-        q.setParameter("tipo", '%' + tipo + '%');
-        List<Caixa> lista = q.getResultList();
-        return lista;
+    public List<Caixa> pesquisaSaidas() {
+        Query q = em.createQuery("select c from Caixa c where c.tipo = 'Saida' order by c.data DESC");
+        List<Caixa> listaSaidas = q.getResultList();
+        return listaSaidas;
+    }
+    public List<Caixa> pesquisaEntradas() {
+        Query q = em.createQuery("select c from Caixa c where c.tipo = 'Entrada' order by c.data DESC");
+        List<Caixa> listaEntradas = q.getResultList();
+        return listaEntradas;
     }
     public Double calcularSaldo(){
-        Query q = em.createNativeQuery("select SUM(valor) from caixa");
+        Double entradas = calcularSaldoEntradas();
+        Double saidas = calcularSaldoSaidas();
+        Double saldo = entradas - saidas;
+        return saldo;
+    }
+    public Double calcularSaldoEntradas(){
+        Query q = em.createNativeQuery("select SUM(valor) from caixa where tipo = 'Entrada'");
         List<Double> lista = q.getResultList();
-        Double saldo = lista.get(0);
+        Double saldo = lista.get(0)!=null?lista.get(0):0;
+        return saldo;
+    }
+    public Double calcularSaldoSaidas(){
+        Query q = em.createNativeQuery("select SUM(valor) from caixa where tipo = 'Saida'");
+        List<Double> lista = q.getResultList();
+        Double saldo = lista.get(0)!=null?lista.get(0):0;
         return saldo;
     }
 }

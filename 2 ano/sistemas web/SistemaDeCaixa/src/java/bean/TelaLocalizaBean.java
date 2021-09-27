@@ -23,12 +23,18 @@ import vo.Caixa;
 public class TelaLocalizaBean implements Serializable {
 
     private DataModel<Caixa> lista;
-    private DataModel<Caixa> listaEntradas;
     private DataModel<Caixa> listaSaidas;
+    private DataModel<Caixa> listaEntradas;
     CaixaDAO cd = new CaixaDAO();
     private Caixa caixa = new Caixa();
     public Double saldo(){
         return cd.calcularSaldo();
+    }
+    public Double saldoEntradas(){
+        return cd.calcularSaldoEntradas();
+    }
+    public Double saldoSaidas(){
+        return cd.calcularSaldoSaidas();
     }
 
     public TelaLocalizaBean() {
@@ -38,19 +44,20 @@ public class TelaLocalizaBean implements Serializable {
         lista = new ListDataModel(cd.pesquisa());
         return "index";
     }
-    public String atualizaListaEntradas() {
-        lista = new ListDataModel(cd.pesquisa("Entrada"));
-        return "entradas";
-    }
     public String atualizaListaSaidas() {
-        lista = new ListDataModel(cd.pesquisa("Saida"));
+        listaSaidas = new ListDataModel(cd.pesquisaSaidas());
         return "saidas";
+    }
+    public String atualizaListaEntradas() {
+        listaEntradas = new ListDataModel(cd.pesquisaEntradas());
+        return "entradas";
     }
 
     public DataModel<Caixa> getLista() {
         atualizaLista();
         return lista;
     }
+
 
     public Caixa caixaSelecionado() {
         Caixa c = lista.getRowData();
@@ -86,4 +93,21 @@ public class TelaLocalizaBean implements Serializable {
     public void setCaixa(Caixa caixa) {
         this.caixa = caixa;
     }
+
+    /**
+     * @return the listaSaidas
+     */
+    public DataModel<Caixa> getListaSaidas() {
+        atualizaListaSaidas();
+        return listaSaidas;
+    }
+
+    /**
+     * @return the listaEntradas
+     */
+    public DataModel<Caixa> getListaEntradas() {
+        atualizaListaEntradas();
+        return listaEntradas;
+    }
+
 }

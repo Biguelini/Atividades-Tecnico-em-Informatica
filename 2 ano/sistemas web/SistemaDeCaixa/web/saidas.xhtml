@@ -10,22 +10,14 @@
     <h:body style="background-color: #cccccc;">
 
         <div class="geral">
-            <p:fieldset legend="Extrato" style="margin-bottom:20px">
+            <p:fieldset legend="Saidas" style="margin-bottom:20px">
                 <h:form>
-                    <p:commandButton id="bNovo" value="Novo movimento" action="#{telaLocalizaBean.novo}" ajax="false"/>
-                    <p:tooltip id="ttNovo" for="bNovo" value="Novo movimento" trackMouse="true" />
-                    <p:commandButton id="bEntradas" value="Entradas" action="entradas.xhtml" ajax="false"/>
-                    <p:tooltip id="ttEntradas" for="bEntradas" value="Entradas" trackMouse="true" />
-                    <p:commandButton id="bSaidas" value="Saídas" action="saidas.xhtml" ajax="false"/>
-                    <p:tooltip id="ttSaidas" for="bSaidas" value="Saídas" trackMouse="true" />
-                    <p:commandButton id="bImprimir" value="Imprimir" action="#" />
-                    <p:tooltip id="ttImprimir" for="bImprimir" value="Imprimir" trackMouse="true" />
-                    <p:commandButton id="bAtualiza" icon="ui-icon-refresh" action="#{telaLocalizaBean.atualizaLista}" update="tabela" />
+                    <p:commandButton icon="ui-icon-arrowreturnthick-1-w" action="index"/>
+                    <p:commandButton id="bAtualiza" icon="ui-icon-refresh" action="#{telaLocalizaBean.atualizaListaSaidas}" update="tabela" />
                     <p:tooltip id="ttAtualiza" for="bAtualiza" value="Atualiza lista" trackMouse="true" />
-
                 </h:form>
-                <br/>
-                <p:dataTable id="tabela" value="#{telaLocalizaBean.lista}" var="caixa" >
+
+                <p:dataTable id="tabela" value="#{telaLocalizaBean.listaSaidas}" var="caixa" >
                     <p:column style="width:10%; text-align: center;">
                         <f:facet name="header">
                             <h:outputText value="Id" />
@@ -56,11 +48,11 @@
                         <f:facet name="header">
                             <h:outputText value="Valor" />
                         </f:facet>
-                        <h:outputText value="R$ #{caixa.valor}"/>
+                        <h:outputText value="- R$#{caixa.valor}"/>
                     </p:column>
                 </p:dataTable>
-
-                <h:outputText value="Saldo: R$ #{telaLocalizaBean.saldo()}"/>
+                <br/>
+                <h:outputText value="Saldo: R$ -#{telaLocalizaBean.saldoSaidas()}"/>
             </p:fieldset>
         </div>
     </h:body>

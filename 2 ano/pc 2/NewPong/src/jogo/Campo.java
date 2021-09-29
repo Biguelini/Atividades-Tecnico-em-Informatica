@@ -40,7 +40,7 @@ public class Campo extends JPanel implements ActionListener {
         setSize(largura, altura);
         fundo = new ImageIcon(this.getClass().getResource("/imagens/campo.png")).getImage().getScaledInstance(largura, altura, 1);
         inicializa();
-        t = new Timer(10, this);
+        t = new Timer(1, this);
         t.start();
         addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
@@ -146,7 +146,7 @@ public class Campo extends JPanel implements ActionListener {
 
     private void mexerPc() {
         if (bola.getX() < this.getWidth() / 2 && bola.getDx() < 0) {
-            raquetePc.setDy((11.5 * Math.signum((int) (bola.getY() - raquetePc.getY()))));
+            raquetePc.setDy((8* Math.signum((int) (bola.getY() - raquetePc.getY()))));
         } else {
             raquetePc.setDy(0);
         }

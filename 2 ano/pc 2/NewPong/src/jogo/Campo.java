@@ -33,6 +33,7 @@ public class Campo extends JPanel implements ActionListener {
     Image fundo;
     int pontoJ = 0, pontoPc = 0;
     String msg = "";
+    double futuroDy;
 
     public Campo(int largura, final int altura) {
         setFocusable(true);
@@ -89,12 +90,17 @@ public class Campo extends JPanel implements ActionListener {
             raqueteJ.setY(0);
         }
         if (verificaColisao(bola, raqueteJ)) {
-            bola.setDx(-12);
+            bola.setDx(-15);
+            
             bola.setDy(new Random().nextDouble() * Math.signum(bola.getDy()) * 5);
         }
         if (verificaColisao(bola, raquetePc)) {
-            bola.setDx(12);
-            bola.setDy(new Random().nextDouble() * Math.signum(bola.getDy()) * 5);
+            bola.setDx(15);
+            futuroDy = new Random().nextDouble() * Math.signum(bola.getDy()) * 5;
+            while(futuroDy==0){
+                futuroDy = new Random().nextDouble() * Math.signum(bola.getDy()) * 5;
+            }
+            bola.setDy(futuroDy);
         }
         if (bola.getY() < 10 || bola.getY() > this.getHeight() - bola.getAltura()) {
             bola.setDy(-bola.getDy());
@@ -118,7 +124,7 @@ public class Campo extends JPanel implements ActionListener {
             bola.setX(raqueteJ.getX() - raqueteJ.getLargura());
             bola.setY(raqueteJ.getY());
             bola.setDy(new Random().nextDouble() * Math.signum(bola.getDy()) * 5);
-            bola.setDx(-12);
+            bola.setDx(-15);
             pontoJ++;
             t.stop();
             msg = "Ponto para Jogador - Espaço para continuar";
@@ -127,7 +133,7 @@ public class Campo extends JPanel implements ActionListener {
             bola.setX(raquetePc.getX() + raquetePc.getLargura());
             bola.setY(raquetePc.getY());
             bola.setDy(new Random().nextDouble() * Math.signum(bola.getDy()) * 5);
-            bola.setDx(12);
+            bola.setDx(15);
             pontoPc++;
             t.stop();
             msg = "Ponto para PC - Espaço para continuar";
@@ -146,7 +152,14 @@ public class Campo extends JPanel implements ActionListener {
 
     private void mexerPc() {
         if (bola.getX() < this.getWidth() / 2 && bola.getDx() < 0) {
-            raquetePc.setDy((11.5 * Math.signum((int) (bola.getY() - raquetePc.getY()))));
+            if(Math.signum((int) (bola.getY() - raquetePc.getY()))>0){
+                if(bola.getY() - raquetePc.getY()>raquetePc.getAltura()){
+                    raquetePc.setDy(9 * Math.signum((int) (bola.getY() - raquetePc.getY())));
+                }
+            } else{
+                raquetePc.setDy(9 * Math.signum((int) (bola.getY() - raquetePc.getY())));
+            }
+            
         } else {
             raquetePc.setDy(0);
         }

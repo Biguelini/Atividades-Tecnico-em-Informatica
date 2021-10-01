@@ -21,9 +21,11 @@ public class Bola {
             getAltura(), 1);
     private double x;
     private double y;
-    private double dx = 9;
+    private double dx = 15;
     private double dy = new Random().nextDouble() * 5 - 2.5;
 
+    
+    
     public Bola(int x, int y) {
         this.x = x;
         this.y = y;

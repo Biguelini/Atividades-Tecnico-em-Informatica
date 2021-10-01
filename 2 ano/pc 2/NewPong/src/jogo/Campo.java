@@ -92,7 +92,11 @@ public class Campo extends JPanel implements ActionListener {
         if (verificaColisao(bola, raqueteJ)) {
             bola.setDx(-15);
             
-            bola.setDy(new Random().nextDouble() * Math.signum(bola.getDy()) * 5);
+            futuroDy = new Random().nextDouble() * Math.signum(bola.getDy()) * 5;
+            while(futuroDy==0){
+                futuroDy = new Random().nextDouble() * Math.signum(bola.getDy()) * 5;
+            }
+            bola.setDy(futuroDy);
         }
         if (verificaColisao(bola, raquetePc)) {
             bola.setDx(15);
@@ -179,8 +183,8 @@ public class Campo extends JPanel implements ActionListener {
         g.setColor(Color.WHITE);
         g.drawLine(this.getWidth() / 2, 0, this.getWidth() / 2, this.getHeight());
         g.drawImage(bola.getImagem(), (int) bola.getX(), (int) bola.getY(), this);
-        g.drawImage(raquetePc.getImagem(), (int) raquetePc.getX(), (int) raquetePc.getY(), this);
-        g.drawImage(raqueteJ.getImagem(), (int) raqueteJ.getX(), (int) raqueteJ.getY(), this);
+        g.drawImage(raquetePc.getImagemPc(), (int) raquetePc.getX(), (int) raquetePc.getY(), this);
+        g.drawImage(raqueteJ.getImagemJ(), (int) raqueteJ.getX(), (int) raqueteJ.getY(), this);
         g.setFont(new Font("Arial", 0, 18));
         g.drawString("Pontos PC: " + pontoPc, this.getWidth() / 4, 50);
         g.drawString("Pontos Jogador: " +pontoJ, 3 * (this.getWidth() / 4), 50);

@@ -34,12 +34,13 @@ public class Campo extends JPanel implements ActionListener {
     int pontoJ = 0, pontoPc = 0;
     String msg = "";
     double futuroDy;
+    boolean modoMonstro = false;
 
     public Campo(int largura, final int altura) {
         setFocusable(true);
         setDoubleBuffered(true);
         setSize(largura, altura);
-        fundo = new ImageIcon(this.getClass().getResource("/imagens/campo.png")).getImage().getScaledInstance(largura, altura, 1);
+        fundo = new ImageIcon(this.getClass().getResource("/imagens/campo.gif")).getImage().getScaledInstance(largura, altura, 1);
         inicializa();
         t = new Timer(10, this);
         t.start();
@@ -66,6 +67,12 @@ public class Campo extends JPanel implements ActionListener {
                     inicializa();
                     t.start();
                 }
+                if (tecla == 'm' || tecla == 'M') {
+                    if (t.isRunning()) {
+                        msg = "Modo mostro ativado, você deixou de ser um gauchão de apartamento";
+                        modoMonstro = !modoMonstro;
+                    }
+                }
                 if (tecla == KeyEvent.VK_SPACE && pontoJ < 5 && pontoPc < 5) {
                     msg = "";
                     t.start();
@@ -91,9 +98,9 @@ public class Campo extends JPanel implements ActionListener {
         }
         if (verificaColisao(bola, raqueteJ)) {
             bola.setDx(-15);
-            
+
             futuroDy = new Random().nextDouble() * Math.signum(bola.getDy()) * 5;
-            while(futuroDy==0){
+            while (futuroDy < 0.8) {
                 futuroDy = new Random().nextDouble() * Math.signum(bola.getDy()) * 5;
             }
             bola.setDy(futuroDy);
@@ -101,7 +108,7 @@ public class Campo extends JPanel implements ActionListener {
         if (verificaColisao(bola, raquetePc)) {
             bola.setDx(15);
             futuroDy = new Random().nextDouble() * Math.signum(bola.getDy()) * 5;
-            while(futuroDy==0){
+            while (futuroDy < 0.8) {
                 futuroDy = new Random().nextDouble() * Math.signum(bola.getDy()) * 5;
             }
             bola.setDy(futuroDy);
@@ -156,14 +163,14 @@ public class Campo extends JPanel implements ActionListener {
 
     private void mexerPc() {
         if (bola.getX() < this.getWidth() / 2 && bola.getDx() < 0) {
-            if(Math.signum((int) (bola.getY() - raquetePc.getY()))>0){
-                if(bola.getY() - raquetePc.getY()>raquetePc.getAltura()){
+            if (Math.signum((int) (bola.getY() - raquetePc.getY())) > 0) {
+                if (bola.getY() - raquetePc.getY() > raquetePc.getAltura()) {
                     raquetePc.setDy(9 * Math.signum((int) (bola.getY() - raquetePc.getY())));
                 }
-            } else{
+            } else {
                 raquetePc.setDy(9 * Math.signum((int) (bola.getY() - raquetePc.getY())));
             }
-            
+
         } else {
             raquetePc.setDy(0);
         }
@@ -187,7 +194,7 @@ public class Campo extends JPanel implements ActionListener {
         g.drawImage(raqueteJ.getImagemJ(), (int) raqueteJ.getX(), (int) raqueteJ.getY(), this);
         g.setFont(new Font("Arial", 0, 18));
         g.drawString("Pontos PC: " + pontoPc, this.getWidth() / 4, 50);
-        g.drawString("Pontos Jogador: " +pontoJ, 3 * (this.getWidth() / 4), 50);
+        g.drawString("Pontos Jogador: " + pontoJ, 3 * (this.getWidth() / 4), 50);
         Font f = new Font("Arial", Font.BOLD, 20);
         g.setFont(f);
         FontMetrics fm = g.getFontMetrics(f);

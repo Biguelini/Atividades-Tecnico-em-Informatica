@@ -84,8 +84,10 @@ public class Campo extends JPanel implements ActionListener {
                             fundo = new ImageIcon(this.getClass().getResource("/imagens/campo.gif")).getImage().getScaledInstance(largura, altura, 1);
                             msg = "Modo mostro ativado, você deixou de ser um gauchão de apartamento";
                         } else {
+                            msg = "";
                             fundo = new ImageIcon(this.getClass().getResource("/imagens/campo.png")).getImage().getScaledInstance(largura, altura, 1);
                             raqueteJ.setDx(0);
+                            raqueteJ.setX(1220);
                         }
                         
                     }
@@ -111,8 +113,14 @@ public class Campo extends JPanel implements ActionListener {
         if (raqueteJ.getY() > this.getHeight() - raqueteJ.getAltura()) {
             raqueteJ.setY(this.getHeight() - raqueteJ.getAltura());
         }
+        if (raqueteJ.getX() > this.getWidth() - raqueteJ.getLargura()) {
+            raqueteJ.setX(this.getWidth() - raqueteJ.getLargura());
+        }
         if (raqueteJ.getY() < 0) {
             raqueteJ.setY(0);
+        }
+        if (raqueteJ.getX() < 0) {
+            raqueteJ.setX(0);
         }
         if (verificaColisao(bola, raqueteJ)) {
             bola.setDx(-15);

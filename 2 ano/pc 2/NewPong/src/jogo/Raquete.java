@@ -24,6 +24,7 @@ public class Raquete {
     private double x;
     private double y;
     private double dy = 0;
+    private double dx = 0;
 
     public Rectangle getLimites() {
         return new Rectangle((int) x, (int) y, largura, altura);
@@ -36,6 +37,7 @@ public class Raquete {
 
     public void mexer() {
         setY(getY() + getDy());
+        setX(getX() + getDx());
     }
 
     public double getX() {
@@ -104,6 +106,20 @@ public class Raquete {
      */
     public void setImagemJ(Image imagemJ) {
         this.imagemJ = imagemJ;
+    }
+
+    /**
+     * @return the dx
+     */
+    public double getDx() {
+        return dx;
+    }
+
+    /**
+     * @param dx the dx to set
+     */
+    public void setDx(double dx) {
+        this.dx = dx;
     }
 
 }

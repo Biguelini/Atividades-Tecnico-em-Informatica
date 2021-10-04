@@ -67,12 +67,12 @@ public class Campo extends JPanel implements ActionListener {
                     inicializa();
                     t.start();
                 }
-                if (tecla == 'm' || tecla == 'M') {
+                /*if (tecla == 'm' || tecla == 'M') {
                     if (t.isRunning()) {
                         msg = "Modo mostro ativado, você deixou de ser um gauchão de apartamento";
                         modoMonstro = !modoMonstro;
                     }
-                }
+                }*/
                 if (tecla == KeyEvent.VK_SPACE && pontoJ < 5 && pontoPc < 5) {
                     msg = "";
                     t.start();

@@ -35,6 +35,7 @@ public class Campo extends JPanel implements ActionListener {
     String msg = "";
     double futuroDy;
     boolean modoMonstro;
+    int velocidade = 15;
 
     public Campo(int largura, final int altura) {
         setFocusable(true);
@@ -74,6 +75,7 @@ public class Campo extends JPanel implements ActionListener {
                     }
                 }
                 if (tecla == 'r' || tecla == 'R') {
+                    velocidade = 15;
                     inicializa();
                     t.start();
                 }
@@ -123,7 +125,7 @@ public class Campo extends JPanel implements ActionListener {
             raqueteJ.setX(0);
         }
         if (verificaColisao(bola, raqueteJ)) {
-            bola.setDx(-15);
+            bola.setDx(-1*velocidade);
 
             futuroDy = new Random().nextDouble() * Math.signum(bola.getDy()) * 5;
             while (futuroDy == 0) {
@@ -132,7 +134,7 @@ public class Campo extends JPanel implements ActionListener {
             bola.setDy(futuroDy);
         }
         if (verificaColisao(bola, raquetePc)) {
-            bola.setDx(15);
+            bola.setDx(velocidade);
             futuroDy = new Random().nextDouble() * Math.signum(bola.getDy()) * 5;
             while (futuroDy == 0) {
                 futuroDy = new Random().nextDouble() * Math.signum(bola.getDy()) * 5;
@@ -158,19 +160,22 @@ public class Campo extends JPanel implements ActionListener {
 
     private void verificaPonto() {
         if (bola.getX() < 0) {
+            velocidade ++;
             bola.setX(raqueteJ.getX() - raqueteJ.getLargura());
             bola.setY(raqueteJ.getY());
             bola.setDy(new Random().nextDouble() * Math.signum(bola.getDy()) * 5);
-            bola.setDx(-15);
+            bola.setDx(-1*velocidade);
             pontoJ++;
             t.stop();
             msg = "Ponto para Jogador - Espaço para continuar";
+            
         }
         if (bola.getX() > this.getWidth()) {
+            velocidade ++;
             bola.setX(raquetePc.getX() + raquetePc.getLargura());
             bola.setY(raquetePc.getY());
             bola.setDy(new Random().nextDouble() * Math.signum(bola.getDy()) * 5);
-            bola.setDx(15);
+            bola.setDx(velocidade);
             pontoPc++;
             t.stop();
             msg = "Ponto para PC - Espaço para continuar";

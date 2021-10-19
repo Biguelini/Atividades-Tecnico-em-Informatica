@@ -1,9 +1,17 @@
 class Produto:
-    def __init__(self, nome, preco, volume):
+    def __init__(self, id, nome, preco, volume):
+        self.id = id
         self.nome = nome
         self.preco = preco
         self.volume = volume
 
+    @property
+    def id(self):
+         return self._id
+    @id.setter
+    def id(self, value):
+         self._id = value
+         
     @property
     def nome(self):
          return self._nome

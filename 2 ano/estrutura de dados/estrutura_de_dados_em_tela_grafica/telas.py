@@ -8,13 +8,14 @@ sys.modules['sklearn.externals.six'] = six
 import mlrose
 
 class Telas:
-    def rodar():
+    def rodar(self):
         bd = BdProdutos()
         c = Caminhao(3)
         app = QtWidgets.QApplication([])
         main = uic.loadUi("telas/inicio.ui")
         cadastro = uic.loadUi("telas/cadastro.ui")
         listagem = uic.loadUi("telas/listagem.ui")
+        produtos_carregar = uic.loadUi("telas/produtos_final.ui")
             
         def isNumber(n):
             try:
@@ -56,29 +57,38 @@ class Telas:
                 cadastro.tpreco.setText("")
                 cadastro.tvolume.setText("")
 
-        def calcular():    
-            def imprimir_solucao(solucao):
-                for i in range(len(solucao)):
-                    if(solucao[i]==1):
-                        print('%s - %s' % (bd.produtos[i][1], bd.produtos[i][3]))
-            def fitness_function(solucao):
-                custo = 0
-                soma_espaco = 0
-                for i in range(len(solucao)):
-                    if(solucao[i]==1):
-                        custo+=float(bd.produtos[i][2])
-                        soma_espaco+=float(bd.produtos[i][3])
-                    if(soma_espaco>float(c.volume)):
-                        custo = 1
-                    
-                return custo
-            fitness = mlrose.CustomFitness(fitness_function)
-            problema = mlrose.DiscreteOpt(length = 14, fitness_fn = fitness, maximize = True, max_val = 2)
-            
-            melhor_solucao, melhor_custo = mlrose.genetic_alg(problema, pop_size=500, mutation_prob=0.2)
-            print(melhor_solucao, melhor_custo)
-            imprimir_solucao(melhor_solucao)
-
+        def calcular():
+            lista_carregar = []
+            if(len(bd.produtos)!=0):
+                def imprimir_solucao(solucao):
+                    for i in range(len(solucao)):
+                        if(solucao[i]==1):
+                            print('%s - %s' % (bd.produtos[i][1], bd.produtos[i][3]))
+                            lista_carregar.append(bd.produtos[i])
+                def fitness_function(solucao):
+                    custo = 0
+                    soma_espaco = 0
+                    for i in range(len(solucao)):
+                        if(solucao[i]==1):
+                            custo+=float(bd.produtos[i][2])
+                            soma_espaco+=float(bd.produtos[i][3])
+                        if(soma_espaco>float(c.volume)):
+                            custo = 1
+                        
+                    return custo
+                fitness = mlrose.CustomFitness(fitness_function)
+                problema = mlrose.DiscreteOpt(length = 14, fitness_fn = fitness, maximize = True, max_val = 2)
+                
+                melhor_solucao, melhor_custo = mlrose.genetic_alg(problema, pop_size=500, mutation_prob=0.2)
+                print(melhor_solucao, melhor_custo)
+                imprimir_solucao(melhor_solucao)
+                produtos_carregar.show()
+                produtos_carregar.dadostabela.setRowCount(len(lista_carregar))
+                produtos_carregar.dadostabela.setColumnCount(4)
+                for i in range(0, len(lista_carregar)):
+                    for j in range(0, 4):
+                        produtos_carregar.dadostabela.setItem(
+                            i, j, QtWidgets.QTableWidgetItem(str(lista_carregar[i][j])))
 
         main.inserirbtn.clicked.connect(mostrar_tela_cadastro)
         main.deletarbtn.clicked.connect(deletar_produto)

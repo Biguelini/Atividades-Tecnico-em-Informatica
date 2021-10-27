@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Cadastro de Disciplinas</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:commandButton id="bNovo" icon="ui-icon-document" ajax="false" action="#{disciplinasBean.novo}"/>
+            <p:tooltip id="ttNovo" for="bNovo" value="Nova disciplina" trackMouse="true" />
+            <p:commandButton id="bAtualiza" icon="ui-icon-refresh" action="#{disciplinasBean.atualizaLista}" update="tabela" />
+            <p:tooltip id="ttAtualiza" for="bAtualiza" value="Atualiza lista" trackMouse="true" />
+            <p:dataTable id="tabela" value="#{disciplinasBean.lista}" var="disciplina">
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Código"/>
+                    </f:facet>
+                    <h:outputText value="#{disciplina.codigo}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nome"/>
+                    </f:facet>
+                    <h:outputText value="#{disciplina.nome}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Carga Horária"/>
+                    </f:facet>
+                    <h:outputText value="#{disciplina.cargahoraria}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Professor"/>
+                    </f:facet>
+                    <h:outputText value="#{disciplina.professor}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Ações"/>
+                    </f:facet>
+                    <p:commandButton id="bEdita" icon="ui-icon-pencil" ajax="false" action="#{disciplinasBean.edita}" />
+                    <p:tooltip for="bEdita" value="Alterar disciplina" trackMouse="true" />
+                    <p:commandButton id="bExclui" icon="ui-icon-trash" action="#{disciplinasBean.exclui}" update="tabela" >
+                        <p:confirm header="Confirmação" message="Confirma exclusão de #{disciplina.nome}?" icon="ui-icon-alert" />
+                    </p:commandButton>
+                    <p:confirmDialog global="true" closable="false" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </h:body>
+</html>
+

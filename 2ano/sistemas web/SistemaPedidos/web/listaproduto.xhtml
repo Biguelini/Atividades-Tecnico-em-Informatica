@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>produto</title>
+    </h:head>
+    <h:body style="background-color: #cccccc;">
+
+        <div class="geral">
+            <p:fieldset legend="produtos" style="margin-bottom:20px">
+                <h:form>
+                    <p:commandButton id="bNovo" icon="ui-icon-document" action="#{telaLocalizaBean.novoProduto}" />
+                    <p:tooltip id="ttNovo" for="bNovo" value="Novo produto" trackMouse="true" />
+                    <p:commandButton id="bAtualiza" icon="ui-icon-refresh" action="#{telaLocalizaBean.atualizaListaProduto}" update="tabela" />
+                    <p:tooltip id="ttAtualiza" for="bAtualiza" value="Atualiza lista" trackMouse="true" />
+                    <p:dataTable id="tabela" value="#{telaLocalizaBean.listaProduto}" var="produto" >
+                        <p:column style="width:10%; text-align: center;">
+                            <f:facet name="header">
+                                <h:outputText value="Id" />
+                            </f:facet>
+                            <h:outputText value="#{produto.id}"/>
+                        </p:column>
+                        <p:column style="width:20%">
+                            <f:facet name="header">
+                                <h:outputText value="Descrição" />
+                            </f:facet>
+                            <h:outputText value="#{produto.descricao}"/>
+                        </p:column>
+                        <p:column style="width:20%">
+                            <f:facet name="header">
+                                <h:outputText value="Fabricante" />
+                            </f:facet>
+                            <h:outputText value="#{produto.fabricante}"/>
+                        </p:column>
+                        <p:column style="width:20%">
+                            <f:facet name="header">
+                                <h:outputText value="Valor" />
+                            </f:facet>
+                            <h:outputText value="#{produto.valor}"/>
+                        </p:column>
+                        <p:column style="width:20%">
+                            <f:facet name="header">
+                                <h:outputText value="Quantidade" />
+                            </f:facet>
+                            <h:outputText value="#{produto.quantidade}"/>
+                        </p:column>
+                        <p:column style="width:20%"> 
+                            <f:facet name="header">
+                                <h:outputText value="Ações" />
+                            </f:facet>
+                            <p:commandButton id="bEdita" icon="ui-icon-pencil" action="#{telaLocalizaBean.editarProduto}" />
+                            <p:tooltip for="bEdita" value="Alterar produto" trackMouse="true" />
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+                <h:form>
+                    <p:commandButton id="bInicio" value="Início" action="index.xhtml" ajax="false"/>
+                    <p:tooltip id="ttInicio" for="bInicio" value="Início" trackMouse="true" />
+                </h:form>
+            </p:fieldset>
+        </div>
+    </h:body>
+</html>

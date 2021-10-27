@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Fazer pedido</title>
+    </h:head>
+    <h:body>
+        <p:growl id="growl" showDetail="true" sticky="true" />
+        <p:fieldset legend="Pedidos" style="margin-bottom:20px; font-size: small;">
+            <h:form>
+                <p:outputLabel value="Id: " for="itId" />
+                <p:inputText id="itId" value="#{telaLocalizaBean.pedido.id}" /><br/>
+                <p:outputLabel value="Id Cliente:  " for="itIdCliente"/>
+                <p:inputText id="itIdCliente" value="#{telaLocalizaBean.pedido.idCliente}"/><br/>
+                <p:outputLabel value="Id Produto:   " for="itIdProduto"/>
+                <p:inputText id="itIdProduto" value="#{telaLocalizaBean.pedido.idProduto}"/><br/>
+                <p:outputLabel value="Quantidade:  " for="itQuantidade"/>
+                <p:inputText id="itQuantidade" value="#{telaLocalizaBean.pedido.quantidade}"/><br/>
+                <p:commandButton icon="ui-icon-disk" ajax="false" action="#{telaLocalizaBean.salvaPedido()}"/>
+            </h:form>
+            <h:form>
+                <p:commandButton icon="ui-icon-arrowreturnthick-1-w" action="#{telaLocalizaBean.cancelaPedido}"/>
+            </h:form>
+        </p:fieldset>
+    </h:body>
+</html>

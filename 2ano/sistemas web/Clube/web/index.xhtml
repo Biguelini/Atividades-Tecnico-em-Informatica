@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-
+    transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Sócios</title>
+    </h:head>
+    <h:body>
+        <h1 align="center">Sócios</h1>
+        <h:form>
+            <p:commandButton id="bNovo" icon="ui-icon-document" ajax="false" action="#{clubeBean.novoSocio}"/>
+            <p:tooltip id="ttNovo" for="bNovo" value="Novo sócio" trackMouse="true" />
+            <p:commandButton id="bAtualiza" icon="ui-icon-refresh" action="#{clubeBean.atualizaListaSocio}" update="tabela" />
+            <p:tooltip id="ttAtualiza" for="bAtualiza" value="Atualiza lista" trackMouse="true" />
+            <p:dataTable id="tabela" value="#{clubeBean.listaSocio}" var="socio">
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Id"/>
+                    </f:facet>
+                    <h:outputText value="#{socio.id}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nome"/>
+                    </f:facet>
+                    <h:outputText value="#{socio.nome}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Endereço"/>
+                    </f:facet>
+                    <h:outputText value="#{socio.endereco}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Número"/>
+                    </f:facet>
+                    <h:outputText value="#{socio.numero}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Cidade"/>
+                    </f:facet>
+                    <h:outputText value="#{socio.cidade}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Uf"/>
+                    </f:facet>
+                    <h:outputText value="#{socio.uf}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Telefone"/>
+                    </f:facet>
+                    <h:outputText value="#{socio.telefone}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Ações"/>
+                    </f:facet>
+                    <p:commandButton id="bEdita" icon="ui-icon-pencil" ajax="false" action="#{clubeBean.editaSocio}" />
+                    <p:tooltip for="bEdita" value="Alterar sócio" trackMouse="true" />
+                    <p:commandButton id="bExclui" icon="ui-icon-trash" action="#{clubeBean.excluiSocio}" update="tabela" >
+                        <p:confirm header="Confirmação" message="Confirma exclusão de #{socio.nome}?" icon="ui-icon-alert" />
+                    </p:commandButton>
+                    <p:confirmDialog global="true" closable="false" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                    <p:commandButton id="bDependentes" value="Dependentes" ajax="false" action="#{clubeBean.atualizaListaDependente}" />
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </h:body>
+</html>

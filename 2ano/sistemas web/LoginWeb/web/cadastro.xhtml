@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Cadastro</title>
+    </h:head>
+    <h:body>
+        <p:outputLabel value="Usuário ativo #{loginBean.login.usuario}!"/>
+        <br/>
+        <h:form>
+            <p:outputLabel value="Nome: " for="itNome" />
+            <p:inputText value="#{cadastroBean.cadastro.nome}" id="itNome" /> <br/>
+            <p:outputLabel value="Telefone: " for="itTelefone" />
+            <p:inputText value="#{cadastroBean.cadastro.telefone}" id="itTelefone" /> <br/>
+            <p:commandButton value="OK" action="cadastrado" ajax="false"/>
+        </h:form>
+    </h:body>
+</html>
+

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Cadastro de Disciplinas</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:outputLabel for="itCodigo" value="Código"/>
+            <p:inputText id="itCodigo" value="#{disciplinasBean.disciplina.codigo}" readonly="true"/><br/>
+            <p:outputLabel for="itNome" value="Nome"/>
+            <p:inputText id="itNome" value="#{disciplinasBean.disciplina.nome}" /><br/>
+            <p:outputLabel for="itSerie" value="Carga Horária"/>
+            <p:inputNumber id="itSerie" value="#{disciplinasBean.disciplina.cargahoraria}" decimalPlaces="0"/><br/>
+            <p:outputLabel for="itturma" value="Professor"/>
+            <p:inputText id="itturma" value="#{disciplinasBean.disciplina.professor}" /><br/>
+            <p:commandButton icon="ui-icon-disk" ajax="false" action="#{disciplinasBean.salva()}"/>
+        </h:form>
+        <h:form>
+            <p:commandButton icon="ui-icon-arrowreturnthick-1-w" action="index"/>
+        </h:form>
+    </h:body>
+</html>

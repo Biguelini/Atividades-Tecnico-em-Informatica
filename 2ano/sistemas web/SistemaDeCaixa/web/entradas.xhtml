@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>caixa</title>
+    </h:head>
+    <h:body style="background-color: #cccccc;">
+
+        <div class="geral">
+            <p:fieldset legend="Entradas" style="margin-bottom:20px">
+                <h:form>
+                    <p:commandButton icon="ui-icon-arrowreturnthick-1-w" action="index"/>
+                    <p:commandButton id="bAtualiza" icon="ui-icon-refresh" action="#{telaLocalizaBean.atualizaListaEntradas}" update="tabela" />
+                    <p:tooltip id="ttAtualiza" for="bAtualiza" value="Atualiza lista" trackMouse="true" />
+                </h:form>
+
+                <p:dataTable id="tabela" value="#{telaLocalizaBean.listaEntradas}" var="caixa" >
+
+                    <p:column style="width:10%; text-align: center;">
+                        <f:facet name="header">
+                            <h:outputText value="Id" />
+                        </f:facet>
+                        <h:outputText value="#{caixa.id}"/>
+                    </p:column>
+                    <p:column style="width:30%">
+                        <f:facet name="header">
+                            <h:outputText value="Descrição" />
+                        </f:facet>
+                        <h:outputText value="#{caixa.descricao}"/>
+                    </p:column>
+                    <p:column style="width:20%; text-align: center;" >
+                        <f:facet name="header">
+                            <h:outputText value="Data" />
+                        </f:facet>
+                        <h:outputText value="#{caixa.data}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column style="width:20%">
+                        <f:facet name="header">
+                            <h:outputText value="Tipo" />
+                        </f:facet>
+                        <h:outputText value="#{caixa.tipo}"/>
+                    </p:column>
+                    <p:column style="width:20%">
+                        <f:facet name="header">
+                            <h:outputText value="Valor" />
+                        </f:facet>
+                        <h:outputText value="+ R$#{caixa.valor}"/>
+                    </p:column>
+                </p:dataTable>
+                <br/>
+                <h:outputText value="Saldo: R$ #{telaLocalizaBean.saldoEntradas()}"/>
+            </p:fieldset>
+        </div>
+    </h:body>
+</html>

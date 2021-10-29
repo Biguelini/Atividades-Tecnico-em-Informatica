@@ -36,7 +36,10 @@ public class Campo extends JPanel implements ActionListener {
     Image fundo;
     int vida = 3;
     String msg = "";
-
+    Image imagemCabecaCima;
+    Image imagemCabecaBaixo;
+    Image imagemCabecaDireita;
+    Image imagemCabecaEsquerda;
     TocaAudio tocaAudio = new TocaAudio("/som/musica.mp3");
 
     public Campo(int largura, final int altura) {
@@ -52,18 +55,22 @@ public class Campo extends JPanel implements ActionListener {
             public void keyPressed(KeyEvent e) {
                 int tecla = e.getKeyCode();
                 if (tecla == KeyEvent.VK_UP) {
+                    cobra.setImagem(imagemCabecaCima);
                     cobra.setDy(-20);
                     cobra.setDx(0);
                 }
                 if (tecla == KeyEvent.VK_DOWN) {
+                    cobra.setImagem(imagemCabecaBaixo);
                     cobra.setDy(20);
                     cobra.setDx(0);
                 }
                 if (tecla == KeyEvent.VK_LEFT) {
+                    cobra.setImagem(imagemCabecaEsquerda);
                     cobra.setDx(-20);
                     cobra.setDy(0);
                 }
                 if (tecla == KeyEvent.VK_RIGHT) {
+                    cobra.setImagem(imagemCabecaDireita);
                     cobra.setDx(20);
                     cobra.setDy(0);
                 }
@@ -143,6 +150,7 @@ public class Campo extends JPanel implements ActionListener {
     }
 
     private void inicializa() {
+
         cobra = new Cobra(500, 400);
         cobra.setDx(-20);
         corpo[0] = new Cobra(520, 400);
@@ -153,7 +161,15 @@ public class Campo extends JPanel implements ActionListener {
 
         cenario1();
         posicionaFruta();
-
+        imagemCabecaCima = new ImageIcon(getClass().getResource("/imagens/cabeca.png")).getImage().getScaledInstance(cobra.getLargura(),
+                cobra.getAltura(), 1);
+        imagemCabecaBaixo = new ImageIcon(getClass().getResource("/imagens/baixo.png")).getImage().getScaledInstance(cobra.getLargura(),
+                cobra.getAltura(), 1);
+        imagemCabecaDireita = new ImageIcon(getClass().getResource("/imagens/direita.png")).getImage().getScaledInstance(cobra.getLargura(),
+                cobra.getAltura(), 1);
+        imagemCabecaEsquerda = new ImageIcon(getClass().getResource("/imagens/esquerda.png")).getImage().getScaledInstance(cobra.getLargura(),
+                cobra.getAltura(), 1);
+        cobra.setImagem(imagemCabecaEsquerda);
     }
 
     private boolean verificaColisaoFruta(Fruta f, Cobra c) {

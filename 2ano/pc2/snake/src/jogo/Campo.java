@@ -27,6 +27,7 @@ import javax.swing.Timer;
 public class Campo extends JPanel implements ActionListener {
 
     Fruta fruta;
+    Poder poder;
     Cobra cobra;
     Cobra corpo[] = new Cobra[1000];
     Cenario cenario[] = new Cenario[10];
@@ -41,6 +42,7 @@ public class Campo extends JPanel implements ActionListener {
     Image imagemCabecaDireita;
     Image imagemCabecaEsquerda;
     TocaAudio tocaAudio = new TocaAudio("/som/musica.mp3");
+    Boolean superpoder = false;
 
     public Campo(int largura, final int altura) {
         setFocusable(true);
@@ -113,13 +115,40 @@ public class Campo extends JPanel implements ActionListener {
             corpo[tamanho++] = new Cobra();
             posicionaFruta();
         }
+        if (verificaColisaoPoder(poder, cobra)) {
+            if(!superpoder){
+                superpoder = true;
+                msg = "SuperPoder";
+                posicionaPoder();
+            }
+            
+        }
         if (verificaColisaoCorpo()) {
-            t.stop();
-            msg = "Game Over";
+            if(!superpoder){
+                t.stop();
+                msg = "Game Over";
+            }else{
+                superpoder = false;
+                msg = "";
+                cobra.setX(500);
+                cobra.setY(400);
+                cobra.setDx(-20);
+                cobra.setImagem(imagemCabecaEsquerda);
+            }
         }
         if (verificaColisaoCenario()) {
-            t.stop();
-            msg = "Game Over";
+            if(!superpoder){
+                t.stop();
+                msg = "Game Over";
+            }else{
+                superpoder = false;
+                msg = "";
+                cobra.setX(500);
+                cobra.setY(400);
+                cobra.setDx(-20);
+                cobra.setDy(0);
+                cobra.setImagem(imagemCabecaEsquerda);
+            }
         }
 
         repaint();
@@ -148,6 +177,32 @@ public class Campo extends JPanel implements ActionListener {
             }
         }
     }
+    private void posicionaPoder() {
+        boolean ok = false;
+        int x, y;
+        while (!ok) {
+            ok = true;
+            x = new Random().nextInt(this.getWidth());
+            y = new Random().nextInt(this.getHeight());
+            poder = new Poder(x, y);
+            if (verificaColisaoPoder(poder, cobra)) {
+                ok = false;
+            }
+            if (verificaColisaoPoder(poder, fruta)) {
+                ok = false;
+            }
+            for (int i = 0; i < tamanho; i++) {
+                if (verificaColisaoPoder(poder, corpo[i])) {
+                    ok = false;
+                }
+            }
+            for (int i = 0; i < tamanhocenario; i++) {
+                if (verificaColisaoPoder(poder, cenario[i])) {
+                    ok = false;
+                }
+            }
+        }
+    }
 
     private void inicializa() {
 
@@ -161,6 +216,7 @@ public class Campo extends JPanel implements ActionListener {
 
         cenario1();
         posicionaFruta();
+        posicionaPoder();
         imagemCabecaCima = new ImageIcon(getClass().getResource("/imagens/cabeca.png")).getImage().getScaledInstance(cobra.getLargura(),
                 cobra.getAltura(), 1);
         imagemCabecaBaixo = new ImageIcon(getClass().getResource("/imagens/baixo.png")).getImage().getScaledInstance(cobra.getLargura(),
@@ -172,6 +228,30 @@ public class Campo extends JPanel implements ActionListener {
         cobra.setImagem(imagemCabecaEsquerda);
     }
 
+    private boolean verificaColisaoPoder(Poder f, Cobra c) {
+        if (c.getLimites().intersects(f.getLimites())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    private boolean verificaColisaoPoder(Poder f, Fruta v) {
+        if (v.getLimites().intersects(f.getLimites())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean verificaColisaoPoder(Poder f, Cenario c) {
+        if (f.getLimites().intersects(c.getLimites())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     private boolean verificaColisaoFruta(Fruta f, Cobra c) {
         if (c.getLimites().intersects(f.getLimites())) {
             return true;
@@ -179,6 +259,7 @@ public class Campo extends JPanel implements ActionListener {
             return false;
         }
     }
+    
 
     private boolean verificaColisaoFruta(Fruta f, Cenario c) {
         if (f.getLimites().intersects(c.getLimites())) {
@@ -218,6 +299,7 @@ public class Campo extends JPanel implements ActionListener {
             g.drawImage(cenario[i].getImagem(), (int) cenario[i].getX(), (int) cenario[i].getY(), this);
         }
         g.drawImage(fruta.getImagem(), (int) fruta.getX(), (int) fruta.getY(), this);
+        g.drawImage(poder.getImagem(), (int) poder.getX(), (int) poder.getY(), this);
         Font f = new Font("Arial", Font.BOLD, 20);
         g.setFont(f);
         FontMetrics fm = g.getFontMetrics(f);

@@ -35,34 +35,26 @@ public class Campo extends JPanel implements ActionListener {
     int tamanho = 3;
     Timer t;
     Image fundo;
+    int pontos = 0;
     String msg = "";
     Image imagemCabecaCima;
     Image imagemCabecaBaixo;
     Image imagemCabecaDireita;
     Image imagemCabecaEsquerda;
-<<<<<<< Updated upstream
-    Image imagemCobra;
-    TocaAudio tocaAudio = new TocaAudio("/som/musica.mp3");
-    Boolean superpoder = false;
-    int pontos = 0;
-    int velocidade = 20;
-=======
     Image imagemCabecaCimaP;
     Image imagemCabecaBaixoP;
     Image imagemCabecaDireitaP;
     Image imagemCabecaEsquerdaP;
     TocaAudio tocaAudio = new TocaAudio("/som/musica.mp3");
     Boolean superpoder = false;
->>>>>>> Stashed changes
 
     public Campo(int largura, final int altura) {
-        
         setFocusable(true);
         setDoubleBuffered(true);
         setSize(largura, altura);
         fundo = new ImageIcon(this.getClass().getResource("/imagens/campo.jpg")).getImage().getScaledInstance(largura, altura, 1);
         inicializa();
-        msg = "Pressione ESPAÇO para iniciar";
+        msg = "Pressione ESPAÇO para começar";
         repaint();
         t = new Timer(100, this);
         
@@ -70,25 +62,6 @@ public class Campo extends JPanel implements ActionListener {
             public void keyPressed(KeyEvent e) {
                 int tecla = e.getKeyCode();
                 if (tecla == KeyEvent.VK_UP) {
-<<<<<<< Updated upstream
-                    cobra.setImagem(imagemCabecaCima);
-                    cobra.setDy(-velocidade);
-                    cobra.setDx(0);
-                }
-                if (tecla == KeyEvent.VK_DOWN) {
-                    cobra.setImagem(imagemCabecaBaixo);
-                    cobra.setDy(velocidade);
-                    cobra.setDx(0);
-                }
-                if (tecla == KeyEvent.VK_LEFT) {
-                    cobra.setImagem(imagemCabecaEsquerda);
-                    cobra.setDx(-velocidade);
-                    cobra.setDy(0);
-                }
-                if (tecla == KeyEvent.VK_RIGHT) {
-                    cobra.setImagem(imagemCabecaDireita);
-                    cobra.setDx(velocidade);
-=======
                     if (superpoder) {
                         cobra.setImagem(imagemCabecaCimaP);
                     } else {
@@ -122,7 +95,6 @@ public class Campo extends JPanel implements ActionListener {
                         cobra.setImagem(imagemCabecaDireita);
                     }
                     cobra.setDx(20);
->>>>>>> Stashed changes
                     cobra.setDy(0);
                 }
                 if (tecla == 'P' || tecla == 'p') {
@@ -143,6 +115,7 @@ public class Campo extends JPanel implements ActionListener {
                     msg = "";
                     t.start();
                 }
+
             }
         });
     }
@@ -150,7 +123,7 @@ public class Campo extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (!tocaAudio.isAlive()) {
-            // tocaAudio.start();
+            tocaAudio.start();
         }
         for (int i = tamanho - 1; i > 0; i--) {
             corpo[i].setX(corpo[i - 1].getX());
@@ -160,25 +133,9 @@ public class Campo extends JPanel implements ActionListener {
         corpo[0].setY(cobra.getY());
         cobra.mexer();
         if (verificaColisaoFruta(fruta, cobra)) {
+            pontos ++;
             corpo[tamanho++] = new Cobra();
             posicionaFruta();
-            pontos ++;
-        }
-        if (verificaColisaoPoder(poder, cobra)) {
-            if(!superpoder){
-                superpoder = true;
-                msg = "SuperPoder";
-                posicionaPoder();
-                imagemCabecaCima = new ImageIcon(getClass().getResource("/imagens/cabecap.png")).getImage().getScaledInstance(cobra.getLargura(),
-                cobra.getAltura(), 1);
-        imagemCabecaBaixo = new ImageIcon(getClass().getResource("/imagens/baixop.png")).getImage().getScaledInstance(cobra.getLargura(),
-                cobra.getAltura(), 1);
-        imagemCabecaDireita = new ImageIcon(getClass().getResource("/imagens/direitap.png")).getImage().getScaledInstance(cobra.getLargura(),
-                cobra.getAltura(), 1);
-        imagemCabecaEsquerda = new ImageIcon(getClass().getResource("/imagens/esquerdap.png")).getImage().getScaledInstance(cobra.getLargura(),
-                cobra.getAltura(), 1);
-            }
-            
         }
         if (verificaColisaoPoder(poder, cobra)) {
             if (!superpoder) {
@@ -198,42 +155,14 @@ public class Campo extends JPanel implements ActionListener {
 
         }
         if (verificaColisaoCorpo()) {
-<<<<<<< Updated upstream
-            if(!superpoder){
-                t.stop();
-                msg = "Game Over";
-            }else{
-=======
             if (!superpoder) {
                 t.stop();
-                msg = "Game Over";
+                msg = "Game Over aperte R para recomeçar";
             } else {
->>>>>>> Stashed changes
                 superpoder = false;
                 msg = "";
                 cobra.setX(500);
                 cobra.setY(400);
-<<<<<<< Updated upstream
-                cobra.setDx(-velocidade);
-                cobra.setDy(0);
-                imagemCabecaCima = new ImageIcon(getClass().getResource("/imagens/cabeca.png")).getImage().getScaledInstance(cobra.getLargura(),
-                cobra.getAltura(), 1);
-        imagemCabecaBaixo = new ImageIcon(getClass().getResource("/imagens/baixo.png")).getImage().getScaledInstance(cobra.getLargura(),
-                cobra.getAltura(), 1);
-        imagemCabecaDireita = new ImageIcon(getClass().getResource("/imagens/direita.png")).getImage().getScaledInstance(cobra.getLargura(),
-                cobra.getAltura(), 1);
-        imagemCabecaEsquerda = new ImageIcon(getClass().getResource("/imagens/esquerda.png")).getImage().getScaledInstance(cobra.getLargura(),
-                cobra.getAltura(), 1);
-                cobra.setImagem(imagemCabecaEsquerda);
-                
-            }
-        }
-        if (verificaColisaoCenario()) {
-            if(!superpoder){
-                t.stop();
-                msg = "Game Over";
-            }else{
-=======
                 cobra.setDx(-20);
                 cobra.setImagem(imagemCabecaEsquerda);
             }
@@ -241,28 +170,14 @@ public class Campo extends JPanel implements ActionListener {
         if (verificaColisaoCenario()) {
             if (!superpoder) {
                 t.stop();
-                msg = "Game Over";
+                msg = "Game Over aperte R para recomeçar";
             } else {
->>>>>>> Stashed changes
                 superpoder = false;
                 msg = "";
                 cobra.setX(500);
                 cobra.setY(400);
-<<<<<<< Updated upstream
-                cobra.setDx(-velocidade);
-                cobra.setDy(0);
-                imagemCabecaCima = new ImageIcon(getClass().getResource("/imagens/cabeca.png")).getImage().getScaledInstance(cobra.getLargura(),
-                cobra.getAltura(), 1);
-        imagemCabecaBaixo = new ImageIcon(getClass().getResource("/imagens/baixo.png")).getImage().getScaledInstance(cobra.getLargura(),
-                cobra.getAltura(), 1);
-        imagemCabecaDireita = new ImageIcon(getClass().getResource("/imagens/direita.png")).getImage().getScaledInstance(cobra.getLargura(),
-                cobra.getAltura(), 1);
-        imagemCabecaEsquerda = new ImageIcon(getClass().getResource("/imagens/esquerda.png")).getImage().getScaledInstance(cobra.getLargura(),
-                cobra.getAltura(), 1);
-=======
                 cobra.setDx(-20);
                 cobra.setDy(0);
->>>>>>> Stashed changes
                 cobra.setImagem(imagemCabecaEsquerda);
             }
         }
@@ -288,32 +203,6 @@ public class Campo extends JPanel implements ActionListener {
             }
             for (int i = 0; i < tamanhocenario; i++) {
                 if (verificaColisaoFruta(fruta, cenario[i])) {
-                    ok = false;
-                }
-            }
-        }
-    }
-    private void posicionaPoder() {
-        boolean ok = false;
-        int x, y;
-        while (!ok) {
-            ok = true;
-            x = new Random().nextInt(this.getWidth());
-            y = new Random().nextInt(this.getHeight());
-            poder = new Poder(x, y);
-            if (verificaColisaoPoder(poder, cobra)) {
-                ok = false;
-            }
-            if (verificaColisaoPoder(poder, fruta)) {
-                ok = false;
-            }
-            for (int i = 0; i < tamanho; i++) {
-                if (verificaColisaoPoder(poder, corpo[i])) {
-                    ok = false;
-                }
-            }
-            for (int i = 0; i < tamanhocenario; i++) {
-                if (verificaColisaoPoder(poder, cenario[i])) {
                     ok = false;
                 }
             }
@@ -348,9 +237,9 @@ public class Campo extends JPanel implements ActionListener {
     }
 
     private void inicializa() {
-        
+
         cobra = new Cobra(500, 400);
-        cobra.setDx(-velocidade);
+        cobra.setDx(-20);
         corpo[0] = new Cobra(520, 400);
         corpo[1] = new Cobra(540, 400);
         corpo[2] = new Cobra(560, 400);
@@ -377,7 +266,6 @@ public class Campo extends JPanel implements ActionListener {
         imagemCabecaEsquerdaP = new ImageIcon(getClass().getResource("/imagens/esquerdap.png")).getImage().getScaledInstance(cobra.getLargura(),
                 cobra.getAltura(), 1);
         cobra.setImagem(imagemCabecaEsquerda);
-        
     }
 
     private boolean verificaColisaoPoder(Poder f, Cobra c) {
@@ -387,11 +275,7 @@ public class Campo extends JPanel implements ActionListener {
             return false;
         }
     }
-<<<<<<< Updated upstream
-    
-=======
 
->>>>>>> Stashed changes
     private boolean verificaColisaoPoder(Poder f, Fruta v) {
         if (v.getLimites().intersects(f.getLimites())) {
             return true;
@@ -407,11 +291,7 @@ public class Campo extends JPanel implements ActionListener {
             return false;
         }
     }
-<<<<<<< Updated upstream
-    
-=======
 
->>>>>>> Stashed changes
     private boolean verificaColisaoFruta(Fruta f, Cobra c) {
         if (c.getLimites().intersects(f.getLimites())) {
             return true;
@@ -419,7 +299,6 @@ public class Campo extends JPanel implements ActionListener {
             return false;
         }
     }
-    
 
     private boolean verificaColisaoFruta(Fruta f, Cenario c) {
         if (f.getLimites().intersects(c.getLimites())) {
@@ -472,7 +351,7 @@ public class Campo extends JPanel implements ActionListener {
         int panelWidth = this.getWidth();
         int x = (panelWidth - textWidth) / 2;
         g.drawString(msg, x, 3 * (this.getHeight() / 4));
-        g.drawString("Pontuação: " + pontos, 450, 80);
+        g.drawString("Pontos: " + pontos, 450, 50);
     }
 
     private void cenario1() {

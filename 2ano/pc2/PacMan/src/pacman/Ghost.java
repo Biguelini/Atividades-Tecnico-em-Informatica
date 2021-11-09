@@ -5,13 +5,13 @@
  */
 package pacman;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author 2info2021
  */
-import java.awt.Image;
-import javax.swing.ImageIcon;
-
 public class Ghost extends Thread {
 
     private int num = 1;
@@ -19,11 +19,68 @@ public class Ghost extends Thread {
     private int status = 0;
     private int dx = 0;
     private int dy = 0;
-    private int x = 0;
-    private int y = 0;
+    private int x = 9;
+    private int y = 10;
     private int altura = 20;
     private int largura = 20;
     int seq = 0;
+
+    public Ghost(int num, int largura, int altura) {
+        this.num = num;
+        this.largura = largura;
+        this.altura = altura;
+        switch (num) {
+            case 0:
+                dx = 1;
+                break;
+            case 1:
+                dy = 1;
+                break;
+            case 2:
+                dx = -1;
+                break;
+            case 3:
+                dy = -1;
+        }
+        start();
+    }
+
+    public void move() {
+        x += dx;
+        y += dy;
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            switch (status) {
+                case 0:
+                    if (seq > 7) {
+                        seq = 0;
+                    }
+                    imagem = new ImageIcon(getClass().getResource("/imagens/ghost_" + num + "_" + seq + ".png")).getImage().getScaledInstance((int) largura, (int) altura, 0);
+                    break;
+                case 1:
+                    if (seq > 3) {
+                        seq = 0;
+                    }
+                    imagem = new ImageIcon(getClass().getResource("/imagens/ghost_vulnerable_" + seq + ".png")).getImage().getScaledInstance((int) largura, (int) altura, 0);
+                    break;
+                case 2:
+                    if (seq > 3) {
+                        seq = 0;
+                    }
+                    imagem = new ImageIcon(getClass().getResource("/imagens/ghost_died_" + seq + ".png")).getImage().getScaledInstance((int) largura, (int) altura, 0);
+                    break;
+            }
+            seq++;
+            try {
+                this.sleep(50);
+            } catch (Exception e) {
+                System.out.println("Erro: " + e.getMessage());
+            }
+        }
+    }
 
     /**
      * @return the num
@@ -149,62 +206,5 @@ public class Ghost extends Thread {
      */
     public void setLargura(int largura) {
         this.largura = largura;
-    }
-
-    public Ghost(int num, int largura, int altura) {
-        this.num = num;
-        this.largura = largura;
-        this.altura = altura;
-        switch (num) {
-            case 0:
-                dx = 1;
-                break;
-            case 1:
-                dy = 1;
-                break;
-            case 2:
-                dx = -1;
-                break;
-            case 3:
-                dy = -1;
-        }
-        start();
-    }
-
-    public void move() {
-        x += dx;
-        y += dy;
-    }
-
-    @Override
-    public void run() {
-        while (true) {
-            switch (status) {
-                case 0:
-                    if (seq > 7) {
-                        seq = 0;
-                    }
-                    imagem = new ImageIcon(getClass().getResource("/imagens/ghost_" + num + "_" + seq + ".png")).getImage().getScaledInstance((int) largura, (int) altura, 0);
-                    break;
-                case 1:
-                    if (seq > 3) {
-                        seq = 0;
-                    }
-                    imagem = new ImageIcon(getClass().getResource("/imagens/ghost_vulnerable_" + seq + ".png")).getImage().getScaledInstance((int) largura, (int) altura, 0);
-                    break;
-                case 2:
-                    if (seq > 3) {
-                        seq = 0;
-                    }
-                    imagem = new ImageIcon(getClass().getResource("/imagens/ghost_died_" + seq + ".png")).getImage().getScaledInstance((int) largura, (int) altura, 0);
-                    break;
-            }
-            seq++;
-            try{
-                this.sleep(50);
-            } catch (Exception e){
-                System.out.println("Erro:"+e.getMessage());
-            }
-        }
     }
 }

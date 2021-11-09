@@ -5,13 +5,13 @@
  */
 package pacman;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author 2info2021
  */
-import java.awt.Image;
-import javax.swing.ImageIcon;
-
 public class PacMan extends Thread {
 
     private Image imagem = new ImageIcon(getClass().getResource("/imagens/pacman_0_0.png")).getImage().getScaledInstance(20, 20, 0);
@@ -22,6 +22,43 @@ public class PacMan extends Thread {
     private int altura = 20;
     private int largura = 20;
     int seq = 0;
+
+    public PacMan(int largura, int altura) {
+        this.largura = largura;
+        this.altura = altura;
+        start();
+    }
+
+    public void move() {
+        x += dx;
+        y += dy;
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            int direcao = 0;
+            if (dy > 0) {
+                direcao = 1;
+            }
+            if (dy < 0) {
+                direcao = 3;
+            }
+            if (dx < 0) {
+                direcao = 2;
+            }
+            if (seq > 3) {
+                seq = 0;
+            }
+            imagem = new ImageIcon(getClass().getResource("/imagens/pacman_" + direcao + "_" + seq + ".png")).getImage().getScaledInstance((int) largura, (int) altura, 0);
+            seq++;
+            try {
+                this.sleep(100);
+            } catch (Exception e) {
+                System.out.println("Erro:" + direcao + "_" + seq + e.getMessage());
+            }
+        }
+    }
 
     /**
      * @return the imagem
@@ -119,42 +156,5 @@ public class PacMan extends Thread {
      */
     public void setLargura(int largura) {
         this.largura = largura;
-    }
-
-    public PacMan(int largura, int altura) {
-        this.largura = largura;
-        this.altura = altura;
-        start();
-    }
-
-    public void move() {
-        x += dx;
-        y += dy;
-    }
-
-    @Override
-    public void run() {
-        while (true) {
-            int direcao = 0;
-            if (dy > 0) {
-                direcao = 1;
-            }
-            if (dy < 0) {
-                direcao = 3;
-            }
-            if (dx < 0) {
-                direcao = 2;
-            }
-            if (seq > 3) {
-                seq = 0;
-            }
-            imagem = new ImageIcon(getClass().getResource("/imagens/pacman_" + direcao + "_" + seq + ".png")).getImage().getScaledInstance((int) largura, (int) altura, 0);
-            seq++;
-            try {
-                this.sleep(100);
-            } catch (Exception e) {
-                System.out.println("Erro:" + direcao + "_" + seq + e.getMessage());
-            }
-        }
     }
 }

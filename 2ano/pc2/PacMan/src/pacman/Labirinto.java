@@ -5,10 +5,6 @@
  */
 package pacman;
 
-/**
- *
- * @author 2info2021
- */
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -28,6 +24,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+/**
+ *
+ * @author 2info2021
+ */
 public class Labirinto extends JPanel implements ActionListener {
 
     Ghost ghost[] = new Ghost[4];
@@ -47,6 +47,7 @@ public class Labirinto extends JPanel implements ActionListener {
         passoX = largura / 19;
         passoY = altura / 21;
         t = new Timer(50, this);
+
         ponto = 0;
         for (int i = 0; i < 4; i++) {
             ghost[i] = new Ghost(i, passoX, passoY);
@@ -81,7 +82,7 @@ public class Labirinto extends JPanel implements ActionListener {
                 }
                 if (tecla == KeyEvent.VK_UP) {
                     pacman.setDx(0);
-                    pacman.setDy(-1);
+                    pacman.setDy(1);
                 }
                 if (tecla == KeyEvent.VK_DOWN) {
                     pacman.setDx(0);
@@ -128,7 +129,7 @@ public class Labirinto extends JPanel implements ActionListener {
 
     private void inicializa() {
         comida = 0;
-        inicializaLabirinto();
+        inicializaLabarinto();
         for (int i = 0; i < 4; i++) {
             ghost[i].setX(9);
             ghost[i].setY(10);
@@ -142,8 +143,8 @@ public class Labirinto extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         tempovulneravel++;
-        if (labirinto[pacman.getY()][pacman.getX()] == 'c') {
-            labirinto[pacman.getY()][pacman.getX()] = ' ';
+        if (labirinto[pacman.getY()][pacman.getDx()] == 'c') {
+            labirinto[pacman.getY()][pacman.getDx()] = ' ';
             ponto++;
             comida++;
         }
@@ -163,14 +164,14 @@ public class Labirinto extends JPanel implements ActionListener {
             }
         }
         for (int i = 0; i < 4; i++) {
-            if (ghost[i].getX() == pacman.getX() && ghost[i].getY() == pacman.getY()) {
-                if (ghost[i].getStatus() == 0) {
+            if(ghost[i].getX() == pacman.getX() && ghost[i].getY() == pacman.getY()){
+                if(ghost[i].getStatus()==0){
                     vida--;
-                    if (vida > 0) {
+                    if(vida>0){
                         pacman.setX(9);
                         pacman.setY(16);
                         pacman.setDx(1);
-                        for (int j = 0; j < 4; j++) {
+                        for (int j=0;j<4;j++){
                             ghost[j].setX(9);
                             ghost[j].setY(10);
                         }
@@ -178,11 +179,33 @@ public class Labirinto extends JPanel implements ActionListener {
                         repaint();
                         t.stop();
                     }
-                } else {
-                    ponto += 10;
-                    ghost[i].setStatus(2);
                 }
+                else{
+                    ponto+=10;
+                    ghost[i].setStatus(2);
+                }   
             }
         }
+        if(vida<=0){
+            msg = "Game Over";
+            verificaRecord();
+            repaint();
+            t.stop();
+        }
+        if(seq==0){
+            mexerFantasmas();
+            
+        }
+        if(labirinto[pacman.getY()+pacman.getDy()][pacman.getX()+pacman.getDx()]!='p'&&(seq ==0 || seq ==3)){
+            pacman.move();
+        }
+        if(comida==159){
+            inicializa();
+        }
+        seq++;
+        if(seq==8){
+            seq=0;
+        }
+        repaint();
     }
 }

@@ -18,7 +18,7 @@ public class Cobra {
     private int largura = 20;
     private Image imagem = new ImageIcon(getClass().getResource("/imagens/cobra.png")).getImage().getScaledInstance(largura,
             altura, 1);
-    private Image imagemCabeca = new ImageIcon(getClass().getResource("/imagens/cabeca.png")).getImage().getScaledInstance(largura,
+    private Image imagemp = new ImageIcon(getClass().getResource("/imagens/cobrap.png")).getImage().getScaledInstance(largura,
             altura, 1);
     private double x;
     private double y;
@@ -100,17 +100,4 @@ public class Cobra {
         this.dy = dy;
     }
 
-    /**
-     * @return the imagemCabeca
-     */
-    public Image getImagemCabeca() {
-        return imagemCabeca;
-    }
-
-    /**
-     * @param imagemCabeca the imagemCabeca to set
-     */
-    public void setImagemCabeca(Image imagemCabeca) {
-        this.imagemCabeca = imagemCabeca;
-    }
 }

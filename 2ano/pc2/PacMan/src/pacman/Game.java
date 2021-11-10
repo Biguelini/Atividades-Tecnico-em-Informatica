@@ -5,18 +5,18 @@
  */
 package pacman;
 
-/**
- *
- * @author JP
- */
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 
+/**
+ *
+ * @author 2info2021
+ */
 public class Game extends JFrame {
 
     public Game() {
-        int altura = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight(); 
-        int largura = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(); 
+        int altura = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+        int largura = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
         setSize(largura, altura);
         add(new Labirinto(largura, altura));
         setResizable(false);

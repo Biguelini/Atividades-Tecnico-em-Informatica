@@ -54,8 +54,9 @@ public class AlunoDAO {
         return lista;
     }
     public List<Aluno> pesquisaDependentes(Integer pesquisa) {
-        Query q = em.createNativeQuery("select * from aluno where idResponsavel = :pesquisa", Aluno.class);
-        q.setParameter("pesquisa", pesquisa);
+        Query q = em.createQuery("select a from Aluno a where a.idResponsavel = :pesquisa order by a.nome");
+        q.setParameter("pesquisa",pesquisa);
+        System.out.println(pesquisa);
         List<Aluno> lista = q.getResultList();
         return lista;
     }

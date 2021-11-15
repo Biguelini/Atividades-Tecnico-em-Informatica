@@ -13,8 +13,8 @@
             <p:fieldset legend="Responsável" style="margin-bottom:20px">
                 <h:form>
                     <p:commandButton id="bNovo" icon="ui-icon-document" action="#{telaLocalizaBean.novo}" />
-                    <p:tooltip id="ttNovo" for="bNovo" value="Novo professor" trackMouse="true" />
-                    <p:commandButton id="bAlunos" icon="ui-icon-document" action="listaAlunos" />
+                    <p:tooltip id="ttNovo" for="bNovo" value="Novo responsável" trackMouse="true" />
+                    <p:commandButton id="bAlunos" icon="ui-icon-person" action="listaAlunos" />
                     <p:tooltip id="ttAlunos" for="bAlunos" value="Listar alunos" trackMouse="true" />
                     <p:commandButton id="bAtualiza" icon="ui-icon-refresh" action="#{telaLocalizaBean.atualizaLista}" update="tabela" />
                     <p:tooltip id="ttAtualiza" for="bAtualiza" value="Atualiza lista" trackMouse="true" />
@@ -24,6 +24,12 @@
                                 <h:outputText value="Código " />
                             </f:facet> 
                             <h:outputText value="#{responsavel.codigo}"/>
+                        </p:column>
+                        <p:column style="width:20%">
+                            <f:facet name="header">
+                                <h:outputText value="Nome " />
+                            </f:facet>
+                            <h:outputText value="#{responsavel.nome}"/>
                         </p:column>
                         <p:column style="width:10%">
                             <f:facet name="header">
@@ -49,12 +55,7 @@
                             </f:facet>
                             <h:outputText value="#{responsavel.telefone}"/>
                         </p:column>
-                        <p:column style="width:20%">
-                            <f:facet name="header">
-                                <h:outputText value="Nome " />
-                            </f:facet>
-                            <h:outputText value="#{responsavel.nome}"/>
-                        </p:column>
+                        
 
                         <p:column style="width:10%">
                             <f:facet name="header">

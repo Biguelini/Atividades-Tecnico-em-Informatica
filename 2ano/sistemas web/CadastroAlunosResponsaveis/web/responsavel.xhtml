@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Cadastro de Responsável</title>
+    </h:head>
+    <h:body>
+        <p:growl id="growl" showDetail="true" sticky="true" />
+        <p:fieldset legend="Responsável" style="margin-bottom:20px; font-size: small;">
+            <h:form>
+                <p:outputLabel value="Código:" for="itCodigo" />
+                <p:inputText id="itCodigo" value="#{telaLocalizaBean.responsavel.codigo}" readonly="true"/><br/>
+                <p:outputLabel value="Cpf:" for="itCpf" />
+                <p:inputText id="itCpf" value="#{telaLocalizaBean.responsavel.cpf}" /><br/>
+                <p:outputLabel value="Endereco:" for="itEndereco" />
+                <p:inputText id="itEndereco" value="#{telaLocalizaBean.responsavel.endereco}" /><br/>
+                ^<p:outputLabel value="Email:" for="itEmail" />
+                <p:inputText id="itEmail" value="#{telaLocalizaBean.responsavel.email}" /><br/>
+                <p:outputLabel value="Telefone:" for="itTelefone" />
+                <p:inputText id="itTelefone" value="#{telaLocalizaBean.responsavel.telefone}" /><br/>
+                <p:outputLabel value="Nome:" for="itNome"/>
+                <p:inputText id="itNome" value="#{telaLocalizaBean.responsavel.nome}" /><br/>
+                <p:commandButton icon="ui-icon-disk" ajax="false" action="#{telaLocalizaBean.salva()}"/>
+            </h:form>
+            <h:form>
+                <p:commandButton icon="ui-icon-arrowreturnthick-1-w" action="#{telaLocalizaBean.cancela}"/>
+            </h:form>
+        </p:fieldset>
+    </h:body>
+</html>

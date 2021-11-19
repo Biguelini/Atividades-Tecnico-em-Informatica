@@ -12,6 +12,7 @@ package bean;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.model.DataModel;
 
 import javax.faces.model.ListDataModel;
@@ -21,7 +22,7 @@ import vo.Aluno;
 import vo.Responsavel;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class TelaLocalizaBean implements Serializable {
 
     private DataModel<Responsavel> lista;

@@ -1,15 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package crud;
-
-/**
- *
- * @author JP
- */
 public class ClienteEmpresa extends Cliente {
+
     private String Ie;
     private String Cnpj;
 
@@ -17,5 +8,20 @@ public class ClienteEmpresa extends Cliente {
         super(_nome, _fone);
         this.Ie = _Ie;
         this.Cnpj = _Cnpj;
+    }
+    public String getIe() {
+        return Ie;
+    }
+
+    public void setIe(String Ie) {
+        this.Ie = Ie;
+    }
+
+    public String getCnpj() {
+        return Cnpj;
+    }
+
+    public void setCnpj(String Cnpj) {
+        this.Cnpj = Cnpj;
     }
 }

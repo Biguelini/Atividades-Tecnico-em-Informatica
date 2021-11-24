@@ -11,11 +11,10 @@ package crud;
  */
 public class Crud {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Cliente c = new Cliente("João", "99349909");
+        ClientePessoa cp = new ClientePessoa("João", "99349909", "000000000","000000000");
+        ClienteEmpresa ce = new ClienteEmpresa("Pastelaria do Zé", "70707070", "000000000","000000000");
     }
     
 }

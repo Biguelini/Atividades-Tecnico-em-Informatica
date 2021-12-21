@@ -18,7 +18,7 @@ public class Cobra {
     private int largura = 20;
     private Image imagem = new ImageIcon(getClass().getResource("/imagens/cobra.png")).getImage().getScaledInstance(largura,
             altura, 1);
-    private Image imagemp = new ImageIcon(getClass().getResource("/imagens/cobrap.png")).getImage().getScaledInstance(largura,
+    private Image imagemP = new ImageIcon(getClass().getResource("/imagens/cobrap.png")).getImage().getScaledInstance(largura,
             altura, 1);
     private double x;
     private double y;
@@ -98,6 +98,20 @@ public class Cobra {
 
     public void setDy(int dy) {
         this.dy = dy;
+    }
+
+    /**
+     * @return the imagemP
+     */
+    public Image getImagemP() {
+        return imagemP;
+    }
+
+    /**
+     * @param imagemP the imagemP to set
+     */
+    public void setImagemP(Image imagemP) {
+        this.imagemP = imagemP;
     }
 
 }

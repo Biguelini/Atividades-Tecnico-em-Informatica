@@ -95,11 +95,32 @@ public class Desenho {
     }
 
     public void quadrado() {
-        desenho.addElement(new Ponto(11, 9, true));
+        desenho.addElement(new Ponto(11, 9, true));;
         desenho.addElement(new Ponto(9, 9, false));
         desenho.addElement(new Ponto(9, 11, false));
         desenho.addElement(new Ponto(11, 11, false));
         desenho.addElement(new Ponto(11, 9, false));
+    }
+    public void espada() {
+        desenho.addElement(new Ponto(12d, 9d, true));;
+        desenho.addElement(new Ponto(8.3d, 9d, false));
+        desenho.addElement(new Ponto(8.3d, 8d, false));
+        desenho.addElement(new Ponto(8.15d, 7.8d, false));
+        desenho.addElement(new Ponto(8d, 8d, false));
+        desenho.addElement(new Ponto(8d, 9d, false));
+        desenho.addElement(new Ponto(7d, 9d, false));
+        desenho.addElement(new Ponto(7d, 9.5d, false));
+        desenho.addElement(new Ponto(8d, 9.5d, false));
+        desenho.addElement(new Ponto(8d, 10.5d, false));
+        desenho.addElement(new Ponto(8.15d, 10.7d, false));
+        desenho.addElement(new Ponto(8.3d, 10.5d, false));
+        desenho.addElement(new Ponto(8.3d, 9d, false));
+        desenho.addElement(new Ponto(8.3d, 9.5d, false));
+        desenho.addElement(new Ponto(12d, 9.5d, false));
+        desenho.addElement(new Ponto(13d, 9.25d, false));
+        desenho.addElement(new Ponto(12d, 9d, false));
+        desenho.addElement(new Ponto(13d, 9.25d, false));
+        desenho.addElement(new Ponto(8.3d, 9.25d, false));
     }
 
     public void translada(double dx, double dy) {

@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Primeiro</string>
+    <string name="app_name">Primeiro Programa</string>
+    <string name="ola">Clica aqui</string>
+    <string name="nome">Digite seu nome</string>
 </resources>

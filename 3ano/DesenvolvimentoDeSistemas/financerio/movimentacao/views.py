@@ -14,8 +14,8 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     saldo = 0
     transacoes = Transacao.objects.order_by('data')
-    saidas = Transacao.objects.order_by('id').filter(tipo=1)
-    entrada = Transacao.objects.order_by('id').filter(tipo=2)
+    saidas = Transacao.objects.order_by('id').filter(tipo='S')
+    entrada = Transacao.objects.order_by('id').filter(tipo='E')
     paginator = Paginator(transacoes, 5)
     page = request.GET.get('p')
     transacoes = paginator.get_page(page)

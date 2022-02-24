@@ -14,9 +14,10 @@ class Tipo(models.Model):
 
 class Transacao(models.Model):
     data = models.DateTimeField(default=timezone.now)
-    descricao = models.CharField(max_length=255, blank=True)
+    descricao = models.CharField(max_length=255, blank=False)
     valor = models.DecimalField(max_digits= 20, decimal_places=2)
-    tipo = models.ForeignKey(Tipo, on_delete=models.DO_NOTHING)
+    # tipo = models.ForeignKey(Tipo, on_delete=models.DO_NOTHING)
+    tipo = models.CharField(max_length=1, blank=False)
     
     def __str__(self):
         return self.descricao

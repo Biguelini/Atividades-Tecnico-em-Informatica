@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'movimentacao.apps.MovimentacaoConfig',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -142,3 +143,6 @@ MESSAGE_TAGS = {
     constants.DEBUG: 'alert-info',
     constants.SUCCESS: 'alert-success',
 }
+
+# customizando form
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

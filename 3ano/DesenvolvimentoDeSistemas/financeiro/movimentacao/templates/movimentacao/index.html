@@ -16,8 +16,14 @@
 {%block conteudo%}
 {% if user.is_authenticated %}
 <h1 class="mt-0 text-center">Olá {{user}}.</h1>
-<h5 class="text-secondary text-center">Seja bem vindo ao Dashboard!</h5>
-<table class="table mt-5 table-striped">
+<h5 class="text-secondary text-center mb-5">Seja bem vindo ao Dashboard!</h5>
+
+{% if num_transacoes > 0 %}
+<div class="w-100 d-flex justify-content-center">
+  <a href="{% url 'registrar' %}" class="btn btn-primary w-25" role="button"
+    aria-pressed="true">Nova Transação</a>
+</div>
+<table class="table mt-3 table-striped">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Id</th>
@@ -50,26 +56,57 @@
     {% endfor%}
   </tbody>
 </table>
-<p class="text-right mr-5"><strong>Saldo: 
-  {% if saldo >= 0 %}
-  <span class="text-success">
 
-    R$ {{saldo}}
-  </span>
-  {% else %}
-  <span class="text-danger">
+<p class="text-right mr-5"><strong>Saldo:
+    {% if saldo >= 0 %}
+    <span class="text-success">
 
-    R$ {{saldo}}
-  </span>
-  {% endif %}
-</strong>
+      R$ {{saldo}}
+    </span>
+    {% else %}
+    <span class="text-danger">
+
+      R$ {{saldo}}
+    </span>
+    {% endif %}
+  </strong>
 </p>
-<a href="{% url 'registrar' %}" class="btn btn-primary btn-lg active"
-  role="button" aria-pressed="true">Nova Transação</a>
+{% if num_transacoes >= 5 or pagina != 1 %}
+<div class="w-100 d-flex justify-content-center">
+
+  <nav aria-label="Page navigation example center">
+    <ul class="pagination">
+      {% for pagina in transacoes.paginator.page_range %}
+      {% if transacoes.number == pagina %}
+      <li class="page-item active"><a class="page-link"
+          href="?p={{pagina}}">{{pagina}}</a></li>
+      {%else%}
+      <li class="page-item"><a class="page-link"
+          href="?p={{pagina}}">{{pagina}}</a></li>
+      {%endif%}
+      {%endfor%}
+    </ul>
+  </nav>
+</div>
+{% endif%}
+{% else %}
+<h1 class="text-center my-5">Você não possui nenhuma transação</h1>
+<div class="w-100 d-flex justify-content-center mt-5">
+  <a href="{% url 'registrar' %}" class="btn btn-primary w-25" role="button"
+    aria-pressed="true">Começar a registrar</a>
+</div>
+{% endif%}
+
+
+
+
 {%else%}
-<h1>Bem vindo ao sistema de finaças da Bigue Company</h1>
-<a href="{% url 'login' %}" class="btn btn-primary btn-lg active" role="button"
-  aria-pressed="true">Login</a>
+<h1 class="text-center mb-5">Bem vindo ao sistema de finaças da Bigue Company</h1>
+<div class="w-100 d-flex justify-content-center">
+
+  <a href="{% url 'login' %}" class="btn btn-primary w-25" role="button"
+    aria-pressed="true">Login</a>
+</div>
 
 {%endif%}
 {%endblock%}

@@ -10,22 +10,20 @@ from django.contrib.auth.decorators import login_required
 
 
 def index(request):
-    saldo = 0
+    if not Saldo.objects.filter(id=1):
+        saldo = Saldo(id=1, valor=0)
+        saldo.save()
+    saldo = get_object_or_404(Saldo, pk=1)
     transacoes = Transacao.objects.order_by('-data')
     paginator = Paginator(transacoes, 5)
     page = request.GET.get('p')
     transacoes = paginator.get_page(page)
-
-    for t in transacoes:
-        if t.tipo_id == 1:
-            saldo -= t.valor
-        else:
-            saldo += t.valor
-
-    saldo = round(saldo, 2)
+    num_transacoes = len(transacoes)
+    saldo = round(saldo.valor, 2)
     return render(request, 'movimentacao/index.html', {
         'transacoes': transacoes,
-        'saldo': saldo
+        'saldo': saldo,
+        'num_transacoes': num_transacoes,
     })
 
 
@@ -67,12 +65,10 @@ def registrar(request):
 
     tipo = request.POST.get('tipo')
     saldo = get_object_or_404(Saldo, pk=1)
-    print(tipo)
     if(tipo == '1'):
         saldo.valor -= int(request.POST.get('valor'))
     else:
         saldo.valor += int(request.POST.get('valor'))
-    print(saldo.valor)
     form.save()
     saldo.save()
     messages.success(

@@ -25,6 +25,7 @@ class Transacao(models.Model):
 
 class Saldo(models.Model):
     valor = models.DecimalField(max_digits= 50, decimal_places=2)
+    data = models.DateTimeField(default=timezone.now)
     def __str__(self):
         return self.valor
 

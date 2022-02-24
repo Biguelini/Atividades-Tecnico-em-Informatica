@@ -74,3 +74,19 @@ def registrar(request):
     messages.success(
         request, f"{request.POST.get('descricao')} registrado com sucesso")
     return redirect('registrar')
+
+
+def busca(request):
+    datamin = request.GET.get('datamin')
+    datamax = request.GET.get('datamax')
+    if datamin != "" and datamax != "":
+        if(datamin<datamax):
+        
+            transacoes = Transacao.objects.order_by('-data').filter(data__gt=datamin, data__lt=datamax)
+            num_transacoes = len(transacoes)
+            return render(request, 'movimentacao/busca.html', {
+                'transacoes': transacoes,
+                'num_transacoes': num_transacoes,
+            })
+    messages.error(request, 'Preencha as datas')
+    return redirect('index')

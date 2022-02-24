@@ -122,6 +122,17 @@ public class Desenho {
         desenho.addElement(new Ponto(13d, 9.25d, false));
         desenho.addElement(new Ponto(8.3d, 9.25d, false));
     }
+    public void bigue(){
+        desenho.addElement(new Ponto(12d, 15d, true));;
+        desenho.addElement(new Ponto(12d, 13d, false));;
+        desenho.addElement(new Ponto(13d, 13d, false));;
+        desenho.addElement(new Ponto(13d, 10d, false));;
+        desenho.addElement(new Ponto(12d, 10d, false));;
+        desenho.addElement(new Ponto(12d, 3d, false));;
+        desenho.addElement(new Ponto(8d, 3d, false));;
+        desenho.addElement(new Ponto(8d, 15d, false));;
+        desenho.addElement(new Ponto(12d, 15d, false));;
+    }
 
     public void translada(double dx, double dy) {
         Ponto p;

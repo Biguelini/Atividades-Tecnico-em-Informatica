@@ -1,0 +1,62 @@
+{%extends 'base.html'%}
+{%block titulo%}Financeiro | Bigue Company{%endblock%}
+{%block conteudo%}
+<h1 class="mt-0 text-center">Olá {{user}}.</h1>
+<h5 class="text-secondary text-center">Seja bem vindo ao Dashboard!</h5>
+<table class="table mt-5">
+    <thead class="thead-dark">
+      <tr >
+        <th scope="col">Id</th>
+        <th scope="col">Data</th>
+        <th scope="col">Descrição</th>
+        <th scope="col">Valor</th>
+        <th scope="col">Tipo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="bg-danger text-white">
+        <th scope="row">1</th>
+        <td>18/08/2021</td>
+        <td>Compra mercado</td>
+        <td>R$ 32,00</td>
+        <td>S</td>
+      </tr>
+      <tr class="bg-success text-white">
+        <th scope="row">2</th>
+        <td>19/08/2021</td>
+        <td>Carpinagem lote</td>
+        <td>R$ 320,00</td>
+        <td>E</td>
+      </tr>
+      <tr class="bg-danger text-white">
+        <th scope="row">1</th>
+        <td>18/08/2021</td>
+        <td>Compra mercado</td>
+        <td>R$ 32,00</td>
+        <td>S</td>
+      </tr>
+      <tr class="bg-success text-white">
+        <th scope="row">2</th>
+        <td>19/08/2021</td>
+        <td>Carpinagem lote</td>
+        <td>R$ 320,00</td>
+        <td>E</td>
+      </tr>
+      <tr class="bg-danger text-white">
+        <th scope="row">1</th>
+        <td>18/08/2021</td>
+        <td>Compra mercado</td>
+        <td>R$ 32,00</td>
+        <td>S</td>
+      </tr>
+      <tr class="bg-success text-white">
+        <th scope="row">2</th>
+        <td>19/08/2021</td>
+        <td>Carpinagem lote</td>
+        <td>R$ 320,00</td>
+        <td>E</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="text-right mr-5"><strong>Saldo: </strong>R$ 1049,00</p>
+{%endblock%}

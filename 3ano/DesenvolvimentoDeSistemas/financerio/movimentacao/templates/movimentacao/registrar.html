@@ -1,0 +1,30 @@
+{%extends 'base.html'%} 
+{%block titulo%}Registrar transação{%endblock%}
+{% block sair %}
+<ul class="navbar-nav">
+  <li class="nav-item active">
+
+
+    <a class="nav-link text-white" href="{% url 'logout' %}">Sair</a>
+  </li>
+</ul>
+
+{%endblock%}
+{%block conteudo%}
+{%include 'parciais/_messages.html'%}
+
+<div class="container">
+    <form method="post" action="{% url 'registrar' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table class="table">
+            {{form}}
+            <tr>
+                <td colspan="2">
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+{%endblock%}

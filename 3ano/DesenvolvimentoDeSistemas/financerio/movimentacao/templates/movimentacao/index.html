@@ -1,62 +1,62 @@
 {%extends 'base.html'%}
 {%block titulo%}Financeiro | Bigue Company{%endblock%}
+{%include 'parciais/_messages.html'%}
+{% block sair %}
+{% if user.is_authenticated %}
+<ul class="navbar-nav">
+  <li class="nav-item active">
+
+
+    <a class="nav-link text-white" href="{% url 'logout' %}">Sair</a>
+  </li>
+</ul>
+
+{%endif%}
+{%endblock%}
 {%block conteudo%}
+{% if user.is_authenticated %}
 <h1 class="mt-0 text-center">Olá {{user}}.</h1>
 <h5 class="text-secondary text-center">Seja bem vindo ao Dashboard!</h5>
-<table class="table mt-5">
-    <thead class="thead-dark">
-      <tr >
-        <th scope="col">Id</th>
-        <th scope="col">Data</th>
-        <th scope="col">Descrição</th>
-        <th scope="col">Valor</th>
-        <th scope="col">Tipo</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="bg-danger text-white">
-        <th scope="row">1</th>
-        <td>18/08/2021</td>
-        <td>Compra mercado</td>
-        <td>R$ 32,00</td>
-        <td>S</td>
-      </tr>
-      <tr class="bg-success text-white">
-        <th scope="row">2</th>
-        <td>19/08/2021</td>
-        <td>Carpinagem lote</td>
-        <td>R$ 320,00</td>
-        <td>E</td>
-      </tr>
-      <tr class="bg-danger text-white">
-        <th scope="row">1</th>
-        <td>18/08/2021</td>
-        <td>Compra mercado</td>
-        <td>R$ 32,00</td>
-        <td>S</td>
-      </tr>
-      <tr class="bg-success text-white">
-        <th scope="row">2</th>
-        <td>19/08/2021</td>
-        <td>Carpinagem lote</td>
-        <td>R$ 320,00</td>
-        <td>E</td>
-      </tr>
-      <tr class="bg-danger text-white">
-        <th scope="row">1</th>
-        <td>18/08/2021</td>
-        <td>Compra mercado</td>
-        <td>R$ 32,00</td>
-        <td>S</td>
-      </tr>
-      <tr class="bg-success text-white">
-        <th scope="row">2</th>
-        <td>19/08/2021</td>
-        <td>Carpinagem lote</td>
-        <td>R$ 320,00</td>
-        <td>E</td>
-      </tr>
-    </tbody>
-  </table>
-  <p class="text-right mr-5"><strong>Saldo: </strong>R$ 1049,00</p>
+<table class="table mt-5 table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Data</th>
+      <th scope="col">Descrição</th>
+      <th scope="col">Valor</th>
+      <th scope="col">Tipo</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for transacao in transacoes %}
+    {% if transacao.tipo == 'S' %}
+    <tr class="text-white bg-danger">
+      <th scope="row">{{transacao.id}}</th>
+      <td>{{transacao.data|date:'d/m/Y'}}</td>
+      <td>{{transacao.descricao}}</td>
+      <td>R$ {{transacao.valor}}</td>
+      <td>{{transacao.tipo}}</td>
+    </tr>
+    {% else %}
+    <tr class="text-white bg-success">
+      <th scope="row">{{transacao.id}}</th>
+      <td>{{transacao.data|date:'d/m/Y'}}</td>
+      <td>{{transacao.descricao}}</td>
+      <td>R$ {{transacao.valor}}</td>
+      <td>{{transacao.tipo}}</td>
+    </tr>
+    {% endif%}
+    {% endfor%}
+  </tbody>
+</table>
+<p class="text-right mr-5"><strong>Saldo: </strong>R$ {{saldo}}</p>
+<a href="{% url 'registrar' %}" class="btn btn-primary btn-lg active"
+  role="button" aria-pressed="true">Nova Transação</a>
+{%else%}
+<h1>Bem vindo ao sistema de finaças da Bigue Company</h1>
+<a href="{% url 'login' %}" class="btn btn-primary btn-lg active" role="button"
+  aria-pressed="true">Login</a>
+
+{%endif%}
 {%endblock%}

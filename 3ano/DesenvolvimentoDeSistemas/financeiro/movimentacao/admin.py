@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Transacao, Tipo
+from .models import Transacao, Tipo, Saldo
 # Register your models here.
 class TransacaoAdmin(admin.ModelAdmin):
     list_display = ('id', 'data', 'descricao', 'valor', 'tipo')
@@ -9,4 +9,5 @@ class TransacaoAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(Tipo)
+admin.site.register(Saldo)
 admin.site.register(Transacao, TransacaoAdmin)

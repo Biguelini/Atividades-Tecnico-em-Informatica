@@ -30,7 +30,7 @@
   <tbody>
 
     {% for transacao in transacoes %}
-    {% if transacao.tipo == 'S' %}
+    {% if transacao.tipo_id == 1 %}
     <tr class="text-white bg-danger">
       <th scope="row">{{transacao.id}}</th>
       <td>{{transacao.data|date:'d/m/Y'}}</td>
@@ -50,7 +50,20 @@
     {% endfor%}
   </tbody>
 </table>
-<p class="text-right mr-5"><strong>Saldo: </strong>R$ {{saldo}}</p>
+<p class="text-right mr-5"><strong>Saldo: 
+  {% if saldo >= 0 %}
+  <span class="text-success">
+
+    R$ {{saldo}}
+  </span>
+  {% else %}
+  <span class="text-danger">
+
+    R$ {{saldo}}
+  </span>
+  {% endif %}
+</strong>
+</p>
 <a href="{% url 'registrar' %}" class="btn btn-primary btn-lg active"
   role="button" aria-pressed="true">Nova Transação</a>
 {%else%}

@@ -76,5 +76,5 @@ def registrar(request):
     form.save()
     saldo.save()
     messages.success(
-        request, f"{request.POST.get('descricao')} cadastrado com sucesso")
+        request, f"{request.POST.get('descricao')} registrado com sucesso")
     return redirect('registrar')

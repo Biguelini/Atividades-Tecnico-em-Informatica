@@ -1,0 +1,131 @@
+{%extends 'base.html'%}
+{%block titulo%}Financeiro | Bigue Company{%endblock%}
+{%include 'parciais/_messages.html'%}
+
+<!-- faz a checagem se está logado para mostrar o botão sair -->
+{% block sair %}
+{% if user.is_authenticated %}
+<ul class="navbar-nav">
+    <li class="nav-item active">
+
+
+        <a class="nav-link text-white" href="{% url 'logout' %}">Sair</a>
+    </li>
+</ul>
+{% endif %}
+{%endblock%}
+
+{%block conteudo%}
+<!-- checa se pode mostrar a tabela (está logado) ou precisa redirecionar para o login -->
+{% if user.is_authenticated %}
+<h1 class="mt-0">Olá {{user}}.</h1>
+<h5 class="text-secondary mb-5">Seja bem vindo ao Dashboard do dia {{data}}!</h5>
+
+{% if num_transacoes > 0 %}
+<form method="get" action="">
+  <div class="form-group row">
+    <div class="col-12">
+      <input class="form-control" type="date" value=""
+        id="datamin" name="datamin">
+      <input class="form-control" type="date" value=""
+        id="datamax" name="datamax">
+
+
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+
+    <button type="submit" class="btn btn-primary mb-2 col-4">Buscar</button>
+  </div>
+</form>
+<div class="w-100 d-flex justify-content-center">
+  <a href="" class="btn btn-primary w-25" role="button"
+    aria-pressed="true">Nova Transação</a>
+</div>
+<table class="table mt-3 table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Data</th>
+      <th scope="col">Descrição</th>
+      <th scope="col">Valor</th>
+      <th scope="col">Tipo</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for transacao in transacoes %}
+    {% if transacao.tipo_id == 1 %}
+    <tr class="text-white bg-danger">
+      <th scope="row">{{transacao.id}}</th>
+      <td>{{transacao.data|date:'d/m/Y'}}</td>
+      <td>{{transacao.descricao}}</td>
+      <td>R$ {{transacao.valor}}</td>
+      <td>{{transacao.tipo}}</td>
+    </tr>
+    {% else %}
+    <tr class="text-white bg-success">
+      <th scope="row">{{transacao.id}}</th>
+      <td>{{transacao.data|date:'d/m/Y'}}</td>
+      <td>{{transacao.descricao}}</td>
+      <td>R$ {{transacao.valor}}</td>
+      <td>{{transacao.tipo}}</td>
+    </tr>
+    {% endif%}
+    {% endfor%}
+  </tbody>
+</table>
+
+<p class="text-right mr-5"><strong>Saldo:
+    {% if saldo >= 0 %}
+    <span class="text-success">
+
+      R$ {{saldo}}
+    </span>
+    {% else %}
+    <span class="text-danger">
+
+      R$ {{saldo}}
+    </span>
+    {% endif %}
+  </strong>
+</p>
+{% if num_transacoes >= 5 or pagina != 1 %}
+<div class="w-100 d-flex justify-content-center">
+
+  <nav aria-label="Page navigation example center">
+    <ul class="pagination">
+      {% for pagina in transacoes.paginator.page_range %}
+      {% if transacoes.number == pagina %}
+      <li class="page-item active"><a class="page-link"
+          href="?p={{pagina}}">{{pagina}}</a></li>
+      {%else%}
+      <li class="page-item"><a class="page-link"
+          href="?p={{pagina}}">{{pagina}}</a></li>
+      {%endif%}
+      {%endfor%}
+    </ul>
+  </nav>
+</div>
+{% endif%}
+{% else %}
+<h1 class="text-center my-5">Você não possui nenhuma transação</h1>
+<div class="w-100 d-flex justify-content-center mt-5">
+  <a href="" class="btn btn-primary w-25" role="button"
+    aria-pressed="true">Começar a registrar</a>
+</div>
+{% endif%}
+
+
+
+{% else %}
+<h1 class="text-center my-5">Bem vindo ao sistema de finaças da Bigue Company
+</h1>
+<div class="w-100 d-flex justify-content-center">
+
+    <a href="{% url 'login' %}" class="btn btn-primary w-25" role="button"
+        aria-pressed="true">Login</a>
+</div>
+{% endif %}
+
+{%endblock%}

@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages, auth
-from sistema.models import Saldo, Transacao
+from sistema.models import FormRegistrar, Saldo, Transacao
 from django.core.paginator import Paginator
-from datetime import datetime
+from datetime import datetime, timedelta
 # Create your views here.
 
 
@@ -11,23 +11,24 @@ def index(request):
     # pegando a data atual
     data_formatada = datetime.today().strftime("%d/%m/%Y")
     data_atual = datetime.today().strftime("%Y-%m-%d")
+    data_banco= (datetime.today()+timedelta(days=1)).strftime("%Y-%m-%d")
     # saldo
     meu_saldo = 0
     saldos = Saldo.objects.order_by('data')
     for saldo in saldos:
-        if not existe:
-            if data_atual == saldo.data.strftime("%Y-%m-%d"):
+        if data_atual == saldo.data.strftime("%Y-%m-%d"):
+            existe = True
+        else:
+            if(int(datetime.today().strftime('%H'))>=21 and saldo.data.strftime("%Y-%m-%d") == data_banco):
                 existe = True
-                # meu_saldo += saldo.valor
             else:
-                existe = False
+                if not existe:
+                    existe = False
         meu_saldo += saldo.valor
-
     if not existe:
-        saldo = Saldo(valor=0)
+        saldo = Saldo(data=datetime.today(),valor=0)
         saldo.save()
         existe = True
-        # meu_saldo = 0
 
     # transacoes e paginacao
     transacoes = Transacao.objects.order_by('-data')
@@ -66,13 +67,58 @@ def logout(request):
 
 
 def registrar(request):
-    pass
+    data_banco= (datetime.today()+timedelta(days=1)).strftime("%Y-%m-%d")
+    if request.method != 'POST':
+        form = FormRegistrar()
+        return render(request, 'sistema/registrar.html', {'form': form})
+    form = FormRegistrar(request.POST, request.FILES)
+
+    if not form.is_valid():
+        messages.error(request, 'Erro ao enviar o formulário')
+        form = FormRegistrar(request.POST)
+        return render(request, 'sistema/registrar.html', {'form': form})
+    data_atual = datetime.today().strftime("%Y-%m-%d")
+    saldos = Saldo.objects.order_by('data')
+    existe = False
+    for saldo in saldos:
+        if not existe:
+            
+            if data_atual == saldo.data.strftime("%Y-%m-%d"):
+                existe = True
+                if(request.POST.get('tipo') == '1'):
+                    saldo_hoje = float(saldo.valor) - float(request.POST.get('valor'))
+                    saldo.valor = saldo_hoje
+                    saldo.save()
+                    
+                    
+                else:
+                    saldo_hoje = float(saldo.valor) + float(request.POST.get('valor'))
+                    saldo.valor = saldo_hoje
+                    saldo.save()
+            else:
+                
+                if(int(datetime.today().strftime('%H'))>=21 and saldo.data.strftime("%Y-%m-%d") == data_banco):
+                    existe = True
+                    if(request.POST.get('tipo') == '1'):
+                        saldo_hoje = float(saldo.valor) - float(request.POST.get('valor'))
+                        saldo.valor = saldo_hoje
+                        saldo.save()
+                    else:
+                        saldo_hoje = float(saldo.valor) + float(request.POST.get('valor'))
+                        saldo.valor = saldo_hoje
+                        saldo.save()
+                existe = False
+    form.save()
+    
+    messages.success(
+        request, f"{request.POST.get('descricao')} registrado com sucesso")
+    return redirect('registrar')
 
 
 def busca(request):
-
     datamin = request.GET.get('datamin')
     datamax = request.GET.get('datamax')
+    data_banco= (datetime.today()+timedelta(days=1)).strftime("%Y-%m-%d")
     if datamin != "" and datamax != "":
         if(datamin < datamax):
             existe = False
@@ -85,19 +131,21 @@ def busca(request):
             saldos = Saldo.objects.order_by('data')
             for saldo in saldos:
                 if not existe:
-                    if data_atual == saldo.data.strftime("%Y-%m-%d"):
+                    if datamin <= saldo.data.strftime("%Y-%m-%d") and datamax >= saldo.data.strftime("%Y-%m-%d"):
                         existe = True
                         meu_saldo_hoje += saldo.valor
                     else:
-                        existe = False
-                meu_saldo_total+=saldo.valor
+                        if not existe:
+                            existe = False
+                meu_saldo_total += saldo.valor
             if not existe:
                 saldo = Saldo(valor=0)
                 saldo.save()
                 existe = True
-                
+
             # transacoes e paginacao
-            transacoes = Transacao.objects.order_by('-data').filter(data__gt=datamin, data__lt=datamax)
+            transacoes = Transacao.objects.order_by(
+                '-data').filter(data__gt=datamin, data__lt=datamax)
             num_transacoes = len(transacoes)
             return render(request, 'sistema/busca.html', {
                 'transacoes': transacoes,

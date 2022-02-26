@@ -123,15 +123,69 @@ public class Desenho {
         desenho.addElement(new Ponto(8.3d, 9.25d, false));
     }
     public void bigue(){
-        desenho.addElement(new Ponto(12d, 15d, true));;
-        desenho.addElement(new Ponto(12d, 13d, false));;
-        desenho.addElement(new Ponto(13d, 13d, false));;
-        desenho.addElement(new Ponto(13d, 10d, false));;
-        desenho.addElement(new Ponto(12d, 10d, false));;
-        desenho.addElement(new Ponto(12d, 3d, false));;
-        desenho.addElement(new Ponto(8d, 3d, false));;
-        desenho.addElement(new Ponto(8d, 15d, false));;
-        desenho.addElement(new Ponto(12d, 15d, false));;
+        
+        
+        
+        
+        desenho.addElement(new Ponto(2.8d, 10d, true));
+        desenho.addElement(new Ponto(2.8d, 10d, false));
+        desenho.addElement(new Ponto(2.8d, 6d, false));
+        desenho.addElement(new Ponto(3.8d, 6d, false));
+        desenho.addElement(new Ponto(3.8d, 8d, false));
+        desenho.addElement(new Ponto(2.8d, 8d, false));
+        desenho.addElement(new Ponto(4d, 8d, false));
+        desenho.addElement(new Ponto(4d, 10d, false));
+        desenho.addElement(new Ponto(2.8d, 10d, false));
+        desenho.addElement(new Ponto(5d, 10d, true));
+        desenho.addElement(new Ponto(5d, 10d, false));
+        desenho.addElement(new Ponto(5d, 6d, false));
+        desenho.addElement(new Ponto(5d, 10d, false));
+        desenho.addElement(new Ponto(6d, 10d, true));
+        desenho.addElement(new Ponto(6d, 10d, false));
+        desenho.addElement(new Ponto(6d, 6d, false));
+        desenho.addElement(new Ponto(7d, 6d, false));
+        desenho.addElement(new Ponto(6d, 6d, false));
+        desenho.addElement(new Ponto(6d, 10d, false));
+        desenho.addElement(new Ponto(7d, 10d, false));
+        desenho.addElement(new Ponto(7d, 8d, false));
+        desenho.addElement(new Ponto(6.5d, 8d, false));
+        desenho.addElement(new Ponto(7d, 8d, false));
+        desenho.addElement(new Ponto(7d, 10d, false));
+        desenho.addElement(new Ponto(8d, 10d, true));
+        desenho.addElement(new Ponto(8d, 10d, false));
+        desenho.addElement(new Ponto(8d, 6d, false));
+        desenho.addElement(new Ponto(8d, 10d, false));
+        desenho.addElement(new Ponto(9d, 10d, false));
+        desenho.addElement(new Ponto(9d, 6d, false));
+        desenho.addElement(new Ponto(9d, 10d, false));
+        desenho.addElement(new Ponto(10d, 10d, true));
+        desenho.addElement(new Ponto(10d, 10d, false));
+        desenho.addElement(new Ponto(10d, 6d, false));
+        desenho.addElement(new Ponto(11d, 6d, false));
+        desenho.addElement(new Ponto(10d, 6d, false));
+        desenho.addElement(new Ponto(10d, 8d, false));
+        desenho.addElement(new Ponto(11d, 8d, false));
+        desenho.addElement(new Ponto(10d, 8d, false));
+        desenho.addElement(new Ponto(10d, 10d, false));
+        desenho.addElement(new Ponto(11d, 10d, false));
+        desenho.addElement(new Ponto(12d, 10d, true));
+        desenho.addElement(new Ponto(12d, 10d, false));
+        desenho.addElement(new Ponto(12d, 6d, false));
+        desenho.addElement(new Ponto(12d, 10d, false));
+        desenho.addElement(new Ponto(13d, 10d, false));
+        desenho.addElement(new Ponto(14d, 10d, true));
+        desenho.addElement(new Ponto(14d, 10d, false));
+        desenho.addElement(new Ponto(14d, 6d, false));
+        desenho.addElement(new Ponto(14d, 10d, false));
+        desenho.addElement(new Ponto(15d, 10d, true));
+        desenho.addElement(new Ponto(15d, 10d, false));
+        desenho.addElement(new Ponto(15d, 6d, false));
+        desenho.addElement(new Ponto(16d, 10d, false));
+        desenho.addElement(new Ponto(16d, 6d, false));
+        desenho.addElement(new Ponto(16d, 10d, false));
+        desenho.addElement(new Ponto(17d, 10d, true));
+        desenho.addElement(new Ponto(17d, 10d, false));
+        desenho.addElement(new Ponto(17d, 6d, false));
     }
 
     public void translada(double dx, double dy) {

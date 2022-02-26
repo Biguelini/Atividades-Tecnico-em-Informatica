@@ -21,10 +21,12 @@ def index(request):
         else:
             if(int(datetime.today().strftime('%H'))>=21 and saldo.data.strftime("%Y-%m-%d") == data_banco):
                 existe = True
+                meu_saldo = saldo.valor
             else:
                 if not existe:
                     existe = False
         meu_saldo += saldo.valor
+        
     if not existe:
         saldo = Saldo(data=datetime.today(),valor=0)
         saldo.save()
@@ -118,9 +120,10 @@ def registrar(request):
 def busca(request):
     datamin = request.GET.get('datamin')
     datamax = request.GET.get('datamax')
-    data_banco= (datetime.today()+timedelta(days=1)).strftime("%Y-%m-%d")
+    datamax = datetime.strptime(datamax, '%Y-%m-%d')
+    datamax= (datamax+timedelta(days=1)).strftime("%Y-%m-%d")
     if datamin != "" and datamax != "":
-        if(datamin < datamax):
+        if(datamin < datamax or datamin == datamax):
             existe = False
             # pegando a data atual
             data_formatada = datetime.today().strftime("%d/%m/%Y")
@@ -130,18 +133,12 @@ def busca(request):
             meu_saldo_hoje = 0
             saldos = Saldo.objects.order_by('data')
             for saldo in saldos:
-                if not existe:
-                    if datamin <= saldo.data.strftime("%Y-%m-%d") and datamax >= saldo.data.strftime("%Y-%m-%d"):
-                        existe = True
-                        meu_saldo_hoje += saldo.valor
-                    else:
-                        if not existe:
-                            existe = False
+                print(saldo.valor)
+                print(datamin, datamax, saldo.data.strftime("%Y-%m-%d"))
+                if datamin <= saldo.data.strftime("%Y-%m-%d") and datamax > saldo.data.strftime("%Y-%m-%d"):
+                    meu_saldo_hoje += saldo.valor
+                
                 meu_saldo_total += saldo.valor
-            if not existe:
-                saldo = Saldo(valor=0)
-                saldo.save()
-                existe = True
 
             # transacoes e paginacao
             transacoes = Transacao.objects.order_by(

@@ -120,9 +120,9 @@ def registrar(request):
 def busca(request):
     datamin = request.GET.get('datamin')
     datamax = request.GET.get('datamax')
-    datamax = datetime.strptime(datamax, '%Y-%m-%d')
-    datamax= (datamax+timedelta(days=1)).strftime("%Y-%m-%d")
     if datamin != "" and datamax != "":
+        datamax = datetime.strptime(datamax, '%Y-%m-%d')
+        datamax= (datamax+timedelta(days=1)).strftime("%Y-%m-%d")
         if(datamin < datamax or datamin == datamax):
             existe = False
             # pegando a data atual

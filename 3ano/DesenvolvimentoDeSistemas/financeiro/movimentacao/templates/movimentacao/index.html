@@ -17,7 +17,7 @@
 {%include 'parciais/_messages.html'%}
 {% if user.is_authenticated %}
 <h1 class="mt-0 text-center">Olá {{user}}.</h1>
-<h5 class="text-secondary text-center mb-5">Seja bem vindo ao Dashboard!</h5>
+<h5 class="text-secondary text-center mb-5">Seja bem vindo ao Dashboard do dia {{data}}!</h5>
 
 {% if num_transacoes > 0 %}
 <form method="get" action="{% url 'busca' %}">

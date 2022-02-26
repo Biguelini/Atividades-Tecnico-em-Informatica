@@ -18,30 +18,9 @@
 {%block conteudo%}
 <!-- checa se pode mostrar a tabela (está logado) ou precisa redirecionar para o login -->
 {% if user.is_authenticated %}
-<h1 class="mt-0">Olá {{user}}.</h1>
-<h5 class="text-secondary mb-5">Seja bem vindo ao Dashboard do dia {{data}}!</h5>
+<h3 class="mt-0">Recibo emitido por {{user}} da Bigue Company.</h3>
 
 {% if num_transacoes > 0 %}
-<form method="get" action="{% url 'busca' %}">
-  <div class="form-group row">
-    <div class="col-12">
-      <input class="form-control" type="date" value="request.GET('datamin')"
-        id="datamin" name="datamin">
-      <input class="form-control" type="date" value="request.GET('datamax')"
-        id="datamax" name="datamax">
-
-
-    </div>
-  </div>
-  <div class="d-flex justify-content-center">
-
-    <button type="submit" class="btn btn-primary mb-2 col-4">Buscar</button>
-  </div>
-</form>
-<div class="w-100 d-flex justify-content-center">
-  <a href="" class="btn btn-primary w-25" role="button"
-    aria-pressed="true">Nova Transação</a>
-</div>
 <table class="table mt-3 table-striped">
   <thead class="thead-dark">
     <tr>
@@ -76,45 +55,42 @@
   </tbody>
 </table>
 
-<p class="text-right mr-5"><strong>Saldo:
-    {% if saldo >= 0 %}
+<p class="text-right mr-5"><strong>Saldo período:
+    {% if saldo_hoje >= 0 %}
     <span class="text-success">
 
-      R$ {{saldo}}
+      R$ {{saldo_hoje}}
     </span>
     {% else %}
     <span class="text-danger">
 
-      R$ {{saldo}}
+      R$ {{saldo_hoje}}
     </span>
     {% endif %}
   </strong>
 </p>
-{% if num_transacoes >= 5 or pagina != 1 %}
-<div class="w-100 d-flex justify-content-center">
+<p class="text-right mr-5"><strong>Saldo total:
+    {% if saldo_total >= 0 %}
+    <span class="text-success">
 
-  <nav aria-label="Page navigation example center">
-    <ul class="pagination">
-      {% for pagina in transacoes.paginator.page_range %}
-      {% if transacoes.number == pagina %}
-      <li class="page-item active"><a class="page-link"
-          href="?p={{pagina}}">{{pagina}}</a></li>
-      {%else%}
-      <li class="page-item"><a class="page-link"
-          href="?p={{pagina}}">{{pagina}}</a></li>
-      {%endif%}
-      {%endfor%}
-    </ul>
-  </nav>
-</div>
-{% endif%}
+      R$ {{saldo_total}}
+    </span>
+    {% else %}
+    <span class="text-danger">
+
+      R$ {{saldo_total}}
+    </span>
+    {% endif %}
+  </strong>
+</p>
+
 {% else %}
-<h1 class="text-center my-5">Você não possui nenhuma transação</h1>
+<h1 class="text-center my-5">Nenhuma transação</h1>
+{% endif%}
 <div class="w-100 d-flex justify-content-center mt-5">
   <a href="" class="btn btn-primary w-25" role="button"
-    aria-pressed="true">Começar a registrar</a>
+    aria-pressed="true">Imprimir</a>
 </div>
-{% endif%}
 
 
 

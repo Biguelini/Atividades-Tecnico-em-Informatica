@@ -109,7 +109,7 @@ def receipt(request):
     
     mindate = request.GET.get('mindate')
     maxdate = request.GET.get('maxdate')
-    
+    balance_of_date = 0
     
     if mindate != "" and maxdate != "":
         maxdate = datetime.strptime(maxdate, '%Y-%m-%d')
@@ -129,5 +129,5 @@ def receipt(request):
                 'balance_of_date': balance_of_date,
                 'num_transactions': len(transactions),
             })
-    messages.error(request, 'Preencha as dates')
+    messages.error(request, 'Preencha as datas corretamente')
     return redirect('index')

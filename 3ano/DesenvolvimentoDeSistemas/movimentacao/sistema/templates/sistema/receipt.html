@@ -22,74 +22,74 @@
 
 {% if num_transactions > 0 %}
 <table class="table mt-3 table-striped">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Data</th>
-      <th scope="col">Descrição</th>
-      <th scope="col">Valor</th>
-      <th scope="col">Tipo</th>
-    </tr>
-  </thead>
-  <tbody>
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Data</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Tipo</th>
+        </tr>
+    </thead>
+    <tbody>
 
-    {% for transaction in transactions %}
-    {% if transaction.type_id == 1 %}
-    <tr class="text-white bg-danger">
-      <th scope="row">{{transaction.id}}</th>
-      <td>{{transaction.date|date:'d/m/Y'}}</td>
-      <td>{{transaction.description}}</td>
-      <td>R$ {{transaction.value}}</td>
-      <td>{{transaction.type}}</td>
-    </tr>
-    {% else %}
-    <tr class="text-white bg-success">
-      <th scope="row">{{transaction.id}}</th>
-      <td>{{transaction.date|date:'d/m/Y'}}</td>
-      <td>{{transaction.description}}</td>
-      <td>R$ {{transaction.value}}</td>
-      <td>{{transaction.type}}</td>
-    </tr>
-    {% endif%}
-    {% endfor%}
-  </tbody>
+        {% for transaction in transactions %}
+        {% if transaction.type_id == 1 %}
+        <tr class="text-white bg-danger">
+            <th scope="row">{{transaction.id}}</th>
+            <td>{{transaction.date|date:'d/m/Y'}}</td>
+            <td>{{transaction.description}}</td>
+            <td>R$ {{transaction.value}}</td>
+            <td>{{transaction.type}}</td>
+        </tr>
+        {% else %}
+        <tr class="text-white bg-success">
+            <th scope="row">{{transaction.id}}</th>
+            <td>{{transaction.date|date:'d/m/Y'}}</td>
+            <td>{{transaction.description}}</td>
+            <td>R$ {{transaction.value}}</td>
+            <td>{{transaction.type}}</td>
+        </tr>
+        {% endif%}
+        {% endfor%}
+    </tbody>
 </table>
 
 <p class="text-right mr-5"><strong>Saldo período:
-    {% if balance_of_date >= 0 %}
-    <span class="text-success">
+        {% if balance_of_date >= 0 %}
+        <span class="text-success">
 
-      R$ {{balance_of_date}}
-    </span>
-    {% else %}
-    <span class="text-danger">
+            R$ {{balance_of_date}}
+        </span>
+        {% else %}
+        <span class="text-danger">
 
-      R$ {{balance_of_date}}
-    </span>
-    {% endif %}
-  </strong>
+            R$ {{balance_of_date}}
+        </span>
+        {% endif %}
+    </strong>
 </p>
 <p class="text-right mr-5"><strong>Saldo total:
-    {% if my_total_balance >= 0 %}
-    <span class="text-success">
+        {% if my_total_balance >= 0 %}
+        <span class="text-success">
 
-      R$ {{my_total_balance}}
-    </span>
-    {% else %}
-    <span class="text-danger">
+            R$ {{my_total_balance}}
+        </span>
+        {% else %}
+        <span class="text-danger">
 
-      R$ {{my_total_balance}}
-    </span>
-    {% endif %}
-  </strong>
+            R$ {{my_total_balance}}
+        </span>
+        {% endif %}
+    </strong>
 </p>
 
 {% else %}
 <h1 class="text-center my-5">Nenhuma transação</h1>
 {% endif%}
 <div class="w-100 d-flex justify-content-center mt-5">
-  <a href="" class="btn btn-primary w-25" role="button"
-    aria-pressed="true">Imprimir</a>
+    <a href="" class="btn btn-primary w-25" role="button"
+        aria-pressed="true">Imprimir</a>
 </div>
 
 

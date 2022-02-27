@@ -6,11 +6,11 @@
 {% block exit %}
 {% if user.is_authenticated %}
 <ul class="navbar-nav">
-  <li class="nav-item active">
+    <li class="nav-item active">
 
 
-    <a class="nav-link text-white" href="{% url 'logout' %}">Sair</a>
-  </li>
+        <a class="nav-link text-white" href="{% url 'logout' %}">Sair</a>
+    </li>
 </ul>
 {% endif %}
 {%endblock%}
@@ -24,93 +24,94 @@
 
 {% if num_transactions > 0 %}
 <form method="get" action="{% url 'receipt' %}">
-  <div class="d-flex flex-row justify-content-center">
-    <input class="form-control w-25 mr-3" type="date" value="request.GET('mindate')"
-      id="mindate" name="mindate">
-    <input class="form-control w-25 mr-3" type="date" value="request.GET('maxdate')"
-      id="maxdate" name="maxdate">
-    <button type="submit" class="btn btn-primary mb-2 w-25">Gerar Recibo</button>
-  </div>
-  <div class="d-flex justify-content-center">
+    <div class="d-flex flex-row justify-content-center">
+        <input class="form-control w-25 mr-3" type="date"
+            value="request.GET('mindate')" id="mindate" name="mindate">
+        <input class="form-control w-25 mr-3" type="date"
+            value="request.GET('maxdate')" id="maxdate" name="maxdate">
+        <button type="submit" class="btn btn-primary mb-2 w-25">Gerar
+            Recibo</button>
+    </div>
+    <div class="d-flex justify-content-center">
 
 
-  </div>
+    </div>
 </form>
 <div class="w-100 d-flex justify-content-center">
-  <a href="{% url 'register_movement' %}" class="btn btn-primary w-25" role="button"
-    aria-pressed="true">Novo movimento</a>
+    <a href="{% url 'register_movement' %}" class="btn btn-primary w-25"
+        role="button" aria-pressed="true">Novo movimento</a>
 </div>
 <table class="table mt-3 table-striped">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Data</th>
-      <th scope="col">Descrição</th>
-      <th scope="col">Valor</th>
-      <th scope="col">Tipo</th>
-    </tr>
-  </thead>
-  <tbody>
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Data</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Tipo</th>
+        </tr>
+    </thead>
+    <tbody>
 
-    {% for transaction in transactions %}
-    {% if transaction.type_id == 1 %}
-    <tr class="text-white bg-danger">
-      <th scope="row">{{transaction.id}}</th>
-      <td>{{transaction.date|date:'d/m/Y'}}</td>
-      <td>{{transaction.description}}</td>
-      <td>R$ {{transaction.value}}</td>
-      <td>{{transaction.type}}</td>
-    </tr>
-    {% else %}
-    <tr class="text-white bg-success">
-      <th scope="row">{{transaction.id}}</th>
-      <td>{{transaction.date|date:'d/m/Y'}}</td>
-      <td>{{transaction.description}}</td>
-      <td>R$ {{transaction.value}}</td>
-      <td>{{transaction.type}}</td>
-    </tr>
-    {% endif%}
-    {% endfor%}
-  </tbody>
+        {% for transaction in transactions %}
+        {% if transaction.type_id == 1 %}
+        <tr class="text-white bg-danger">
+            <th scope="row">{{transaction.id}}</th>
+            <td>{{transaction.date|date:'d/m/Y'}}</td>
+            <td>{{transaction.description}}</td>
+            <td>R$ {{transaction.value}}</td>
+            <td>{{transaction.type}}</td>
+        </tr>
+        {% else %}
+        <tr class="text-white bg-success">
+            <th scope="row">{{transaction.id}}</th>
+            <td>{{transaction.date|date:'d/m/Y'}}</td>
+            <td>{{transaction.description}}</td>
+            <td>R$ {{transaction.value}}</td>
+            <td>{{transaction.type}}</td>
+        </tr>
+        {% endif%}
+        {% endfor%}
+    </tbody>
 </table>
 
 <p class="text-right mr-5"><strong>Saldo:
-    {% if balance >= 0 %}
-    <span class="text-success">
+        {% if balance >= 0 %}
+        <span class="text-success">
 
-      R$ {{balance}}
-    </span>
-    {% else %}
-    <span class="text-danger">
+            R$ {{balance}}
+        </span>
+        {% else %}
+        <span class="text-danger">
 
-      R$ {{balance}}
-    </span>
-    {% endif %}
-  </strong>
+            R$ {{balance}}
+        </span>
+        {% endif %}
+    </strong>
 </p>
 {% if num_transactions >= 5 or pagina != 1 %}
 <div class="w-100 d-flex justify-content-center">
 
-  <nav aria-label="Page navigation example center">
-    <ul class="pagination">
-      {% for pagina in transactions.paginator.page_range %}
-      {% if transactions.number == pagina %}
-      <li class="page-item active"><a class="page-link"
-          href="?p={{pagina}}">{{pagina}}</a></li>
-      {%else%}
-      <li class="page-item"><a class="page-link"
-          href="?p={{pagina}}">{{pagina}}</a></li>
-      {%endif%}
-      {%endfor%}
-    </ul>
-  </nav>
+    <nav aria-label="Page navigation example center">
+        <ul class="pagination">
+            {% for pagina in transactions.paginator.page_range %}
+            {% if transactions.number == pagina %}
+            <li class="page-item active"><a class="page-link"
+                    href="?p={{pagina}}">{{pagina}}</a></li>
+            {%else%}
+            <li class="page-item"><a class="page-link"
+                    href="?p={{pagina}}">{{pagina}}</a></li>
+            {%endif%}
+            {%endfor%}
+        </ul>
+    </nav>
 </div>
 {% endif%}
 {% else %}
 <h1 class="text-center my-5">Você não possui nenhuma transação</h1>
 <div class="w-100 d-flex justify-content-center mt-5">
-  <a href="{% url 'register_movement' %}" class="btn btn-primary w-25" role="button"
-    aria-pressed="true">Começar a registrar</a>
+    <a href="{% url 'register_movement' %}" class="btn btn-primary w-25"
+        role="button" aria-pressed="true">Começar a registrar</a>
 </div>
 {% endif%}
 
@@ -121,8 +122,8 @@
 </h1>
 <div class="w-100 d-flex justify-content-center">
 
-  <a href="{% url 'login' %}" class="btn btn-primary w-25" role="button"
-    aria-pressed="true">Login</a>
+    <a href="{% url 'login' %}" class="btn btn-primary w-25" role="button"
+        aria-pressed="true">Login</a>
 </div>
 {% endif %}
 

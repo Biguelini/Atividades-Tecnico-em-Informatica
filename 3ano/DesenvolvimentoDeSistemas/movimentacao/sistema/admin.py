@@ -1,15 +1,15 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Transacao, Tipo, Saldo
+from .models import Transactions, Type, Balances
 # Register your models here.
-class TransacaoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'data', 'descricao', 'valor', 'tipo')
-    list_display_links = ('descricao',)
+class TransactionsAdmin(admin.ModelAdmin):
+    list_display = ('id', 'date', 'description', 'value', 'type')
+    list_display_links = ('description',)
     list_per_page = 10
-    search_fields = ('descricao', 'data')
+    search_fields = ('description', 'date')
 
 # Register your models here.
-admin.site.register(Tipo)
-admin.site.register(Saldo)
-admin.site.register(Transacao, TransacaoAdmin)
+admin.site.register(Type)
+admin.site.register(Balances)
+admin.site.register(Transactions, TransactionsAdmin)

@@ -6,30 +6,30 @@ from django import forms
 # Create your models here.
 
 
-class Tipo(models.Model):
-    nome = models.CharField(max_length=255)
+class Type(models.Model):
+    name = models.CharField(max_length=255)
     
     def __str__(self):
-        return self.nome
+        return self.name
 
 
-class Transacao(models.Model):
-    data = models.DateTimeField(default=timezone.now)
-    descricao = models.CharField(max_length=255, blank=False)
-    valor = models.DecimalField(max_digits= 20, decimal_places=2)
-    tipo = models.ForeignKey(Tipo, on_delete=models.DO_NOTHING)
+class Transactions(models.Model):
+    date = models.DateTimeField(default=timezone.now)
+    description = models.CharField(max_length=255, blank=False)
+    value = models.DecimalField(max_digits= 20, decimal_places=2)
+    type = models.ForeignKey(Type, on_delete=models.DO_NOTHING)
     # tipo = models.CharField(max_length=1, blank=False)
     
     def __str__(self):
-        return self.descricao
+        return self.description
 
-class Saldo(models.Model):
-    valor = models.DecimalField(max_digits= 50, decimal_places=2)
-    data = models.DateTimeField(default=timezone.now)
+class Balances(models.Model):
+    value = models.DecimalField(max_digits= 50, decimal_places=2)
+    date = models.DateTimeField(default=timezone.now)
     def __str__(self):
-        return str(self.valor)
+        return str(self.value)
 
-class FormRegistrar(forms.ModelForm):
+class RegisterForm(forms.ModelForm):
     class Meta:
-        model = Transacao
-        exclude = ('data',)
+        model = Transactions
+        exclude = ('date',)

@@ -1,9 +1,9 @@
 {%extends 'base.html'%}
-{%block titulo%}Financeiro | Bigue Company{%endblock%}
+{%block title%}Recibo | Bigue Company{%endblock%}
 {%include 'parciais/_messages.html'%}
 
 <!-- faz a checagem se está logado para mostrar o botão sair -->
-{% block sair %}
+{% block exit %}
 {% if user.is_authenticated %}
 <ul class="navbar-nav">
     <li class="nav-item active">
@@ -15,12 +15,12 @@
 {% endif %}
 {%endblock%}
 
-{%block conteudo%}
+{%block content%}
 <!-- checa se pode mostrar a tabela (está logado) ou precisa redirecionar para o login -->
 {% if user.is_authenticated %}
 <h3 class="mt-0">Recibo emitido por {{user}} da Bigue Company.</h3>
 
-{% if num_transacoes > 0 %}
+{% if num_transactions > 0 %}
 <table class="table mt-3 table-striped">
   <thead class="thead-dark">
     <tr>
@@ -33,22 +33,22 @@
   </thead>
   <tbody>
 
-    {% for transacao in transacoes %}
-    {% if transacao.tipo_id == 1 %}
+    {% for transaction in transactions %}
+    {% if transaction.type_id == 1 %}
     <tr class="text-white bg-danger">
-      <th scope="row">{{transacao.id}}</th>
-      <td>{{transacao.data|date:'d/m/Y'}}</td>
-      <td>{{transacao.descricao}}</td>
-      <td>R$ {{transacao.valor}}</td>
-      <td>{{transacao.tipo}}</td>
+      <th scope="row">{{transaction.id}}</th>
+      <td>{{transaction.date|date:'d/m/Y'}}</td>
+      <td>{{transaction.description}}</td>
+      <td>R$ {{transaction.value}}</td>
+      <td>{{transaction.type}}</td>
     </tr>
     {% else %}
     <tr class="text-white bg-success">
-      <th scope="row">{{transacao.id}}</th>
-      <td>{{transacao.data|date:'d/m/Y'}}</td>
-      <td>{{transacao.descricao}}</td>
-      <td>R$ {{transacao.valor}}</td>
-      <td>{{transacao.tipo}}</td>
+      <th scope="row">{{transaction.id}}</th>
+      <td>{{transaction.date|date:'d/m/Y'}}</td>
+      <td>{{transaction.description}}</td>
+      <td>R$ {{transaction.value}}</td>
+      <td>{{transaction.type}}</td>
     </tr>
     {% endif%}
     {% endfor%}
@@ -56,29 +56,29 @@
 </table>
 
 <p class="text-right mr-5"><strong>Saldo período:
-    {% if saldo_hoje >= 0 %}
+    {% if balance_of_date >= 0 %}
     <span class="text-success">
 
-      R$ {{saldo_hoje}}
+      R$ {{balance_of_date}}
     </span>
     {% else %}
     <span class="text-danger">
 
-      R$ {{saldo_hoje}}
+      R$ {{balance_of_date}}
     </span>
     {% endif %}
   </strong>
 </p>
 <p class="text-right mr-5"><strong>Saldo total:
-    {% if saldo_total >= 0 %}
+    {% if my_total_balance >= 0 %}
     <span class="text-success">
 
-      R$ {{saldo_total}}
+      R$ {{my_total_balance}}
     </span>
     {% else %}
     <span class="text-danger">
 
-      R$ {{saldo_total}}
+      R$ {{my_total_balance}}
     </span>
     {% endif %}
   </strong>

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sistema.apps.SistemaConfig',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -140,3 +141,7 @@ MESSAGE_TAGS = {
     constants.DEBUG: 'alert-info',
     constants.SUCCESS: 'alert-success',
 }
+
+
+# formulário estilizado
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

@@ -68,42 +68,11 @@ def register_movement(request):
         form = RegisterForm()
         return render(request, 'sistema/register_movement.html', {'form': form})
     form = RegisterForm(request.POST, request.FILES)
-    transaction_date = datetime.strptime(request.POST.get('date')[:10], '%d/%m/%Y')
     if not form.is_valid():
         messages.error(request, 'Erro ao enviar o formulário')
         form = RegisterForm(request.POST)
         return render(request, 'sistema/register_movement.html', {'form': form})
-    current_balance_exists = False
-    for balance in Balances.objects.order_by('date'):
-        balance_date = balance.date.strftime("%Y-%m-%d")
-        if transaction_date.strftime("%Y-%m-%d") == balance.date.strftime("%Y-%m-%d"):
-            print('aqui')
-            if(request.POST.get('type') == '1'):
-                balance.value = float(balance.value) - float(request.POST.get('value'))
-                balance.save()
-                
-                
-            else:
-                balance.value = float(balance.value) + float(request.POST.get('value'))
-                balance.save()
-            current_balance_exists = True
-        elif(int(transaction_date.strftime('%H'))>=21 and balance.date.strftime("%Y-%m-%d") == (transaction_date+timedelta(days=1)).strftime("%Y-%m-%d")):
-            if(request.POST.get('type') == '1'):
-                balance.value = float(balance.value) - float(request.POST.get('value'))
-                balance.save()
-            else:
-                balance.value = float(balance.value) - float(request.POST.get('value'))
-                balance.save()
-            current_balance_exists = True
-        else:
-            current_balance_exists = False
-        if (datetime.today()-timedelta(days=1)).strftime("%Y-%m-%d") == balance_date:
-            balance_yesterday = balance.value
-    form.save()
-    if not current_balance_exists:
-        balance = Balances(date=datetime.today(),value=balance_yesterday)
-        balance.save()
-        current_balance_exists = True
+
 
     messages.success(
         request, f"{request.POST.get('description')} registrado com sucesso")

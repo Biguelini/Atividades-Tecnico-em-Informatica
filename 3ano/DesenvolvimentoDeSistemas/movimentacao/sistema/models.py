@@ -32,4 +32,4 @@ class Balances(models.Model):
 class RegisterForm(forms.ModelForm):
     class Meta:
         model = Transactions
-        exclude = ('date',)
+        exclude = ('',)

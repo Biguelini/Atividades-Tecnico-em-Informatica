@@ -73,12 +73,9 @@ def register_movement(request):
         messages.error(request, 'Erro ao enviar o formulário')
         form = RegisterForm(request.POST)
         return render(request, 'sistema/register_movement.html', {'form': form})
-    current_balance_exists = False
     for balance in Balances.objects.order_by('date'):
-        if not current_balance_exists:
             
             if datetime.today().strftime("%Y-%m-%d") == balance.date.strftime("%Y-%m-%d"):
-                current_balance_exists = True
                 if(request.POST.get('type') == '1'):
                     balance.value = float(balance.value) - float(request.POST.get('value'))
                     balance.save()
@@ -90,14 +87,12 @@ def register_movement(request):
             else:
                 
                 if(int(datetime.today().strftime('%H'))>=21 and balance.date.strftime("%Y-%m-%d") == (datetime.today()+timedelta(days=1)).strftime("%Y-%m-%d")):
-                    current_balance_exists = True
                     if(request.POST.get('type') == '1'):
                         balance.value = float(balance.value) - float(request.POST.get('value'))
                         balance.save()
                     else:
                         balance.value = float(balance.value) - float(request.POST.get('value'))
                         balance.save()
-                current_balance_exists = False
     form.save()
     
     messages.success(

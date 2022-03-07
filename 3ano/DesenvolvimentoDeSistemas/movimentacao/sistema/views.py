@@ -3,6 +3,7 @@ from django.contrib import messages, auth
 from sistema.models import RegisterForm, Balances, Transactions
 from django.core.paginator import Paginator
 from datetime import datetime, timedelta
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
@@ -61,8 +62,7 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect('index')
-
-
+@login_required(login_url='/', redirect_field_name='')
 def register_movement(request):
     if request.method != 'POST':
         form = RegisterForm()
@@ -77,7 +77,6 @@ def register_movement(request):
     messages.success(
         request, f"{request.POST.get('description')} registrado com sucesso")
     return redirect('register_movement')
-
 
 def receipt(request):
     

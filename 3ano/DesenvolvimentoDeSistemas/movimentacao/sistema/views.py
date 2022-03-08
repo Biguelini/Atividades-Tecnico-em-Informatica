@@ -10,14 +10,14 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     balance_yesterday = 0
     my_balance = 0
-    
+
     current_balance_exists = False
     for balance in Balances.objects.order_by('date'):
         balance_date = balance.date.strftime("%Y-%m-%d")
         if datetime.today().strftime("%Y-%m-%d") == balance_date:
             current_balance_exists = True
         else:
-            if(int(datetime.today().strftime('%H'))>=21 and balance_date == (datetime.today()+timedelta(days=1)).strftime("%Y-%m-%d")):
+            if(int(datetime.today().strftime('%H')) >= 21 and balance_date == (datetime.today()+timedelta(days=1)).strftime("%Y-%m-%d")):
                 current_balance_exists = True
                 my_balance = balance.value
             else:
@@ -25,10 +25,10 @@ def index(request):
                     current_balance_exists = False
         if (datetime.today()-timedelta(days=1)).strftime("%Y-%m-%d") == balance_date:
             balance_yesterday = balance.value
-        
+
         my_balance = balance.value
     if not current_balance_exists:
-        balance = Balances(date=datetime.today(),value=balance_yesterday)
+        balance = Balances(date=datetime.today(), value=balance_yesterday)
         balance.save()
         current_balance_exists = True
 
@@ -49,8 +49,8 @@ def login(request):
     if request.method != 'POST':
         return render(request, 'sistema/login.html')
 
-    user_request = auth.authenticate(request, useername=request.POST.get('usuario'), password=request.POST.get('senha'))
-
+    user_request = auth.authenticate(request, username=request.POST.get(
+        'username'), password=request.POST.get('password'))
     if not user_request:
         messages.error(request, 'Usuário ou senha inválidos')
         return render(request, 'sistema/login.html')
@@ -62,6 +62,8 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect('index')
+
+
 @login_required(login_url='/', redirect_field_name='')
 def register_movement(request):
     if request.method != 'POST':
@@ -72,21 +74,35 @@ def register_movement(request):
         messages.error(request, 'Erro ao enviar o formulário')
         form = RegisterForm(request.POST)
         return render(request, 'sistema/register_movement.html', {'form': form})
-
+    date = datetime.strptime(request.POST.get('date'), '%Y-%m-%d')
+    type = request.POST.get('type')
+    value = request.POST.get('value')
+    for balance in Balances.objects.order_by('date'):
+        balance_date = datetime.strptime(balance.date.strftime("%Y-%m-%d"), '%Y-%m-%d')
+        print(date, balance_date)
+        if date == balance_date or balance_date > date:
+            if type == '1':
+                modified_balance = float(balance.value) - float(value)
+            else:
+                modified_balance = float(balance.value) + float(value)
+            balance.value = modified_balance
+            balance.save()
+            print(modified_balance)
 
     messages.success(
         request, f"{request.POST.get('description')} registrado com sucesso")
     return redirect('register_movement')
 
+
 def receipt(request):
-    
+
     mindate = request.GET.get('mindate')
     maxdate = request.GET.get('maxdate')
     balance_of_date = 0
-    
+
     if mindate != "" and maxdate != "":
         maxdate = datetime.strptime(maxdate, '%Y-%m-%d')
-        maxdate= (maxdate+timedelta(days=1)).strftime("%Y-%m-%d")
+        maxdate = (maxdate+timedelta(days=1)).strftime("%Y-%m-%d")
         if(mindate < maxdate or mindate == maxdate):
             for balance in Balances.objects.order_by('date'):
                 if mindate <= balance.date.strftime("%Y-%m-%d") and maxdate > balance.date.strftime("%Y-%m-%d"):

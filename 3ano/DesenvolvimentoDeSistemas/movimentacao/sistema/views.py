@@ -66,6 +66,8 @@ def logout(request):
 
 @login_required(login_url='/', redirect_field_name='')
 def register_movement(request):
+    balance_yesterday = 0
+    current_balance_exists = False
     if request.method != 'POST':
         form = RegisterForm()
         return render(request, 'sistema/register_movement.html', {'form': form})
@@ -79,7 +81,6 @@ def register_movement(request):
     value = request.POST.get('value')
     for balance in Balances.objects.order_by('date'):
         balance_date = datetime.strptime(balance.date.strftime("%Y-%m-%d"), '%Y-%m-%d')
-        print(date, balance_date)
         if date == balance_date or balance_date > date:
             if type == '1':
                 modified_balance = float(balance.value) - float(value)
@@ -87,7 +88,28 @@ def register_movement(request):
                 modified_balance = float(balance.value) + float(value)
             balance.value = modified_balance
             balance.save()
-            print(modified_balance)
+            
+            
+        if date == balance_date:
+            current_balance_exists = True
+        else:
+            if(int(date.strftime('%H')) >= 21 and balance_date == (date+timedelta(days=1)).strftime("%Y-%m-%d")):
+                current_balance_exists = True
+            else:
+                if not current_balance_exists:
+                    current_balance_exists = False
+        if (date > balance_date):
+            if type == '1':
+                balance_yesterday = float(balance.value) - float(request.POST.get('value'))
+            else:
+                balance_yesterday = float(balance.value) + float(request.POST.get('value'))
+        
+    if not current_balance_exists:
+        balance = Balances(date=date, value=balance_yesterday)
+        balance.save()
+        current_balance_exists = True
+    form.save()
+            
 
     messages.success(
         request, f"{request.POST.get('description')} registrado com sucesso")

@@ -67,6 +67,7 @@ def logout(request):
 @login_required(login_url='/', redirect_field_name='')
 def register_movement(request):
     balance_yesterday = 0
+    is_the_last = False
     current_balance_exists = False
     if request.method != 'POST':
         form = RegisterForm()
@@ -93,17 +94,21 @@ def register_movement(request):
         if date == balance_date:
             current_balance_exists = True
         else:
-            if(int(date.strftime('%H')) >= 21 and balance_date == (date+timedelta(days=1)).strftime("%Y-%m-%d")):
-                current_balance_exists = True
-            else:
-                if not current_balance_exists:
-                    current_balance_exists = False
+            if not current_balance_exists:
+                current_balance_exists = False
         if (date > balance_date):
             if type == '1':
                 balance_yesterday = float(balance.value) - float(request.POST.get('value'))
             else:
                 balance_yesterday = float(balance.value) + float(request.POST.get('value'))
-        
+    
+    for balance in Balances.objects.order_by('-date'):  
+        if (date<balance_date):
+            if type == '1':
+                balance_yesterday = 0 - float(request.POST.get('value'))
+            else:
+                balance_yesterday = float(request.POST.get('value'))
+            
     if not current_balance_exists:
         balance = Balances(date=date, value=balance_yesterday)
         balance.save()

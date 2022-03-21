@@ -125,7 +125,8 @@ def receipt(request):
 
     mindate = request.GET.get('mindate')
     maxdate = request.GET.get('maxdate')
-    balance_of_date = 0
+    final_balance = 0
+    initial_balance=0
 
     if mindate != "" and maxdate != "":
         mindate = datetime.strptime(mindate, '%Y-%m-%d')
@@ -135,16 +136,17 @@ def receipt(request):
         if(mindate < maxdate or mindate == maxdate):
             for balance in Balances.objects.order_by('date'):
                 if mindate <= balance.date.strftime("%Y-%m-%d") and maxdate >= balance.date.strftime("%Y-%m-%d"):
-                    balance_of_date = balance.value
-                my_total_balance = balance.value
+                    final_balance = balance.value
+                if mindate >= balance.date.strftime("%Y-%m-%d"):
+                    initial_balance = balance.value
 
             # transacoes e paginacao
             transactions = Transactions.objects.order_by(
                 '-date').filter(date__gt=mindate, date__lt=maxdate)
             return render(request, 'sistema/receipt.html', {
                 'transactions': transactions,
-                'my_total_balance': my_total_balance,
-                'balance_of_date': balance_of_date,
+                'initial_balance': initial_balance,
+                'final_balance': final_balance,
                 'num_transactions': len(transactions),
             })
     messages.error(request, 'Preencha as datas corretamente')

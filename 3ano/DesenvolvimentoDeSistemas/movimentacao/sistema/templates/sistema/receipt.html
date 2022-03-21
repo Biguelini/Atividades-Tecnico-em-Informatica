@@ -55,30 +55,30 @@
     </tbody>
 </table>
 
-<p class="text-right mr-5"><strong>Saldo período:
-        {% if balance_of_date >= 0 %}
+<p class="text-right mr-5"><strong>Saldo Final Do Período:
+        {% if final_balance >= 0 %}
         <span class="text-success">
 
-            R$ {{balance_of_date}}
+            R$ {{final_balance}}
         </span>
         {% else %}
         <span class="text-danger">
 
-            R$ {{balance_of_date}}
+            R$ {{final_balance}}
         </span>
         {% endif %}
     </strong>
 </p>
-<p class="text-right mr-5"><strong>Saldo total:
-        {% if my_total_balance >= 0 %}
+<p class="text-right mr-5"><strong>Saldo Inicial:
+        {% if initial_balance >= 0 %}
         <span class="text-success">
 
-            R$ {{my_total_balance}}
+            R$ {{initial_balance}}
         </span>
         {% else %}
         <span class="text-danger">
 
-            R$ {{my_total_balance}}
+            R$ {{initial_balance}}
         </span>
         {% endif %}
     </strong>

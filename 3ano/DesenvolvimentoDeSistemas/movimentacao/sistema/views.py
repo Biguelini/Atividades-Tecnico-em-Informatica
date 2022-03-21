@@ -17,7 +17,11 @@ def index(request):
         if datetime.today().strftime("%Y-%m-%d") == balance_date:
             current_balance_exists = True
         else:
+<<<<<<< HEAD
             if(int(datetime.today().strftime('%H'))>=21 and balance_date == (datetime.today()+timedelta(days=1)).strftime("%Y-%m-%d")):
+=======
+            if(int(datetime.today().strftime('%H')) >= 21 and balance_date == (datetime.today()+timedelta(days=1)).strftime("%Y-%m-%d")):
+>>>>>>> parent of 2e0ce5d (Update views.py)
                 current_balance_exists = True
                 my_balance = balance.value
             else:

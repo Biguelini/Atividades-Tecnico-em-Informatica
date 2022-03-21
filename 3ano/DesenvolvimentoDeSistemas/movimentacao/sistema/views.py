@@ -17,7 +17,7 @@ def index(request):
         if datetime.today().strftime("%Y-%m-%d") == balance_date:
             current_balance_exists = True
         else:
-            if(int(datetime.today().strftime('%H')) >= 21 and balance_date == (datetime.today()+timedelta(days=1)).strftime("%Y-%m-%d")):
+            if(balance_date == (datetime.today()+timedelta(days=1)).strftime("%Y-%m-%d")):
                 current_balance_exists = True
                 my_balance = balance.value
             else:
@@ -128,11 +128,13 @@ def receipt(request):
     balance_of_date = 0
 
     if mindate != "" and maxdate != "":
+        mindate = datetime.strptime(mindate, '%Y-%m-%d')
+        mindate = (mindate-timedelta(days=1)).strftime("%Y-%m-%d")
         maxdate = datetime.strptime(maxdate, '%Y-%m-%d')
         maxdate = (maxdate+timedelta(days=1)).strftime("%Y-%m-%d")
         if(mindate < maxdate or mindate == maxdate):
             for balance in Balances.objects.order_by('date'):
-                if mindate <= balance.date.strftime("%Y-%m-%d") and maxdate > balance.date.strftime("%Y-%m-%d"):
+                if mindate <= balance.date.strftime("%Y-%m-%d") and maxdate >= balance.date.strftime("%Y-%m-%d"):
                     balance_of_date = balance.value
                 my_total_balance = balance.value
 

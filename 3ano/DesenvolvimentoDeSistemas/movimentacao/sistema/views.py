@@ -134,10 +134,9 @@ def receipt(request):
         mindate = datetime.strptime(mindate, '%Y-%m-%d')
         mindate = (mindate-timedelta(days=1)).strftime("%Y-%m-%d")
         if(mindate < maxdate or mindate == maxdate):
-            for balance in Balances.objects.order_by('-date'):
-                if mindate <= balance.date.strftime("%Y-%m-%d") and maxdate > balance.date.strftime("%Y-%m-%d"):
-                    inicial_balance = balance.value
             for balance in Balances.objects.order_by('date'):
+                if balance.date.strftime("%Y-%m-%d") <= mindate:
+                    inicial_balance = balance.value
                 if mindate <= balance.date.strftime("%Y-%m-%d") and maxdate > balance.date.strftime("%Y-%m-%d"):
                     final_balance = balance.value
 

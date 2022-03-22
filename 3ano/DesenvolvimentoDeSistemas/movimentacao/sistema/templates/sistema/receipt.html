@@ -18,7 +18,7 @@
 {%block content%}
 <!-- checa se pode mostrar a tabela (está logado) ou precisa redirecionar para o login -->
 {% if user.is_authenticated %}
-<h3 class="mt-0">Recibo emitido por {{user}} da Bigue Company.</h3>
+<h3 class="mt-0">Extrato emitido por {{user}} da Bigue Company.</h3>
 
 {% if num_transactions > 0 %}
 <table class="table mt-3 table-striped">

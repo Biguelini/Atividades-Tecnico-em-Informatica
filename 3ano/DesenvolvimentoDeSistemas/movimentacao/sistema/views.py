@@ -8,7 +8,6 @@ from django.contrib.auth.decorators import login_required
 
 
 def index(request):
-    balance_yesterday = 0
     my_balance = 0
 
     current_balance_exists = False
@@ -19,16 +18,10 @@ def index(request):
         else:
             if(int(datetime.today().strftime('%H')) >= 21 and balance_date == (datetime.today()+timedelta(days=1)).strftime("%Y-%m-%d")):
                 current_balance_exists = True
-                my_balance = balance.value
-            else:
-                if not current_balance_exists:
-                    current_balance_exists = False
-        if (datetime.today()-timedelta(days=1)).strftime("%Y-%m-%d") == balance_date:
-            balance_yesterday = balance.value
 
         my_balance = balance.value
     if not current_balance_exists:
-        balance = Balances(date=datetime.today(), value=balance_yesterday)
+        balance = Balances(date=datetime.today(), value=0)
         balance.save()
         current_balance_exists = True
 
@@ -67,7 +60,6 @@ def logout(request):
 @login_required(login_url='/', redirect_field_name='')
 def register_movement(request):
     balance_yesterday = 0
-    is_the_last = False
     current_balance_exists = False
     if request.method != 'POST':
         form = RegisterForm()
@@ -129,11 +121,9 @@ def receipt(request):
     final_balance=0
 
     if mindate != "" and maxdate != "":
-        maxdate = datetime.strptime(maxdate, '%Y-%m-%d')
-        maxdate = (maxdate+timedelta(days=1)).strftime("%Y-%m-%d")
-        mindate = datetime.strptime(mindate, '%Y-%m-%d')
-        mindate = (mindate-timedelta(days=1)).strftime("%Y-%m-%d")
-        if(mindate < maxdate or mindate == maxdate):
+        maxdate = next_day(maxdate)
+        mindate = previus_day(mindate)
+        if(mindate <= maxdate or mindate == maxdate):
             for balance in Balances.objects.order_by('date'):
                 if balance.date.strftime("%Y-%m-%d") <= mindate:
                     inicial_balance = balance.value
@@ -151,3 +141,8 @@ def receipt(request):
             })
     messages.error(request, 'Preencha as datas corretamente')
     return redirect('index')
+
+def next_day(date):
+    return ((datetime.strptime(date, '%Y-%m-%d'))+timedelta(days=1)).strftime("%Y-%m-%d")
+def previus_day(date):
+    return ((datetime.strptime(date, '%Y-%m-%d'))-timedelta(days=1)).strftime("%Y-%m-%d")

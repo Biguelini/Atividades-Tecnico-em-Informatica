@@ -14,10 +14,10 @@ class Type(models.Model):
 
 
 class Transactions(models.Model):
-    date = models.DateTimeField(default=timezone.now)
-    description = models.CharField(max_length=255, blank=False)
-    value = models.DecimalField(max_digits=20, decimal_places=2)
-    type = models.ForeignKey(Type, on_delete=models.DO_NOTHING)
+    date = models.DateTimeField(default=timezone.now, verbose_name='Data')
+    description = models.CharField(max_length=255, blank=False, verbose_name='Descrição')
+    value = models.DecimalField(max_digits=20, decimal_places=2, verbose_name='Valor')
+    type = models.ForeignKey(Type, on_delete=models.DO_NOTHING, verbose_name='Tipo')
     # tipo = models.CharField(max_length=1, blank=False)
 
     def __str__(self):

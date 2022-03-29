@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 
 
 def index(request):
+    balance_yesterday = 0
     my_balance = 0
 
     current_balance_exists = False
@@ -18,10 +19,16 @@ def index(request):
         else:
             if(int(datetime.today().strftime('%H')) >= 21 and balance_date == (datetime.today()+timedelta(days=1)).strftime("%Y-%m-%d")):
                 current_balance_exists = True
+                my_balance = balance.value
+            else:
+                if not current_balance_exists:
+                    current_balance_exists = False
+        if (datetime.today()-timedelta(days=1)).strftime("%Y-%m-%d") == balance_date:
+            balance_yesterday = balance.value
 
         my_balance = balance.value
     if not current_balance_exists:
-        balance = Balances(date=datetime.today(), value=0)
+        balance = Balances(date=datetime.today(), value=balance_yesterday)
         balance.save()
         current_balance_exists = True
 

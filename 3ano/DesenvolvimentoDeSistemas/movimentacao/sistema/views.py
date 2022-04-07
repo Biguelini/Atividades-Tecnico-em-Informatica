@@ -118,12 +118,13 @@ def receipt(request):
         maxdate = next_day(maxdate)
         mindate = previus_day(mindate)
         if(mindate <= maxdate or mindate == maxdate):
-            for balance in Balances.objects.order_by('date'):
+            for balance in Balances.objects.order_by('-date'):
+                print(balance.date.strftime("%Y-%m-%d"),mindate)
+                print(balance.date.strftime("%Y-%m-%d")<= mindate, balance.value)
                 if balance.date.strftime("%Y-%m-%d") <= mindate:
                     inicial_balance = balance.value
                 if mindate <= balance.date.strftime("%Y-%m-%d") and maxdate > balance.date.strftime("%Y-%m-%d"):
                     final_balance = balance.value
-
             # transacoes e paginacao
             transactions = Transactions.objects.order_by(
                 '-date').filter(date__gt=mindate, date__lt=maxdate)

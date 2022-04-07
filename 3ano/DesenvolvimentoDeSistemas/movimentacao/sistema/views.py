@@ -19,14 +19,13 @@ def index(request):
         else:
             if(int(datetime.today().strftime('%H')) >= 21 and balance_date == (datetime.today()+timedelta(days=1)).strftime("%Y-%m-%d")):
                 current_balance_exists = True
-                my_balance = balance.value
             else:
                 if not current_balance_exists:
                     current_balance_exists = False
-        if (datetime.today()-timedelta(days=1)).strftime("%Y-%m-%d") == balance_date:
-            balance_yesterday = balance.value
 
         my_balance = balance.value
+        balance_yesterday = balance.value
+
     if not current_balance_exists:
         balance = Balances(date=datetime.today(), value=balance_yesterday)
         balance.save()
@@ -88,26 +87,14 @@ def register_movement(request):
                 modified_balance = float(balance.value) + float(value)
             balance.value = modified_balance
             balance.save()
-            
-            
         if date == balance_date:
             current_balance_exists = True
-        else:
-            if not current_balance_exists:
-                current_balance_exists = False
-        if (date > balance_date):
+        if not current_balance_exists and balance_date<date:
             if type == '1':
-                balance_yesterday = float(balance.value) - float(request.POST.get('value'))
+                balance_yesterday = float(balance.value) - float(value)
             else:
-                balance_yesterday = float(balance.value) + float(request.POST.get('value'))
-    
-    for balance in Balances.objects.order_by('-date'):  
-        if (date<balance_date):
-            if type == '1':
-                balance_yesterday = 0 - float(request.POST.get('value'))
-            else:
-                balance_yesterday = float(request.POST.get('value'))
-            
+                balance_yesterday = float(balance.value) + float(value)
+    print(balance_yesterday)
     if not current_balance_exists:
         balance = Balances(date=date, value=balance_yesterday)
         balance.save()

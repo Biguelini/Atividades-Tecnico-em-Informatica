@@ -11,7 +11,27 @@ router.get('/', (req, res, next) => {
             if (error) {
                 return res.status(500).send({ error: error })
             }
-            return res.status(200).send({ employees: result })
+            const response = {
+                amount: result.length,
+                employees: result.map((employee) => {
+                    return {
+                        id: employee.id,
+                        name: employee.name,
+                        baseSalary: employee.baseSalary,
+                        numberOfChildrenUnderFourteen:
+                            employee.numberOfChildrenUnderFourteen,
+                        numberOfIncomeTaxDependents:
+                            employee.numberOfIncomeTaxDependents,
+                        wantMealVouchers: employee.wantMealVouchers,
+                        request: {
+                            type: 'GET',
+                            description: 'Returns all registered employees',
+                            url: 'localhost:3000/employees/' + employee.id,
+                        },
+                    }
+                }),
+            }
+            return res.status(200).send({ response })
         })
     })
 })

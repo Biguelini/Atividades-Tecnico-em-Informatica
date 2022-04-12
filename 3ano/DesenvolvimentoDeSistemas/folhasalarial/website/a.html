@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form method="post">
+        <label for="name">Nome:</label>
+        <input type="text" name="name" id="name">
+        <label for="baseSalary">Salário base:</label>
+        <input type="number" name="baseSalary" id="baseSalary">
+        <label for="childrenUnder14YearsOld">Filhos com menos de 14
+            anos:</label>
+        <input type="number" name="childrenUnder14YearsOld"
+            id="childrenUnder14YearsOld">
+        <label for="incomeTaxDependent">Dependentes do IR:</label>
+        <input type="number" name="incomeTaxDependent" id="incomeTaxDependent">
+        <label for="wantTransportationVouchers">Quer vale transporte?</label>
+        <input type="radio" id="yes" name="wantTransportationVouchers"
+            value="true">
+        <label for="wantTransportationVouchers">Quero</label>
+        <input type="radio" id="no" name="wantTransportationVouchers"
+            value="false">
+        <label for="wantTransportationVouchers">Não quero</label>
+    </form>
+    <button onclick="cadastrar()">Enviar</button>
+    <button onclick="fazget()">Resgatar dados</button>
+    <script>
+        function cadastrar() {
+            var name = document.getElementById('name').value
+            var baseSalary = document.getElementById('baseSalary').value
+            var childrenUnder14YearsOld = document.getElementById('childrenUnder14YearsOld').value
+            var incomeTaxDependent = document.getElementById('incomeTaxDependent').value
+            var wantTransportationVouchers = document.querySelector('input[name="wantTransportationVouchers"]:checked').value;
+
+            console.log(name, baseSalary, childrenUnder14YearsOld, incomeTaxDependent, wantTransportationVouchers)
+            postMovimento(name, baseSalary, childrenUnder14YearsOld, incomeTaxDependent, wantTransportationVouchers)
+        }
+        function postMovimento(name, baseSalary, childrenUnder14YearsOld, incomeTaxDependent, wantTransportationVouchers) {
+            const data = { "name": name, "baseSalary": parseFloat(baseSalary), "childrenUnder14YearsOld": parseInt(childrenUnder14YearsOld), "incomeTaxDependent": parseInt(incomeTaxDependent), "wantTransportationVouchers": (wantTransportationVouchers == 'true') }
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            };
+            console.log(JSON.stringify(data))
+            fetch("http://localhost:3000/employee", options)
+            console.log("foi")
+        }
+        function fazget() {
+            const minhaUrl = "http://localhost:3000/employee"
+            fetch(minhaUrl).then(function (response) {
+                return response.json();
+            }).then(function (data) {
+                console.log(JSON.stringify(data));
+            }).catch(function () {
+                console.log("Houve algum problema!");
+            });
+        }
+    </script>
+</body>
+
+</html>

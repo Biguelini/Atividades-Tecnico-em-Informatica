@@ -10,7 +10,7 @@ router.post('/', async (req, res) => {
         incomeTaxDependent,
         wantTransportationVouchers,
     } = req.body
-    if (!name || !baseSalary || !childrenUnder14YearsOld || !incomeTaxDependent || !wantTransportationVouchers) {
+    if (!name) {
         return res.status(422).json({ error: 'Preencha os campos' })
     }
     const employee = {

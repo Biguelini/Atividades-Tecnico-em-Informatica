@@ -4,32 +4,51 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Home - Brand</title>
+        content="width=device-width, 
+        initial-scale=1.0, 
+        shrink-to-fit=no">
+    <title>Bigue Company | Funcionários</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
     <link rel="stylesheet" href="assets/css/styles.min.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
 </head>
 
-<body onload="fazget()">
-    <nav
-        class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-        <div class="container"><a class="navbar-brand logo" href="#">Bigue
-                Company</a><button data-bs-toggle="collapse"
-                class="navbar-toggler" data-bs-target="#navcol-1"><span
-                    class="visually-hidden">Toggle navigation</span><span
-                    class="navbar-toggler-icon"></span></button>
+<body onload="fillTable()">
+    <nav class="navbar 
+        navbar-light 
+        navbar-expand-lg 
+        fixed-top bg-white 
+        clean-navbar">
+        <div class="container">
+            <a class="navbar-brand logo" href="#">Bigue Company</a>
+            <button 
+                data-bs-toggle="collapse"
+                class="navbar-toggler" 
+                data-bs-target="#navcol-1">
+                <span class="visually-hidden">
+                    Toggle navigation
+                </span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active"
-                            href="index.html">Funcionários</a></li>
-                    <li class="nav-item"><a class="nav-link"
-                            href="tabelas.html">Tabelas</a></li>
-                    <li class="nav-item"><a class="nav-link"
-                            href="calculos.html">Cálculos</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">
+                            Funcionários
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tabelas.html">
+                            Tabelas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="calculos.html">
+                            Cálculos
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -37,7 +56,7 @@
     <div style="margin-top: 160px;">
         <h1 style="text-align: center;font-weight: bold;">Funcionários</h1>
         <div class="table-responsive mx-5" style="margin-top: 30px;">
-            <table class="table table-bordered table-striped table-hover" >
+            <table class="table table-bordered table-striped table-hover">
                 <thead>
                     <tr>
                         <th>Nome</th>
@@ -47,49 +66,89 @@
                         <th>Quer VT?</th>
                     </tr>
                 </thead>
-                <tbody id="tableEmployyesBody">
-                   
+                <tbody id="tableEmployeesBody">
+
                 </tbody>
             </table>
         </div>
     </div>
     <section class="contact-clean" style="background: rgb(255,255,255);">
         <form method="post">
-            <h2 class="text-center">Cadastro de funcionários</h2><label
-                class="form-label">Nome</label>
-            <div class="mb-3"><input class="form-control" type="text" id="name"
-                    name="name" placeholder="Ex: João"></div>
-            <label class="form-label">Salário Base</label>
-            <div class="mb-3"><input class="form-control" type="number"
-                    id="baseSalary" name="baseSalary" placeholder="Ex: 1000,00"
-                    min="0" range="0.01"></div>
-            <label class="form-label">Filhos com menos de 14 anos</label>
-            <div class="mb-3"><input class="form-control" type="number"
-                    id="childrenUnder14YearsOld" name="childrenUnder14YearsOld"
-                    placeholder="Ex: 0" min="0" range="1"></div>
-            <label class="form-label">Dependentes do IR</label>
-            <div class="mb-3"><input class="form-control is-invalid"
-                    type="number" id="incomeTaxDependent"
-                    name="incomeTaxDependent" placeholder="Ex: 1" min="0"
-                    range="1">
-                <!-- Start: The Error Message<small
-                    class="form-text text-danger">Preencha corretamente</small>End: The Error Message -->
+            <h2 class="text-center">Cadastro de funcionários</h2>
+            <label class="form-label">Nome</label>
+            <div class="mb-3" id="divName">
+                <input class="form-control"
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    placeholder="Ex: João">
             </div>
-            <div class="mb-3"></div><label class="form-label">Quer vale
-                transporte?</label>
-            <div class="form-check"><input class="form-check-input" type="radio"
-                    id="yes" name="wantTransportationVouchers"
-                    value="true"><label class="form-check-label" id="yesLabel"
-                    for="wantTransportationVouchers">Sim</label></div>
-            <div class="form-check"><input class="form-check-input" type="radio"
-                    id="no" name="wantTransportationVouchers"
-                    value="false"><label class="form-check-label" id="noLabel"
-                    for="wantTransportationVouchers">Não</label></div>
+            <label class="form-label">Salário Base</label>
+            <div class="mb-3" id="divbaseSalary">
+                <input class="form-control"
+                    type="number" 
+                    id="baseSalary" 
+                    name="baseSalary"
+                    placeholder="Ex: 1000,00" 
+                    min="0" 
+                    range="0.01">
+            </div>
+            <label class="form-label">Filhos com menos de 14 anos</label>
+            <div class="mb-3" id="divchildrenUnder14YearsOld">
+                <input class="form-control" 
+                    type="number"
+                    id="childrenUnder14YearsOld" 
+                    name="childrenUnder14YearsOld"
+                    placeholder="Ex: 0" 
+                    min="0" 
+                    range="1">
+            </div>
+            <label class="form-label">Dependentes do IR</label>
+            <div class="mb-3" id="divincomeTaxDependent">
+                <input
+                    class="form-control"
+                    type="number"
+                    id="incomeTaxDependent"
+                    name="incomeTaxDependent"
+                    placeholder="Ex: 1"
+                    min="0"
+                    range="1">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Quer vale transporte?</label>
+                <div class="form-check">
+                    <input class="form-check-input"
+                        type="radio" 
+                        id="yes" 
+                        name="wantTransportationVouchers"
+                        value="true">
+                    <label class="form-check-label"
+                        id="yesLabel"
+                        for="wantTransportationVouchers">
+                        Sim
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input"
+                        type="radio" 
+                        id="no" 
+                        name="wantTransportationVouchers"
+                        value="false">
+                    <label class="form-check-label"
+                        id="noLabel"
+                        for="wantTransportationVouchers">
+                        Não
+                    </label>
+                </div>
+            </div>
         </form>
-        <div class="mb-3 d-flex justify-content-center "><button
-                class="btn btn-primary p-3 mt-3" style="width: 300px;"
-                onclick="cadastrar()">Cadastrar
-                Funcionário</button>
+        <div class="mb-3 d-flex justify-content-center ">
+            <button
+                class="btn btn-primary p-3 mt-3" 
+                style="width: 300px;"
+                onclick="registerEmployee()">
+                Cadastrar Funcionário
+            </button>
         </div>
     </section>
     <script
@@ -97,47 +156,8 @@
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="assets/js/script.min.js"></script>
-    <script>
-        function cadastrar() {
-            var name = document.getElementById('name').value
-            var baseSalary = document.getElementById('baseSalary').value
-            var childrenUnder14YearsOld = document.getElementById('childrenUnder14YearsOld').value
-            var incomeTaxDependent = document.getElementById('incomeTaxDependent').value
-            var wantTransportationVouchers = document.querySelector('input[name="wantTransportationVouchers"]:checked').value;
+    <script src="./main.js"></script>
 
-            console.log(name, baseSalary, childrenUnder14YearsOld, incomeTaxDependent, wantTransportationVouchers)
-            postMovimento(name, baseSalary, childrenUnder14YearsOld, incomeTaxDependent, wantTransportationVouchers)
-        }
-        function postMovimento(name, baseSalary, childrenUnder14YearsOld, incomeTaxDependent, wantTransportationVouchers) {
-            const data = { "name": name, "baseSalary": parseFloat(baseSalary), "childrenUnder14YearsOld": parseInt(childrenUnder14YearsOld), "incomeTaxDependent": parseInt(incomeTaxDependent), "wantTransportationVouchers": (wantTransportationVouchers == 'true') }
-            const options = {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            };
-            console.log(JSON.stringify(data))
-            fetch("http://localhost:3000/employee", options)
-            console.log("foi")
-            document.location.reload(true)
-        }
-        function fazget() {
-            const minhaUrl = "http://localhost:3000/employee"
-            fetch(minhaUrl).then(function (response) {
-                return response.json();
-            }).then(function (data) {
-                const dados = data;
-                for (var indice in dados) {
-                    var novaLinha = `<tr><td> ${dados[indice].name}</td><td>R$ ${dados[indice].baseSalary}</td><td>${dados[indice].childrenUnder14YearsOld}</td><td>${dados[indice].incomeTaxDependent}</td><td>${dados[indice].wantTransportationVouchers == true ? 'Sim' : 'Não'}</td></tr >`
-                    document.getElementById("tableEmployyesBody").innerHTML += novaLinha
-                    console.log(dados[indice].name)
-                }
-            }).catch(function () {
-                console.log("Houve algum problema!");
-            });
-        }
-    </script>
 </body>
 
 </html>

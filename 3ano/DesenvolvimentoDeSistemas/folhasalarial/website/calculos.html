@@ -48,7 +48,7 @@
                         <th>Vale Transporte</th>
                         <th>IRRF</th>
                         <th>Salário Líquido</th>
-                        <th>Olerite</th>
+                        <th>Holerite</th>
                     </tr>
                 </thead>
                 <tbody id="tableEmployeesBody">
@@ -74,50 +74,11 @@
                     for (var line in employees) {
                         var name = employees[line].name
                         var baseSalary = employees[line].baseSalary
-                        var inss = 0
-                        var familySalary = 0
-                        var vt = 0
-                        var irrf = 0
-                        if (baseSalary <= 1212) {
-                            inss = porcentagem(baseSalary, 7.5)
-                        } else if (baseSalary > 1212 && baseSalary <= 2427.36) {
-                            inss = porcentagem(1212, 7.5)
-                            inss += porcentagem((baseSalary - 1212.01), 9)
-                        } else if (baseSalary > 2427.36 && baseSalary <= 3641.03) {
-                            inss = porcentagem(1212, 7.5)
-                            inss += porcentagem((2427.36 - 1212.01), 9)
-                            inss += porcentagem((baseSalary - 2427.37), 12)
-                        } else if (baseSalary > 3641.03 && baseSalary <= 7087.22){
-                            inss = porcentagem(1212, 7.5)
-                            inss += porcentagem((2427.36 - 1212.01), 9)
-                            inss += porcentagem((3641.03 - 2427.37), 12)
-                            inss += porcentagem((baseSalary - 3641.04), 14)
-                        } else {
-                            inss = porcentagem(1212, 7.5)
-                            inss += porcentagem((2427.36 - 1212.01), 9)
-                            inss += porcentagem((3641.03 - 2427.37), 12)
-                            inss += porcentagem((7087.22 - 3641.04), 14)
-                        }
-                        if (baseSalary <= 1655.98){
-
-                            familySalary = employees[line].childrenUnder14YearsOld * 56.47
-                        } 
-                        if (employees[line].wantTransportationVouchers == true){
-                            vt = porcentagem(baseSalary, 6)
-                        }
-                        var baseCalcSalary = baseSalary-inss-(employees[line].incomeTaxDependent*189.59)
-
-                        if(baseCalcSalary<=1903.98){
-                            irrf=0
-                        } else if(baseCalcSalary>1903.98 && baseCalcSalary <=2826.65){
-                            irrf=porcentagem(baseCalcSalary, 7.5) - 142.80
-                        } else if(baseCalcSalary>2826.65 && baseCalcSalary <=3751.05){
-                            irrf=porcentagem(baseCalcSalary, 15) - 354.80
-                        } else if(baseCalcSalary>3751.05 && baseCalcSalary <=4664.68){
-                            irrf=porcentagem(baseCalcSalary, 22.5) - 646.13
-                        } else {
-                            irrf=porcentagem(baseCalcSalary, 27.5) - 869.36
-                        }
+                        var inss = calcINSS(baseSalary)
+                        var familySalary = (baseSalary <= 1655.98) ? (employees[line].childrenUnder14YearsOld * 56.47) : 0
+                        var vt = (employees[line].wantTransportationVouchers) ? calcPercent(baseSalary, 6) : 0
+                        var baseCalcSalary = baseSalary - inss - (employees[line].incomeTaxDependent * 189.59)
+                        var irrf = calcIRFF(baseCalcSalary)
                         const finalSalary = baseSalary - inss + familySalary - vt - irrf
                         var newTableLine = `
                             <tr>
@@ -130,7 +91,7 @@
                                 <td>R$ ${finalSalary.toFixed(2)}</td>
                                 <td class="d-flex justify-content-center"><button
                                 class="btn btn-primary" type="button">Ver
-                                Olerite</button></td>
+                                Holerite</button></td>
                             </tr>`
                         document.getElementById('tableEmployeesBody').innerHTML += newTableLine
                     }
@@ -139,7 +100,46 @@
                     console.log('Houve algum problema!')
                 })
         }
-        const porcentagem = (valor, porcentagem) => valor * (porcentagem / 100)
+        const calcPercent = (value, percent) => value * (percent / 100)
+        function calcINSS(baseSalary) {
+            var inss = 0
+            if (baseSalary <= 1212) {
+                inss = calcPercent(baseSalary, 7.5)
+            } else if (baseSalary > 1212 && baseSalary <= 2427.36) {
+                inss = calcPercent(1212, 7.5)
+                inss += calcPercent((baseSalary - 1212.01), 9)
+            } else if (baseSalary > 2427.36 && baseSalary <= 3641.03) {
+                inss = calcPercent(1212, 7.5)
+                inss += calcPercent((2427.36 - 1212.01), 9)
+                inss += calcPercent((baseSalary - 2427.37), 12)
+            } else if (baseSalary > 3641.03 && baseSalary <= 7087.22) {
+                inss = calcPercent(1212, 7.5)
+                inss += calcPercent((2427.36 - 1212.01), 9)
+                inss += calcPercent((3641.03 - 2427.37), 12)
+                inss += calcPercent((baseSalary - 3641.04), 14)
+            } else {
+                inss = calcPercent(1212, 7.5)
+                inss += calcPercent((2427.36 - 1212.01), 9)
+                inss += calcPercent((3641.03 - 2427.37), 12)
+                inss += calcPercent((7087.22 - 3641.04), 14)
+            }
+            return inss
+        }
+        function calcIRFF(baseCalcSalary) {
+            irrf = 0
+            if (baseCalcSalary <= 1903.98) {
+                irrf = 0
+            } else if (baseCalcSalary > 1903.98 && baseCalcSalary <= 2826.65) {
+                irrf = calcPercent(baseCalcSalary, 7.5) - 142.80
+            } else if (baseCalcSalary > 2826.65 && baseCalcSalary <= 3751.05) {
+                irrf = calcPercent(baseCalcSalary, 15) - 354.80
+            } else if (baseCalcSalary > 3751.05 && baseCalcSalary <= 4664.68) {
+                irrf = calcPercent(baseCalcSalary, 22.5) - 646.13
+            } else {
+                irrf = calcPercent(baseCalcSalary, 27.5) - 869.36
+            }
+            return irrf
+        }
     </script>
 </body>
 

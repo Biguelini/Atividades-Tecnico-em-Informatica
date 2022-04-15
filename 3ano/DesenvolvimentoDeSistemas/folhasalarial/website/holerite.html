@@ -14,7 +14,7 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
 </head>
 
-<body onload="exec()">
+<body onload="getEmployee(getIdUrl())">
     <nav
         class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
         <div class="container"><a class="navbar-brand logo" href="#">Bigue
@@ -29,11 +29,84 @@
                     <li class="nav-item"><a class="nav-link"
                             href="tabelas.html">Tabelas</a></li>
                     <li class="nav-item"><a class="nav-link"
-                            href="calculos.html">Cálculos</a></li>
+                            href="salarios.html">Salários</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+    <div>
+        <div class="table-responsive"
+            style="padding-top: 150px; margin: 0 100px;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Bigue Company LTDA</th>
+                        <th>Recibo de Pagamento de Salário</th>
+                    </tr>
+                    <tr>
+                        <th>CNPJ: 00.000.000/001-00</th>
+                        <th>Maio/2022</th>
+                    </tr>
+                </thead>
+                <tbody id="tbodyIdentEmployee">
+                    <tr>
+                        <th>Código</th>
+                        <th>Nome do Funcionário</th>
+                    </tr>
+
+                </tbody>
+
+            </table>
+        </div>
+        <div class="table-responsive" style="margin: 0 100px;">
+            <table class="table">
+                <thead>
+
+                    <tr>
+                        <th>Cód.</th>
+                        <th>Descrição</th>
+                        <th>Vencimentos</th>
+                        <th>Descontos</th>
+                    </tr>
+                </thead>
+                <tbody id="tbodyDescontosVencimentos">
+                    <tr>
+                        <td>001</td>
+                        <td>Salário</td>
+                        <td>R$ 1300,00</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>INSS</td>
+                        <td></td>
+                        <td>R$ 78,00</th>
+                    </tr>
+                    <tr>
+                </tbody>
+                <thead>
+                    <td></td>
+                    <td></td>
+                    <th style="text-align: center;">Total de vencimentos</th>
+                    <th style="text-align: center;">Total de descontos</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: center;">R$ 00,00</td>
+                        <td style="text-align: center;">R$ 00,00</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: right;"><strong>Valor
+                                líquido</strong>$ 00,00</td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
     <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script
@@ -58,16 +131,95 @@
                         childrenUnder14YearsOld,
                         incomeTaxDependent,
                         name,
-                        wantTransportationVouchers
+                        wantTransportationVouchers,
                     } = data
+                    const inss = calcINSS(baseSalary)
+                    const familySalary =
+                        baseSalary <= 1655.98
+                            ? childrenUnder14YearsOld * 56.47
+                            : 0
+                    const vt = wantTransportationVouchers
+                        ? calcPercent(baseSalary, 6)
+                        : 0
+                    const baseCalcSalary = baseSalary - inss - incomeTaxDependent * 189.59
+                    const irrf = calcIRFF(baseCalcSalary)
+                    const finalSalary = baseSalary - inss + familySalary - vt - irrf
+                    console.log(name, baseSalary.toFixed(2), inss.toFixed(2), familySalary.toFixed(2), vt.toFixed(2), irrf.toFixed(2), finalSalary.toFixed(2))
+                    document.getElementById('tbodyIdentEmployee').innerHTML += `<tr>
+                        <td>${idEmployee}</td>
+                        <td>${name}</td>
+                    </tr>`
+                    var idDescVenc = 1
+                    document.getElementById('tbodyDescontosVencimentos').innerHTML += `<tr>
+                        <td>00${idDescVenc}</td>
+                        <td>Salário</td>
+                        <td>R$ ${baseSalary.toFixed(2)}</td>
+                        <td></td>
+                    </tr>`
+                    idDescVenc++
+                    if (inss > 0) {
+                        document.getElementById('tbodyDescontosVencimentos').innerHTML += `<tr>
+                        <td>00${idDescVenc}</td>
+                        <td>INSS</td>
+                        <td></td>
+                        <td>R$ ${inss.toFixed(2)}</td>
+                    </tr>`
+                    }
+                    idDescVenc++
+                    if (familySalary > 0) {
+                        document.getElementById('tbodyDescontosVencimentos').innerHTML += `<tr>
+                        <td>00${idDescVenc}</td>
+                        <td>INSS</td>
+                        <td></td>
+                        <td>R$ ${inss.toFixed(2)}</td>
+                    </tr>`
+                    }
                 })
                 .catch(function () {
                     console.log('Houve algum problema!')
                 })
         }
-        const exec = () => {
-            getEmployee(getIdUrl())
+        const calcPercent = (value, percent) => value * (percent / 100)
+        function calcINSS(baseSalary) {
+            var inss = 0
+            if (baseSalary <= 1212) {
+                inss = calcPercent(baseSalary, 7.5)
+            } else if (baseSalary > 1212 && baseSalary <= 2427.36) {
+                inss = calcPercent(1212, 7.5)
+                inss += calcPercent(baseSalary - 1212.01, 9)
+            } else if (baseSalary > 2427.36 && baseSalary <= 3641.03) {
+                inss = calcPercent(1212, 7.5)
+                inss += calcPercent(2427.36 - 1212.01, 9)
+                inss += calcPercent(baseSalary - 2427.37, 12)
+            } else if (baseSalary > 3641.03 && baseSalary <= 7087.22) {
+                inss = calcPercent(1212, 7.5)
+                inss += calcPercent(2427.36 - 1212.01, 9)
+                inss += calcPercent(3641.03 - 2427.37, 12)
+                inss += calcPercent(baseSalary - 3641.04, 14)
+            } else {
+                inss = calcPercent(1212, 7.5)
+                inss += calcPercent(2427.36 - 1212.01, 9)
+                inss += calcPercent(3641.03 - 2427.37, 12)
+                inss += calcPercent(7087.22 - 3641.04, 14)
+            }
+            return inss
         }
+        function calcIRFF(baseCalcSalary) {
+            irrf = 0
+            if (baseCalcSalary <= 1903.98) {
+                irrf = 0
+            } else if (baseCalcSalary > 1903.98 && baseCalcSalary <= 2826.65) {
+                irrf = calcPercent(baseCalcSalary, 7.5) - 142.8
+            } else if (baseCalcSalary > 2826.65 && baseCalcSalary <= 3751.05) {
+                irrf = calcPercent(baseCalcSalary, 15) - 354.8
+            } else if (baseCalcSalary > 3751.05 && baseCalcSalary <= 4664.68) {
+                irrf = calcPercent(baseCalcSalary, 22.5) - 646.13
+            } else {
+                irrf = calcPercent(baseCalcSalary, 27.5) - 869.36
+            }
+            return irrf
+        }
+
     </script>
 </body>
 

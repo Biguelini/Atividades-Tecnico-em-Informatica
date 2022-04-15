@@ -70,19 +70,7 @@
                     </tr>
                 </thead>
                 <tbody id="tbodyDescontosVencimentos">
-                    <tr>
-                        <td>001</td>
-                        <td>Salário</td>
-                        <td>R$ 1300,00</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>INSS</td>
-                        <td></td>
-                        <td>R$ 78,00</th>
-                    </tr>
-                    <tr>
+                    
                 </tbody>
                 <thead>
                     <td></td>
@@ -90,18 +78,16 @@
                     <th style="text-align: center;">Total de vencimentos</th>
                     <th style="text-align: center;">Total de descontos</th>
                     </tr>
-                    <tr>
+                    <tr id="totalVencDesc">
                         <td></td>
                         <td></td>
-                        <td style="text-align: center;">R$ 00,00</td>
-                        <td style="text-align: center;">R$ 00,00</td>
+
                     </tr>
-                    <tr>
+                    <tr id="liquidSalary">
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td style="text-align: right;"><strong>Valor
-                                líquido</strong>$ 00,00</td>
+                        
                     </tr>
                 </thead>
             </table>
@@ -163,17 +149,40 @@
                         <td>INSS</td>
                         <td></td>
                         <td>R$ ${inss.toFixed(2)}</td>
-                    </tr>`
+                        </tr>`
+                        idDescVenc++
                     }
-                    idDescVenc++
                     if (familySalary > 0) {
                         document.getElementById('tbodyDescontosVencimentos').innerHTML += `<tr>
                         <td>00${idDescVenc}</td>
-                        <td>INSS</td>
+                        <td>Salário Família</td>
+                        <td>R$ ${familySalary.toFixed(2)}</td>
                         <td></td>
-                        <td>R$ ${inss.toFixed(2)}</td>
                     </tr>`
+                        idDescVenc++
                     }
+                    if (wantTransportationVouchers) {
+                        document.getElementById('tbodyDescontosVencimentos').innerHTML += `<tr>
+                        <td>00${idDescVenc}</td>
+                        <td>Vale Transporte</td>
+                        <td></td>
+                        <td>R$ ${vt.toFixed(2)}</td>
+                    </tr>`
+                        idDescVenc++
+                    }
+                    if (irrf > 0) {
+                        document.getElementById('tbodyDescontosVencimentos').innerHTML += `<tr>
+                        <td>00${idDescVenc}</td>
+                        <td>IRRF</td>
+                        <td></td>
+                        <td>R$ ${irrf.toFixed(2)}</td>
+                    </tr>`
+                        idDescVenc++
+                    }
+                    document.getElementById('totalVencDesc').innerHTML += `<td style="text-align: center;">R$ ${(baseSalary+familySalary).toFixed(2)}</td>
+                        <td style="text-align: center;">R$ ${(inss+vt+irrf).toFixed(2)}</td>`
+                    document.getElementById('liquidSalary').innerHTML += `<td style="text-align: right;"><strong>Valor
+                                líquido</strong> $ ${finalSalary.toFixed(2)}</td>`
                 })
                 .catch(function () {
                     console.log('Houve algum problema!')

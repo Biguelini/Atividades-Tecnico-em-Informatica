@@ -1,13 +1,11 @@
 function registerEmployee() {
-    var name = document.getElementById('name')
-    var baseSalary = document.getElementById('baseSalary')
-    var childrenUnder14YearsOld = document.getElementById(
-        'childrenUnder14YearsOld'
-    )
-    var incomeTaxDependent = document.getElementById('incomeTaxDependent')
-    var wantTransportationVouchers = document.querySelector(
-        'input[name="wantTransportationVouchers"]:checked'
-    )
+    const {
+        name,
+        baseSalary,
+        childrenUnder14YearsOld,
+        incomeTaxDependent,
+        wantTransportationVouchers,
+    } = getEmployeeFormData()
     if (
         checksThatFieldsAreFilledInCorrectly(
             name,
@@ -24,6 +22,24 @@ function registerEmployee() {
             incomeTaxDependent.value,
             wantTransportationVouchers.value
         )
+    }
+}
+const getEmployeeFormData = () => {
+    const name = document.getElementById('name')
+    const baseSalary = document.getElementById('baseSalary')
+    const childrenUnder14YearsOld = document.getElementById(
+        'childrenUnder14YearsOld'
+    )
+    const incomeTaxDependent = document.getElementById('incomeTaxDependent')
+    const wantTransportationVouchers = document.querySelector(
+        'input[name="wantTransportationVouchers"]:checked'
+    )
+    return {
+        name,
+        baseSalary,
+        childrenUnder14YearsOld,
+        incomeTaxDependent,
+        wantTransportationVouchers,
     }
 }
 function checksThatFieldsAreFilledInCorrectly(
@@ -71,7 +87,7 @@ function postToAPIEmployee(
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(data), 
     }
     fetch('http://localhost:3000/employee', options)
     document.location.reload(true)
@@ -124,7 +140,10 @@ function calcSalary() {
                 var vt = employees[line].wantTransportationVouchers
                     ? calcPercent(baseSalary, 6)
                     : 0
-                var baseCalcSalary =baseSalary - inss -employees[line].incomeTaxDependent * 189.59
+                var baseCalcSalary =
+                    baseSalary -
+                    inss -
+                    employees[line].incomeTaxDependent * 189.59
                 var irrf = calcIRFF(baseCalcSalary)
                 const finalSalary = baseSalary - inss + familySalary - vt - irrf
                 var newTableLine = `

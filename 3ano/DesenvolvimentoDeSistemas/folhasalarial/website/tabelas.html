@@ -26,31 +26,34 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link"
                             href="index.html">Funcionários</a></li>
-                    <li class="nav-item"><a class="nav-link"
-                            href="tabelas.html">Tabelas</a></li>
                     <li class="nav-item"><a class="nav-link active"
+                            href="tabelas.html">Tabelas</a></li>
+                    <li class="nav-item"><a class="nav-link "
                             href="salarios.html">Salários</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+    <button onclick="fillTable()" style="margin-top: 150px;">Clica aqui</button>
     <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="assets/js/script.min.js"></script>
     <script>
-        function fetchDictionary() {
-            const URL_TO_FETCH = './lang-portuguese.txt';
-            return fetch(URL_TO_FETCH).then(res => res.text())
-                .then(data => obj = data).then((data) => {
-                    console.log(data);
-                    return data;
+        function fillTable() {
+            const url = 'http://localhost:3000/tables'
+            fetch(url)
+                .then(function (response) {
+                    return response.json()
                 })
-        }
-
-        function buildWords() {
-            fetchDictionary().then(console.log);
+                .then(function (data) {
+                    const tables = data
+                    console.log(tables)
+                })
+                .catch(function () {
+                    console.log('Houve algum problema!')
+                })
         }
     </script>
 </body>

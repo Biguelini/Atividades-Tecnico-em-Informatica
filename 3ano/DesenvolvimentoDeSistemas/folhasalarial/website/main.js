@@ -61,7 +61,8 @@ function checksThatFieldsAreFilledInCorrectly(
         incomeTaxDependent.value < 0 ||
         !incomeTaxDependent.value ||
         isNaN(incomeTaxDependent.value) ||
-        !wantTransportationVouchers
+        !wantTransportationVouchers ||
+        childrenUnder14YearsOld.value > incomeTaxDependent.value
     ) {
         alert('Preencha corretamente os campos')
         return false
@@ -87,7 +88,7 @@ function postToAPIEmployee(
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data), 
+        body: JSON.stringify(data),
     }
     fetch('http://localhost:3000/employee', options)
     document.location.reload(true)
@@ -100,8 +101,8 @@ function fillTable() {
         })
         .then(function (data) {
             const employees = data
-            for (var line in employees) {
-                var newTableLine = `
+            for (let line in employees) {
+                const newTableLine = `
                 <tr>
                     <td> ${employees[line].name}</td>
                     <td>R$ ${employees[line].baseSalary}</td>
@@ -112,6 +113,9 @@ function fillTable() {
                             ? 'Sim'
                             : 'Não'
                     }</td>
+                    <td><button class="btn btn-primary" type="button" onclick="deleteEmployee('${
+                        employees[line]._id
+                    }')">Deletar</button></td>
                 </tr>`
                 document.getElementById('tableEmployeesBody').innerHTML +=
                     newTableLine
@@ -120,6 +124,20 @@ function fillTable() {
         .catch(function () {
             console.log('Houve algum problema!')
         })
+}
+function deleteEmployee(id) {
+    if (confirm('Quer mesmo deletar esse usuário?') == true) {
+        text = 'Usuário deletado!'
+        const options = {
+            method: 'DELETE',
+        }
+        const url = 'http://localhost:3000/employee/' + id
+        fetch(url, options)
+        document.location.reload(true)
+        alert('Usuário deletado com sucesso')
+    } else {
+        text = 'Operação cancelada!'
+    }
 }
 function calcSalary() {
     const url = 'http://localhost:3000/employee'

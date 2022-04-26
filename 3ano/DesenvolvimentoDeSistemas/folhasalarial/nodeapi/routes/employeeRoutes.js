@@ -49,5 +49,21 @@ router.get('/:id', async (req, res) => {
         return res.status(500).json({ error: error })
     }
 })
+router.delete('/:id', async (req, res)=>{
+    const id = req.params.id
+    const employee = await Employee.findOne({ _id: id })
+    if (!employee) {
+        return res.status(422).json({ message: 'Funcionário não encontrado' })
+    }
+
+    try {
+        await Employee.deleteOne({_id:id})
+        return res.status(200).json({message: 'Usuário removido com susseso'})
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ error: error })
+    }
+})
+
 
 module.exports = router

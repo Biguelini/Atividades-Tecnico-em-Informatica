@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, 
+        initial-scale=1.0, 
+        shrink-to-fit=no">
+    <title>Bigue Company | Funcionários</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="assets/css/styles.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+</head>
+
+<body>
+    <nav class="navbar 
+        navbar-light 
+        navbar-expand-lg 
+        fixed-top bg-white 
+        clean-navbar">
+        <div class="container">
+            <a class="navbar-brand logo" href="#">Bigue Company</a>
+            <button data-bs-toggle="collapse" class="navbar-toggler"
+                data-bs-target="#navcol-1">
+                <span class="visually-hidden">
+                    Toggle navigation
+                </span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            Funcionários
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tabelas.html">
+                            Tabelas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="salarios.html">
+                            Salários
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="contact-clean" style="background: rgb(255,255,255);"
+        style="margin-top: 160px">
+        <form method="post">
+            <h2 class="text-center">Alterar irrf</h2>
+
+            <label class="form-label">TIRRF1</label>
+            <div class="mb-3">
+                <input class="form-control" type="number"
+                    id="firstTierIRRFField" name="firstTierIRRFField"
+                    placeholder="Ex: 1000,00" min="0.00" step="0.01">
+            </div>
+            <label class="form-label">AIRRF2</label>
+            <div class="mb-3">
+                <input class="form-control" type="number"
+                    id="secondAliquotIRRFField" name="secondAliquotIRRFField"
+                    placeholder="Ex: 10" min="0" step="1">
+            </div>
+            <label class="form-label">DIRRF2</label>
+            <div class="mb-3">
+                <input class="form-control" type="number"
+                    id="secondDeductionIRRFField"
+                    name="secondDeductionIRRFField" placeholder="Ex: 10" min="0"
+                    step="1">
+            </div>
+            <label class="form-label">TIRRF2</label>
+            <div class="mb-3">
+                <input class="form-control" type="number"
+                    id="secondTierIRRFField" name="secondTierIRRFField"
+                    placeholder="Ex: 1000,00" min="0.00" step="0.01">
+            </div>
+            <label class="form-label">AIRRF3</label>
+            <div class="mb-3">
+                <input class="form-control" type="number"
+                    id="thirdAliquotIRRFField" name="thirdAliquotIRRF"
+                    placeholder="Ex: 10" min="0" step="1">
+            </div>
+            <label class="form-label">DIRRF3</label>
+            <div class="mb-3">
+                <input class="form-control" type="number"
+                    id="thirdDeductionIRRFField" name="thirdDeductionIRRF"
+                    placeholder="Ex: 10" min="0" step="1">
+            </div>
+            <label class="form-label">TIRRF3</label>
+            <div class="mb-3">
+                <input class="form-control" type="number"
+                    id="thirdTierIRRFField" name="thirdTierIRRFField"
+                    placeholder="Ex: 1000,00" min="0.00" step="0.01">
+            </div>
+            <label class="form-label">AIRRF4</label>
+            <div class="mb-3">
+                <input class="form-control" type="number"
+                    id="fourthAliquotIRRFField" name="fourthAliquotIRRFField"
+                    placeholder="Ex: 10" min="0" step="1">
+            </div>
+            <label class="form-label">DIRRF4</label>
+            <div class="mb-3">
+                <input class="form-control" type="number"
+                    id="fourthDeductionIRRFField"
+                    name="fourthDeductionIRRFField" placeholder="Ex: 10" min="0"
+                    step="1">
+            </div>
+            <label class="form-label">TIRRF4</label>
+            <div class="mb-3">
+                <input class="form-control" type="number"
+                    id="fourthTierIRRFField" name="fourthTierIRRFField"
+                    placeholder="Ex: 1000,00" min="0.00" step="0.01">
+            </div>
+            <label class="form-label">AIRRF5</label>
+            <div class="mb-3">
+                <input class="form-control" type="number"
+                    id="fifthAliquotIRRFField" name="fifthAliquotIRRFField"
+                    placeholder="Ex: 10" min="0" step="1">
+            </div>
+            <label class="form-label">DIRRF5</label>
+            <div class="mb-3">
+                <input class="form-control" type="number"
+                    id="fifthDeductionIRRFField" name="fifthDeductionIRRFField"
+                    placeholder="Ex: 10" min="0" step="1">
+            </div>
+            <label class="form-label">DEDPDEP</label>
+            <div class="mb-3">
+                <input class="form-control" type="number"
+                    id="dependentDeduction" name="dependentDeduction"
+                    placeholder="Ex: 1000,00" min="0.00" step="0.01">
+            </div>
+
+        </form>
+        <div class="mb-3 d-flex justify-content-center ">
+            <button class="btn btn-primary p-3 mt-3" style="width: 300px;"
+                onclick="postToAPITableIRRF()">
+                Atualizar tabela
+            </button>
+        </div>
+    </section>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="assets/js/script.min.js"></script>
+    <script src="./main.js"></script>
+
+
+
+
+    <script>
+        const url = 'http://localhost:3000/tables'
+        fetch(url)
+            .then(function (response) {
+                return response.json()
+            })
+            .then(function (data) {
+                const table = data[0]
+                const {
+                    firstTierIRRF,
+                    secondTierIRRF,
+                    thirdTierIRRF,
+                    fourthTierIRRF,
+                    secondAliquotIRRF,
+                    thirdAliquotIRRF,
+                    fourthAliquotIRRF,
+                    fifthAliquotIRRF,
+                    secondDeductionIRRF,
+                    thirdDeductionIRRF,
+                    fourthDeductionIRRF,
+                    fifthDeductionIRRF,
+                    dependentDeduction,
+
+                } = table
+                const firstTierIRRFField = document.getElementById('firstTierIRRFField')
+                const secondTierIRRFField = document.getElementById('secondTierIRRFField')
+                const thirdTierIRRFField = document.getElementById('thirdTierIRRFField')
+                const fourthTierIRRFField = document.getElementById('fourthTierIRRFField')
+                const secondAliquotIRRFField = document.getElementById('secondAliquotIRRFField')
+                const thirdAliquotIRRFField = document.getElementById('thirdAliquotIRRFField')
+                const fourthAliquotIRRFField = document.getElementById('fourthAliquotIRRFField')
+                const fifthAliquotIRRFField = document.getElementById('fifthAliquotIRRFField')
+                const secondDeductionIRRFField = document.getElementById('secondDeductionIRRFField')
+                const thirdDeductionIRRFField = document.getElementById('thirdDeductionIRRFField')
+                const fourthDeductionIRRFField = document.getElementById('fourthDeductionIRRFField')
+                const fifthDeductionIRRFField = document.getElementById('fifthDeductionIRRFField')
+                const dependentDeductionIRRFField = document.getElementById('dependentDeduction')
+
+                firstTierIRRFField.setAttribute('value', firstTierIRRF.toFixed(2))
+                secondTierIRRFField.setAttribute('value', secondTierIRRF.toFixed(2))
+                thirdTierIRRFField.setAttribute('value', thirdTierIRRF.toFixed(2))
+                fourthTierIRRFField.setAttribute('value', fourthTierIRRF.toFixed(2))
+
+                secondAliquotIRRFField.setAttribute('value', secondAliquotIRRF)
+                thirdAliquotIRRFField.setAttribute('value', thirdAliquotIRRF)
+                fourthAliquotIRRFField.setAttribute('value', fourthAliquotIRRF)
+                fifthAliquotIRRFField.setAttribute('value', fifthAliquotIRRF)
+                secondDeductionIRRFField.setAttribute('value', secondDeductionIRRF)
+                thirdDeductionIRRFField.setAttribute('value', thirdDeductionIRRF)
+                fourthDeductionIRRFField.setAttribute('value', fourthDeductionIRRF)
+                fifthDeductionIRRFField.setAttribute('value', fifthDeductionIRRF)
+                dependentDeductionIRRFField.setAttribute('value', dependentDeduction)
+
+            })
+        function postToAPITableIRRF() {
+            const firstTierIRRFField = document.getElementById('firstTierIRRFField')
+            const secondTierIRRFField = document.getElementById('secondTierIRRFField')
+            const thirdTierIRRFField = document.getElementById('thirdTierIRRFField')
+            const fourthTierIRRFField = document.getElementById('fourthTierIRRFField')
+            const secondAliquotIRRFField = document.getElementById('secondAliquotIRRFField')
+            const thirdAliquotIRRFField = document.getElementById('thirdAliquotIRRFField')
+            const fourthAliquotIRRFField = document.getElementById('fourthAliquotIRRFField')
+            const fifthAliquotIRRFField = document.getElementById('fifthAliquotIRRFField')
+            const secondDeductionIRRFField = document.getElementById('secondDeductionIRRFField')
+            const thirdDeductionIRRFField = document.getElementById('thirdDeductionIRRFField')
+            const fourthDeductionIRRFField = document.getElementById('fourthDeductionIRRFField')
+            const fifthDeductionIRRFField = document.getElementById('fifthDeductionIRRFField')
+            const dependentDeductionIRRFField = document.getElementById('dependentDeduction')
+
+            if (firstTierIRRFField.value < secondTierIRRFField.value &&
+                firstTierIRRFField.value < thirdTierIRRFField.value &&
+                firstTierIRRFField.value < fourthTierIRRFField.value &&
+                secondTierIRRFField.value < thirdTierIRRFField.value &&
+                secondTierIRRFField.value < fourthTierIRRFField.value &&
+                thirdTierIRRFField.value < fourthTierIRRFField.value) {
+
+                const data = {
+                    firstTierIRRF: firstTierIRRFField.value,
+                    secondTierIRRF: secondTierIRRFField.value,
+                    thirdTierIRRF: thirdTierIRRFField.value,
+                    fourthTierIRRF: fourthTierIRRFField.value,
+                    secondAliquotIRRF: secondAliquotIRRFField.value,
+                    thirdAliquotIRRF: thirdAliquotIRRFField.value,
+                    fourthAliquotIRRF: fourthAliquotIRRFField.value,
+                    fifthAliquotIRRF: fifthAliquotIRRFField.value,
+                    secondDeductionIRRF: secondDeductionIRRFField.value,
+                    thirdDeductionIRRF: thirdDeductionIRRFField.value,
+                    fourthDeductionIRRF: fourthDeductionIRRFField.value,
+                    fifthDeductionIRRF: fifthDeductionIRRFField.value,
+                    dependentDeduction: dependentDeductionIRRFField.value,
+                }
+                const options = {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                }
+                fetch('http://localhost:3000/tables/irrf/62572a60ef70558125aab972', options)
+                document.location.reload(true)
+            } else {
+                alert('Preencha corretamente os campos')
+            }
+        }
+    </script>
+</body>
+
+</html>

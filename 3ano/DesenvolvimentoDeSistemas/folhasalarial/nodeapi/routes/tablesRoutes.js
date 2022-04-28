@@ -4,7 +4,6 @@ const Tables = require('../models/tables')
 router.get('/', async (req, res) => {
     try {
         const allTables = await Tables.find()
-        console.log(allTables.length)
         return res.status(200).json(allTables)
     } catch (error) {
         console.log(error)

@@ -64,6 +64,32 @@ router.delete('/:id', async (req, res)=>{
         return res.status(500).json({ error: error })
     }
 })
-
+router.put('/:id', async (req,res)=>{
+    const id = req.params.id
+    const {
+        name,
+        baseSalary,
+        childrenUnder14YearsOld,
+        incomeTaxDependent,
+        wantTransportationVouchers,
+    } = req.body
+    const employee = {
+        name,
+        baseSalary,
+        childrenUnder14YearsOld,
+        incomeTaxDependent,
+        wantTransportationVouchers,
+        
+    }
+    try{
+        const updatedEmployee = await Employee.updateOne({_id:id}, employee)
+        if (updatedEmployee.matchedCount === 0){
+            return res.status(422).json({ message: 'Funcionário não encontrada' })
+        }
+        res.status(200).json(employee)
+    } catch (error) {
+        return res.status(500).json({ error: error })
+    }
+})
 
 module.exports = router

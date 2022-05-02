@@ -59,7 +59,7 @@
             <label class="form-label">Nome</label>
             <div class="mb-3">
                 <input class="form-control" type="text" id="name" name="name"
-                    placeholder="Ex: 1000,00">
+                    placeholder="Ex: João Pedro">
             </div>
             <label class="form-label">Salário Base</label>
             <div class="mb-3">
@@ -102,8 +102,8 @@
         </form>
         <div class="mb-3 d-flex justify-content-center ">
             <button class="btn btn-primary p-3 mt-3" style="width: 300px;"
-                onclick="postToAPITableSF()">
-                Atualizar tabela
+                onclick="updateEmployee()">
+                Atualizar funcionário
             </button>
         </div>
     </section>
@@ -118,84 +118,45 @@
 
 
     <script>
-        var url_string = window.location.href;
-        var urlBruta = new URL(url_string);
-        var idEmployee = url.searchParams.get("idEmployee")
-        const url = 'http://localhost:3000/employee/' + idEmployee
-        fetch(url)
-            .then(function (response) {
-                return response.json()
-            })
-            .then(function (data) {
-                const {
-                    name,
-                    baseSalary,
-                    childrenUnder14YearsOld,
-                    incomeTaxDependent,
-                    wantTransportationVouchers,
-                } = data
-                const nameField = document.getElementById('name')
-                const baseSalaryField = document.getElementById('baseSalary')
-                const childrenUnder14YearsOldField = document.getElementById('childrenUnder14YearsOld')
-                const incomeTaxDependentField = document.getElementById('incomeTaxDependent')
-                const wantVT = document.getElementById('yes')
-                const wantnotVT = document.getElementById('no')
-
-                nameField.setAttribute('value', name)
-                baseSalaryField.setAttribute('value', baseSalary.toFixed(2))
-                childrenUnder14YearsOldField.setAttribute('value', childrenUnder14YearsOld.toFixed(2))
-                incomeTaxDependentField.setAttribute('value', incomeTaxDependent)
-                if (wantTransportationVouchers) {
-                    wantVT.checked = true
-                } else {
-                    wantnotVT.checked = true
-                }
-
-            })
-
-        function registerEmployee() {
-            const {
-                name,
-                baseSalary,
-                childrenUnder14YearsOld,
-                incomeTaxDependent,
-                wantTransportationVouchers,
-            } = getEmployeeFormData()
-            if (
-                checksThatFieldsAreFilledInCorrectly(
-                    name,
-                    baseSalary,
-                    childrenUnder14YearsOld,
-                    incomeTaxDependent,
-                    wantTransportationVouchers
-                )
-            ) {
-                postToAPIEmployee(
-                    name.value,
-                    baseSalary.value,
-                    childrenUnder14YearsOld.value,
-                    incomeTaxDependent.value,
-                    wantTransportationVouchers.value
-                )
-            }
+        const getIdUrl = () => {
+            var url_string = window.location.href;
+            var url = new URL(url_string);
+            var data = url.searchParams.get("idEmployee")
+            return data
         }
-        const getEmployeeFormData = () => {
-            const name = document.getElementById('name')
-            const baseSalary = document.getElementById('baseSalary')
-            const childrenUnder14YearsOld = document.getElementById(
-                'childrenUnder14YearsOld'
-            )
-            const incomeTaxDependent = document.getElementById('incomeTaxDependent')
-            const wantTransportationVouchers = document.querySelector(
-                'input[name="wantTransportationVouchers"]:checked'
-            )
-            return {
-                name,
-                baseSalary,
-                childrenUnder14YearsOld,
-                incomeTaxDependent,
-                wantTransportationVouchers,
-            }
+        console.log(getIdUrl())
+        const getEmployee = (idEmployee) => {
+            const url = 'http://localhost:3000/employee/' + idEmployee
+            fetch(url)
+                .then(function (response) {
+                    return response.json()
+                })
+                .then(function (data) {
+                    const {
+                        name,
+                        baseSalary,
+                        childrenUnder14YearsOld,
+                        incomeTaxDependent,
+                        wantTransportationVouchers,
+                    } = data
+                    const nameField = document.getElementById('name')
+                    const baseSalaryField = document.getElementById('baseSalary')
+                    const childrenUnder14YearsOldField = document.getElementById('childrenUnder14YearsOld')
+                    const incomeTaxDependentField = document.getElementById('incomeTaxDependent')
+                    const wantVT = document.getElementById('yes')
+                    const wantnotVT = document.getElementById('no')
+
+                    nameField.setAttribute('value', name)
+                    baseSalaryField.setAttribute('value', baseSalary.toFixed(2))
+                    childrenUnder14YearsOldField.setAttribute('value', childrenUnder14YearsOld)
+                    incomeTaxDependentField.setAttribute('value', incomeTaxDependent)
+                    if (wantTransportationVouchers) {
+                        wantVT.checked = true
+                    } else {
+                        wantnotVT.checked = true
+                    }
+                }
+                )
         }
         function checksThatFieldsAreFilledInCorrectly(
             name,
@@ -239,14 +200,45 @@
                 wantTransportationVouchers: wantTransportationVouchers == 'true',
             }
             const options = {
-                method: 'POST',
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(data),
             }
-            fetch('http://localhost:3000/employee', options)
-            document.location.reload(true)
+            url = 'http://localhost:3000/employee/' + getIdUrl()
+            fetch(url, options)
+
+        }
+        getEmployee(getIdUrl())
+        function updateEmployee() {
+            const name = document.getElementById('name')
+            const baseSalary = document.getElementById('baseSalary')
+            const childrenUnder14YearsOld = document.getElementById(
+                'childrenUnder14YearsOld'
+            )
+            const incomeTaxDependent = document.getElementById('incomeTaxDependent')
+            const wantTransportationVouchers = document.querySelector(
+                'input[name="wantTransportationVouchers"]:checked'
+            )
+            if (
+                checksThatFieldsAreFilledInCorrectly(
+                    name,
+                    baseSalary,
+                    childrenUnder14YearsOld,
+                    incomeTaxDependent,
+                    wantTransportationVouchers
+                )
+            ) {
+                postToAPIEmployee(
+                    name.value,
+                    baseSalary.value,
+                    childrenUnder14YearsOld.value,
+                    incomeTaxDependent.value,
+                    wantTransportationVouchers.value
+                )
+                document.location.reload(true)
+            }
         }
     </script>
 </body>

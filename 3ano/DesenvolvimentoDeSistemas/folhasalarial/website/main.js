@@ -116,6 +116,11 @@ function fillTable() {
                     <td><button class="btn btn-primary" type="button" onclick="deleteEmployee('${
                         employees[line]._id
                     }')">Deletar</button></td>
+                    <td class="d-flex justify-content-center">
+                            <a href="./funcionario.html?idEmployee=${
+                                employees[line]._id
+                            }"><button
+                        class="btn btn-primary" type="button" >Editar</button><a/></td>
                 </tr>`
                 document.getElementById('tableEmployeesBody').innerHTML +=
                     newTableLine

@@ -70,7 +70,7 @@
                     </tr>
                 </thead>
                 <tbody id="tbodyDescontosVencimentos">
-                    
+
                 </tbody>
                 <thead>
                     <td></td>
@@ -87,7 +87,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        
+
                     </tr>
                 </thead>
             </table>
@@ -119,72 +119,187 @@
                         name,
                         wantTransportationVouchers,
                     } = data
-                    const inss = calcINSS(baseSalary)
-                    const familySalary =
-                        baseSalary <= 1655.98
-                            ? childrenUnder14YearsOld * 56.47
-                            : 0
-                    const vt = wantTransportationVouchers
-                        ? calcPercent(baseSalary, 6)
-                        : 0
-                    const baseCalcSalary = baseSalary - inss - incomeTaxDependent * 189.59
-                    const irrf = calcIRFF(baseCalcSalary)
-                    const finalSalary = baseSalary - inss + familySalary - vt - irrf
-                    console.log(name, baseSalary.toFixed(2), inss.toFixed(2), familySalary.toFixed(2), vt.toFixed(2), irrf.toFixed(2), finalSalary.toFixed(2))
-
-                    
-                    document.getElementById('tbodyIdentEmployee').innerHTML += `<tr>
-                        <td>${idEmployee}</td>
-                        <td>${name}</td>
-                    </tr>`
-                    var idDescVenc = 1
-                    document.getElementById('tbodyDescontosVencimentos').innerHTML += `<tr>
-                        <td>00${idDescVenc}</td>
-                        <td>Salário</td>
-                        <td>R$ ${baseSalary.toFixed(2)}</td>
-                        <td></td>
-                    </tr>`
-                    idDescVenc++
-                    if (inss > 0) {
-                        document.getElementById('tbodyDescontosVencimentos').innerHTML += `<tr>
-                        <td>00${idDescVenc}</td>
-                        <td>INSS</td>
-                        <td></td>
-                        <td>R$ ${inss.toFixed(2)}</td>
-                        </tr>`
-                        idDescVenc++
-                    }
-                    if (familySalary > 0) {
-                        document.getElementById('tbodyDescontosVencimentos').innerHTML += `<tr>
-                        <td>00${idDescVenc}</td>
-                        <td>Salário Família</td>
-                        <td>R$ ${familySalary.toFixed(2)}</td>
-                        <td></td>
-                    </tr>`
-                        idDescVenc++
-                    }
-                    if (wantTransportationVouchers) {
-                        document.getElementById('tbodyDescontosVencimentos').innerHTML += `<tr>
-                        <td>00${idDescVenc}</td>
-                        <td>Vale Transporte</td>
-                        <td></td>
-                        <td>R$ ${vt.toFixed(2)}</td>
-                    </tr>`
-                        idDescVenc++
-                    }
-                    if (irrf > 0) {
-                        document.getElementById('tbodyDescontosVencimentos').innerHTML += `<tr>
-                        <td>00${idDescVenc}</td>
-                        <td>IRRF</td>
-                        <td></td>
-                        <td>R$ ${irrf.toFixed(2)}</td>
-                    </tr>`
-                        idDescVenc++
-                    }
-                    document.getElementById('totalVencDesc').innerHTML += `<td style="text-align: center;">R$ ${(baseSalary+familySalary).toFixed(2)}</td>
-                        <td style="text-align: center;">R$ ${(inss+vt+irrf).toFixed(2)}</td>`
-                    document.getElementById('liquidSalary').innerHTML += `<td style="text-align: right;"><strong>Valor
+                    console.log(data)
+                    const urlTables = 'http://localhost:3000/tables'
+                    fetch(urlTables)
+                        .then(function (response) {
+                            return response.json()
+                        })
+                        .then(function (data) {
+                            const tables = data
+                            const table = tables[0]
+                            const {
+                                firstTierINSS,
+                                secondTierINSS,
+                                thirdTierINSS,
+                                fourthTierINSS,
+                                firstAliquotINSS,
+                                secondAliquotINSS,
+                                thirdAliquotINSS,
+                                fourthAliquotINSS,
+                                maximumEligibleSalaryForFamilySalary,
+                                valueFamilySalary,
+                                firstTierIRRF,
+                                secondTierIRRF,
+                                thirdTierIRRF,
+                                fourthTierIRRF,
+                                secondAliquotIRRF,
+                                thirdAliquotIRRF,
+                                fourthAliquotIRRF,
+                                fifthAliquotIRRF,
+                                secondDeductionIRRF,
+                                thirdDeductionIRRF,
+                                fourthDeductionIRRF,
+                                fifthDeductionIRRF,
+                                dependentDeduction,
+                            } = table
+                            var inss = 0
+                            if (baseSalary <= firstTierINSS) {
+                                inss = calcPercent(baseSalary, firstAliquotINSS)
+                            } else if (
+                                baseSalary > firstTierINSS &&
+                                baseSalary <= secondTierINSS
+                            ) {
+                                inss = calcPercent(firstTierINSS, firstAliquotINSS)
+                                inss += calcPercent(
+                                    baseSalary - (firstTierINSS + 0.01),
+                                    secondAliquotINSS
+                                )
+                            } else if (
+                                baseSalary > secondTierINSS &&
+                                baseSalary <= thirdTierINSS
+                            ) {
+                                inss = calcPercent(firstTierINSS, firstAliquotINSS)
+                                inss += calcPercent(
+                                    secondTierINSS - (firstTierINSS + 0.01),
+                                    secondAliquotINSS
+                                )
+                                inss += calcPercent(
+                                    baseSalary - (secondTierINSS + 0.01),
+                                    thirdAliquotINSS
+                                )
+                            } else if (
+                                baseSalary > thirdTierINSS &&
+                                baseSalary <= fourthTierINSS
+                            ) {
+                                inss = calcPercent(firstTierINSS, firstAliquotINSS)
+                                inss += calcPercent(
+                                    secondTierINSS - (firstTierINSS + 0.01),
+                                    secondAliquotINSS
+                                )
+                                inss += calcPercent(
+                                    thirdTierINSS - (secondTierINSS + 0.01),
+                                    thirdAliquotINSS
+                                )
+                                inss += calcPercent(
+                                    baseSalary - (thirdTierINSS + 0.01),
+                                    fourthAliquotINSS
+                                )
+                            } else {
+                                inss = calcPercent(firstTierINSS, firstAliquotINSS)
+                                inss += calcPercent(
+                                    secondTierINSS - (firstTierINSS + 0.01),
+                                    secondAliquotINSS
+                                )
+                                inss += calcPercent(
+                                    thirdTierINSS - (secondTierINSS + 0.01),
+                                    thirdAliquotINSS
+                                )
+                                inss += calcPercent(
+                                    fourthTierINSS - (thirdTierINSS + 0.01),
+                                    fourthAliquotINSS
+                                )
+                            }
+                            var familySalary =
+                                baseSalary <= maximumEligibleSalaryForFamilySalary
+                                    ? childrenUnder14YearsOld *
+                                    valueFamilySalary
+                                    : 0
+                            var vt = wantTransportationVouchers
+                                ? calcPercent(baseSalary, 6)
+                                : 0
+                            var baseCalcSalary =
+                                baseSalary -
+                                inss -
+                                incomeTaxDependent * dependentDeduction
+                            var irrf = 0
+                            if (baseCalcSalary <= firstTierIRRF) {
+                                irrf = 0
+                            } else if (
+                                baseCalcSalary > firstTierIRRF &&
+                                baseCalcSalary <= secondTierIRRF
+                            ) {
+                                irrf = calcPercent(baseCalcSalary, secondAliquotIRRF) - secondDeductionIRRF
+                            } else if (
+                                baseCalcSalary > secondTierIRRF &&
+                                baseCalcSalary <= thirdTierIRRF
+                            ) {
+                                irrf = calcPercent(baseCalcSalary, thirdAliquotIRRF) - thirdDeductionIRRF
+                            } else if (
+                                baseCalcSalary > thirdTierIRRF &&
+                                baseCalcSalary <= fourthTierIRRF
+                            ) {
+                                irrf = calcPercent(baseCalcSalary, fourthAliquotIRRF) - fourthDeductionIRRF
+                            } else {
+                                irrf = calcPercent(baseCalcSalary, fifthAliquotIRRF) - fifthDeductionIRRF
+                            }
+                            const finalSalary =
+                                baseSalary - inss + familySalary - vt - irrf
+                            var newTableLine =
+                                document.getElementById('tbodyIdentEmployee').innerHTML += `<tr>
+                                    <td>${idEmployee}</td>
+                                    <td>${name}</td>
+                                </tr>`
+                            var idDescVenc = 1
+                            document.getElementById('tbodyDescontosVencimentos').innerHTML += `<tr>
+                                    <td>00${idDescVenc}</td>
+                                    <td>Salário</td>
+                                    <td>R$ ${baseSalary.toFixed(2)}</td>
+                                    <td></td>
+                                </tr>`
+                            idDescVenc++
+                            if (inss > 0) {
+                                document.getElementById('tbodyDescontosVencimentos').innerHTML += `<tr>
+                                        <td>00${idDescVenc}</td>
+                                        <td>INSS</td>
+                                        <td></td>
+                                        <td>R$ ${inss.toFixed(2)}</td>
+                                    </tr>`
+                                idDescVenc++
+                            }
+                            if (familySalary > 0) {
+                                document.getElementById('tbodyDescontosVencimentos').innerHTML += `<tr>
+                                        <td>00${idDescVenc}</td>
+                                        <td>Salário Família</td>
+                                        <td>R$ ${familySalary.toFixed(2)}</td>
+                                        <td></td>
+                                    </tr>`
+                                idDescVenc++
+                            }
+                            if (wantTransportationVouchers) {
+                                document.getElementById('tbodyDescontosVencimentos').innerHTML += `<tr>
+                                        <td>00${idDescVenc}</td>
+                                        <td>Vale Transporte</td>
+                                        <td></td>
+                                        <td>R$ ${vt.toFixed(2)}</td>
+                                    </tr>`
+                                idDescVenc++
+                            }
+                            if (irrf > 0) {
+                                document.getElementById('tbodyDescontosVencimentos').innerHTML += `<tr>
+                                        <td>00${idDescVenc}</td>
+                                        <td>IRRF</td>
+                                        <td></td>
+                                        <td>R$ ${irrf.toFixed(2)}</td>
+                                    </tr>`
+                                idDescVenc++
+                            }
+                            document.getElementById('totalVencDesc').innerHTML += `<td style="text-align: center;">R$ ${(baseSalary + familySalary).toFixed(2)}</td>
+                        <td style="text-align: center;">R$ ${(inss + vt + irrf).toFixed(2)}</td>`
+                            document.getElementById('liquidSalary').innerHTML += `<td style="text-align: right;"><strong>Valor
                                 líquido</strong> $ ${finalSalary.toFixed(2)}</td>`
+                        }
+                        )
                 })
                 .catch(function () {
                     console.log('Houve algum problema!')

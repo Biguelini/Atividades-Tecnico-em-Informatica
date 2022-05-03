@@ -131,6 +131,8 @@
                     const irrf = calcIRFF(baseCalcSalary)
                     const finalSalary = baseSalary - inss + familySalary - vt - irrf
                     console.log(name, baseSalary.toFixed(2), inss.toFixed(2), familySalary.toFixed(2), vt.toFixed(2), irrf.toFixed(2), finalSalary.toFixed(2))
+
+                    
                     document.getElementById('tbodyIdentEmployee').innerHTML += `<tr>
                         <td>${idEmployee}</td>
                         <td>${name}</td>

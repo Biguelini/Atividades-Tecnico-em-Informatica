@@ -170,12 +170,12 @@
             const secondAliquotINSSField = document.getElementById('secondAliquotINSSField')
             const thirdAliquotINSSField = document.getElementById('thirdAliquotINSSField')
             const fourthAliquotINSSField = document.getElementById('fourthAliquotINSSField')
-            if (firstTierINSSField.value < secondTierINSSField.value && 
-            firstTierINSSField.value < thirdTierINSSField.value && 
-            firstTierINSSField.value < fourthTierINSSField.value && 
-            secondTierINSSField.value < thirdTierINSSField.value && 
-            secondTierINSSField.value < fourthTierINSSField.value && 
-            thirdTierINSSField.value < fourthTierINSSField.value) 
+            if (parseFloat(firstTierINSSField.value) < parseFloat(secondTierINSSField.value) && 
+            parseFloat(firstTierINSSField.value) < parseFloat(thirdTierINSSField.value) && 
+            parseFloat(firstTierINSSField.value) < parseFloat(fourthTierINSSField.value) && 
+            parseFloat(secondTierINSSField.value) < parseFloat(thirdTierINSSField.value) && 
+            parseFloat(secondTierINSSField.value) < parseFloat(fourthTierINSSField.value) && 
+            parseFloat(thirdTierINSSField.value) < parseFloat(fourthTierINSSField.value)) 
             {
 
                 const data = {

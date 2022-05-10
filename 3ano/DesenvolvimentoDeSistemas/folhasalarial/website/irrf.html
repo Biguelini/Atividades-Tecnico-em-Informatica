@@ -223,12 +223,12 @@
             const fifthDeductionIRRFField = document.getElementById('fifthDeductionIRRFField')
             const dependentDeductionIRRFField = document.getElementById('dependentDeduction')
 
-            if (firstTierIRRFField.value < secondTierIRRFField.value &&
-                firstTierIRRFField.value < thirdTierIRRFField.value &&
-                firstTierIRRFField.value < fourthTierIRRFField.value &&
-                secondTierIRRFField.value < thirdTierIRRFField.value &&
-                secondTierIRRFField.value < fourthTierIRRFField.value &&
-                thirdTierIRRFField.value < fourthTierIRRFField.value) {
+            if (parseFloat(firstTierIRRFField.value) < parseFloat(secondTierIRRFField.value) &&
+                parseFloat(firstTierIRRFField.value) < parseFloat(thirdTierIRRFField.value) &&
+                parseFloat(firstTierIRRFField.value) < parseFloat(fourthTierIRRFField.value) &&
+                parseFloat(secondTierIRRFField.value) < parseFloat(thirdTierIRRFField.value) &&
+                parseFloat(secondTierIRRFField.value) < parseFloat(fourthTierIRRFField.value) &&
+                parseFloat(thirdTierIRRFField.value) < parseFloat(fourthTierIRRFField.value)) {
 
                 const data = {
                     firstTierIRRF: firstTierIRRFField.value,

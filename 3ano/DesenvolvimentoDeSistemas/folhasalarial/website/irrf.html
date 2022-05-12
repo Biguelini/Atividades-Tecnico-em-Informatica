@@ -22,7 +22,7 @@
         fixed-top bg-white 
         clean-navbar">
         <div class="container">
-            <a class="navbar-brand logo" href="#">Bigue Company</a>
+            <a class="navbar-brand logo" href="http://127.0.0.1:5500/index.html">Bigue Company</a>
             <button data-bs-toggle="collapse" class="navbar-toggler"
                 data-bs-target="#navcol-1">
                 <span class="visually-hidden">
@@ -253,7 +253,7 @@
                     body: JSON.stringify(data),
                 }
                 fetch('http://localhost:3000/tables/irrf/62572a60ef70558125aab972', options)
-                document.location.reload(true)
+                window.location.href = "http://127.0.0.1:5500/tabelas.html";
             } else {
                 alert('Preencha corretamente os campos')
             }

@@ -1,7 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import './Logo.css'
+import './Field.css'
 import React from 'react'
 export default props => 
-    <h1 className="logo">
-        BigChat
-    </h1>
+    <input type="text" className="field"/>

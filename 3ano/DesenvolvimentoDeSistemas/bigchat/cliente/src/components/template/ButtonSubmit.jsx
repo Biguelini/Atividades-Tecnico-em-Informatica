@@ -1,7 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import './Logo.css'
+import './ButtonSubmit.css'
 import React from 'react'
 export default props => 
-    <h1 className="logo">
-        BigChat
-    </h1>
+    <button className="buttonSubmit">Login</button>

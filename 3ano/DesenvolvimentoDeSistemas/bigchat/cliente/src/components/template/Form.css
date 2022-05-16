@@ -1,0 +1,23 @@
+.form {
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 64px;
+    width: 400px;
+    height: 400px;
+    box-shadow: 11px 12px 38px -8px rgba(0, 0, 0, 0.40);
+
+}
+.loginTextForm {
+    margin-bottom: 40px;
+    text-align: center;
+    font-size: 4rem;
+    font-weight: bold;
+    color: var(--white)
+}

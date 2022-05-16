@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt')
 class UserController {
     async show(req, res) {
         try {
-            const allUsers = await prisma.user.findMany()
+            const allUsers = await prisma.usuario.findMany()
             return res.status(200).json(allUsers)
         } catch (e) {
             return console.log(e)
@@ -17,23 +17,19 @@ class UserController {
     }
     async create(req, res) {
         try {
-            const { email, name } = req.body
-            let { password } = req.body
-            password = (await bcrypt.hash(password, 10)).toString()
-            const emailAlreadyUsed = await prisma.user.findUnique({
-                where: { email: email },
+            const { usuario, nome, senha } = req.body
+            const userAlreadyUsed = await prisma.usuario.findUnique({
+                where: { usuario: usuario },
             })
-            if (emailAlreadyUsed) {
-                return res
-                    .status(409)
-                    .json({ message: 'Email is already used' })
+            if (userAlreadyUsed) {
+                return res.status(409).json({ message: 'User is already used' })
             }
-            const createdUser = { name: name, email: email, password: password }
-            await prisma.user.create({
+            const createdUser = { nome: nome, usuario: usuario, senha: senha }
+            await prisma.usuario.create({
                 data: {
-                    name: name,
-                    email: email,
-                    password: password,
+                    nome: nome,
+                    usuario: usuario,
+                    senha: senha,
                 },
             })
             return res
@@ -49,10 +45,11 @@ class UserController {
     }
     async delete(req, res) {
         try {
-            const id = parseInt(req.params.id)
+            const usuario = req.params.usuario
+            console.log(usuario)
             try {
-                const deletedUser = await prisma.user.delete({
-                    where: { id: id },
+                const deletedUser = await prisma.usuario.delete({
+                    where: { usuario: usuario },
                 })
                 return res.status(200).json({
                     message: 'Usuário deletado com sucesso',
@@ -73,12 +70,12 @@ class UserController {
     }
     async update(req, res) {
         try {
-            const id = parseInt(req.params.id)
-            const { email, name, password } = req.body
+            const usuario = parseInt(req.params.usuario)
+            const { nome, senha } = req.body
             try {
                 const updatedUser = await prisma.user.update({
-                    where: { id: id },
-                    data: { email: email, name: name, password: password },
+                    where: { usuario:usuario },
+                    data: { nome: nome , senha: senha },
                 })
                 return res.status(200).json({
                     message: 'Usuário atualizado com sucesso',
@@ -98,15 +95,15 @@ class UserController {
         }
     }
     async login(req, res) {
-        const { email, password } = req.body
-        const user = await prisma.user.findUnique({
-            where: { email: email },
+        const { usuario, senha } = req.body
+        const user = await prisma.usuario.findUnique({
+            where: { usuario: usuario },
         })
-        const validated = await bcrypt.compare(password, user.password)
+        const validated = senha == user.senha?true:false
         if (validated) {
             return res.status(200).json({ message: 'conectado' })
         }
-        return res.status(404).json({ message: 'usuário ou senha incorreto' })
+        return res.status(401).json({ message: 'usuário ou senha incorreto' })
     }
 }
 

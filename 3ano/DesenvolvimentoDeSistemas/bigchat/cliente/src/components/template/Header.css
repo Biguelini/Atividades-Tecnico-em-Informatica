@@ -1,6 +1,9 @@
-.header{
+.header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 20vw;
+    justify-content: left;
+    padding: 1rem 20vw;
+    width: 100vw;
+    margin-bottom: calc(25vh - 150px);
+    color: var(--white);
 }

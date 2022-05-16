@@ -1,0 +1,13 @@
+.field{
+    height: 48px;
+    border-radius: 16px;
+    background-color: var(--grey);
+    border: none;
+    margin: 12px 0 24px 0;
+    padding: 8px;
+}
+.field:focus{
+    outline: none;
+    background-color: var(--white);
+    border: var(--pink) solid 3px;
+}

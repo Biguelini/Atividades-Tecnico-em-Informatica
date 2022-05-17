@@ -13,15 +13,9 @@ class App {
         this.app.use(express.json())
 
         this.app.use((req, res, next) => {
-            res.header('Access-Controll-Allow-Origin', '*')
-            res.header(
-                'Access-Controll-Allow-Methods',
-                'Get, POST, PUT, DELETE'
-            )
-            res.header(
-                'Access-Controll-Allow-Headers',
-                'Access, Content-type, Authorization, Acept, Origin, X-Requested-With'
-            )
+            res.header('Access-Control-Allow-Origin', '*')
+            res.header('Access-Control-Allow-Headers', 'Content-Type')
+            res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE')
 
             this.app.use(cors())
             next()

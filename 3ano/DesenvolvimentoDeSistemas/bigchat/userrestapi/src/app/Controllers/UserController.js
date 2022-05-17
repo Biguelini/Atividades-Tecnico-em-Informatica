@@ -74,8 +74,8 @@ class UserController {
             const { nome, senha } = req.body
             try {
                 const updatedUser = await prisma.user.update({
-                    where: { usuario:usuario },
-                    data: { nome: nome , senha: senha },
+                    where: { usuario: usuario },
+                    data: { nome: nome, senha: senha },
                 })
                 return res.status(200).json({
                     message: 'Usuário atualizado com sucesso',
@@ -96,14 +96,17 @@ class UserController {
     }
     async login(req, res) {
         const { usuario, senha } = req.body
+
         const user = await prisma.usuario.findUnique({
             where: { usuario: usuario },
         })
-        const validated = senha == user.senha?true:false
-        if (validated) {
-            return res.status(200).json({ message: 'conectado' })
+        if (user) {
+            const validated = senha == user.senha ? true : false
+            if (validated) {
+                return res.status(200).json({ message: 'conectado' })
+            }
         }
-        return res.status(401).json({ message: 'usuário ou senha incorreto' })
+        return res.status(401).json({ message: 'usuário ou senha incorretos' })
     }
 }
 

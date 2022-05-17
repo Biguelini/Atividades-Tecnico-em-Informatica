@@ -1,9 +1,8 @@
 /* eslint-disable import/no-anonymous-default-export */
 import './Header.css'
 import React from 'react'
-import Logo from './Logo.jsx'
 export default (props) => (
     <div className="header">
-        <Logo />
+        <h1 className="logo">BigChat</h1>
     </div>
 )

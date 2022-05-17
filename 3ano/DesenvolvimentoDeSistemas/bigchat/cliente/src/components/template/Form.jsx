@@ -19,8 +19,9 @@ class Form extends Component {
         const logado = await loginUser(this.state.user, this.state.password)
         if (!logado) {
             return Swal.fire('Algo deu errado...', 'Usuário ou senha incorretos.', 'error')
-        }
+        } 
         event.preventDefault()
+        return console.log(`${this.state.user} logado`)
     }
 
     render() {

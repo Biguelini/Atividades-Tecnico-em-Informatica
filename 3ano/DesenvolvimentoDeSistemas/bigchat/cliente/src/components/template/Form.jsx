@@ -18,10 +18,16 @@ class Form extends Component {
     async handleSubmit(event) {
         const logado = await loginUser(this.state.user, this.state.password)
         if (!logado) {
-            return Swal.fire('Algo deu errado...', 'Usuário ou senha incorretos.', 'error')
-        } 
+            return Swal.fire(
+                'Algo deu errado...',
+                'Usuário ou senha incorretos.',
+                'error'
+            )
+        }
         event.preventDefault()
-        return console.log(`${this.state.user} logado`)
+        sessionStorage.setItem('user', this.state.user)
+
+        return window.location.reload()
     }
 
     render() {

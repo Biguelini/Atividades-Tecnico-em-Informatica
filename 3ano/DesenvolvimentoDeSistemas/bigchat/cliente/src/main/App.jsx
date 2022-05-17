@@ -1,12 +1,31 @@
 /* eslint-disable import/no-anonymous-default-export */
 import './App.css'
-import React from 'react'
+import React, { Component } from 'react'
 import Header from '../components/template/Header'
 import Form from '../components/template/Form'
+import Messages from '../components/template/Messages'
 
-export default (props) => (
-    <div className="app">
-        <Header />
-        <Form></Form>
-    </div>
-)
+class App extends Component {
+    constructor(props) {
+        super(props)
+        this.state = { user: sessionStorage.getItem('user') }
+    }
+
+    render() {
+        if (this.state.user) {
+            return (
+                <div className="app">
+                    <Header />
+                    <Messages />
+                </div>
+            )
+        }
+        return (
+            <div className="app">
+                <Header />
+                <Form />
+            </div>
+        )
+    }
+}
+export default App

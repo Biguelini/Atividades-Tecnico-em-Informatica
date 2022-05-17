@@ -1,9 +1,24 @@
 .header {
     display: flex;
     align-items: center;
-    justify-content: left;
+    justify-content: space-between;
     padding: 1rem 20vw;
     width: 100vw;
     margin-bottom: calc(25vh - 150px);
     color: var(--white);
 }
+.bSair {
+    padding: 0px;
+    margin: 0;
+    color: var(--pink);
+    background-color: transparent;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0.4rem;
+}
+.bSair p {
+    margin-right: 16px;
+}
+

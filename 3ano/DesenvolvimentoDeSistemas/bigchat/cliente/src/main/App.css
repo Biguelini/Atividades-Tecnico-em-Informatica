@@ -9,13 +9,13 @@
     margin: 0;
     box-sizing: border-box;
 }
+body {
+    background-color: var(--dark);
+}
 .app {
-    width: 100vw;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--dark);
 }
 .swal2-styled.swal2-confirm {
     background-color: var(--pink) !important;
@@ -40,7 +40,7 @@
 }
 .swal2-title {
     color: var(--white) !important;
-font-weight: bold !important;
+    font-weight: bold !important;
 }
 .swal2-html-container {
     color: var(--grey) !important;

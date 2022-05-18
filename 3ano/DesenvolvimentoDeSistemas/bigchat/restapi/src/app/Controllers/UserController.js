@@ -1,9 +1,8 @@
 const { PrismaClient } = require('@prisma/client')
 
 const prisma = new PrismaClient()
-const bcrypt = require('bcrypt')
 class UserController {
-    async show(req, res) {
+    async read(req, res) {
         try {
             const allUsers = await prisma.usuario.findMany()
             return res.status(200).json(allUsers)

@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 1rem 20vw;
-    width: 100vw;
+    width: 100%;
     margin-bottom: calc(25vh - 150px);
     color: var(--white);
 }
@@ -11,7 +11,7 @@
     padding: 0px;
     margin: 0;
     color: var(--pink);
-    background-color: transparent;
+    background-color: transparent !important;
     cursor: pointer;
     display: flex;
     justify-content: center;

@@ -11,6 +11,7 @@
 }
 body {
     background-color: var(--dark);
+    padding-bottom: 64px;
 }
 .app {
     display: flex;

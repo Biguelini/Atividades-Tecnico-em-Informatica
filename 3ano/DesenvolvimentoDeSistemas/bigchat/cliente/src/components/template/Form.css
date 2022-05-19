@@ -1,8 +1,9 @@
 form {
-    border-radius: 15px;
+    border-radius: 16px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    
 }
 .formContainer {
     display: flex;
@@ -40,7 +41,7 @@ input:focus{
 }
 button {
     height: 48px;
-    background-color: var(--pink);
+    background-color: var(--pink) !important;
     border: none;
     border-radius: 16px;
     font-size: 1.25rem;

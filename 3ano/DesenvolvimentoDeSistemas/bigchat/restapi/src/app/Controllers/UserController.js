@@ -14,6 +14,21 @@ class UserController {
             }
         }
     }
+    async readOne(req, res) {
+        try {
+            const usuario = req.params.usuario
+            const user = await prisma.usuario.findUnique({
+                where: { usuario: usuario },
+            })
+            return res.status(200).json(user)
+        } catch (e) {
+            return console.log(e)
+        } finally {
+            ;async () => {
+                await prisma.$disconnect()
+            }
+        }
+    }
     async create(req, res) {
         try {
             const { usuario, nome, senha } = req.body

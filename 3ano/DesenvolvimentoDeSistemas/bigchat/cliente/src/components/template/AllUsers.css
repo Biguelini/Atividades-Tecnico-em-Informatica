@@ -19,6 +19,7 @@ table th {
     color: white !important;
     font-size: 1.5rem !important;
     margin: 0 !important;
+    cursor: pointer;
 }
 .noUser{
     color: white;

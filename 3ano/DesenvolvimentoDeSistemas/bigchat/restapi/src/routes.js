@@ -7,6 +7,7 @@ const routes = new Router()
 
 
 routes.get('/user', UserController.read)
+routes.get('/user/:usuario', UserController.readOne)
 routes.post('/user', UserController.create)
 routes.post('/user/login', UserController.login)
 routes.delete('/user/:usuario', UserController.delete)

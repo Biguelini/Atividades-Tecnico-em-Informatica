@@ -18,8 +18,12 @@
     align-items: center;
     padding-top: 0.4rem;
     font-size: 1.25rem;
+    opacity: 1;
+    transition: 0.3s
 }
 .bSair p {
     margin-right: 16px;
 }
-
+.bSair:hover{
+    opacity: 0.7;
+}

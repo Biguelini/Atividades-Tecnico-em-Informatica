@@ -60,15 +60,25 @@ class UserController {
     async delete(req, res) {
         try {
             const usuario = req.params.usuario
-            console.log(usuario)
             try {
-                const deletedUser = await prisma.usuario.delete({
-                    where: { usuario: usuario },
+                const haveMessage = await prisma.mensagem.findMany({
+                    where: { destinatario: usuario },
                 })
-                return res.status(200).json({
-                    message: 'Usuário deletado com sucesso',
-                    deletedUser,
-                })
+                if (haveMessage.length !=0) {
+                    return res.status(401).json({
+                        message: 'O usuário possui mensagens',
+                    })
+                    
+                } else {
+                    const deletedUser = await prisma.usuario.delete({
+                        where: { usuario: usuario },
+                    })
+                    return res.status(200).json({
+                        message: 'Usuário deletado com sucesso',
+                        deletedUser,
+                    })
+
+                }
             } catch (error) {
                 return res.status(404).json({
                     error,

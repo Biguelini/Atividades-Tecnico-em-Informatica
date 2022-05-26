@@ -1,0 +1,61 @@
+.formContainer {
+    background-color: var(--dark);
+    width: 400px;
+    margin: 100px auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 64px;
+    border-radius: 16px;
+    justify-content: center;
+    box-shadow: 11px 11px 20px 0px rgba(0, 0, 0, 0.5);
+}
+.formContainer h2 {
+    margin-bottom: 64px;
+    text-align: center;
+    font-size: 4rem;
+    font-weight: bold;
+    color: var(--white);
+}
+form.formLogin {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+form.formLogin input {
+    height: 48px;
+    border-radius: 16px;
+    background-color: var(--grey);
+    border: none;
+    margin: 12px 0 24px 0;
+    padding: 8px;
+    border: solid 4px var(--grey);
+    font-size: 1.2rem;
+}
+form.formLogin input:focus {
+    border: solid 4px var(--pink);
+    outline: none;
+}
+.formContainer button {
+    height: 48px;
+    background-color: var(--pink);
+    border: none;
+    border-radius: 16px;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-top: 24px;
+    opacity: 1;
+    transition: 0.3s;
+}
+.formContainer button:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+.formContainer button:focus {
+    border: none;
+}
+form.formLogin label {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+    color: var(--white);
+    font-weight: bold;
+}

@@ -1,0 +1,46 @@
+.tableUsers {
+    border-spacing: 1;
+    border-collapse: collapse;
+    background: var(--dark);
+    border-radius: 16px;
+    overflow: hidden;
+    max-width: 75vw;
+    width: 100%;
+    margin: 50px auto 100px auto;
+    position: relative;
+    box-shadow: 11px 11px 20px 0px rgba(0, 0, 0, 0.5);
+}
+
+td,
+th {
+    padding: 16px;
+    text-align: center;
+    color: var(--white);
+}
+
+thead tr {
+    height: 60px;
+    background: var(--pink);
+    font-size: 1.5rem;
+    font-weight: bold;
+    
+}
+
+tbody tr:not(:first-child) {
+    height: 48px;
+    border-top: 3px solid black;
+}
+
+tbody tr{
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+tbody button{
+    padding: 16px 32px;
+    border-radius: 16px;
+    border: none;
+    margin-right: 16px;
+    background-color: var(--pink);
+    font-weight: bold;
+    color: var(--dark);
+}

@@ -1,0 +1,12 @@
+aside.logo {
+    background-color: var(--bg-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+aside.logo h1 {
+    color: var(--white);
+}
+.logo:hover{
+    text-decoration: none;
+}

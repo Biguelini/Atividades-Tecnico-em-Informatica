@@ -12,6 +12,21 @@
 body {
     background-color: var(--dark);
 }
+.app {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100px 1fr;
+    grid-template-areas: 'logo menu' 'content content';
+}
+aside.menu-area {
+    grid-area: menu;
+}
+aside.logo {
+    grid-area: logo;
+}
+main.content {
+    grid-area: content;
+}
 .swal2-styled.swal2-confirm {
     background-color: var(--pink) !important;
     color: var(--dark) !important;
@@ -39,4 +54,14 @@ body {
 }
 .swal2-html-container {
     color: var(--grey) !important;
+}
+
+.swal2-icon.swal2-success,
+.swal2-success-ring {
+    border: 0.25em solid #d9376d41 !important;
+    color: var(--pink) !important;
+}
+.swal2-success-line-long,
+.swal2-success-line-tip {
+    background-color: var(--pink) !important;
 }

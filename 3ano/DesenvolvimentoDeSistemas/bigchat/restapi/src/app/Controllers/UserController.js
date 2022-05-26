@@ -64,11 +64,10 @@ class UserController {
                 const haveMessage = await prisma.mensagem.findMany({
                     where: { destinatario: usuario },
                 })
-                if (haveMessage.length !=0) {
+                if (haveMessage.length != 0) {
                     return res.status(401).json({
                         message: 'O usuário possui mensagens',
                     })
-                    
                 } else {
                     const deletedUser = await prisma.usuario.delete({
                         where: { usuario: usuario },
@@ -77,7 +76,6 @@ class UserController {
                         message: 'Usuário deletado com sucesso',
                         deletedUser,
                     })
-
                 }
             } catch (error) {
                 return res.status(404).json({
@@ -94,10 +92,10 @@ class UserController {
     }
     async update(req, res) {
         try {
-            const usuario = parseInt(req.params.usuario)
+            const usuario = req.params.usuario
             const { nome, senha } = req.body
             try {
-                const updatedUser = await prisma.user.update({
+                const updatedUser = await prisma.usuario.update({
                     where: { usuario: usuario },
                     data: { nome: nome, senha: senha },
                 })
@@ -107,7 +105,7 @@ class UserController {
                 })
             } catch (error) {
                 return res.status(404).json({
-                    error,
+                    error: error,
                 })
             }
         } catch (e) {

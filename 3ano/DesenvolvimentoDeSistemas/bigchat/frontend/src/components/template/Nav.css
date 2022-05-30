@@ -1,0 +1,12 @@
+.exitBtn{
+    background: transparent;
+    border: none;
+    color: var(--pink);
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+.menu-area{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

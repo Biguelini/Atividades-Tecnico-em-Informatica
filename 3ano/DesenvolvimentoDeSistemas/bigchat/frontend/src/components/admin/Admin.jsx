@@ -31,7 +31,7 @@ export default (props) => {
     const saveUser = async () => {
         if (isEditing) {
             axios
-                .put('http://localhost:3030/user/'+usuario, {
+                .put('http://localhost:3030/user/' + usuario, {
                     nome: nome,
                     senha: senha,
                 })
@@ -70,10 +70,16 @@ export default (props) => {
         setUsuario('')
         setIsEditing(false)
     }
+    const clearForm = () => {
+        setNome('')
+        setSenha('')
+        setUsuario('')
+        setIsEditing(false)
+    }
     const deleteUsers = async (usuario) => {
         const url = 'http://localhost:3030/user/' + usuario
         Swal.fire({
-            title: 'Do you want to save the changes?',
+            title: 'Deseja deletar esse usuário?',
             showDenyButton: true,
             confirmButtonText: 'Excluir',
             denyButtonText: `Cancelar`,
@@ -144,9 +150,14 @@ export default (props) => {
                             type="text"
                             value={usuario}
                             onChange={(e) => {
-                                if (!isEditing) {
-                                    setUsuario(e.target.value)
+                                if (isEditing) {
+                                    return Swal.fire(
+                                        'Não edite isso!',
+                                        'O nome de usuário não pode ser editado',
+                                        'error'
+                                    )
                                 }
+                                setUsuario(e.target.value)
                             }}
                         />
                         <label>Nome</label>
@@ -168,6 +179,13 @@ export default (props) => {
                         }}
                     >
                         Enviar
+                    </button>
+                    <button
+                        onClick={() => {
+                            clearForm()
+                        }}
+                    >
+                        Cancelar
                     </button>
                 </div>
             </main>

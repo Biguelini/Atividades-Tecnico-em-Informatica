@@ -23,19 +23,13 @@ thead tr {
     background: var(--pink);
     font-size: 1.5rem;
     font-weight: bold;
-    
 }
 
-tbody tr:not(:first-child) {
-    height: 48px;
-    border-top: 3px solid black;
-}
-
-tbody tr{
+tbody tr {
     font-weight: bold;
     font-size: 1.2rem;
 }
-tbody button{
+tbody button {
     padding: 16px 32px;
     border-radius: 16px;
     border: none;
@@ -43,4 +37,10 @@ tbody button{
     background-color: var(--pink);
     font-weight: bold;
     color: var(--dark);
+}
+
+@media screen and (max-width: 856px) {
+    tbody button:not(:first-child) {
+        margin-top: 10px;
+    }
 }

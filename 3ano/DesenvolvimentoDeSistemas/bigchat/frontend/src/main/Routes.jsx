@@ -11,6 +11,7 @@ export default (props) => {
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/admin" element={<Admin />} />
             <Route exact path="/user" element={<User />} />
+            <Route path="*" element={<Login />} />
         </Routes>
     )
 }

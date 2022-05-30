@@ -6,6 +6,7 @@ aside.logo {
 }
 aside.logo h1 {
     color: var(--white);
+    font-weight: bold;
 }
 .logo:hover{
     text-decoration: none;

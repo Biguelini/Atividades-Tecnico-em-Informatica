@@ -2,9 +2,24 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Navigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 import './User.css'
 export default (props) => {
     const [mensagens, setMensagens] = useState([])
+    const showMessage = (mensagem) => {
+        Swal.fire({
+            title: `${mensagem.assunto}`,
+            html:
+                `<span class="remetente">De: ${mensagem.remetente}</span>` +
+                `<span class="data">Enviado em: ${mensagem.data}</span>` +
+                `<span class="mensagem">${mensagem.mensagem}</span>`,
+            showCloseButton: true,
+            showCancelButton: false,
+            focusConfirm: false,
+            confirmButtonText: 'Fechar mensagem',
+            showConfirmButton: false,
+        })
+    }
     const getMessages = () => {
         const url =
             'http://localhost:3030/messages/' +
@@ -22,14 +37,31 @@ export default (props) => {
     } else if (sessionStorage.getItem('usuario')) {
         return (
             <main className="content">
-                <h1>Usuário</h1>
-                <button
-                    onClick={() => {
-                        console.log(mensagens)
-                    }}
-                >
-                    Clica
-                </button>
+                <table className="tableUsers">
+                    <thead>
+                        <tr>
+                            <th>Remetente</th>
+                            <th>Mensagem</th>
+                            <th>Data</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {mensagens.map((mensagem) => {
+                            return (
+                                <tr
+                                    key={mensagem.id}
+                                    onClick={() => {
+                                        showMessage(mensagem)
+                                    }}
+                                >
+                                    <td>{mensagem.remetente}</td>
+                                    <td>{mensagem.assunto}</td>
+                                    <td>{mensagem.data}</td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
             </main>
         )
     } else {

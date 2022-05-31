@@ -19,7 +19,7 @@ th {
 }
 
 thead tr {
-    height: 60px;
+    height: 68px;
     background: var(--pink);
     font-size: 1.5rem;
     font-weight: bold;
@@ -28,6 +28,7 @@ thead tr {
 tbody tr {
     font-weight: bold;
     font-size: 1.2rem;
+    height: 68px;
 }
 tbody button {
     padding: 16px 32px;

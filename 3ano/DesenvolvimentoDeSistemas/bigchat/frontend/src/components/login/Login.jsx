@@ -14,27 +14,24 @@ export default (props) => {
             sessionStorage.setItem('usuario', usuario)
             window.location.reload()
         } else {
-            try {
-                axios
-                    .post('http://localhost:3030/user/login', {
-                        usuario: usuario,
-                        senha: senha,
-                    })
-                    .then(function (response) {
-                        return response.data.message
-                    })
-                    .catch(function (error) {
-                        console.error(error)
-                    })
-                sessionStorage.setItem('usuario', usuario)
-                window.location.reload()
-            } catch {
-                Swal.fire(
-                    'Usuário e/ou senha incorretos!',
-                    'Confira suas credenciais...',
-                    'error'
-                )
-            }
+            axios
+                .post('http://localhost:3030/user/login', {
+                    usuario: usuario,
+                    senha: senha,
+                })
+                .then(function (response) {
+                    sessionStorage.setItem('usuario', usuario)
+                    window.location.reload()
+                    return response.data.message
+                })
+                .catch(function (error) {
+                    Swal.fire(
+                        'Usuário e/ou senha incorretos!',
+                        'Confira suas credenciais...',
+                        'error'
+                    )
+                    return console.error(error)
+                })
         }
     }
     if (usuarioLogado === 'lucio') {

@@ -1,6 +1,8 @@
 const { PrismaClient } = require('@prisma/client')
 
 const prisma = new PrismaClient()
+
+var moment = require('moment-timezone')
 class MessagesController {
     async read(req, res) {
         const usuario = req.params.usuario
@@ -8,6 +10,7 @@ class MessagesController {
             const messages = await prisma.mensagem.findMany({
                 where: { destinatario: usuario },
             })
+            console.log
             return res.status(200).json(messages)
         } catch (e) {
             return console.log(e)

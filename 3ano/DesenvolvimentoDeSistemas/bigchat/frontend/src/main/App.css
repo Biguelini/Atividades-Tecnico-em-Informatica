@@ -72,3 +72,16 @@ main.content {
 .swal2-success-line-tip {
     background-color: var(--pink) !important;
 }
+.swal2-close:hover{
+    color: var(--pink) !important;
+}
+.swal2-container.swal2-center>.swal2-popup{
+    min-width: 800px !important;
+    width: 75vw !important;
+}
+@media screen and (max-width: 800px) {
+    .swal2-container.swal2-center>.swal2-popup{
+        min-width: 0px !important;
+        width: 100vw !important;
+    }
+}

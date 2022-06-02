@@ -19,3 +19,27 @@
     margin: 8px 25px 32px;
 
 }
+.MsgForm{
+    width: 50%;
+    margin-top: 0;
+}
+.MsgForm textarea{
+    border-radius: 16px;
+    background-color: var(--grey);
+    border: none;
+    padding: 8px;
+    margin: 12px 0 24px 0;
+    border: solid 4px var(--grey);
+    font-size: 1.2rem;
+}
+
+.MsgForm textarea:focus {
+    border: solid 4px var(--pink);
+    outline: none;
+}
+.MsgForm h2{
+    margin-top: 80px;
+}
+.tableUsers{
+    margin-bottom: 0px !important;
+}

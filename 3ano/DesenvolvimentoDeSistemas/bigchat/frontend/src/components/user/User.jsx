@@ -62,6 +62,22 @@ export default (props) => {
                         })}
                     </tbody>
                 </table>
+                <div className="formContainer MsgForm">
+                    <h2>Escreva uma mensagem</h2>
+                    <form className="formLogin">
+                        <label>Usuário</label>
+                        <input
+                            type="text"
+                        />
+                        <label>Senha</label>
+                        <input
+                            type="password"
+                        />
+                        <label>Mensagem</label>
+                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                    </form>
+                    <button >Enviar</button>
+                </div>
             </main>
         )
     } else {

@@ -64,7 +64,10 @@ class UserController {
                 const haveMessage = await prisma.mensagem.findMany({
                     where: { destinatario: usuario },
                 })
-                if (haveMessage.length != 0) {
+                const alreadySendMessage = await prisma.mensagem.findMany({
+                    where: { remetente: usuario },
+                })
+                if (haveMessage.length != 0 && alreadySendMessage.length != 0) {
                     return res.status(401).json({
                         message: 'O usuário possui mensagens',
                     })

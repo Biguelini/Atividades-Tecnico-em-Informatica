@@ -1,29 +1,29 @@
-.remetente{
+.remetente {
     font-weight: bold;
     font-size: 1.4rem;
     display: flex;
-    margin:  0 24px 18px;
+    margin: 0 24px 18px;
 }
-.data{
+.data {
     display: flex;
     justify-content: right;
-    align-items:center;
+    align-items: center;
     margin: 8px 25px;
     color: var(--gray);
 }
-.mensagem{
+.mensagem {
     display: flex;
     text-align: justify;
-    align-items:center;
+    align-items: center;
     font-size: 1.4rem;
     margin: 8px 25px 32px;
-
 }
-.MsgForm{
+.MsgForm {
     width: 50%;
-    margin-top: 0;
+    margin-top: 80px;
+    margin-bottom: 64px;
 }
-.MsgForm textarea{
+.MsgForm textarea {
     border-radius: 16px;
     background-color: var(--grey);
     border: none;
@@ -31,15 +31,26 @@
     margin: 12px 0 24px 0;
     border: solid 4px var(--grey);
     font-size: 1.2rem;
+    resize: none;
 }
 
 .MsgForm textarea:focus {
     border: solid 4px var(--pink);
     outline: none;
 }
-.MsgForm h2{
-    margin-top: 80px;
-}
-.tableUsers{
+.tableUsers {
     margin-bottom: 0px !important;
+}
+.MsgForm select {
+    border-radius: 16px;
+    background-color: var(--grey);
+    border: none;
+    padding: 8px;
+    margin: 12px 0 24px 0;
+    border: solid 4px var(--grey);
+    font-size: 1.2rem;
+    resize: none;
+}
+.MsgForm select:focus {
+    border: solid 4px var(--pink);
 }

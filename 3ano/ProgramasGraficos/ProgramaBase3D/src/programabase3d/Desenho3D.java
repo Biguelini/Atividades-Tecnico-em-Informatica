@@ -59,7 +59,7 @@ public class Desenho3D {
         xd = xv * xmax;
         yd = yv * ymax;
     }
-    
+
     private void linhaAte(Graphics g, double x, double y, double z) {
         double xi, yi;
         mapCoord(xcoord, ycoord, zcoord);
@@ -71,8 +71,9 @@ public class Desenho3D {
         ycoord = y;
         zcoord = z;
     }
-    private void movaPAra(Graphics g, double x, double y, double z, boolean pu){
-        if(pu){
+
+    private void movaPAra(Graphics g, double x, double y, double z, boolean pu) {
+        if (pu) {
             xcoord = x;
             ycoord = y;
             zcoord = z;
@@ -80,91 +81,73 @@ public class Desenho3D {
             linhaAte(g, x, y, z);
         }
     }
-    
-    public void desenha(Graphics g){
+
+    public void desenha(Graphics g) {
         Ponto p;
-        for (int i = 0; i <desenho.size(); i++){
+        for (int i = 0; i < desenho.size(); i++) {
             p = (Ponto) desenho.get(i);
             movaPAra(g, p.getX(), p.getY(), p.getZ(), p.isPu());
         }
     }
-    public void cubo(){
-        desenho.addElement(new Ponto(10, 10.5d, 1.5, true));
-        
-        desenho.addElement(new Ponto(10, 11, 1.5, false));
-        desenho.addElement(new Ponto(10, 11, 1.2, false));
-        desenho.addElement(new Ponto(10, 11, 1.5, true));
-        
-        desenho.addElement(new Ponto(11, 11, 1.5, false));;
-        desenho.addElement(new Ponto(11, 11, 1.2, false));;
-        desenho.addElement(new Ponto(11, 11, 1.5, true));;
-        
-        desenho.addElement(new Ponto(11, 12, 1.5, false));;
-        desenho.addElement(new Ponto(11, 12, 1.2, false));;
-        desenho.addElement(new Ponto(11, 12, 1.5, true));;
-        
-        
-        desenho.addElement(new Ponto(11.3, 12, 1.5, false));;
-        desenho.addElement(new Ponto(11.3, 12, 1.2, true));;
-        desenho.addElement(new Ponto(11.3, 12, 1.5, false));;
-        
-        
-        desenho.addElement(new Ponto(11.3, 12, 1.2, false));;
-        desenho.addElement(new Ponto(11.3, 12, 1.5, true));;
-        
-        
-        desenho.addElement(new Ponto(11.3, 9.5d, 1.5, false));
-        desenho.addElement(new Ponto(11.3, 9.5d, 1.2, false));
-        desenho.addElement(new Ponto(11.3, 9.5d, 1.5, true));
-        
-        
-        desenho.addElement(new Ponto(11, 9.5d, 1.5, false));
-        desenho.addElement(new Ponto(11, 9.5d, 1.2, false));
-        desenho.addElement(new Ponto(11, 9.5d, 1.5, true));
-        
-        
-        desenho.addElement(new Ponto(11, 10.5d, 1.5, false));
-        desenho.addElement(new Ponto(11, 10.5d, 1.2, false));
-        desenho.addElement(new Ponto(11, 10.5d, 1.5, true));
-        
-        
-        desenho.addElement(new Ponto(10, 10.5d, 1.5, false));
-        desenho.addElement(new Ponto(10, 10.5d, 1.2, false));
-        desenho.addElement(new Ponto(10, 10.5d, 1.5, true));
-        
-        
-        
-        
-        desenho.addElement(new Ponto(10, 10.5d, 1.2, false));
-        desenho.addElement(new Ponto(10, 10.5d, 1.2, true));
-        desenho.addElement(new Ponto(10, 11, 1.2, false));
-        desenho.addElement(new Ponto(11, 11, 1.2, false));;
-        desenho.addElement(new Ponto(11, 12, 1.2, false));;
-        desenho.addElement(new Ponto(11.3, 12, 1.2, false));;
-        desenho.addElement(new Ponto(11.3, 9.5d, 1.2, false));
-        desenho.addElement(new Ponto(11, 9.5d, 1.2, false));
-        desenho.addElement(new Ponto(11, 10.5d, 1.2, false));
-        desenho.addElement(new Ponto(10, 10.5d, 1.2, false));
-        
-        
-        desenho.addElement(new Ponto(11.3, 10.5d, 1.4, true));
-        desenho.addElement(new Ponto(15, 10.5d, 1.4, false));
-        desenho.addElement(new Ponto(15, 10.5d, 1.3, false));
-        desenho.addElement(new Ponto(15, 10.5d, 1.4, true));
-        desenho.addElement(new Ponto(15.3, 10.75, 1.35, false));
-        desenho.addElement(new Ponto(15, 11, 1.4, false));
-        desenho.addElement(new Ponto(15, 11, 1.3, false));
-        desenho.addElement(new Ponto(15, 11, 1.4, true));
-        desenho.addElement(new Ponto(11.3, 11, 1.4, false));
-        
-        desenho.addElement(new Ponto(11.3, 10.5d, 1.3, true));
-        desenho.addElement(new Ponto(15, 10.5d, 1.3, false));
-        desenho.addElement(new Ponto(15.3, 10.75, 1.35, false));
-        desenho.addElement(new Ponto(15, 11, 1.3, false));
-        
-        desenho.addElement(new Ponto(11.3, 11, 1.3, false));
+
+    public void cubo() {
+
+        //grandao
+        desenho.addElement(new Ponto(9, 8, 1, true));
+        desenho.addElement(new Ponto(9, 13, 1, false));
+        desenho.addElement(new Ponto(14, 13, 1, false));
+        desenho.addElement(new Ponto(14, 8, 1, false));
+        desenho.addElement(new Ponto(9, 8, 1, false));
+        desenho.addElement(new Ponto(9, 8, 4, false));
+        desenho.addElement(new Ponto(9, 13, 4, false));
+        desenho.addElement(new Ponto(14, 13, 4, false));
+        desenho.addElement(new Ponto(14, 8, 4, false));
+        desenho.addElement(new Ponto(9, 8, 4, false));
+        desenho.addElement(new Ponto(9, 13, 4, false));
+        desenho.addElement(new Ponto(9, 13, 1, false));
+        desenho.addElement(new Ponto(14, 13, 1, false));
+        desenho.addElement(new Ponto(14, 13, 4, false));
+        desenho.addElement(new Ponto(14, 8, 4, false));
+        desenho.addElement(new Ponto(14, 8, 1, false));
+
+        // medio
+        desenho.addElement(new Ponto(10, 9, 1.5, true));
+        desenho.addElement(new Ponto(10, 12, 1.5, false));
+        desenho.addElement(new Ponto(13, 12, 1.5, false));
+        desenho.addElement(new Ponto(13, 9, 1.5, false));
+        desenho.addElement(new Ponto(10, 9, 1.5, false));
+        desenho.addElement(new Ponto(10, 9, 3.5, false));
+        desenho.addElement(new Ponto(10, 12, 3.5, false));
+        desenho.addElement(new Ponto(13, 12, 3.5, false));
+        desenho.addElement(new Ponto(13, 9, 3.5, false));
+        desenho.addElement(new Ponto(10, 9, 3.5, false));
+        desenho.addElement(new Ponto(10, 12, 3.5, false));
+        desenho.addElement(new Ponto(10, 12, 1.5, false));
+        desenho.addElement(new Ponto(13, 12, 1.5, false));
+        desenho.addElement(new Ponto(13, 12, 3.5, false));
+        desenho.addElement(new Ponto(13, 9, 3.5, false));
+        desenho.addElement(new Ponto(13, 9, 1.5, false));
+
+        // pequenino
+        desenho.addElement(new Ponto(11, 10, 2, true));
+        desenho.addElement(new Ponto(11, 11, 2, false));
+        desenho.addElement(new Ponto(12, 11, 2, false));
+        desenho.addElement(new Ponto(12, 10, 2, false));
+        desenho.addElement(new Ponto(11, 10, 2, false));
+        desenho.addElement(new Ponto(11, 10, 3, false));
+        desenho.addElement(new Ponto(11, 11, 3, false));
+        desenho.addElement(new Ponto(12, 11, 3, false));
+        desenho.addElement(new Ponto(12, 10, 3, false));
+        desenho.addElement(new Ponto(11, 10, 3, false));
+        desenho.addElement(new Ponto(11, 11, 3, false));
+        desenho.addElement(new Ponto(11, 11, 2, false));
+        desenho.addElement(new Ponto(12, 11, 2, false));
+        desenho.addElement(new Ponto(12, 11, 3, false));
+        desenho.addElement(new Ponto(12, 10, 3, false));
+        desenho.addElement(new Ponto(12, 10, 2, false));
+
     }
-    
+
     public void translada(double dx, double dy, double dz) {
         Ponto p;
         for (int i = 0; i < desenho.size(); i++) {
@@ -175,9 +158,9 @@ public class Desenho3D {
             desenho.set(i, p);
         }
     }
-    
+
     public void rotaciona(double h, double q, double b) {
-        double m[][] = new double [4][4];
+        double m[][] = new double[4][4];
         double ch = Math.cos(h);
         double cp = Math.cos(q);
         double cb = Math.cos(b);
@@ -193,7 +176,7 @@ public class Desenho3D {
         m[3][1] = cb * sh + sb * sp * ch;
         m[3][2] = sb * sh - cb * sp * ch;
         m[3][3] = ch * cp;
-        
+
         Ponto p;
         for (int i = 0; i < desenho.size(); i++) {
             p = (Ponto) desenho.get(i);
@@ -209,7 +192,7 @@ public class Desenho3D {
             desenho.set(i, p);
         }
     }
-    
+
     public void deforma(boolean maior) {
         Ponto p;
         for (int i = 0; i < desenho.size(); i++) {
@@ -228,11 +211,12 @@ public class Desenho3D {
             }
         }
     }
-    
+
     public double getCentroy() {
         return centroy;
     }
-    public void setCentroy(double centroy){
+
+    public void setCentroy(double centroy) {
         this.centroy = centroy;
     }
 

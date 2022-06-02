@@ -8,12 +8,12 @@ datasource db {
 }
 
 model mensagem {
-  id           Int      @id @default(autoincrement())
-  remetente    String   @db.VarChar(10)
-  destinatario String   @db.VarChar(10)
-  assunto      String   @db.VarChar(255)
-  data         DateTime @default(now()) @db.Timestamp(0)
-  mensagem     String   @db.Text
+  id           Int       @id @default(autoincrement())
+  remetente    String    @db.VarChar(10)
+  destinatario String    @db.VarChar(10)
+  assunto      String    @db.VarChar(255)
+  data         DateTime? @db.Timestamp(-3)
+  mensagem     String    @db.Text
 }
 
 model usuario {

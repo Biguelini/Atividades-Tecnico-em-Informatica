@@ -13,8 +13,9 @@
 }
 .mensagem{
     display: flex;
-    justify-content:center;
+    text-align: justify;
     align-items:center;
     font-size: 1.4rem;
-    margin: 8px 0 32px;
+    margin: 8px 25px 32px;
+
 }

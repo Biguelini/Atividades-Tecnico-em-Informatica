@@ -14,7 +14,7 @@ routes.delete('/user/:usuario', UserController.delete)
 routes.put('/user/:usuario', UserController.update)
 
 routes.get('/messages/:usuario', MessagesController.read)
-routes.post('/messages', MessagesController.create)
 routes.delete('/messages/:id', MessagesController.delete)
+routes.post('/messages', MessagesController.create)
 
 module.exports = routes

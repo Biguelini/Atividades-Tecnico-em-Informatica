@@ -29,46 +29,71 @@ export default (props) => {
         })
     }
     const saveUser = async () => {
-        if (isEditing) {
-            axios
-                .put('http://localhost:3030/user/' + usuario, {
-                    nome: nome,
-                    senha: senha,
-                })
-                .then(function (response) {
-                    getUsers()
-                })
-                .catch(function (error) {
-                    console.error(error)
-                })
-            Swal.fire(
-                'Usuário editado!',
-                'Usuário foi editado com sucesso',
-                'success'
-            )
+        if (usuario !== '' && nome !== '' && senha !== '') {
+            if (isEditing) {
+                axios
+                    .put('http://localhost:3030/user/' + usuario, {
+                        nome: nome,
+                        senha: senha,
+                    })
+                    .then(function (response) {
+                        getUsers()
+                        setNome('')
+                        setSenha('')
+                        setUsuario('')
+                        setIsEditing(false)
+                        return Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Usuário foi editado com sucesso',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        })
+                    })
+                    .catch(function (error) {
+                        console.error(error)
+                    })
+            } else {
+                axios
+                    .post('http://localhost:3030/user/', {
+                        nome: nome,
+                        usuario: usuario,
+                        senha: senha,
+                    })
+                    .then(function (response) {
+                        getUsers()
+                        setNome('')
+                        setSenha('')
+                        setUsuario('')
+                        setIsEditing(false)
+                        return Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Usuário foi criado com sucesso',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        })
+                    })
+                    .catch(function (error) {
+                        console.error(error)
+                        return Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Algo não ocorreu bem',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        })
+                    })
+            }
         } else {
-            axios
-                .post('http://localhost:3030/user/', {
-                    nome: nome,
-                    usuario: usuario,
-                    senha: senha,
-                })
-                .then(function (response) {
-                    getUsers()
-                })
-                .catch(function (error) {
-                    console.error(error)
-                })
-            Swal.fire(
-                'Usuário criado!',
-                'Usuário foi criado com sucesso',
-                'success'
-            )
+            return Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Preencha todos os campos',
+                showConfirmButton: false,
+                timer: 1500,
+            })
         }
-        setNome('')
-        setSenha('')
-        setUsuario('')
-        setIsEditing(false)
     }
     const clearForm = () => {
         setNome('')
@@ -89,9 +114,23 @@ export default (props) => {
                     .delete(url)
                     .then(function () {
                         getUsers()
+                        return Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Usuário deletado',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        })
                     })
                     .catch(function (error) {
                         console.error(error)
+                        return Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Este usuário possui mensagens',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        })
                     })
             }
         })
@@ -168,7 +207,7 @@ export default (props) => {
                         />
                         <label>Senha</label>
                         <input
-                            type="password"
+                            type="text"
                             value={senha}
                             onChange={(e) => setSenha(e.target.value)}
                         />

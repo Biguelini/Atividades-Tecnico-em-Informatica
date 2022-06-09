@@ -54,3 +54,8 @@
 .MsgForm select:focus {
     border: solid 4px var(--pink);
 }
+@media only screen and (max-width: 1000px){
+    .MsgForm{
+        width: 75vw !important;
+    }
+}

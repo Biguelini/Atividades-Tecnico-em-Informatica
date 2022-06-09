@@ -77,18 +77,35 @@ export default (props) => {
                     mensagem: mensagem,
                 })
                 .then(function (response) {
-                    Swal.fire('Enviado', 'Sua mensagem foi enviada', 'success')
+                    setAssunto("")
+                    setDestinatario("")
+                    setMensagem("")
+                    return Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Mensagem enviada',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    })
                 })
                 .catch(function (error) {
-                    Swal.fire(
-                        'Erro :(',
-                        'Algo não saiu como esperávamos',
-                        'error'
-                    )
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'Algo não ocorreu bem',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    })
                     return console.error(error)
                 })
         } else {
-            Swal.fire('Erro :(', 'Preencha corretamente os campos', 'error')
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Preencha todos os campos',
+                showConfirmButton: false,
+                timer: 1500,
+            })
         }
         console.log(assunto, destinatario, mensagem)
     }

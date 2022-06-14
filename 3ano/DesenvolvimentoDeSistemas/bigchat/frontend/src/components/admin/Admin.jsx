@@ -165,7 +165,7 @@ export default (props) => {
                                                 deleteUsers(user.usuario)
                                             }}
                                         >
-                                            deletar
+                                            Deletar
                                         </button>
                                         <button
                                             className="btnDel"

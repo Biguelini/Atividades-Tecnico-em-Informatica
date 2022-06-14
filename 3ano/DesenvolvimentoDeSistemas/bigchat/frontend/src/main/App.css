@@ -90,3 +90,7 @@ main.content {
         width: 100vw !important;
     }
 }
+
+button{
+    color: var(--white) !important;
+}

@@ -123,7 +123,7 @@ class UserController {
     }
     async login(req, res) {
         const { usuario, senha } = req.body
-        if (usuario) {
+        if (usuario != '') {
             const user = await prisma.usuario.findUnique({
                 where: { usuario: usuario },
             })

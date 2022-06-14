@@ -45,3 +45,6 @@ tbody button {
         margin-top: 10px;
     }
 }
+.btnDel, .btnEditar{
+    width: 125px !important;
+}

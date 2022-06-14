@@ -3,6 +3,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { Navigate } from 'react-router'
 import Swal from 'sweetalert2'
+import Button from '../template/Button'
 import './Login.css'
 export default (props) => {
     const [usuario, setUsuario] = useState([])
@@ -59,7 +60,7 @@ export default (props) => {
                             value={senha}
                             onChange={(e) => setSenha(e.target.value)}
                         />
-                        <button>Enviar</button>
+                        <Button text="Login" classe="btnFilled"></Button>
                     </form>
                 </div>
             </main>

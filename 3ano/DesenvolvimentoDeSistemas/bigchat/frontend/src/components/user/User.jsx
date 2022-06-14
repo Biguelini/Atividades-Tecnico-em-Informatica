@@ -3,6 +3,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import Button from '../template/Button'
 import './User.css'
 export default (props) => {
     const [mensagens, setMensagens] = useState([])
@@ -30,11 +31,16 @@ export default (props) => {
             showDenyButton: true,
             denyButtonText: `Excluir`,
             focusConfirm: false,
-            confirmButtonText: 'Fechar mensagem',
+            confirmButtonText: 'Responder',
             showConfirmButton: false,
         }).then((result) => {
             if (result.isDenied) {
                 deleteMessage(mensagem.id)
+            }
+            if (result.isConfirmed) {
+                window.location.href = '#form'
+                setDestinatario(mensagem.remetente)
+                setAssunto('Re: ' + mensagem.assunto)
             }
         })
     }
@@ -109,6 +115,11 @@ export default (props) => {
         }
         console.log(assunto, destinatario, mensagem)
     }
+    const clearMessage = () => {
+        setAssunto('')
+        setDestinatario('')
+        setMensagem('')
+    }
     useEffect(() => {
         getMessages()
         getUsers()
@@ -132,7 +143,9 @@ export default (props) => {
                     </thead>
                     <tbody>
                         {mensagens.map((mensagem) => {
-                            const dataFormatada = new Date(mensagem.data).toLocaleString()
+                            const dataFormatada = new Date(
+                                mensagem.data
+                            ).toLocaleString()
                             return (
                                 <tr
                                     key={mensagem.id}
@@ -148,7 +161,7 @@ export default (props) => {
                         })}
                     </tbody>
                 </table>
-                <div className="formContainer MsgForm">
+                <div className="formContainer MsgForm" id="form">
                     <h2>Escreva uma mensagem</h2>
                     <form className="formLogin">
                         <label>Assunto</label>
@@ -177,13 +190,16 @@ export default (props) => {
                             value={mensagem}
                         ></textarea>
                     </form>
-                    <button
-                        onClick={() => {
-                            sendMessage()
-                        }}
-                    >
-                        Enviar
-                    </button>
+                    <Button
+                        text="Enviar"
+                        classe="btnFilled"
+                        acao={(e) => sendMessage()}
+                    ></Button>
+                    <Button
+                        text="Cancelar"
+                        classe="btnFilled"
+                        acao={(e) => clearMessage()}
+                    ></Button>
                 </div>
             </main>
         )

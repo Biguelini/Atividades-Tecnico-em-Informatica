@@ -3,6 +3,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import Button from '../template/Button'
 import './Admin.css'
 
 export default (props) => {
@@ -157,24 +158,22 @@ export default (props) => {
                                 <tr key={user.usuario}>
                                     <td>{user.usuario}</td>
                                     <td>{user.nome}</td>
-                                    <td>{user.senha}</td>
+                                    <td>{'•'.repeat(user.senha.length)}</td>
                                     <td>
-                                        <button
-                                            className="btnDel"
-                                            onClick={() => {
-                                                deleteUsers(user.usuario)
-                                            }}
+                                        <Button
+                                            text="Deletar"
+                                            classe="btnTable"
+                                            acao={(e)=>deleteUsers(user.usuario)}
                                         >
                                             Deletar
-                                        </button>
-                                        <button
-                                            className="btnDel"
-                                            onClick={() => {
-                                                loadEditUser(user.usuario)
-                                            }}
+                                        </Button>
+                                        <Button
+                                            text="Editar"
+                                            classe="btnTable"
+                                            acao={(e)=>loadEditUser(user.usuario)}
                                         >
                                             Editar
-                                        </button>
+                                        </Button>
                                     </td>
                                 </tr>
                             )
@@ -214,20 +213,20 @@ export default (props) => {
                             onChange={(e) => setSenha(e.target.value)}
                         />
                     </form>
-                    <button
-                        onClick={() => {
-                            saveUser()
-                        }}
+                    <Button
+                        text="Cadastrar"
+                        classe="btnFilled"
+                        acao={(e)=>saveUser()}
                     >
                         Enviar
-                    </button>
-                    <button
-                        onClick={() => {
-                            clearForm()
-                        }}
+                    </Button>
+                    <Button
+                        text="Cancelar"
+                        classe="btnFilled"
+                        acao={(e)=>clearForm()}
                     >
                         Cancelar
-                    </button>
+                    </Button>
                 </div>
             </main>
         )

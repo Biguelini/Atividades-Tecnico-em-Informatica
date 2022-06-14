@@ -35,24 +35,8 @@ form.formLogin input:focus {
     border: solid 4px var(--pink);
     outline: none;
 }
-.formContainer button {
-    height: 48px;
-    background-color: var(--pink);
-    border: none;
-    border-radius: 16px;
-    font-size: 1.25rem;
-    font-weight: bold;
-    margin-top: 24px;
-    opacity: 1;
-    transition: 0.3s;
-}
-.formContainer button:hover {
-    opacity: 0.7;
-    cursor: pointer;
-}
-.formContainer button:focus {
-    border: none;
-}
+
+
 form.formLogin label {
     font-size: 1.4rem;
     margin-bottom: 8px;

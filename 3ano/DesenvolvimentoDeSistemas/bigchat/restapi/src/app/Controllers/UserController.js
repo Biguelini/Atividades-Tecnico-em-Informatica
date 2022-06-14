@@ -32,23 +32,32 @@ class UserController {
     async create(req, res) {
         try {
             const { usuario, nome, senha } = req.body
-            const userAlreadyUsed = await prisma.usuario.findUnique({
-                where: { usuario: usuario },
-            })
-            if (userAlreadyUsed) {
-                return res.status(409).json({ message: 'User is already used' })
-            }
-            const createdUser = { nome: nome, usuario: usuario, senha: senha }
-            await prisma.usuario.create({
-                data: {
+            if (usuario != '' && nome != '' && senha != '') {
+                const userAlreadyUsed = await prisma.usuario.findUnique({
+                    where: { usuario: usuario },
+                })
+                if (userAlreadyUsed) {
+                    return res
+                        .status(409)
+                        .json({ message: 'User is already used' })
+                }
+                const createdUser = {
                     nome: nome,
                     usuario: usuario,
                     senha: senha,
-                },
-            })
-            return res
-                .status(201)
-                .json({ message: 'User created', createdUser })
+                }
+                await prisma.usuario.create({
+                    data: {
+                        nome: nome,
+                        usuario: usuario,
+                        senha: senha,
+                    },
+                })
+                return res
+                    .status(201)
+                    .json({ message: 'User created', createdUser })
+            }
+            return res.status(404)
         } catch (e) {
             return console.log(e)
         } finally {
@@ -68,7 +77,10 @@ class UserController {
                     where: { remetente: usuario },
                 })
                 console.log(haveMessage.length, alreadySendMessage.length)
-                if (haveMessage.length !== 0 || alreadySendMessage.length !== 0) {
+                if (
+                    haveMessage.length !== 0 ||
+                    alreadySendMessage.length !== 0
+                ) {
                     return res.status(401).json({
                         message: 'O usuário possui mensagens',
                     })

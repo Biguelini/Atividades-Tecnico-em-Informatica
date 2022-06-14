@@ -190,11 +190,13 @@ export default (props) => {
                             value={usuario}
                             onChange={(e) => {
                                 if (isEditing) {
-                                    return Swal.fire(
-                                        'Não edite isso!',
-                                        'O nome de usuário não pode ser editado',
-                                        'error'
-                                    )
+                                    return Swal.fire({
+                                        position: 'top-end',
+                                        icon: 'error',
+                                        title: 'Não pode editar o usuário',
+                                        showConfirmButton: false,
+                                        timer: 1500,
+                                    })
                                 }
                                 setUsuario(e.target.value)
                             }}

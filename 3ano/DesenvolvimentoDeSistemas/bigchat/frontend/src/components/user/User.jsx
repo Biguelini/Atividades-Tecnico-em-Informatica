@@ -18,12 +18,12 @@ export default (props) => {
             setUsers(data)
         })
     }
-    const showMessage = (mensagem) => {
+    const showMessage = (mensagem, data) => {
         Swal.fire({
             title: `${mensagem.assunto}`,
             html:
                 `<span class="remetente">De: ${mensagem.remetente}</span>` +
-                `<span class="data">Enviado em: ${mensagem.data}</span>` +
+                `<span class="data">Enviado em: ${data}</span>` +
                 `<span class="mensagem">${mensagem.mensagem}</span>`,
             showCloseButton: true,
             showCancelButton: false,
@@ -77,9 +77,9 @@ export default (props) => {
                     mensagem: mensagem,
                 })
                 .then(function (response) {
-                    setAssunto("")
-                    setDestinatario("")
-                    setMensagem("")
+                    setAssunto('')
+                    setDestinatario('')
+                    setMensagem('')
                     return Swal.fire({
                         position: 'top-end',
                         icon: 'success',
@@ -118,6 +118,10 @@ export default (props) => {
     } else if (sessionStorage.getItem('usuario')) {
         return (
             <main className="content">
+                <h3 className="user">
+                    Caixa de entrada de{' '}
+                    <span>{sessionStorage.getItem('usuario')}</span>
+                </h3>
                 <table className="tableUsers">
                     <thead>
                         <tr>
@@ -128,16 +132,17 @@ export default (props) => {
                     </thead>
                     <tbody>
                         {mensagens.map((mensagem) => {
+                            const dataFormatada = new Date(mensagem.data).toLocaleString()
                             return (
                                 <tr
                                     key={mensagem.id}
                                     onClick={() => {
-                                        showMessage(mensagem)
+                                        showMessage(mensagem, dataFormatada)
                                     }}
                                 >
                                     <td>{mensagem.remetente}</td>
                                     <td>{mensagem.assunto}</td>
-                                    <td>{mensagem.data}</td>
+                                    <td>{dataFormatada}</td>
                                 </tr>
                             )
                         })}

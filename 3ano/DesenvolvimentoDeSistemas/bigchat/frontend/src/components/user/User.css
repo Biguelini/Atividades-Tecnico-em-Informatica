@@ -59,3 +59,14 @@
         width: 75vw !important;
     }
 }
+h3.user{
+    text-align: center;
+    color: var(--grey)
+}
+h3.user span{
+    color: var(--pink);
+    font-weight: bold;
+}
+.swal2-popup {
+    margin: 10vh 0 !important;
+}

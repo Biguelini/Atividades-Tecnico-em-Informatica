@@ -139,6 +139,7 @@ export default (props) => {
                             <th>Remetente</th>
                             <th>Mensagem</th>
                             <th>Data</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -147,15 +148,37 @@ export default (props) => {
                                 mensagem.data
                             ).toLocaleString()
                             return (
-                                <tr
-                                    key={mensagem.id}
-                                    onClick={() => {
-                                        showMessage(mensagem, dataFormatada)
-                                    }}
-                                >
-                                    <td>{mensagem.remetente}</td>
-                                    <td>{mensagem.assunto}</td>
-                                    <td>{dataFormatada}</td>
+                                <tr key={mensagem.id}>
+                                    <td
+                                        onClick={() => {
+                                            showMessage(mensagem, dataFormatada)
+                                        }}
+                                    >
+                                        {mensagem.remetente}
+                                    </td>
+                                    <td
+                                        onClick={() => {
+                                            showMessage(mensagem, dataFormatada)
+                                        }}
+                                    >
+                                        {mensagem.assunto}
+                                    </td>
+                                    <td
+                                        onClick={() => {
+                                            showMessage(mensagem, dataFormatada)
+                                        }}
+                                    >
+                                        {dataFormatada}
+                                    </td>
+                                    <td>
+                                        <Button
+                                            text="Deletar"
+                                            classe="btnTable btnExcluirMensagem"
+                                            acao={(e) =>
+                                                deleteMessage(mensagem.id)
+                                            }
+                                        />
+                                    </td>
                                 </tr>
                             )
                         })}

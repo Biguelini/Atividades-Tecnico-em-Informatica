@@ -11,6 +11,7 @@ export default (props) => {
     const [usuario, setUsuario] = useState([])
     const [nome, setNome] = useState([])
     const [senha, setSenha] = useState([])
+    const [texto, setTexto] = useState('Cadastrar')
     const [isEditing, setIsEditing] = useState(false)
     const getUsers = async () => {
         const url = 'http://localhost:3030/user'
@@ -21,17 +22,20 @@ export default (props) => {
     }
     const loadEditUser = async (usuario) => {
         setIsEditing(true)
+        setTexto('Editar')
         const url = 'http://localhost:3030/user/' + usuario
         axios.get(url).then((res) => {
             setUsuario(res.data.usuario)
             setNome(res.data.nome)
             setSenha(res.data.senha)
+            window.location.href = '#form'
             return res.data
         })
     }
     const saveUser = async () => {
         if (usuario !== '' && nome !== '' && senha !== '') {
             if (isEditing) {
+                setTexto('Cadastrar')
                 axios
                     .put('http://localhost:3030/user/' + usuario, {
                         nome: nome,
@@ -164,16 +168,12 @@ export default (props) => {
                                             text="Deletar"
                                             classe="btnTable"
                                             acao={(e)=>deleteUsers(user.usuario)}
-                                        >
-                                            Deletar
-                                        </Button>
+                                        />
                                         <Button
                                             text="Editar"
                                             classe="btnTable"
                                             acao={(e)=>loadEditUser(user.usuario)}
-                                        >
-                                            Editar
-                                        </Button>
+                                        />
                                     </td>
                                 </tr>
                             )
@@ -181,10 +181,11 @@ export default (props) => {
                     </tbody>
                 </table>
                 <div className="formContainer mb-5">
-                    <h2>Cadastrar</h2>
-                    <form className="formLogin">
+                    <h2>{texto}</h2>
+                    <form className="formLogin" id="form">
                         <label>Usuário</label>
                         <input
+                        disabled
                             type="text"
                             value={usuario}
                             onChange={(e) => {
@@ -208,25 +209,21 @@ export default (props) => {
                         />
                         <label>Senha</label>
                         <input
-                            type="text"
+                            type="password"
                             value={senha}
                             onChange={(e) => setSenha(e.target.value)}
                         />
                     </form>
                     <Button
-                        text="Cadastrar"
+                        text="Salvar"
                         classe="btnFilled"
                         acao={(e)=>saveUser()}
-                    >
-                        Enviar
-                    </Button>
+                    />
                     <Button
                         text="Cancelar"
                         classe="btnFilled"
                         acao={(e)=>clearForm()}
-                    >
-                        Cancelar
-                    </Button>
+                    />
                 </div>
             </main>
         )

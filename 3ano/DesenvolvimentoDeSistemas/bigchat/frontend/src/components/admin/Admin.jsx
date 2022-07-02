@@ -3,6 +3,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import Button from '../template/Button'
 import './Admin.css'
 
 export default (props) => {
@@ -10,6 +11,7 @@ export default (props) => {
     const [usuario, setUsuario] = useState([])
     const [nome, setNome] = useState([])
     const [senha, setSenha] = useState([])
+    const [texto, setTexto] = useState('Cadastrar')
     const [isEditing, setIsEditing] = useState(false)
     const getUsers = async () => {
         const url = 'http://localhost:3030/user'
@@ -20,55 +22,83 @@ export default (props) => {
     }
     const loadEditUser = async (usuario) => {
         setIsEditing(true)
+        setTexto('Editar')
         const url = 'http://localhost:3030/user/' + usuario
         axios.get(url).then((res) => {
             setUsuario(res.data.usuario)
             setNome(res.data.nome)
             setSenha(res.data.senha)
+            window.location.href = '#form'
             return res.data
         })
     }
     const saveUser = async () => {
-        if (isEditing) {
-            axios
-                .put('http://localhost:3030/user/' + usuario, {
-                    nome: nome,
-                    senha: senha,
-                })
-                .then(function (response) {
-                    getUsers()
-                })
-                .catch(function (error) {
-                    console.error(error)
-                })
-            Swal.fire(
-                'Usuário editado!',
-                'Usuário foi editado com sucesso',
-                'success'
-            )
+        if (usuario !== '' && nome !== '' && senha !== '') {
+            if (isEditing) {
+                setTexto('Cadastrar')
+                axios
+                    .put('http://localhost:3030/user/' + usuario, {
+                        nome: nome,
+                        senha: senha,
+                    })
+                    .then(function (response) {
+                        getUsers()
+                        setNome('')
+                        setSenha('')
+                        setUsuario('')
+                        setIsEditing(false)
+                        return Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Usuário foi editado com sucesso',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        })
+                    })
+                    .catch(function (error) {
+                        console.error(error)
+                    })
+            } else {
+                axios
+                    .post('http://localhost:3030/user/', {
+                        nome: nome,
+                        usuario: usuario,
+                        senha: senha,
+                    })
+                    .then(function (response) {
+                        getUsers()
+                        setNome('')
+                        setSenha('')
+                        setUsuario('')
+                        setIsEditing(false)
+                        return Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Usuário foi criado com sucesso',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        })
+                    })
+                    .catch(function (error) {
+                        console.error(error)
+                        return Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Algo não ocorreu bem',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        })
+                    })
+            }
         } else {
-            axios
-                .post('http://localhost:3030/user/', {
-                    nome: nome,
-                    usuario: usuario,
-                    senha: senha,
-                })
-                .then(function (response) {
-                    getUsers()
-                })
-                .catch(function (error) {
-                    console.error(error)
-                })
-            Swal.fire(
-                'Usuário criado!',
-                'Usuário foi criado com sucesso',
-                'success'
-            )
+            return Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Preencha todos os campos',
+                showConfirmButton: false,
+                timer: 1500,
+            })
         }
-        setNome('')
-        setSenha('')
-        setUsuario('')
-        setIsEditing(false)
     }
     const clearForm = () => {
         setNome('')
@@ -89,9 +119,23 @@ export default (props) => {
                     .delete(url)
                     .then(function () {
                         getUsers()
+                        return Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Usuário deletado',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        })
                     })
                     .catch(function (error) {
                         console.error(error)
+                        return Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Este usuário possui mensagens',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        })
                     })
             }
         })
@@ -118,24 +162,18 @@ export default (props) => {
                                 <tr key={user.usuario}>
                                     <td>{user.usuario}</td>
                                     <td>{user.nome}</td>
-                                    <td>{user.senha}</td>
+                                    <td>{'•'.repeat(user.senha.length)}</td>
                                     <td>
-                                        <button
-                                            className="btnDel"
-                                            onClick={() => {
-                                                deleteUsers(user.usuario)
-                                            }}
-                                        >
-                                            deletar
-                                        </button>
-                                        <button
-                                            className="btnDel"
-                                            onClick={() => {
-                                                loadEditUser(user.usuario)
-                                            }}
-                                        >
-                                            Editar
-                                        </button>
+                                        <Button
+                                            text="Deletar"
+                                            classe="btnTable"
+                                            acao={(e)=>deleteUsers(user.usuario)}
+                                        />
+                                        <Button
+                                            text="Editar"
+                                            classe="btnTable"
+                                            acao={(e)=>loadEditUser(user.usuario)}
+                                        />
                                     </td>
                                 </tr>
                             )
@@ -143,19 +181,22 @@ export default (props) => {
                     </tbody>
                 </table>
                 <div className="formContainer mb-5">
-                    <h2>Cadastrar</h2>
-                    <form className="formLogin">
+                    <h2>{texto}</h2>
+                    <form className="formLogin" id="form">
                         <label>Usuário</label>
                         <input
+                        disabled
                             type="text"
                             value={usuario}
                             onChange={(e) => {
                                 if (isEditing) {
-                                    return Swal.fire(
-                                        'Não edite isso!',
-                                        'O nome de usuário não pode ser editado',
-                                        'error'
-                                    )
+                                    return Swal.fire({
+                                        position: 'top-end',
+                                        icon: 'error',
+                                        title: 'Não pode editar o usuário',
+                                        showConfirmButton: false,
+                                        timer: 1500,
+                                    })
                                 }
                                 setUsuario(e.target.value)
                             }}
@@ -173,20 +214,16 @@ export default (props) => {
                             onChange={(e) => setSenha(e.target.value)}
                         />
                     </form>
-                    <button
-                        onClick={() => {
-                            saveUser()
-                        }}
-                    >
-                        Enviar
-                    </button>
-                    <button
-                        onClick={() => {
-                            clearForm()
-                        }}
-                    >
-                        Cancelar
-                    </button>
+                    <Button
+                        text="Salvar"
+                        classe="btnFilled"
+                        acao={(e)=>saveUser()}
+                    />
+                    <Button
+                        text="Cancelar"
+                        classe="btnFilled"
+                        acao={(e)=>clearForm()}
+                    />
                 </div>
             </main>
         )

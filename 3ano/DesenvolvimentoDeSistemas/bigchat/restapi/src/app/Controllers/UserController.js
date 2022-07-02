@@ -32,23 +32,32 @@ class UserController {
     async create(req, res) {
         try {
             const { usuario, nome, senha } = req.body
-            const userAlreadyUsed = await prisma.usuario.findUnique({
-                where: { usuario: usuario },
-            })
-            if (userAlreadyUsed) {
-                return res.status(409).json({ message: 'User is already used' })
-            }
-            const createdUser = { nome: nome, usuario: usuario, senha: senha }
-            await prisma.usuario.create({
-                data: {
+            if (usuario != '' && nome != '' && senha != '') {
+                const userAlreadyUsed = await prisma.usuario.findUnique({
+                    where: { usuario: usuario },
+                })
+                if (userAlreadyUsed) {
+                    return res
+                        .status(409)
+                        .json({ message: 'User is already used' })
+                }
+                const createdUser = {
                     nome: nome,
                     usuario: usuario,
                     senha: senha,
-                },
-            })
-            return res
-                .status(201)
-                .json({ message: 'User created', createdUser })
+                }
+                await prisma.usuario.create({
+                    data: {
+                        nome: nome,
+                        usuario: usuario,
+                        senha: senha,
+                    },
+                })
+                return res
+                    .status(201)
+                    .json({ message: 'User created', createdUser })
+            }
+            return res.status(404)
         } catch (e) {
             return console.log(e)
         } finally {
@@ -67,11 +76,16 @@ class UserController {
                 const alreadySendMessage = await prisma.mensagem.findMany({
                     where: { remetente: usuario },
                 })
-                if (haveMessage.length != 0 && alreadySendMessage.length != 0) {
+                console.log(haveMessage.length, alreadySendMessage.length)
+                if (
+                    haveMessage.length !== 0 ||
+                    alreadySendMessage.length !== 0
+                ) {
                     return res.status(401).json({
                         message: 'O usuário possui mensagens',
                     })
                 } else {
+                    console.log(haveMessage, alreadySendMessage)
                     const deletedUser = await prisma.usuario.delete({
                         where: { usuario: usuario },
                     })
@@ -121,14 +135,15 @@ class UserController {
     }
     async login(req, res) {
         const { usuario, senha } = req.body
-
-        const user = await prisma.usuario.findUnique({
-            where: { usuario: usuario },
-        })
-        if (user) {
-            const validated = senha == user.senha ? true : false
-            if (validated) {
-                return res.status(200).json({ message: 'conectado' })
+        if (usuario != '') {
+            const user = await prisma.usuario.findUnique({
+                where: { usuario: usuario },
+            })
+            if (user) {
+                const validated = senha == user.senha ? true : false
+                if (validated) {
+                    return res.status(200).json({ message: 'conectado' })
+                }
             }
         }
         return res.status(401).json({ message: 'usuário ou senha incorretos' })

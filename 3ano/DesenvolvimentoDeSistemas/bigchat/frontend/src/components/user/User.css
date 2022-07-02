@@ -54,3 +54,16 @@
 .MsgForm select:focus {
     border: solid 4px var(--pink);
 }
+@media only screen and (max-width: 1000px){
+    .MsgForm{
+        width: 75vw !important;
+    }
+}
+h3.user{
+    text-align: center;
+    color: var(--grey)
+}
+h3.user span{
+    color: var(--pink);
+    font-weight: bold;
+}

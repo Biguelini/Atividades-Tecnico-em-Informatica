@@ -1,7 +1,7 @@
 .exitBtn{
     background: transparent;
     border: none;
-    color: var(--pink);
+    color: var(--pink) !important;
     font-weight: bold;
     font-size: 1.5rem;
 }

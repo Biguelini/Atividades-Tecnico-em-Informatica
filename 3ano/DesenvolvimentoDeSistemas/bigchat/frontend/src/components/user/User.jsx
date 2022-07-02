@@ -3,6 +3,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import Button from '../template/Button'
 import './User.css'
 export default (props) => {
     const [mensagens, setMensagens] = useState([])
@@ -18,23 +19,28 @@ export default (props) => {
             setUsers(data)
         })
     }
-    const showMessage = (mensagem) => {
+    const showMessage = (mensagem, data) => {
         Swal.fire({
             title: `${mensagem.assunto}`,
             html:
                 `<span class="remetente">De: ${mensagem.remetente}</span>` +
-                `<span class="data">Enviado em: ${mensagem.data}</span>` +
+                `<span class="data">Enviado em: ${data}</span>` +
                 `<span class="mensagem">${mensagem.mensagem}</span>`,
             showCloseButton: true,
             showCancelButton: false,
             showDenyButton: true,
             denyButtonText: `Excluir`,
             focusConfirm: false,
-            confirmButtonText: 'Fechar mensagem',
+            confirmButtonText: 'Responder',
             showConfirmButton: false,
         }).then((result) => {
             if (result.isDenied) {
                 deleteMessage(mensagem.id)
+            }
+            if (result.isConfirmed) {
+                window.location.href = '#form'
+                setDestinatario(mensagem.remetente)
+                setAssunto('Re: ' + mensagem.assunto)
             }
         })
     }
@@ -77,20 +83,42 @@ export default (props) => {
                     mensagem: mensagem,
                 })
                 .then(function (response) {
-                    Swal.fire('Enviado', 'Sua mensagem foi enviada', 'success')
+                    setAssunto('')
+                    setDestinatario('')
+                    setMensagem('')
+                    return Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Mensagem enviada',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    })
                 })
                 .catch(function (error) {
-                    Swal.fire(
-                        'Erro :(',
-                        'Algo não saiu como esperávamos',
-                        'error'
-                    )
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'Algo não ocorreu bem',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    })
                     return console.error(error)
                 })
         } else {
-            Swal.fire('Erro :(', 'Preencha corretamente os campos', 'error')
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Preencha todos os campos',
+                showConfirmButton: false,
+                timer: 1500,
+            })
         }
         console.log(assunto, destinatario, mensagem)
+    }
+    const clearMessage = () => {
+        setAssunto('')
+        setDestinatario('')
+        setMensagem('')
     }
     useEffect(() => {
         getMessages()
@@ -101,32 +129,62 @@ export default (props) => {
     } else if (sessionStorage.getItem('usuario')) {
         return (
             <main className="content">
+                <h3 className="user">
+                    Caixa de entrada de{' '}
+                    <span>{sessionStorage.getItem('usuario')}</span>
+                </h3>
                 <table className="tableUsers">
                     <thead>
                         <tr>
                             <th>Remetente</th>
                             <th>Mensagem</th>
                             <th>Data</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         {mensagens.map((mensagem) => {
+                            const dataFormatada = new Date(
+                                mensagem.data
+                            ).toLocaleString()
                             return (
-                                <tr
-                                    key={mensagem.id}
-                                    onClick={() => {
-                                        showMessage(mensagem)
-                                    }}
-                                >
-                                    <td>{mensagem.remetente}</td>
-                                    <td>{mensagem.assunto}</td>
-                                    <td>{mensagem.data}</td>
+                                <tr key={mensagem.id}>
+                                    <td
+                                        onClick={() => {
+                                            showMessage(mensagem, dataFormatada)
+                                        }}
+                                    >
+                                        {mensagem.remetente}
+                                    </td>
+                                    <td
+                                        onClick={() => {
+                                            showMessage(mensagem, dataFormatada)
+                                        }}
+                                    >
+                                        {mensagem.assunto}
+                                    </td>
+                                    <td
+                                        onClick={() => {
+                                            showMessage(mensagem, dataFormatada)
+                                        }}
+                                    >
+                                        {dataFormatada}
+                                    </td>
+                                    <td>
+                                        <Button
+                                            text="Deletar"
+                                            classe="btnTable btnExcluirMensagem"
+                                            acao={(e) =>
+                                                deleteMessage(mensagem.id)
+                                            }
+                                        />
+                                    </td>
                                 </tr>
                             )
                         })}
                     </tbody>
                 </table>
-                <div className="formContainer MsgForm">
+                <div className="formContainer MsgForm" id="form">
                     <h2>Escreva uma mensagem</h2>
                     <form className="formLogin">
                         <label>Assunto</label>
@@ -155,13 +213,16 @@ export default (props) => {
                             value={mensagem}
                         ></textarea>
                     </form>
-                    <button
-                        onClick={() => {
-                            sendMessage()
-                        }}
-                    >
-                        Enviar
-                    </button>
+                    <Button
+                        text="Enviar"
+                        classe="btnFilled"
+                        acao={(e) => sendMessage()}
+                    ></Button>
+                    <Button
+                        text="Cancelar"
+                        classe="btnFilled"
+                        acao={(e) => clearMessage()}
+                    ></Button>
                 </div>
             </main>
         )

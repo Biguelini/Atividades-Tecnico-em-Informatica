@@ -1,0 +1,32 @@
+button {
+    height: 48px;
+
+    border: none;
+    border-radius: 16px;
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-top: 24px;
+    opacity: 1;
+    transition: 0.3s;
+    
+}
+button:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+button.btnFilled {
+    background-color: var(--pink);
+    color: var(--white);
+}
+button.btnTable {
+    border-radius: 16px;
+    border: none;
+    margin-right: 16px;
+    background-color: var(--pink);
+    font-weight: bold;
+    color: var(--dark);
+    width: 125px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}

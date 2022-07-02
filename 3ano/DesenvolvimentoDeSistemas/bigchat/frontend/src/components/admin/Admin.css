@@ -30,18 +30,4 @@ tbody tr {
     font-size: 1.2rem;
     height: 68px;
 }
-tbody button {
-    padding: 16px 32px;
-    border-radius: 16px;
-    border: none;
-    margin-right: 16px;
-    background-color: var(--pink);
-    font-weight: bold;
-    color: var(--dark);
-}
 
-@media screen and (max-width: 856px) {
-    tbody button:not(:first-child) {
-        margin-top: 10px;
-    }
-}

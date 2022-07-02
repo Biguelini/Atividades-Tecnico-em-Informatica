@@ -5,7 +5,7 @@ export default (props) => {
     const isLogged = sessionStorage.getItem('usuario') ? true : false
     const deslogar = () => {
         sessionStorage.removeItem('usuario')
-        window.location.reload()
+        window.location.href = '/login'
     }
     if (isLogged) {
         return (

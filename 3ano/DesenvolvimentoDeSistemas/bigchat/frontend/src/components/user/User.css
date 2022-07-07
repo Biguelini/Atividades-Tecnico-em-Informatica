@@ -67,3 +67,10 @@ h3.user span{
     color: var(--pink);
     font-weight: bold;
 }
+.tableUsers tbody tr:hover{
+    cursor: pointer;
+    transition: .25s;
+}
+.tableUsers tbody tr:hover{
+    background-color: #141414;
+}

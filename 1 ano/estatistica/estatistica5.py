@@ -18,4 +18,4 @@ xy[3]=xy[0]+xy[1]+xy[2]
 x2[3]=x2[0]+x2[1]+x2[2]
 a=(3*xy[3]-x[3]*y[3])/(3*x2[3]-(x[3]**2)) #reseto a e acho seu valor
 b=(y[3]/3)-((a*x[3])/3)
-print(f"y={a}x+{b}")
+print(f"y={a:.2f}x+{b:.2f}")

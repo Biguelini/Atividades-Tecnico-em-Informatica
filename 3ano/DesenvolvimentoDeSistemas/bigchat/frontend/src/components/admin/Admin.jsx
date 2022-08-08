@@ -47,6 +47,7 @@ export default (props) => {
                         setSenha('')
                         setUsuario('')
                         setIsEditing(false)
+
                         return Swal.fire({
                             position: 'top-end',
                             icon: 'success',
@@ -59,36 +60,47 @@ export default (props) => {
                         console.error(error)
                     })
             } else {
-                axios
-                    .post('http://localhost:3030/user/', {
-                        nome: nome,
-                        usuario: usuario,
-                        senha: senha,
-                    })
-                    .then(function (response) {
-                        getUsers()
-                        setNome('')
-                        setSenha('')
-                        setUsuario('')
-                        setIsEditing(false)
-                        return Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Usuário foi criado com sucesso',
-                            showConfirmButton: false,
-                            timer: 1500,
+                if(senha.trim().length >= 5 && usuario.trim().length <= 10 && usuario.trim().length >=5 && usuario !== "lucio"){
+                    axios
+                        .post('http://localhost:3030/user/', {
+                            nome: nome,
+                            usuario: usuario.trim(),
+                            senha: senha.trim(),
                         })
-                    })
-                    .catch(function (error) {
-                        console.error(error)
-                        return Swal.fire({
-                            position: 'top-end',
-                            icon: 'error',
-                            title: 'Algo não ocorreu bem',
-                            showConfirmButton: false,
-                            timer: 1500,
+                        .then(function (response) {
+                            getUsers()
+                            setNome('')
+                            setSenha('')
+                            setUsuario('')
+                            setIsEditing(false)
+                            return Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Usuário foi criado com sucesso',
+                                showConfirmButton: false,
+                                timer: 1500,
+                            })
                         })
+                        .catch(function (error) {
+                            console.error(error)
+                            return Swal.fire({
+                                position: 'top-end',
+                                icon: 'error',
+                                title: 'Algo não ocorreu bem',
+                                showConfirmButton: false,
+                                timer: 1500,
+                            })
+                        })
+
+                } else {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'Algo não ocorreu bem',
+                        showConfirmButton: false,
+                        timer: 1500,
                     })
+                }
             }
         } else {
             return Swal.fire({
@@ -147,7 +159,7 @@ export default (props) => {
     if (sessionStorage.getItem('usuario') === 'lucio') {
         return (
             <main className="content">
-                <table className="tableUsers">
+                <table className="tableUsers" id='tableUsers'>
                     <thead>
                         <tr>
                             <th>Usuário</th>
@@ -185,7 +197,7 @@ export default (props) => {
                     <form className="formLogin" id="form">
                         <label>Usuário</label>
                         <input
-                        disabled
+                        
                             type="text"
                             value={usuario}
                             onChange={(e) => {

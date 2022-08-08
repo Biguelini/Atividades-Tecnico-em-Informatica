@@ -9,6 +9,9 @@ class MessagesController {
         try {
             const messages = await prisma.mensagem.findMany({
                 where: { destinatario: usuario },
+                orderBy: {
+                    data: 'desc',
+                },
             })
             console.log
             return res.status(200).json(messages)

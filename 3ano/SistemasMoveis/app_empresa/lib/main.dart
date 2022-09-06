@@ -35,209 +35,44 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                'logo.png',
-                width: 200,
-              ),
-            ],
-          ),
-          const Text(
-            'Produtos',
-            style: TextStyle(fontSize: 24),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                child: Column(
-                  children: [
-                    Text('Prato 1'),
-                    Image.asset(
-                      'prato.png',
-                      width: 100,
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                child: Column(
-                  children: [
-                    Text('Prato 1'),
-                    Image.asset(
-                      'prato.png',
-                      width: 100,
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                child: Column(
-                  children: [
-                    Text('Prato 1'),
-                    Image.asset(
-                      'prato.png',
-                      width: 100,
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                child: Column(
-                  children: [
-                    Text('Prato 1'),
-                    Image.asset(
-                      'prato.png',
-                      width: 100,
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                child: Column(
-                  children: [
-                    Text('Prato 1'),
-                    Image.asset(
-                      'prato.png',
-                      width: 100,
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                child: Column(
-                  children: [
-                    Text('Prato 1'),
-                    Image.asset(
-                      'prato.png',
-                      width: 100,
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-          const Text(
-            'Restaurantes',
-            style: TextStyle(fontSize: 24),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                child: Column(
-                  children: [
-                    Text('Restaurante 1'),
-                    Image.asset(
-                      'restaurante.jpg',
-                      width: 100,
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                child: Column(
-                  children: [
-                    Text('Restaurante 2'),
-                    Image.asset(
-                      'restaurante.jpg',
-                      width: 100,
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                child: Column(
-                  children: [
-                    Text('Restaurante 3'),
-                    Image.asset(
-                      'restaurante.jpg',
-                      width: 100,
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                child: Column(
-                  children: [
-                    Text('Restaurante 1'),
-                    Image.asset(
-                      'restaurante.jpg',
-                      width: 100,
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                child: Column(
-                  children: [
-                    Text('Restaurante 2'),
-                    Image.asset(
-                      'restaurante.jpg',
-                      width: 100,
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                child: Column(
-                  children: [
-                    Text('Restaurante 3'),
-                    Image.asset(
-                      'restaurante.jpg',
-                      width: 100,
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-          FloatingActionButton.large(
-            onPressed: (() => {}),
-            child: Text("Comprar"),
-          )
-        ],
+      body: Container(
+        child: ListView(
+          children: [
+            Image.asset(
+              'logo.png',
+              width: 200,
+            ),
+            Image.asset(
+              'prato.png',
+              width: 200,
+            ),
+            Image.asset(
+              'mylogo.png',
+              width: 200,
+            ),
+            Image.asset(
+              'restaurante.jpg',
+              width: 200,
+            ),
+            Image.asset(
+              'logo.png',
+              width: 200,
+            ),
+            Image.asset(
+              'prato.png',
+              width: 200,
+            ),
+            Image.asset(
+              'mylogo.png',
+              width: 200,
+            ),
+            Image.asset(
+              'restaurante.jpg',
+              width: 200,
+            ),
+          ],
+        ),
       ),
-      drawer: Drawer(
-          child: Column(
-        children: [
-          Column(
-            children: [
-              Image.asset(
-                'mylogo.png',
-                width: 100,
-              ),
-              const Text(
-                'Big Coding',
-                style: TextStyle(fontSize: 24),
-              ),
-              const Text(
-                '42 998349909',
-                style: TextStyle(fontSize: 24),
-              ),
-              const Text(
-                'Rua Nelson Basílio Kulcheski, 155',
-                style: TextStyle(fontSize: 14),
-              ),
-            ],
-          )
-        ],
-      ) // Populate the Drawer in the next step.
-          ),
     );
   }
 }

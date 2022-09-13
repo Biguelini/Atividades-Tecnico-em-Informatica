@@ -61,6 +61,15 @@ flutter:
   assets:
     - logo.png
     - prato.png
+    - prato2.png
+    - prato3.png
+    - prato4.png
+    - prato5.png
+    - prato6.png
+    - prato7.png
+    - prato8.png
+    - prato9.png
+    - prato10.png
     - mylogo.png
     - restaurante.jpg
 

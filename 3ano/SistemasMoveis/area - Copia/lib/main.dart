@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: const MyHomePage(title: 'Area triângulo'),
+      home: const MyHomePage(title: 'Login'),
     );
   }
 }
@@ -30,15 +30,19 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  double _h = 0, _l = 0, _a = 0;
+  String _h = '', _l = '', _a = '';
   final _tH = TextEditingController();
   final _tL = TextEditingController();
 
   void _calculaArea() {
     setState(() {
-      _h = double.parse(_tH.text);
-      _l = double.parse(_tL.text);
-      _a = _h * _l /2;
+      _h = _tH.text;
+      _l = _tL.text;
+      if (_h == 'joao' && _l == 'senha') {
+        _a = 'Você está logado!';
+      } else {
+        _a = 'Senha ou usuário incorreto';
+      }
     });
   }
 
@@ -54,21 +58,24 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             TextFormField(
               decoration: const InputDecoration(
-                labelText: "Digite a altura",
+                labelText: "Digite o usuário",
               ),
               controller: _tH,
             ),
             TextFormField(
+              obscureText: true,
+              enableSuggestions: false,
+              autocorrect: false,
               decoration: const InputDecoration(
-                labelText: "Digite a largura",
+                labelText: "Digite a senha",
               ),
               controller: _tL,
             ),
             ElevatedButton(
               onPressed: _calculaArea,
-              child: const Text('Calcular área'),
+              child: const Text('Fazer Login'),
             ),
-            Text("A área é $_a"),
+            Text(_a),
           ],
         ),
       ),
